@@ -1,20 +1,13 @@
-На изображениях показан макет сайта GlassFix Expert: чёрный автомобиль с повреждённым лобовым стеклом, услуги ремонта, замены и тонировки, блок обучения, бренды плёнок и способы связи.
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#030b0f">
+  <meta name="description" content="GlassFix Expert. Профессиональный ремонт и замена автостекол. Ремонт, замена, тонировка и обучение.">
+  <title>GlassFix Expert — ремонт, замена и тонировка автостёкол</title>
 
-Сохраните код в index.html для GitHub Pages. Машина появляется однократно, после остановки возникает дополнительный скол. При наведении фотографии услуг раскрываются с мягкими краями, а логотипы плёнок немного выступают вперёд. Анимация использует преимущественно transform и opacity, без постоянных вычислений в JavaScript. На исходной фотографии машины уже есть трещины, поэтому полностью чистое стекло до появления скола потребует отдельного изображения.
-
-Надписи из макета сохранены. Фотографии используются из предоставленных изображений, новые изображения не генерировались. Настоящие контакты и адрес сайта для QR-кода необходимо указать в объекте CONFIG в конце кода. Пока они не указаны, сайт честно сообщает, что контакт не настроен.
-
-```html
-
-
-
-  
-  
-  
-  
-  GlassFix Expert — ремонт, замена и тонировка автостёкол
-
-  
+  <style>
     :root {
       color-scheme: dark;
       --bg: #030b0f;
@@ -1315,543 +1308,561 @@
         transform: none;
       }
     }
-  
+  </style>
+</head>
 
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+    <defs>
+      <symbol id="i-shield" viewBox="0 0 32 32">
+        <path d="M16 3 27 8v8c0 6-4.5 10-11 13C9.5 26 5 22 5 16V8Z"/>
+        <path d="m10 16 4 4 8-9"/>
+      </symbol>
 
+      <symbol id="i-diamond" viewBox="0 0 32 32">
+        <path d="m3 11 6-7h14l6 7-13 18Z"/>
+        <path d="M3 11h26M9 4l7 25L23 4M9 11l7-7 7 7"/>
+      </symbol>
 
-  
-    
-      
-        
-        
-      
+      <symbol id="i-heart" viewBox="0 0 32 32">
+        <path d="M16 28 5 17C-3 9 7-1 16 8 25-1 35 9 27 17Z"/>
+        <path d="m9 16 4 4 9-9"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-chip" viewBox="0 0 32 32">
+        <path d="m16 3-1 10-7-7 5 8-10 2 10 2-7 8 9-6 1 10 2-11 9 6-7-9 10-2-11-1 6-9-8 7Z"/>
+        <circle cx="16" cy="16" r="2"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-glass" viewBox="0 0 32 32">
+        <path d="m7 7-3 21h24L25 7Z"/>
+        <path d="M7 7c5-3 13-3 18 0M10 12l-2 11M22 12l2 11"/>
+        <path d="M12 17h8m-3-3 3 3-3 3"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-sun" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="6"/>
+        <path d="M16 2v4m0 20v4M2 16h4m20 0h4M6 6l3 3m14 14 3 3M6 26l3-3M23 9l3-3"/>
+      </symbol>
 
-      
-        
-        
-        
-      
+      <symbol id="i-tools" viewBox="0 0 32 32">
+        <path d="M27 4a8 8 0 0 0-10 10L5 26a2.8 2.8 0 0 0 4 4l12-12A8 8 0 0 0 31 8l-5 5-6-6Z" transform="translate(-1 -2) scale(.95)"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-study" viewBox="0 0 32 32">
+        <path d="m2 11 14-8 14 8-14 8ZM7 15v9c5 5 13 5 18 0v-9M30 11v12"/>
+      </symbol>
 
-      
-        
-      
+      <symbol id="i-person" viewBox="0 0 32 32">
+        <circle cx="13" cy="9" r="5"/>
+        <path d="M3 28v-4a10 10 0 0 1 20 0v4ZM24 6a5 5 0 0 1 0 10m3 4a8 8 0 0 1 3 6v2"/>
+      </symbol>
 
-      
-        
-      
+      <symbol id="i-support" viewBox="0 0 32 32">
+        <path d="M5 18v-4a11 11 0 0 1 22 0v4M5 15H3v9h5v-9ZM27 15h2v9h-5v-9ZM27 24c0 4-5 5-10 5"/>
+        <path d="M13 27h6v3h-6Z"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-certificate" viewBox="0 0 32 32">
+        <path d="m16 2 4 3 5 1 1 5 3 5-3 4-1 5-5 1-4 4-4-4-5-1-1-5-3-4 3-5 1-5 5-1Z"/>
+        <path d="m10 16 4 4 8-9"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-calendar" viewBox="0 0 32 32">
+        <rect x="5" y="6" width="22" height="23" rx="3"/>
+        <path d="M10 3v7M22 3v7M5 13h22M11 18h2m6 0h2m-10 6h2m6 0h2"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-arrow" viewBox="0 0 32 32">
+        <path d="M5 16h22m-9-9 9 9-9 9"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-play" viewBox="0 0 32 32">
+        <path d="m11 6 16 10-16 10Z"/>
+      </symbol>
 
-      
-        
-      
+      <symbol id="i-close" viewBox="0 0 32 32">
+        <path d="m7 7 18 18M25 7 7 25"/>
+      </symbol>
 
-      
-        
-      
+      <symbol id="i-wa" viewBox="0 0 32 32">
+        <path d="M6 25 4 29l6-2a12 12 0 1 0-4-2Z"/>
+        <path d="m11 9-2 2c0 6 7 13 12 12l2-3-4-2-2 2c-3-1-5-3-6-6l2-1Z"/>
+      </symbol>
 
-      
-        
-      
+      <symbol id="i-tg" viewBox="0 0 32 32">
+        <path d="m3 14 26-10-5 25-8-7-5 5 1-9Z"/>
+        <path d="m12 18 11-9-7 13"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-max" viewBox="0 0 32 32">
+        <path d="M16 4C8 4 4 9 4 16c0 6 4 11 11 11l-1-5h3c7 0 11-4 11-9S23 4 16 4Z"/>
+        <path d="M16 10c-4 0-6 2-6 5s2 5 6 5 6-2 6-5-2-5-6-5Z"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-avito" viewBox="0 0 32 32">
+        <circle cx="9" cy="9" r="6" fill="#00aaff"/>
+        <circle cx="23" cy="9" r="7" fill="#00c98d"/>
+        <circle cx="8" cy="24" r="5" fill="#9656ed"/>
+        <circle cx="23" cy="24" r="7" fill="#ff4053"/>
+      </symbol>
 
-      
-        
-        
-      
+      <symbol id="i-youtube" viewBox="0 0 32 32">
+        <rect x="3" y="7" width="26" height="18" rx="5"/>
+        <path d="m13 12 8 4-8 4Z"/>
+      </symbol>
 
-      
-        
-        
-        
-        
-      
+      <symbol id="i-qr" viewBox="0 0 32 32">
+        <path d="M3 3h10v10H3ZM19 3h10v10H19ZM3 19h10v10H3Z"/>
+        <path d="M7 7h2v2H7ZM23 7h2v2h-2ZM7 23h2v2H7ZM19 19h4v4h6v6h-6v-3h-4ZM27 17v3M17 27v2"/>
+      </symbol>
+    </defs>
+  </svg>
 
-      
-        
-        
-      
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#home" class="logo" aria-label="GlassFix Expert — главная" data-logo></a>
 
-      
-        
-        
-      
-    
-  
-
-  
-    
-      
-
-      
-        Профессиональный
+      <span class="header-description">
+        Профессиональный<br>
         ремонт и замена автостекол
-      
+      </span>
 
-      
-        Услуги
-        Преимущества
-        Обучение
-        Контакты
-      
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#services">Услуги</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#training">Обучение</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
 
-      
-        
+      <button class="button" type="button" data-book="Консультация">
+        <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
         Записаться
-      
-    
-  
+      </button>
+    </div>
+  </header>
 
-  
-    
-      
-        
-          
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="logo hero-logo" role="img" aria-label="GlassFix Expert" data-logo></div>
 
-          АВТОСТЁКЛА
-          РЕМОНТ · ЗАМЕНА · ТОНИРОВКА
+          <h1 id="hero-title">АВТОСТЁКЛА</h1>
+          <p class="hero-subtitle">РЕМОНТ · ЗАМЕНА · ТОНИРОВКА</p>
 
-          
-            
-              
-              Быстрои качественно
-            
+          <div class="benefits">
+            <div class="benefit">
+              <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+              <span>Быстро<br>и качественно</span>
+            </div>
 
-            
-              
-              Современныематериалы
-            
+            <div class="benefit">
+              <svg class="icon" aria-hidden="true"><use href="#i-diamond"/></svg>
+              <span>Современные<br>материалы</span>
+            </div>
 
-            
-              
-              С заботойо каждом клиенте
-            
-          
+            <div class="benefit">
+              <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+              <span>С заботой<br>о каждом клиенте</span>
+            </div>
+          </div>
 
-          
-            
-              
+          <div class="hero-actions">
+            <button class="button" type="button" data-book="Консультация">
+              <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
               Записаться
-            
+            </button>
 
-            
-              
-            
-          
+            <span aria-hidden="true">
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </span>
+          </div>
 
-          Чистое стекло — ваша уверенность на дороге!
-        
+          <p class="hero-caption">Чистое стекло — ваша уверенность на дороге!</p>
+        </div>
 
-        
-          
+        <div class="car-scene" id="car-scene" aria-hidden="true">
+          <img
+            id="car-image"
+            src="https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/4a269982-a3cc-4161-b3bc-b50ab41fe8f9.png"
+            alt=""
+            width="580"
+            height="426"
+            fetchpriority="high"
+            decoding="async"
+          >
 
-          
-            
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
+          <svg class="chip" viewBox="0 0 580 426">
+            <g class="chip-rays">
+              <path d="m379 143-21-20-13-23-16-9"/>
+              <path d="m379 143-29-7-24 2-31-7"/>
+              <path d="m379 143-25 20-10 24-13 10"/>
+              <path d="m379 143 2 25 15 21 3 14"/>
+              <path d="m379 143 28 9 29 21 20 2"/>
+              <path d="m379 143 34-9 25-19 21-7"/>
+              <path d="m379 143 10-26-2-20 9-12"/>
+              <path d="m379 143-5-17-15-10"/>
+              <path d="m379 143 16-2 12 7"/>
+              <ellipse cx="379" cy="143" rx="8" ry="4"/>
+              <ellipse cx="379" cy="143" rx="4" ry="2" fill="#efffff"/>
 
-              
-                
-                
-                
-                
-                
-                
-              
-            
-          
-        
-      
-    
+              <g class="chip-secondary">
+                <path d="m358 123 5-14m-18-9-11 5m16 31-8-12m-16 14-9 11"/>
+                <path d="m354 163-16-1m6 25 9 5m28-24-11 8m26 13 10-4"/>
+                <path d="m407 152 1 13m28 8-1 11m-22-50 2-14m23-5-1-12"/>
+                <path d="m389 117 12-2"/>
+                <path d="m365 136 6-8 13 1 10 7 2 11-10 9-14-3-8-8Z"/>
+                <path d="m356 132 12-15 21 3 16 15-3 18-16 13-23-7-12-14Z"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
 
-    
-      
-        
-          
+    <section class="section" id="services" aria-label="Услуги">
+      <div class="container services">
+        <button class="service" type="button" data-book="Ремонт автостёкол">
+          <span class="service-photo" data-crop="42 416 306 210"></span>
 
-          
-            
-              
-            
+          <span class="service-content">
+            <span class="service-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-chip"/></svg>
+            </span>
 
-            
-              Ремонтавтостёкол
-              Устраняем сколы и трещины любой сложности
-            
-          
-        
+            <span>
+              <h2>Ремонт<br>автостёкол</h2>
+              <p>Устраняем сколы и трещины любой сложности</p>
+            </span>
+          </span>
+        </button>
 
-        
-          
+        <button class="service" type="button" data-book="Замена автостёкол">
+          <span class="service-photo" data-crop="365 416 294 210"></span>
 
-          
-            
-              
-            
+          <span class="service-content">
+            <span class="service-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-glass"/></svg>
+            </span>
 
-            
-              Заменаавтостёкол
-              Оригинальные и проверенные стёкла на все марки авто
-            
-          
-        
+            <span>
+              <h2>Замена<br>автостёкол</h2>
+              <p>Оригинальные и проверенные стёкла на все марки авто</p>
+            </span>
+          </span>
+        </button>
 
-        
-          
+        <button class="service" type="button" data-book="Тонировка автостёкол">
+          <span class="service-photo" data-crop="677 416 304 210"></span>
 
-          
-            
-              
-            
+          <span class="service-content">
+            <span class="service-icon">
+              <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
+            </span>
 
-            
-              Тонировкаавтостёкол
-              Комфорт, защита и стиль для вашего авто
-            
-          
-        
-      
-    
+            <span>
+              <h2>Тонировка<br>автостёкол</h2>
+              <p>Комфорт, защита и стиль для вашего авто</p>
+            </span>
+          </span>
+        </button>
+      </div>
+    </section>
 
-    
-      
-        
-          
+    <section class="section about" id="advantages">
+      <div class="container about-grid">
+        <div class="about-media">
+          <div
+            data-crop="42 677 344 185"
+            style="width:100%;height:100%"
+            role="img"
+            aria-label="Ремонт повреждения автомобильного стекла"
+          ></div>
 
-          
-            
-          
+          <button class="play" type="button" id="video-button" aria-label="Смотреть видео о ремонте">
+            <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
+          </button>
 
-          1:32
-        
+          <span class="duration">1:32</span>
+        </div>
 
-        
-          О НАС
-          
-            Профессиональный
-            ремонт автостёкол
-          
+        <div>
+          <p class="eyebrow">О НАС</p>
+          <h2 class="section-title">
+            Профессиональный<br>
+            <span class="accent">ремонт автостёкол</span>
+          </h2>
 
-          
+          <p class="about-text">
             Мы восстанавливаем автостёкла, возвращая им прочность,
             прозрачность и безопасность. Современное оборудование,
             качественные материалы и опытные мастера — гарантия
             отличного результата.
-          
+          </p>
 
-          
-            
-              
-              Опытболее 5 лет
-            
+          <div class="advantages">
+            <div class="benefit">
+              <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+              <span>Опыт<br>более 5 лет</span>
+            </div>
 
-            
-              
-              Современноеоборудование
-            
+            <div class="benefit">
+              <svg class="icon" aria-hidden="true"><use href="#i-tools"/></svg>
+              <span>Современное<br>оборудование</span>
+            </div>
 
-            
-              
-              Гарантияна работы
-            
-          
-        
-      
-    
+            <div class="benefit">
+              <svg class="icon" aria-hidden="true"><use href="#i-certificate"/></svg>
+              <span>Гарантия<br>на работы</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    
-      
-        
-          
-            
-              Бренды плёнок
-              
+    <section class="section details-section" aria-label="Плёнки и обучение">
+      <div class="container details-grid">
+        <div class="details-main">
+          <div class="brands-row">
+            <div class="brands-description">
+              <h2>Бренды плёнок</h2>
+              <p>
                 Используем только проверенные бренды плёнок
                 для вашей уверенности и долговечности.
-              
-            
+              </p>
+            </div>
 
-            
-              
-                
-              
+            <div class="brands" aria-label="Бренды автомобильных плёнок">
+              <button class="film-brand" type="button" data-film="LLumar" aria-label="LLumar">
+                <span data-brand-crop="17 3 82 51" style="width:100%"></span>
+              </button>
 
-              
-                
-              
+              <button class="film-brand" type="button" data-film="SunTek" aria-label="SunTek">
+                <span data-brand-crop="111 5 96 47" style="width:100%"></span>
+              </button>
 
-              
-                
-              
+              <button class="film-brand" type="button" data-film="3M" aria-label="3M">
+                <span data-brand-crop="216 7 55 44" style="width:100%"></span>
+              </button>
 
-              
-                
-              
+              <button class="film-brand" type="button" data-film="RAYNO" aria-label="RAYNO Window Film">
+                <span data-brand-crop="283 6 85 45" style="width:100%"></span>
+              </button>
 
-              
-                
-              
-            
-          
+              <button class="film-brand" type="button" data-film="SPECTROLL" aria-label="SPECTROLL Window Film">
+                <span data-brand-crop="381 6 107 45" style="width:100%"></span>
+              </button>
+            </div>
+          </div>
 
-          
-            
+          <div class="training" id="training">
+            <div
+              class="training-photo"
+              data-crop="0 1024 283 189"
+              role="img"
+              aria-label="Практическое обучение GlassFix Expert"
+            ></div>
 
-            
-              
-                
-                Обучение
-              
+            <div class="training-content">
+              <div class="training-heading">
+                <svg class="icon" aria-hidden="true"><use href="#i-study"/></svg>
+                <h2>Обучение</h2>
+              </div>
 
-              
-                Хотите освоить профессию и зарабатывать?
+              <p>
+                Хотите освоить профессию и зарабатывать?<br>
                 Мы предлагаем обучение по ремонту и замене
                 автостёкол, а также тонировке.
-              
+              </p>
 
-              
-                
+              <div class="training-actions">
+                <button class="button" type="button" data-book="Обучение">
                   Узнать подробнее
-                
+                </button>
 
-                
-                  
+                <button class="button secondary" type="button" id="course-button">
+                  <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
                   Онлайн-курс (скоро)
-                
-              
-            
-          
-        
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        
-          
-            
-              
-              Атермальные плёнки(защита от солнца)
-            
+        <aside class="side-features" aria-label="Материалы и преимущества обучения">
+          <div class="feature-group">
+            <div class="side-feature">
+              <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
+              <span>Атермальные плёнки<br><small>(защита от солнца)</small></span>
+            </div>
 
-            
-              
-              Тонировочные плёнки(комфорт и приватность)
-            
+            <div class="side-feature">
+              <svg class="icon" aria-hidden="true"><use href="#i-glass"/></svg>
+              <span>Тонировочные плёнки<br><small>(комфорт и приватность)</small></span>
+            </div>
 
-            
-              
-              Бронирование плёнкой(доп. защита стекол)
-            
-          
+            <div class="side-feature">
+              <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+              <span>Бронирование плёнкой<br><small>(доп. защита стекол)</small></span>
+            </div>
+          </div>
 
-          
-            
-              
-              Живое обучение(практика)
-            
+          <div class="feature-group">
+            <div class="side-feature">
+              <svg class="icon" aria-hidden="true"><use href="#i-person"/></svg>
+              <span>Живое обучение<br><small>(практика)</small></span>
+            </div>
 
-            
-              
-              Поддержкапосле обучения
-            
+            <div class="side-feature">
+              <svg class="icon" aria-hidden="true"><use href="#i-support"/></svg>
+              <span>Поддержка<br>после обучения</span>
+            </div>
 
-            
-              
-              Сертификат
-            
-          
-        
-      
-    
+            <div class="side-feature">
+              <svg class="icon" aria-hidden="true"><use href="#i-certificate"/></svg>
+              <span>Сертификат</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-    
-      
-        
-          Запись и связь
-          Выберите удобный способ — мы на связи
+    <section class="section contact" id="contacts">
+      <div class="container contact-inner">
+        <div>
+          <h2 class="section-title">Запись и связь</h2>
+          <p>Выберите удобный способ — мы на связи</p>
 
-          
-            
-              
-                
-              
+          <div class="contact-links">
+            <button class="messenger" type="button" data-contact="whatsapp">
+              <span class="social-mark whatsapp">
+                <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>
+              </span>
               WhatsApp
-            
+            </button>
 
-            
-              
-                
-              
+            <button class="messenger" type="button" data-contact="telegram">
+              <span class="social-mark telegram">
+                <svg class="icon" aria-hidden="true"><use href="#i-tg"/></svg>
+              </span>
               Telegram
-            
+            </button>
 
-            
-              
-                
-              
+            <button class="messenger" type="button" data-contact="max">
+              <span class="social-mark max">
+                <svg class="icon" aria-hidden="true"><use href="#i-max"/></svg>
+              </span>
               MAX
-            
+            </button>
 
-            
-              
-                
-              
+            <button class="messenger" type="button" data-contact="avito">
+              <span class="social-mark avito">
+                <svg aria-hidden="true"><use href="#i-avito"/></svg>
+              </span>
               Avito
-            
-          
-        
+            </button>
+          </div>
+        </div>
 
-        
-          
-            
-              
-              QR не настроен
-            
-          
+        <div class="qr-area">
+          <div class="qr-placeholder" aria-label="QR-код не настроен">
+            <div>
+              <svg class="icon" aria-hidden="true"><use href="#i-qr"/></svg>
+              <span>QR не настроен</span>
+            </div>
+          </div>
 
-          Отсканируйте QR-коди перейдите на сайт
-        
-      
-    
-  
+          <p>Отсканируйте QR-код<br>и перейдите на сайт</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  
-    
-      
-        
-        Автостёкла — наша экспертиза.
-      
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="logo" href="#home" aria-label="GlassFix Expert — главная" data-logo></a>
+        <p class="footer-tagline">Автостёкла — наша экспертиза.</p>
+      </div>
 
-      
-        Услуги
-        Преимущества
-        Обучение
-        Контакты
-      
+      <nav class="footer-nav" aria-label="Навигация в подвале">
+        <a href="#services">Услуги</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#training">Обучение</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
 
-      
-        
-          
-        
+      <div class="footer-social">
+        <button type="button" data-contact="youtube" aria-label="YouTube">
+          <svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg>
+        </button>
 
-        
-          
-        
+        <button type="button" data-contact="telegram" aria-label="Telegram">
+          <svg class="icon" aria-hidden="true"><use href="#i-tg"/></svg>
+        </button>
 
-        
-          
-        
+        <button type="button" data-contact="whatsapp" aria-label="WhatsApp">
+          <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>
+        </button>
 
-        
+        <button type="button" data-contact="avito" aria-label="Avito">
           Avito
-        
-      
-    
-  
+        </button>
+      </div>
+    </div>
+  </footer>
 
-  
-    
-      Записаться
+  <dialog id="booking-dialog" aria-labelledby="booking-title">
+    <div class="dialog-header">
+      <h2 id="booking-title">Записаться</h2>
 
-      
-        
-      
-    
+      <button class="close-dialog" type="button" data-close aria-label="Закрыть">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
 
-    
-      
+    <form class="booking-form" id="booking-form">
+      <label for="service-select">
         Выберите услугу
-        
-          Консультация
-          Ремонт автостёкол
-          Замена автостёкол
-          Тонировка автостёкол
-          Обучение
-        
-      
+        <select id="service-select" name="service">
+          <option>Консультация</option>
+          <option>Ремонт автостёкол</option>
+          <option>Замена автостёкол</option>
+          <option>Тонировка автостёкол</option>
+          <option>Обучение</option>
+        </select>
+      </label>
 
-      
+      <p class="dialog-note">
         Выберите мессенджер для связи. Для WhatsApp и Telegram
         выбранная услуга копируется в буфер обмена, если браузер
         разрешает копирование. Вставьте сообщение в переписку.
-      
+      </p>
 
-      
-        WhatsApp
-        Telegram
-        MAX
-      
+      <div class="dialog-contacts">
+        <button class="messenger" type="submit" name="channel" value="whatsapp">WhatsApp</button>
+        <button class="messenger" type="submit" name="channel" value="telegram">Telegram</button>
+        <button class="messenger" type="submit" name="channel" value="max">MAX</button>
+      </div>
 
-      
-    
-  
+      <p class="status" id="booking-status" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
 
-  
-    
-      Информация
+  <dialog id="info-dialog" aria-labelledby="info-title">
+    <div class="dialog-header">
+      <h2 id="info-title">Информация</h2>
 
-      
-        
-      
-    
+      <button class="close-dialog" type="button" data-close aria-label="Закрыть">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
 
-    
-  
+    <p class="dialog-note" id="info-text"></p>
+  </dialog>
 
-  
+  <script>
     "use strict";
 
     const CONFIG = {
@@ -2163,7 +2174,6 @@
       placeholder.style.padding = "4px";
       placeholder.style.background = "#ffffff";
     }
-  
-
-
-```
+  </script>
+</body>
+</html>
