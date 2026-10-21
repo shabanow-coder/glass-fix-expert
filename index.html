@@ -1,17 +1,12 @@
-На изображении показан сайт GlassFix Expert по ремонту, замене и тонировке автомобильных стёкол. Дизайн выполнен в чёрных и оранжевых цветах. Есть блоки услуг, преимуществ, обучения, брендов плёнок и записи.
-
-Ниже готовый одностраничный сайт для GitHub Pages. Сохраните код в index.html. Изображения вырезаются из предоставленного макета, поэтому для публикации лучше заменить их оригинальными фотографиями. Форма сохраняет заявку только в браузере и не отправляет её администратору.
-
-```html
-
-
-
-  
-  
-  
-  
-  GlassFix Expert — автостёкла
-  
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#040c10">
+  <meta name="description" content="GlassFix Expert — ремонт, замена и тонировка автомобильных стёкол.">
+  <title>GlassFix Expert — автостёкла</title>
+  <style>
     :root {
       --bg: #040c10;
       --panel: #09151b;
@@ -307,270 +302,270 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition: none !important; }
     }
-  
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <symbol id="shield" viewBox="0 0 32 32">
+      <path d="M16 3 27 8v8c0 7-11 13-11 13S5 23 5 16V8Z"/>
+      <path d="m10 16 4 4 8-9"/>
+    </symbol>
+    <symbol id="diamond" viewBox="0 0 32 32">
+      <path d="m3 11 6-7h14l6 7-13 18Z"/>
+      <path d="M3 11h26M9 4l7 25 7-25M9 11l7-7 7 7"/>
+    </symbol>
+    <symbol id="heart" viewBox="0 0 32 32">
+      <path d="M16 28 5 17C-4 7 9-2 16 8 23-2 36 7 27 17Z"/>
+      <path d="m9 17 4-4 4 4 6-6"/>
+    </symbol>
+    <symbol id="glass" viewBox="0 0 32 32">
+      <path d="m7 6-4 21h26L25 6ZM8 3h16M10 30h12"/>
+      <path d="m17 10-4 6 6 1-4 6M17 16l6-4M13 16l-4 4"/>
+    </symbol>
+    <symbol id="sun" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="6"/>
+      <path d="M16 2v4m0 20v4M2 16h4m20 0h4M6 6l3 3m14 14 3 3M6 26l3-3M23 9l3-3"/>
+    </symbol>
+    <symbol id="spark" viewBox="0 0 32 32">
+      <path d="M16 2v28M2 16h28M6 6l20 20M6 26 26 6"/>
+      <circle cx="16" cy="16" r="4"/>
+    </symbol>
+    <symbol id="study" viewBox="0 0 32 32">
+      <path d="m2 11 14-8 14 8-14 8ZM7 15v9c5 5 13 5 18 0v-9M30 11v12"/>
+    </symbol>
+  </svg>
 
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="GlassFix Expert — на главную">
+        <span class="brand-mark">G</span>
+        <span class="brand-name">GlassFix<small>EXPERT</small></span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#services">Услуги</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#training">Обучение</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <button class="button" type="button" data-book="Консультация">Записаться</button>
+    </div>
+  </header>
 
-  
-    
-      
-      
-    
-    
-      
-      
-    
-    
-      
-      
-    
-    
-      
-      
-    
-    
-      
-      
-    
-    
-      
-      
-    
-    
-      
-    
-  
+  <main>
+    <section class="hero">
+      <div class="hero-car" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="hero-logo">GlassFix<span>EXPERT</span></div>
+          <h1>АВТОСТЁКЛА</h1>
+          <p class="hero-subtitle">РЕМОНТ · ЗАМЕНА · ТОНИРОВКА</p>
+          <div class="hero-benefits">
+            <div class="mini-feature">
+              <svg class="icon" aria-hidden="true"><use href="#shield"/></svg>
+              <span>Быстро<br>и качественно</span>
+            </div>
+            <div class="mini-feature">
+              <svg class="icon" aria-hidden="true"><use href="#diamond"/></svg>
+              <span>Современные<br>материалы</span>
+            </div>
+            <div class="mini-feature">
+              <svg class="icon" aria-hidden="true"><use href="#heart"/></svg>
+              <span>С заботой<br>о каждом клиенте</span>
+            </div>
+          </div>
+          <button class="button" type="button" data-book="Консультация">Записаться на ремонт →</button>
+        </div>
+      </div>
+    </section>
 
-  
-    
-      
-        G
-        GlassFixEXPERT
-      
-      
-        Услуги
-        Преимущества
-        Обучение
-        Контакты
-      
-      Записаться
-    
-  
+    <section class="section" id="services" aria-label="Наши услуги">
+      <div class="container service-grid">
+        <a class="service" href="#contacts" data-book="Ремонт автостекла">
+          <div class="photo-crop" data-photo></div>
+          <div class="service-content">
+            <svg class="icon service-icon" aria-hidden="true"><use href="#spark"/></svg>
+            <div>
+              <h2>Ремонт<br>автостёкол</h2>
+              <p>Устранение сколов и трещин. Оценка возможности ремонта.</p>
+            </div>
+          </div>
+        </a>
+        <a class="service" href="#contacts" data-book="Замена автостекла">
+          <div class="photo-crop" data-photo></div>
+          <div class="service-content">
+            <svg class="icon service-icon" aria-hidden="true"><use href="#glass"/></svg>
+            <div>
+              <h2>Замена<br>автостёкол</h2>
+              <p>Подбор и установка стекла для вашего автомобиля.</p>
+            </div>
+          </div>
+        </a>
+        <a class="service" href="#contacts" data-book="Тонировка автостекла">
+          <div class="photo-crop" data-photo></div>
+          <div class="service-content">
+            <svg class="icon service-icon" aria-hidden="true"><use href="#sun"/></svg>
+            <div>
+              <h2>Тонировка<br>автостёкол</h2>
+              <p>Комфорт, защита от солнца и стиль вашего авто.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
 
-  
-    
-      
-      
-        
-          GlassFixEXPERT
-          АВТОСТЁКЛА
-          РЕМОНТ · ЗАМЕНА · ТОНИРОВКА
-          
-            
-              
-              Быстрои качественно
-            
-            
-              
-              Современныематериалы
-            
-            
-              
-              С заботойо каждом клиенте
-            
-          
-          Записаться на ремонт →
-        
-      
-    
-
-    
-      
-        
-          
-          
-            
-            
-              Ремонтавтостёкол
-              Устранение сколов и трещин. Оценка возможности ремонта.
-            
-          
-        
-        
-          
-          
-            
-            
-              Заменаавтостёкол
-              Подбор и установка стекла для вашего автомобиля.
-            
-          
-        
-        
-          
-          
-            
-            
-              Тонировкаавтостёкол
-              Комфорт, защита от солнца и стиль вашего авто.
-            
-          
-        
-      
-    
-
-    
-      
-        
-          
-          Внимание к каждой детали
-        
-        
-          О нас
-          Профессиональныйремонт автостёкол
-          
+    <section class="section about" id="advantages">
+      <div class="container about-grid">
+        <div class="about-photo" role="img" aria-label="Работа мастера с автомобильным стеклом">
+          <div class="photo-crop" data-photo></div>
+          <span class="photo-label">Внимание к каждой детали</span>
+        </div>
+        <div>
+          <p class="eyebrow">О нас</p>
+          <h2 class="section-title">Профессиональный<br><span class="accent">ремонт автостёкол</span></h2>
+          <p class="about-text">
             Восстанавливаем автомобильные стёкла, помогая сохранить
             прозрачность и безопасность. Подбираем технологию ремонта
             с учётом повреждения, состояния стекла и особенностей автомобиля.
-          
-          
-            
-              
-              Внимательнаядиагностика
-            
-            
-              
-              Профессиональноеоборудование
-            
-            
-              
-              Индивидуальныйподход
-            
-          
-        
-      
-    
+          </p>
+          <div class="advantages">
+            <div class="mini-feature">
+              <svg class="icon" aria-hidden="true"><use href="#shield"/></svg>
+              <span>Внимательная<br>диагностика</span>
+            </div>
+            <div class="mini-feature">
+              <svg class="icon" aria-hidden="true"><use href="#diamond"/></svg>
+              <span>Профессиональное<br>оборудование</span>
+            </div>
+            <div class="mini-feature">
+              <svg class="icon" aria-hidden="true"><use href="#heart"/></svg>
+              <span>Индивидуальный<br>подход</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    
-      
-        
-          Бренды плёнок
-          Подбор материала под ваши задачи и предпочтения.
-        
-        
-          LLumar
-          SunTek
-          3M
-          RAYNO
-          SPECTROLL
-        
-      
-    
+    <section class="section">
+      <div class="container brands-layout">
+        <div>
+          <h2>Бренды плёнок</h2>
+          <p>Подбор материала под ваши задачи и предпочтения.</p>
+        </div>
+        <div class="brands" aria-label="Бренды из дизайн-макета">
+          <span class="brand-item">LLumar</span>
+          <span class="brand-item">SunTek</span>
+          <span class="brand-item">3M</span>
+          <span class="brand-item">RAYNO</span>
+          <span class="brand-item">SPECTROLL</span>
+        </div>
+      </div>
+    </section>
 
-    
-      
-        
-          
-            
-          
-          
-            Обучение
-            
+    <section class="section" id="training">
+      <div class="container training-grid">
+        <div class="training-card">
+          <div class="training-photo" role="img" aria-label="Обучение в мастерской">
+            <div class="photo-crop" data-photo></div>
+          </div>
+          <div class="training-content">
+            <h2>Обучение</h2>
+            <p>
               Хотите освоить новую профессию?
               Узнайте о программе обучения ремонту, замене
               автостёкол и работе с автомобильными плёнками.
-            
-            
-              Узнать подробнее
-              Онлайн-курс — скоро
-            
-          
-        
-        
-          
-            
-            Практические занятияРабота с инструментом
-          
-          
-            
-            Обратная связьРазбор ваших вопросов
-          
-          
-            
-            Технологии ремонтаОт теории к практике
-          
-        
-      
-    
+            </p>
+            <div class="training-actions">
+              <button class="button" type="button" data-book="Обучение">Узнать подробнее</button>
+              <span class="button button-outline">Онлайн-курс — скоро</span>
+            </div>
+          </div>
+        </div>
+        <div class="training-list">
+          <div class="mini-feature">
+            <svg class="icon" aria-hidden="true"><use href="#study"/></svg>
+            <span>Практические занятия<br><span class="muted">Работа с инструментом</span></span>
+          </div>
+          <div class="mini-feature">
+            <svg class="icon" aria-hidden="true"><use href="#heart"/></svg>
+            <span>Обратная связь<br><span class="muted">Разбор ваших вопросов</span></span>
+          </div>
+          <div class="mini-feature">
+            <svg class="icon" aria-hidden="true"><use href="#glass"/></svg>
+            <span>Технологии ремонта<br><span class="muted">От теории к практике</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    
-      
-        Запись и связь
-        Выберите услугу и оставьте контактные данные.
-        
-          Оставить заявку
-          Оценить повреждение
-          Узнать об обучении
-        
-        
+    <section class="section contact" id="contacts">
+      <div class="container">
+        <h2 class="section-title">Запись и связь</h2>
+        <p>Выберите услугу и оставьте контактные данные.</p>
+        <div class="contact-buttons">
+          <button class="button" type="button" data-book="Консультация">Оставить заявку</button>
+          <button class="button button-outline" type="button" data-book="Ремонт автостекла">Оценить повреждение</button>
+          <button class="button button-outline" type="button" data-book="Обучение">Узнать об обучении</button>
+        </div>
+        <p class="contact-note">
           Демонстрационная версия. Заявки сохраняются только на этом устройстве.
           Для реального приёма обращений необходимо подключить отправку формы.
-        
-      
-    
-  
+        </p>
+      </div>
+    </section>
+  </main>
 
-  
-    
-      
-        
-          G
-          GlassFixEXPERT
-        
-        Автостёкла — наша экспертиза.
-      
-      
-        Услуги
-        Преимущества
-        Обучение
-        Контакты
-      
-    
-  
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="#" aria-label="GlassFix Expert — на главную">
+          <span class="brand-mark">G</span>
+          <span class="brand-name">GlassFix<small>EXPERT</small></span>
+        </a>
+        <p>Автостёкла — наша экспертиза.</p>
+      </div>
+      <nav class="footer-links" aria-label="Навигация в подвале">
+        <a href="#services">Услуги</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#training">Обучение</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </footer>
 
-  
-    
-      Запись на услугу
-      ×
-    
-    
-      
+  <dialog id="booking">
+    <div class="modal-top">
+      <h2>Запись на услугу</h2>
+      <button class="close" type="button" aria-label="Закрыть окно">×</button>
+    </div>
+    <form class="form" id="booking-form">
+      <label>
         Ваше имя
-        
-      
-      
+        <input name="name" autocomplete="given-name" maxlength="80" required>
+      </label>
+      <label>
         Телефон
-        
-      
-      
+        <input name="phone" type="tel" autocomplete="tel" minlength="7" maxlength="30" required>
+      </label>
+      <label>
         Услуга
-        
-          Консультация
-          Ремонт автостекла
-          Замена автостекла
-          Тонировка автостекла
-          Обучение
-        
-      
-      
+        <select name="service">
+          <option>Консультация</option>
+          <option>Ремонт автостекла</option>
+          <option>Замена автостекла</option>
+          <option>Тонировка автостекла</option>
+          <option>Обучение</option>
+        </select>
+      </label>
+      <p class="form-note">
         Это демонстрационная форма. Данные сохраняются в браузере
         и не передаются сотрудникам мастерской.
-      
-      Сохранить заявку на устройстве
-      
-    
-  
+      </p>
+      <button class="button" type="submit">Сохранить заявку на устройстве</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
 
-  
+  <script>
     const source = "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/e3e635d8-bc36-4be2-8326-68cdf7a8f963.png";
 
     document.querySelectorAll("[data-photo]").forEach((container) => {
@@ -647,7 +642,6 @@
           "Браузер не разрешил сохранить заявку. Данные не отправлены.";
       }
     });
-  
-
-
-```
+  </script>
+</body>
+</html>
