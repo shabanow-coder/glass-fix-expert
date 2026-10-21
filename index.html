@@ -1,1361 +1,653 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+На изображении показан сайт GlassFix Expert по ремонту, замене и тонировке автомобильных стёкол. Дизайн выполнен в чёрных и оранжевых цветах. Есть блоки услуг, преимуществ, обучения, брендов плёнок и записи.
 
-  <title>Glass Fix Expert — ремонт и замена автостёкол</title>
+Ниже готовый одностраничный сайт для GitHub Pages. Сохраните код в index.html. Изображения вырезаются из предоставленного макета, поэтому для публикации лучше заменить их оригинальными фотографиями. Форма сохраняет заявку только в браузере и не отправляет её администратору.
 
-  <meta name="description" content="Glass Fix Expert — профессиональный ремонт сколов, замена и продажа автомобильных стёкол. Консультация и запись.">
+```html
 
-  <style>
+
+
+  
+  
+  
+  
+  GlassFix Expert — автостёкла
+  
     :root {
-      --bg: #090b10;
-      --panel: #121722;
-      --orange: #ff6b24;
-      --white: #f5f7fb;
-      --muted: #a6afbf;
-      --border: rgba(255,255,255,.12);
+      --bg: #040c10;
+      --panel: #09151b;
+      --text: #f4f6f8;
+      --muted: #b7c1c8;
+      --orange: #ff7300;
+      --line: #27343b;
+      --source: url("https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/e3e635d8-bc36-4be2-8326-68cdf7a8f963.png");
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body {
+      margin: 0;
       background: var(--bg);
-      color: var(--white);
+      color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button, a, input, select { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    button:disabled { cursor: default; }
+    :focus-visible { outline: 3px solid #ffb067; outline-offset: 5px; }
 
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
+    .container { width: min(1180px, calc(100% - 48px)); margin: auto; }
+    .accent { color: var(--orange); }
+    .muted { color: var(--muted); }
 
-    .container {
-      width: min(1160px, 92%);
-      margin: 0 auto;
-    }
-
-    /* ШАПКА */
-
-    header {
+    .header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(9,11,16,.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(3, 10, 14, .96);
+      border-bottom: 1px solid var(--line);
     }
 
     .header-inner {
       min-height: 82px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 24px;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 21px;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
-
-    .logo-mark {
-      width: 43px;
-      height: 43px;
-      border: 2px solid var(--orange);
-      border-radius: 12px;
+    .brand { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .brand-mark {
       display: grid;
       place-items: center;
+      width: 43px;
+      height: 43px;
+      border: 6px solid #ecf1f3;
+      border-right-color: var(--orange);
+      border-radius: 50%;
       color: var(--orange);
+      font-size: 26px;
       font-weight: 900;
-      font-size: 23px;
-      transform: skew(-5deg);
+      transform: rotate(-18deg);
     }
-
-    .logo small {
+    .brand-name { font-size: 28px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+    .brand-name small {
       display: block;
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
+      margin-top: 5px;
+      font-size: 12px;
+      letter-spacing: 5px;
+      text-align: center;
     }
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      font-size: 14px;
-      color: #d3d8e1;
-    }
-
-    nav a:hover {
-      color: var(--orange);
-    }
+    .nav { display: flex; gap: 26px; font-size: 14px; }
+    .nav a:hover, .footer a:hover { color: var(--orange); }
 
     .button {
       display: inline-flex;
+      align-items: center;
       justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 22px;
-      background: var(--orange);
-      color: #111;
-      border: 1px solid var(--orange);
-      border-radius: 9px;
-      font-weight: 800;
-      font-size: 14px;
-      transition: .25s;
-      cursor: pointer;
-    }
-
-    .button:hover {
-      background: #ff8a50;
-      transform: translateY(-2px);
-    }
-
-    .button-outline {
-      background: transparent;
-      color: white;
-      border-color: rgba(255,255,255,.3);
-    }
-
-    .button-outline:hover {
-      color: #111;
-      border-color: var(--orange);
-    }
-
-    /* ГЛАВНЫЙ ЭКРАН */
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      background:
-        radial-gradient(ellipse at 78% 42%, rgba(255,107,36,.15), transparent 34%),
-        linear-gradient(125deg, #090b10 25%, #151b26 100%);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: center;
-      padding-top: 65px;
-      padding-bottom: 70px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--orange);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 22px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      display: block;
-      width: 27px;
-      height: 2px;
-      background: var(--orange);
-    }
-
-    h1 {
-      max-width: 680px;
-      font-size: clamp(38px, 5.2vw, 67px);
-      line-height: 1.04;
-      letter-spacing: -2.5px;
-      margin-bottom: 24px;
-    }
-
-    h1 span {
-      color: var(--orange);
-    }
-
-    .hero-description {
-      max-width: 500px;
-      color: var(--muted);
-      font-size: 17px;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 35px;
-    }
-
-    .hero-note {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #c4cbd7;
-      font-size: 13px;
-    }
-
-    .hero-note span {
-      color: var(--orange);
-      font-size: 19px;
-    }
-
-    /* АНИМАЦИЯ АВТОМОБИЛЯ */
-
-    .car-scene {
-      position: relative;
-      min-height: 360px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      perspective: 800px;
-    }
-
-    .car-glow {
-      position: absolute;
-      width: 90%;
-      height: 150px;
-      bottom: 55px;
-      border-radius: 50%;
-      background: rgba(255,107,36,.13);
-      filter: blur(45px);
-    }
-
-    .car {
-      position: relative;
-      width: 100%;
-      max-width: 510px;
-      animation: carArrival 1.5s cubic-bezier(.2,.8,.2,1) both,
-                 carFloat 5s ease-in-out 1.5s infinite;
-      filter: drop-shadow(0 25px 25px rgba(0,0,0,.5));
-    }
-
-    .car svg {
-      display: block;
-      width: 100%;
-      height: auto;
-      overflow: visible;
-    }
-
-    .windshield-chip {
-      transform-origin: 58% 42%;
-      opacity: 0;
-      animation: chipAppear .6s ease-out 2.1s forwards;
-    }
-
-    .chip-ring {
-      animation: chipPulse 2.4s ease-in-out 2.7s infinite;
-      transform-origin: 0 0;
-    }
-
-    .scene-caption {
-      position: absolute;
-      bottom: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      color: #a6afbf;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    @keyframes carArrival {
-      from {
-        opacity: 0;
-        transform: translateX(100px) scale(.88);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-      }
-    }
-
-    @keyframes carFloat {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -5px; }
-    }
-
-    @keyframes chipAppear {
-      0% { opacity: 0; transform: scale(.1); }
-      70% { opacity: 1; transform: scale(1.2); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes chipPulse {
-      0%, 100% { opacity: .65; }
-      50% { opacity: 1; }
-    }
-
-    /* ПОЛОСА ПРЕИМУЩЕСТВ */
-
-    .advantages {
-      border-bottom: 1px solid var(--border);
-      background: #0e121a;
-    }
-
-    .advantages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .advantage {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 27px 22px;
-      border-right: 1px solid var(--border);
-    }
-
-    .advantage:first-child {
-      border-left: 1px solid var(--border);
-    }
-
-    .advantage-icon {
-      width: 45px;
-      height: 45px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: rgba(255,107,36,.12);
-      color: var(--orange);
-      font-size: 23px;
-    }
-
-    .advantage strong {
-      display: block;
-      font-size: 14px;
-    }
-
-    .advantage p {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* ОБЩИЕ СЕКЦИИ */
-
-    section.content-section {
-      padding: 100px 0;
-    }
-
-    .section-heading {
-      max-width: 690px;
-      margin-bottom: 42px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.12;
-      letter-spacing: -1.3px;
-      margin-bottom: 16px;
-    }
-
-    .section-heading h2 span {
-      color: var(--orange);
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    /* УСЛУГИ */
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .service-card {
-      position: relative;
-      overflow: hidden;
-      padding: 30px;
-      background: linear-gradient(145deg, #171d29, #10141d);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: .25s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,107,36,.6);
-    }
-
-    .service-number {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      color: rgba(255,255,255,.08);
-      font-size: 48px;
-      font-weight: 900;
-    }
-
-    .service-icon {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: rgba(255,107,36,.13);
-      color: var(--orange);
-      font-size: 28px;
-      margin-bottom: 25px;
-    }
-
-    .service-card h3 {
-      font-size: 21px;
-      margin-bottom: 12px;
-    }
-
-    .service-card p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 22px;
-    }
-
-    .service-link {
-      color: var(--orange);
-      font-size: 14px;
+      min-height: 48px;
+      padding: 12px 27px;
+      border: 1px solid transparent;
+      border-radius: 22px;
+      background: linear-gradient(110deg, #ff5900, #ff9700);
+      color: #060a0c;
       font-weight: 700;
+      transition: transform .2s, filter .2s;
+    }
+    .button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .button-outline {
+      color: var(--text);
+      background: transparent;
+      border-color: #66737b;
+      font-weight: 400;
     }
 
-    /* О РЕМОНТЕ */
+    .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .hero-inner { min-height: 455px; display: flex; align-items: center; position: relative; }
+    .hero-car {
+      position: absolute;
+      inset: 0 0 0 38%;
+      background-image: var(--source);
+      background-repeat: no-repeat;
+      background-size: 184% auto;
+      background-position: right 5.2%;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, #030a0e 10%, rgba(3,10,14,.96) 31%, rgba(3,10,14,.12) 75%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 620px; padding: 48px 0; }
+    .hero-logo { font-size: clamp(38px, 5vw, 66px); font-weight: 900; line-height: 1; letter-spacing: -3px; }
+    .hero-logo span {
+      display: block;
+      width: fit-content;
+      margin: 9px 0 25px;
+      padding: 0 15px;
+      border-left: 45px solid var(--orange);
+      border-right: 45px solid var(--orange);
+      font-size: 23px;
+      letter-spacing: 1px;
+    }
+    h1 { margin: 0; font-size: clamp(34px, 4vw, 49px); line-height: 1.1; }
+    .hero-subtitle { margin: 7px 0 25px; color: var(--orange); font-size: clamp(17px, 2.2vw, 27px); font-weight: 800; }
+    .hero-benefits { display: flex; gap: 25px; margin-bottom: 28px; }
+    .mini-feature { display: flex; align-items: center; gap: 9px; font-size: 13px; }
+    .mini-feature svg { width: 30px; height: 30px; flex-shrink: 0; color: var(--orange); }
+    .hero .button { min-width: 220px; }
 
-    .repair-panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .section { padding: 34px 0; border-bottom: 1px solid var(--line); }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .service {
+      position: relative;
+      aspect-ratio: 305 / 230;
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: #111620;
+      border: 1px solid #6d5a42;
+      border-radius: 9px;
+      transition: transform .2s, border-color .2s;
     }
-
-    .repair-visual {
-      position: relative;
-      min-height: 350px;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(ellipse at center, rgba(255,107,36,.16), transparent 60%),
-        #151b26;
-      padding: 30px;
-    }
-
-    .glass-illustration {
-      position: relative;
-      width: 90%;
-      max-width: 390px;
-      aspect-ratio: 1.3;
-      border: 3px solid #68798f;
-      border-radius: 35% 35% 15% 15% / 22% 22% 10% 10%;
-      transform: perspective(500px) rotateX(-5deg);
-      background: linear-gradient(140deg, #243c54, #101925 70%);
-      box-shadow: inset 0 0 40px rgba(100,170,230,.1),
-                  0 20px 50px rgba(0,0,0,.3);
-    }
-
-    .glass-illustration::before {
+    .service:hover { transform: translateY(-5px); border-color: var(--orange); }
+    .photo-crop { position: absolute; inset: 0; overflow: hidden; }
+    .photo-crop img { position: absolute; height: auto; max-width: none; pointer-events: none; }
+    .service .photo-crop img { width: 335.74%; top: -180.87%; }
+    .service:nth-child(1) .photo-crop img { left: -13.77%; }
+    .service:nth-child(2) .photo-crop img { left: -119.67%; }
+    .service:nth-child(3) .photo-crop img { left: -221.64%; }
+    .service::after {
       content: "";
       position: absolute;
-      top: 14%;
-      left: 14%;
-      width: 30%;
-      height: 2px;
-      background: rgba(255,255,255,.2);
-      transform: rotate(25deg);
+      inset: 0;
+      background: linear-gradient(0deg, #020a0f 2%, rgba(2,10,15,.94) 34%, transparent 78%);
     }
+    .service-content { position: absolute; inset: auto 22px 20px; z-index: 1; display: flex; align-items: flex-start; gap: 15px; }
+    .service-icon { width: 46px; height: 46px; color: var(--orange); flex-shrink: 0; }
+    .service h2 { margin: 0 0 7px; font-size: 23px; line-height: 1.08; }
+    .service p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    .glass-chip {
-      position: absolute;
-      top: 45%;
-      left: 56%;
-      width: 13px;
-      height: 13px;
-      border: 2px solid var(--orange);
-      border-radius: 50%;
-      box-shadow: 0 0 0 9px rgba(255,107,36,.12),
-                  0 0 30px rgba(255,107,36,.5);
-    }
-
-    .glass-chip::before,
-    .glass-chip::after {
+    .about { position: relative; overflow: hidden; }
+    .about::after {
       content: "";
       position: absolute;
-      width: 23px;
-      height: 2px;
-      background: var(--orange);
-      left: -7px;
-      top: 4px;
-      transform: rotate(45deg);
+      width: 85px;
+      height: 420px;
+      right: -30px;
+      top: -60px;
+      transform: rotate(35deg);
+      background: linear-gradient(90deg, transparent, #ff730055, var(--orange), #ff730022);
+      pointer-events: none;
+    }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.4fr; gap: 40px; align-items: center; }
+    .about-photo { position: relative; aspect-ratio: 345 / 187; border: 2px solid var(--orange); border-radius: 9px; overflow: hidden; }
+    .about-photo .photo-crop img { width: 296.81%; left: -11.88%; top: -361.5%; }
+    .photo-label { position: absolute; bottom: 12px; left: 12px; padding: 5px 10px; background: #030a0edb; border-radius: 5px; font-size: 13px; }
+    .eyebrow { margin: 0 0 5px; color: var(--orange); font-size: 13px; font-weight: 800; text-transform: uppercase; }
+    .section-title { margin: 0 0 12px; font-size: clamp(25px, 3vw, 33px); line-height: 1.12; }
+    .about-text { max-width: 620px; margin: 0 0 22px; color: var(--muted); }
+    .advantages { display: flex; flex-wrap: wrap; gap: 24px; }
+
+    .brands-layout { display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: center; }
+    .brands-layout h2 { margin: 0 0 8px; font-size: 25px; }
+    .brands-layout p { margin: 0; font-size: 14px; color: var(--muted); }
+    .brands { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .brand-item { font-size: 25px; font-weight: 900; letter-spacing: -1px; }
+    .brand-item:nth-child(1), .brand-item:nth-child(2), .brand-item:nth-child(3) { color: #ff3c2c; }
+    .brand-item:nth-child(4), .brand-item:nth-child(5) { font-size: 19px; letter-spacing: 1px; }
+
+    .training-grid { display: grid; grid-template-columns: 1fr 290px; gap: 30px; }
+    .training-card { display: grid; grid-template-columns: 36% 1fr; border: 1px solid #72421e; border-radius: 9px; overflow: hidden; }
+    .training-photo { position: relative; min-height: 235px; overflow: hidden; background: #17252e; }
+    .training-photo .photo-crop img { width: 362%; left: 0; top: -432%; }
+    .training-content { padding: 27px; }
+    .training-content h2 { margin: 0 0 12px; font-size: 28px; }
+    .training-content p { margin: 0 0 23px; color: var(--muted); }
+    .training-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .training-actions .button { padding: 11px 20px; font-size: 14px; }
+    .training-list { display: grid; align-content: center; gap: 22px; }
+    .training-list .mini-feature { font-size: 15px; }
+
+    .contact { background: radial-gradient(ellipse at 100% 100%, #442008 0, transparent 55%); }
+    .contact p { margin: 0 0 22px; color: var(--muted); }
+    .contact-buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+    .contact-note { margin: 18px 0 0 !important; font-size: 13px; }
+
+    .footer { padding: 30px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+    .footer p { margin: 15px 0 0; color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; gap: 25px; font-size: 14px; }
+
+    .icon { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    dialog {
+      width: min(460px, calc(100% - 32px));
+      padding: 28px;
+      border: 1px solid #81512c;
+      border-radius: 18px;
+      background: #0a161d;
+      color: var(--text);
+    }
+    dialog::backdrop { background: rgba(0,0,0,.78); backdrop-filter: blur(5px); }
+    .modal-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
+    .modal-top h2 { margin: 0; font-size: 25px; }
+    .close { border: 0; background: transparent; color: var(--muted); font-size: 28px; line-height: 1; }
+    .form { display: grid; gap: 14px; }
+    .form label { display: grid; gap: 6px; font-size: 14px; }
+    .form input, .form select {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 12px;
+      border: 1px solid #36454f;
+      border-radius: 8px;
+      background: #050d12;
+      color: var(--text);
+    }
+    .form-note { margin: 0; color: var(--muted); font-size: 12px; }
+    .form-status { margin: 0; color: #ffb777; font-size: 14px; }
+
+    @media (max-width: 1000px) {
+      .nav { gap: 15px; font-size: 13px; }
+      .header .button { padding: 11px 18px; }
+      .service-content { left: 15px; right: 15px; gap: 10px; }
+      .service-icon { width: 33px; height: 33px; }
+      .service h2 { font-size: 20px; }
+      .service p { font-size: 12px; }
+      .training-grid { grid-template-columns: 1fr; }
+      .training-list { grid-template-columns: repeat(3, 1fr); }
+      .brands-layout { grid-template-columns: 1fr; }
+      .about-grid { gap: 25px; }
+      .hero-benefits { gap: 16px; }
     }
 
-    .glass-chip::after {
-      transform: rotate(-45deg);
-    }
-
-    .repair-copy {
-      padding: 45px;
-      align-self: center;
-    }
-
-    .repair-copy h2 {
-      font-size: clamp(27px, 3vw, 38px);
-      line-height: 1.15;
-      margin-bottom: 18px;
-    }
-
-    .repair-copy h2 span {
-      color: var(--orange);
-    }
-
-    .repair-copy > p {
-      color: var(--muted);
-      font-size: 15px;
-      margin-bottom: 24px;
-    }
-
-    .check-list {
-      display: grid;
-      gap: 13px;
-      list-style: none;
-      margin-bottom: 28px;
-    }
-
-    .check-list li {
-      display: flex;
-      gap: 10px;
-      font-size: 14px;
-    }
-
-    .check-list li::before {
-      content: "✓";
-      color: var(--orange);
-      font-weight: 900;
-    }
-
-    /* ЭТАПЫ РАБОТЫ */
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .step {
-      padding: 24px;
-      border-top: 2px solid #303846;
-    }
-
-    .step-number {
-      color: var(--orange);
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
-
-    .step h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    /* КОНТАКТЫ */
-
-    .contact-section {
-      padding: 0 0 100px;
-    }
-
-    .contact-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-      padding: 48px;
-      border: 1px solid rgba(255,107,36,.35);
-      border-radius: 20px;
-      background:
-        radial-gradient(ellipse at 85% 50%, rgba(255,107,36,.14), transparent 40%),
-        #131823;
-    }
-
-    .contact-box h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.12;
-      margin-bottom: 14px;
-    }
-
-    .contact-box h2 span {
-      color: var(--orange);
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      max-width: 500px;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    /* ПОДВАЛ */
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 30px 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .footer-brand {
-      color: white;
-      font-weight: 800;
-    }
-
-    .footer-brand span {
-      color: var(--orange);
-    }
-
-    /* МОБИЛЬНАЯ ВЕРСИЯ */
-
-    @media (max-width: 900px) {
-      nav {
-        gap: 14px;
-      }
-
-      nav a:not(.button) {
-        display: none;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-        padding-top: 65px;
-      }
-
-      .hero-copy {
-        text-align: center;
-      }
-
-      .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-actions,
-      .hero-note {
-        justify-content: center;
-      }
-
-      .car-scene {
-        min-height: 280px;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .repair-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .repair-visual {
-        min-height: 300px;
-      }
-
-      .steps-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .contact-box {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .header-inner {
-        min-height: 70px;
-      }
-
-      .logo {
-        font-size: 17px;
-        gap: 8px;
-      }
-
-      .logo-mark {
-        width: 36px;
-        height: 36px;
-        font-size: 19px;
-      }
-
-      .header-inner > .button {
-        padding: 11px 12px;
-        font-size: 12px;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-grid {
-        padding-top: 55px;
-        padding-bottom: 45px;
-      }
-
-      h1 {
-        letter-spacing: -1.5px;
-      }
-
-      .hero-description {
-        font-size: 15px;
-      }
-
-      .car-scene {
-        min-height: 220px;
-      }
-
-      .advantages-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .advantage,
-      .advantage:first-child {
-        border-left: none;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        padding: 17px 5px;
-      }
-
-      section.content-section {
-        padding: 70px 0;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service-card {
-        padding: 25px;
-      }
-
-      .repair-copy {
-        padding: 28px 23px;
-      }
-
-      .repair-visual {
-        min-height: 240px;
-      }
-
-      .steps-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .step {
-        padding: 18px 10px;
-      }
-
-      .contact-section {
-        padding-bottom: 65px;
-      }
-
-      .contact-box {
-        padding: 28px 22px;
-      }
-
-      .contact-actions {
-        width: 100%;
-      }
-
-      .contact-actions .button {
-        width: 100%;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media (max-width: 720px) {
+      .container { width: calc(100% - 32px); }
+      .header-inner { min-height: 72px; gap: 12px; }
+      .header .nav { display: none; }
+      .brand-name { font-size: 23px; }
+      .brand-name small { font-size: 10px; letter-spacing: 4px; }
+      .brand-mark { width: 35px; height: 35px; border-width: 5px; font-size: 20px; }
+      .header .button { min-height: 41px; padding: 9px 16px; font-size: 13px; }
+      .hero-inner { min-height: 490px; }
+      .hero-car { inset: 0; opacity: .42; background-size: 240% auto; background-position: right 5%; }
+      .hero::after { background: linear-gradient(90deg, #030a0ee8, #030a0e55); }
+      .hero-content { padding: 38px 0; }
+      .hero-logo { font-size: 49px; }
+      .hero-logo span { font-size: 17px; border-width: 30px; }
+      .hero-benefits { flex-wrap: wrap; max-width: 370px; gap: 16px 23px; }
+      .mini-feature { font-size: 12px; }
+      .service-grid { grid-template-columns: 1fr; gap: 17px; }
+      .service { aspect-ratio: 305 / 200; }
+      .service .photo-crop img { top: -208%; }
+      .service-content { left: 23px; bottom: 22px; gap: 18px; }
+      .service-icon { width: 46px; height: 46px; }
+      .service h2 { font-size: 25px; }
+      .service p { font-size: 14px; max-width: 250px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 500px; width: 100%; }
+      .advantages { gap: 20px; }
+      .brands { justify-content: flex-start; gap: 22px 27px; }
+      .training-card { grid-template-columns: 1fr; }
+      .training-photo { min-height: 0; aspect-ratio: 1.6; }
+      .training-photo .photo-crop img { width: 362%; top: -576%; }
+      .training-content { padding: 23px; }
+      .training-list { grid-template-columns: 1fr; gap: 18px; }
+      .training-list .mini-feature { font-size: 14px; }
+      .contact-buttons .button { flex: 1 1 145px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; gap: 15px 22px; }
+      .section { padding: 28px 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
     }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="container header-inner">
-
-      <a class="logo" href="#home" aria-label="Glass Fix Expert — главная">
-        <span class="logo-mark">G</span>
-        <span>
-          Glass Fix Expert
-          <small>Автостёкла · Экспертный подход</small>
-        </span>
-      </a>
-
-      <nav aria-label="Основная навигация">
-        <a href="#services">Услуги</a>
-        <a href="#repair">Ремонт</a>
-        <a href="#process">Как работаем</a>
-        <a class="button" href="#contacts">Консультация</a>
-      </nav>
-
-    </div>
-  </header>
-
-  <main>
-
-    <!-- ГЛАВНЫЙ ЭКРАН -->
-
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-
-        <div class="hero-copy">
-
-          <div class="eyebrow">Профессиональный уход за автостеклом</div>
-
-          <h1>
-            Стекло повреждено?<br>
-            <span>Мы знаем, что делать.</span>
-          </h1>
-
-          <p class="hero-description">
-            Ремонт сколов, замена и продажа автомобильных стёкол.
-            Помогаем вернуть обзор, безопасность и уверенность за рулём.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button" href="#contacts">
-              Консультация и запись →
-            </a>
-
-            <a class="button button-outline" href="#services">
-              Наши услуги
-            </a>
-          </div>
-
-          <div class="hero-note">
-            <span>✦</span>
-            Подберём решение для вашего автомобиля
-          </div>
-
-        </div>
-
-        <div class="car-scene" aria-label="Иллюстрация автомобиля с повреждением стекла">
-
-          <div class="car-glow"></div>
-
-          <div class="car">
-            <svg viewBox="0 0 560 350" role="img" aria-labelledby="carTitle">
-
-              <title id="carTitle">Автомобиль, на лобовом стекле которого появляется скол</title>
-
-              <defs>
-                <linearGradient id="bodyPaint" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#f2f4f7"/>
-                  <stop offset="35%" stop-color="#929eae"/>
-                  <stop offset="65%" stop-color="#4a5667"/>
-                  <stop offset="100%" stop-color="#d5dbe3"/>
-                </linearGradient>
-
-                <linearGradient id="glassPaint" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#526c83"/>
-                  <stop offset="55%" stop-color="#172b3e"/>
-                  <stop offset="100%" stop-color="#09131e"/>
-                </linearGradient>
-
-                <linearGradient id="hoodPaint" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#e6eaf0"/>
-                  <stop offset="100%" stop-color="#596575"/>
-                </linearGradient>
-
-                <radialGradient id="lampPaint">
-                  <stop offset="0%" stop-color="#fff9db"/>
-                  <stop offset="100%" stop-color="#ff8c40"/>
-                </radialGradient>
-              </defs>
-
-              <!-- ТЕНЬ -->
-              <ellipse cx="280" cy="289" rx="230" ry="25"
-                       fill="#000" opacity=".45"/>
-
-              <!-- КОЛЁСА -->
-              <g>
-                <ellipse cx="157" cy="259" rx="47" ry="55"
-                         fill="#080a0e" stroke="#566172" stroke-width="5"/>
-                <ellipse cx="157" cy="259" rx="29" ry="35"
-                         fill="#333e4c" stroke="#aab4c1" stroke-width="4"/>
-                <ellipse cx="157" cy="259" rx="10" ry="12"
-                         fill="#aeb8c5"/>
-
-                <ellipse cx="408" cy="259" rx="47" ry="55"
-                         fill="#080a0e" stroke="#566172" stroke-width="5"/>
-                <ellipse cx="408" cy="259" rx="29" ry="35"
-                         fill="#333e4c" stroke="#aab4c1" stroke-width="4"/>
-                <ellipse cx="408" cy="259" rx="10" ry="12"
-                         fill="#aeb8c5"/>
-              </g>
-
-              <!-- КУЗОВ -->
-              <path d="M57 229
-                       L77 190
-                       Q88 171 120 164
-                       L178 151
-                       L227 91
-                       Q241 75 267 74
-                       L354 80
-                       Q377 83 394 106
-                       L434 164
-                       L475 182
-                       Q495 193 500 218
-                       L496 253
-                       Q492 270 469 274
-                       L445 274
-                       Q444 224 407 224
-                       Q369 224 367 274
-                       L202 274
-                       Q200 224 160 224
-                       Q121 224 119 274
-                       L81 268
-                       Q62 261 57 245 Z"
-                    fill="url(#bodyPaint)"
-                    stroke="#d0d7e0"
-                    stroke-width="2"/>
-
-              <!-- ЛОБОВОЕ СТЕКЛО -->
-              <path d="M199 151
-                       L238 100
-                       Q246 91 264 91
-                       L349 96
-                       Q363 98 373 114
-                       L398 153 Z"
-                    fill="url(#glassPaint)"
-                    stroke="#aeb9c8"
-                    stroke-width="3"/>
-
-              <!-- ОТРАЖЕНИЕ НА СТЕКЛЕ -->
-              <path d="M247 101 L272 101 L237 146 L216 146 Z"
-                    fill="#a4d2ed" opacity=".16"/>
-
-              <path d="M291 104 L313 105 L281 147 L260 147 Z"
-                    fill="#a4d2ed" opacity=".10"/>
-
-              <!-- БОКОВОЕ ОКНО -->
-              <path d="M379 119
-                       L403 155
-                       L446 170
-                       L429 140
-                       Q411 119 379 119 Z"
-                    fill="url(#glassPaint)"
-                    stroke="#aeb9c8"
-                    stroke-width="3"/>
-
-              <!-- ДВЕРЬ -->
-              <path d="M273 158 L266 241
-                       M354 158 L366 238"
-                    fill="none"
-                    stroke="#384555"
-                    stroke-width="2"/>
-
-              <path d="M306 179 L334 180"
-                    fill="none"
-                    stroke="#202a37"
-                    stroke-width="4"
-                    stroke-linecap="round"/>
-
-              <!-- КАПОТ -->
-              <path d="M83 190
-                       Q150 174 201 158
-                       L397 160
-                       Q436 164 472 189
-                       L429 218
-                       Q330 233 204 219
-                       L93 222 Z"
-                    fill="url(#hoodPaint)"
-                    stroke="#8b97a7"
-                    stroke-width="2"/>
-
-              <path d="M112 196 Q270 177 442 194"
-                    fill="none"
-                    stroke="#fff"
-                    stroke-opacity=".45"
-                    stroke-width="2"/>
-
-              <!-- ФАРЫ -->
-              <path d="M72 207 L123 194 L139 205 L111 222 L70 222 Z"
-                    fill="url(#lampPaint)"
-                    stroke="#fff1d1"
-                    stroke-width="2"/>
-
-              <path d="M433 200 L474 210 L482 227 L444 224 L424 212 Z"
-                    fill="url(#lampPaint)"
-                    stroke="#fff1d1"
-                    stroke-width="2"/>
-
-              <!-- НИЖНИЙ БАМПЕР -->
-              <path d="M75 243 Q265 269 481 242 L474 258
-                       Q276 291 90 258 Z"
-                    fill="#303b4a"/>
-
-              <path d="M238 259 L336 259"
-                    stroke="#8e9baa"
-                    stroke-width="4"
-                    stroke-linecap="round"/>
-
-              <!-- СКОЛ ПОЯВЛЯЕТСЯ НА ЛОБОВОМ СТЕКЛЕ -->
-              <g class="windshield-chip">
-
-                <circle class="chip-ring"
-                        cx="0" cy="0" r="15"
-                        fill="none"
-                        stroke="#ff6b24"
-                        stroke-width="1.5"/>
-
-                <circle cx="0" cy="0" r="5"
-                        fill="#ff6b24"
-                        stroke="#ffe0cf"
-                        stroke-width="1.5"/>
-
-                <path d="M0 -5 L-4 -12
-                         M4 -3 L12 -8
-                         M5 2 L13 5
-                         M0 5 L-2 13
-                         M-4 2 L-12 7
-                         M-4 -2 L-11 -5"
-                      fill="none"
-                      stroke="#ff7b38"
-                      stroke-width="2"
-                      stroke-linecap="round"/>
-
-              </g>
-
-              <!-- КОРОТКАЯ ПОДПИСЬ -->
-              <text x="280" y="324"
-                    fill="#ff8a50"
-                    font-size="11"
-                    letter-spacing="3"
-                    text-anchor="middle">
-                GLASS FIX EXPERT
-              </text>
-
-            </svg>
-          </div>
-
-          <div class="scene-caption">
-            Точность · Опыт · Внимание к деталям
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ПРЕИМУЩЕСТВА -->
-
-    <section class="advantages">
-      <div class="container advantages-grid">
-
-        <div class="advantage">
-          <div class="advantage-icon">◈</div>
-          <div>
-            <strong>Ремонт сколов</strong>
-            <p>Оценка повреждения и варианты восстановления</p>
-          </div>
-        </div>
-
-        <div class="advantage">
-          <div class="advantage-icon">◇</div>
-          <div>
-            <strong>Замена автостёкол</strong>
-            <p>Подбор стекла для вашего автомобиля</p>
-          </div>
-        </div>
-
-        <div class="advantage">
-          <div class="advantage-icon">✓</div>
-          <div>
-            <strong>Консультация</strong>
-            <p>Помощь в выборе подходящего решения</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- УСЛУГИ -->
-
-    <section class="content-section" id="services">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">Что мы делаем</div>
-          <h2>Профессиональный подход к <span>каждому стеклу</span></h2>
-          <p>
-            От небольшого скола до полной замены.
-            Подберём подходящий вариант с учётом повреждения и автомобиля.
-          </p>
-        </div>
-
-        <div class="services-grid">
-
-          <article class="service-card">
-            <div class="service-number">01</div>
-            <div class="service-icon">✳</div>
-            <h3>Ремонт сколов</h3>
-            <p>
-              Восстановление повреждённого участка стекла,
-              когда состояние стекла позволяет выполнить ремонт.
-            </p>
-            <a class="service-link" href="#contacts">Узнать подробнее →</a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">02</div>
-            <div class="service-icon">▱</div>
-            <h3>Замена автостёкол</h3>
-            <p>
-              Подбор подходящего стекла и организация
-              работ по его замене.
-            </p>
-            <a class="service-link" href="#contacts">Узнать подробнее →</a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">03</div>
-            <div class="service-icon">⌕</div>
-            <h3>Продажа автостёкол</h3>
-            <p>
-              Помощь в подборе автомобильного стекла
-              с учётом марки, модели и комплектации.
-            </p>
-            <a class="service-link" href="#contacts">Подобрать стекло →</a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">04</div>
-            <div class="service-icon">◉</div>
-            <h3>Тонировка</h3>
-            <p>
-              Консультация по вариантам тонирования
-              автомобильных стёкол.
-            </p>
-            <a class="service-link" href="#contacts">Задать вопрос →</a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">05</div>
-            <div class="service-icon">◇</div>
-            <h3>Бронировка стёкол</h3>
-            <p>
-              Информация о защитных плёнках и возможностях
-              дополнительной защиты стекла.
-            </p>
-            <a class="service-link" href="#contacts">Получить консультацию →</a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-number">06</div>
-            <div class="service-icon">◎</div>
-            <h3>Подбор решения</h3>
-            <p>
-              Разберёмся в ситуации и подскажем,
-              какие варианты стоит рассмотреть.
-            </p>
-            <a class="service-link" href="#contacts">Связаться с нами →</a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- РЕМОНТ СКОЛА -->
-
-    <section class="content-section" id="repair">
-      <div class="container">
-
-        <div class="repair-panel">
-
-          <div class="repair-visual">
-            <div class="glass-illustration">
-              <div class="glass-chip"></div>
-            </div>
-          </div>
-
-          <div class="repair-copy">
-
-            <div class="eyebrow">Не откладывайте проверку</div>
-
-            <h2>Небольшой скол может стать <span>большой проблемой</span></h2>
-
-            <p>
-              Перепады температуры, вибрация и дорожные нагрузки
-              могут способствовать распространению повреждения.
-              Чем раньше оценить состояние стекла, тем больше
-              вариантов решения можно рассмотреть.
-            </p>
-
-            <ul class="check-list">
-              <li>Оценим характер и расположение повреждения</li>
-              <li>Объясним возможные варианты ремонта</li>
-              <li>При необходимости поможем подобрать стекло</li>
-            </ul>
-
-            <a class="button" href="#contacts">
-              Обсудить повреждение →
-            </a>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ЭТАПЫ РАБОТЫ -->
-
-    <section class="content-section" id="process">
-      <div class="container">
-
-        <div class="section-heading">
-          <div class="eyebrow">Всё понятно и прозрачно</div>
-          <h2>Как проходит <span>работа</span></h2>
-          <p>
-            От первого обращения до выбора подходящего решения —
-            спокойно, последовательно и без лишних сложностей.
-          </p>
-        </div>
-
-        <div class="steps-grid">
-
-          <article class="step">
-            <div class="step-number">ШАГ 01</div>
-            <h3>Обращение</h3>
-            <p>Вы рассказываете, что произошло, и сообщаете данные автомобиля.</p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">ШАГ 02</div>
-            <h3>Оценка</h3>
-            <p>Уточняем характер повреждения или требования к стеклу.</p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">ШАГ 03</div>
-            <h3>Решение</h3>
-            <p>Обсуждаем возможный ремонт, замену или подбор стекла.</p>
-          </article>
-
-          <article class="step">
-            <div class="step-number">ШАГ 04</div>
-            <h3>Согласование</h3>
-            <p>Уточняем условия, стоимость и дальнейшие действия.</p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- КОНТАКТЫ -->
-
-    <section class="contact-section" id="contacts">
-      <div class="container">
-
-        <div class="contact-box">
-
-          <div>
-            <div class="eyebrow">Glass Fix Expert</div>
-            <h2>Начнём с <span>консультации?</span></h2>
-            <p>
-              Расскажите о повреждении или о том,
-              какое стекло вам нужно. Вместе разберёмся,
-              с чего лучше начать.
-            </p>
-          </div>
-
-          <div class="contact-actions">
-            <a class="button"
-               href="mailto:info@example.com?subject=Glass%20Fix%20Expert%20-%20%D0%9A%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F">
-              Написать нам →
-            </a>
-
-            <a class="button button-outline" href="#home">
-              Наверх ↑
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-
-      <div class="footer-brand">
-        Glass <span>Fix</span> Expert
-      </div>
-
-      <div>
-        Ремонт · Замена · Продажа автостёкол
-      </div>
-
-      <div>
-        © <span id="year"></span> Glass Fix Expert
-      </div>
-
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
-
-</body>
-</html>
+  
+
+
+  
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+    
+  
+
+  
+    
+      
+        G
+        GlassFixEXPERT
+      
+      
+        Услуги
+        Преимущества
+        Обучение
+        Контакты
+      
+      Записаться
+    
+  
+
+  
+    
+      
+      
+        
+          GlassFixEXPERT
+          АВТОСТЁКЛА
+          РЕМОНТ · ЗАМЕНА · ТОНИРОВКА
+          
+            
+              
+              Быстрои качественно
+            
+            
+              
+              Современныематериалы
+            
+            
+              
+              С заботойо каждом клиенте
+            
+          
+          Записаться на ремонт →
+        
+      
+    
+
+    
+      
+        
+          
+          
+            
+            
+              Ремонтавтостёкол
+              Устранение сколов и трещин. Оценка возможности ремонта.
+            
+          
+        
+        
+          
+          
+            
+            
+              Заменаавтостёкол
+              Подбор и установка стекла для вашего автомобиля.
+            
+          
+        
+        
+          
+          
+            
+            
+              Тонировкаавтостёкол
+              Комфорт, защита от солнца и стиль вашего авто.
+            
+          
+        
+      
+    
+
+    
+      
+        
+          
+          Внимание к каждой детали
+        
+        
+          О нас
+          Профессиональныйремонт автостёкол
+          
+            Восстанавливаем автомобильные стёкла, помогая сохранить
+            прозрачность и безопасность. Подбираем технологию ремонта
+            с учётом повреждения, состояния стекла и особенностей автомобиля.
+          
+          
+            
+              
+              Внимательнаядиагностика
+            
+            
+              
+              Профессиональноеоборудование
+            
+            
+              
+              Индивидуальныйподход
+            
+          
+        
+      
+    
+
+    
+      
+        
+          Бренды плёнок
+          Подбор материала под ваши задачи и предпочтения.
+        
+        
+          LLumar
+          SunTek
+          3M
+          RAYNO
+          SPECTROLL
+        
+      
+    
+
+    
+      
+        
+          
+            
+          
+          
+            Обучение
+            
+              Хотите освоить новую профессию?
+              Узнайте о программе обучения ремонту, замене
+              автостёкол и работе с автомобильными плёнками.
+            
+            
+              Узнать подробнее
+              Онлайн-курс — скоро
+            
+          
+        
+        
+          
+            
+            Практические занятияРабота с инструментом
+          
+          
+            
+            Обратная связьРазбор ваших вопросов
+          
+          
+            
+            Технологии ремонтаОт теории к практике
+          
+        
+      
+    
+
+    
+      
+        Запись и связь
+        Выберите услугу и оставьте контактные данные.
+        
+          Оставить заявку
+          Оценить повреждение
+          Узнать об обучении
+        
+        
+          Демонстрационная версия. Заявки сохраняются только на этом устройстве.
+          Для реального приёма обращений необходимо подключить отправку формы.
+        
+      
+    
+  
+
+  
+    
+      
+        
+          G
+          GlassFixEXPERT
+        
+        Автостёкла — наша экспертиза.
+      
+      
+        Услуги
+        Преимущества
+        Обучение
+        Контакты
+      
+    
+  
+
+  
+    
+      Запись на услугу
+      ×
+    
+    
+      
+        Ваше имя
+        
+      
+      
+        Телефон
+        
+      
+      
+        Услуга
+        
+          Консультация
+          Ремонт автостекла
+          Замена автостекла
+          Тонировка автостекла
+          Обучение
+        
+      
+      
+        Это демонстрационная форма. Данные сохраняются в браузере
+        и не передаются сотрудникам мастерской.
+      
+      Сохранить заявку на устройстве
+      
+    
+  
+
+  
+    const source = "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/e3e635d8-bc36-4be2-8326-68cdf7a8f963.png";
+
+    document.querySelectorAll("[data-photo]").forEach((container) => {
+      const image = document.createElement("img");
+      image.src = source;
+      image.alt = "";
+      image.loading = "lazy";
+      image.decoding = "async";
+      container.append(image);
+    });
+
+    const dialog = document.querySelector("#booking");
+    const form = document.querySelector("#booking-form");
+    const status = form.querySelector(".form-status");
+
+    document.querySelectorAll("[data-book]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        form.elements.service.value = button.dataset.book;
+        status.textContent = "";
+        dialog.showModal();
+      });
+    });
+
+    dialog.querySelector(".close").addEventListener("click", () => {
+      dialog.close();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      const bounds = dialog.getBoundingClientRect();
+      const outside =
+        event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom;
+
+      if (event.target === dialog && outside) {
+        dialog.close();
+      }
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = form.elements.name.value.trim();
+      const phone = form.elements.phone.value.trim();
+
+      if (!name) {
+        status.textContent = "Введите имя.";
+        form.elements.name.focus();
+        return;
+      }
+
+      if (phone.replace(/\D/g, "").length < 7) {
+        status.textContent = "Проверьте номер телефона.";
+        form.elements.phone.focus();
+        return;
+      }
+
+      const request = {
+        name,
+        phone,
+        service: form.elements.service.value,
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        localStorage.setItem("glassfix-last-request", JSON.stringify(request));
+        status.textContent =
+          "Заявка сохранена на этом устройстве. В мастерскую она не отправлена.";
+        form.reset();
+      } catch {
+        status.textContent =
+          "Браузер не разрешил сохранить заявку. Данные не отправлены.";
+      }
+    });
+  
+
+
+```
