@@ -1,2080 +1,653 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101114">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Glass Fix Expert — ремонт сколов, замена и подбор автомобильных стёкол, тонировка и защитные плёнки. Консультация по услугам и обучению.">
-  <title>Glass Fix Expert — Ваш автомобиль. Наша забота</title>
+На изображении показан сайт GlassFix Expert по ремонту, замене и тонировке автомобильных стёкол. Дизайн выполнен в чёрных и оранжевых цветах. Есть блоки услуг, преимуществ, обучения, брендов плёнок и записи.
 
-  <style>
+Ниже готовый одностраничный сайт для GitHub Pages. Сохраните код в index.html. Изображения вырезаются из предоставленного макета, поэтому для публикации лучше заменить их оригинальными фотографиями. Форма сохраняет заявку только в браузере и не отправляет её администратору.
+
+```html
+
+
+
+  
+  
+  
+  
+  GlassFix Expert — автостёкла
+  
     :root {
-      --bg: #101114;
-      --panel: #191b20;
-      --panel-soft: #14161a;
-      --text: #f5f5f7;
-      --muted: #b1b4bd;
-      --accent: #ff962f;
-      --accent-hover: #ffae5c;
-      --line: #32353d;
-      --radius: 22px;
-      --width: 1160px;
-      --header-height: 78px;
+      --bg: #040c10;
+      --panel: #09151b;
+      --text: #f4f6f8;
+      --muted: #b7c1c8;
+      --orange: #ff7300;
+      --line: #27343b;
+      --source: url("https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/e3e635d8-bc36-4be2-8326-68cdf7a8f963.png");
     }
 
     * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-    }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body {
       margin: 0;
-      min-width: 280px;
       background: var(--bg);
       color: var(--text);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
     }
 
-    body, button, input, select, textarea { font-family: inherit; }
-    button, input, select, textarea { font-size: 16px; }
-    button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button, a, input, select { -webkit-tap-highlight-color: transparent; }
     button { cursor: pointer; }
     button:disabled { cursor: default; }
-    a { color: inherit; }
-    img, svg, video { display: block; max-width: 100%; }
-    img { height: auto; }
-    button, input, select, textarea { max-width: 100%; }
-    [hidden] { display: none !important; }
+    :focus-visible { outline: 3px solid #ffb067; outline-offset: 5px; }
 
-    :focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 5px;
-    }
+    .container { width: min(1180px, calc(100% - 48px)); margin: auto; }
+    .accent { color: var(--orange); }
+    .muted { color: var(--muted); }
 
-    ::selection { background: var(--accent); color: #17120d; }
-
-    .container {
-      width: min(var(--width), calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    .skip-link {
-      position: fixed;
-      left: 16px;
-      top: -100px;
-      z-index: 100;
-      padding: 12px 18px;
-      background: var(--accent);
-      color: #111;
-      border-radius: 10px;
-    }
-
-    .skip-link:focus { top: 12px; }
-
-    .site-header {
+    .header {
       position: sticky;
       top: 0;
-      z-index: 30;
-      background: rgba(16, 17, 20, .96);
-      border-bottom: 1px solid rgba(255, 255, 255, .07);
-    }
-
-    @supports (backdrop-filter: blur(14px)) {
-      .site-header {
-        background: rgba(16, 17, 20, .88);
-        backdrop-filter: blur(14px);
-      }
+      z-index: 20;
+      background: rgba(3, 10, 14, .96);
+      border-bottom: 1px solid var(--line);
     }
 
     .header-inner {
-      min-height: var(--header-height);
+      min-height: 82px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 24px;
-      position: relative;
     }
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      flex-shrink: 0;
-      line-height: 1.2;
+    .brand { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border: 6px solid #ecf1f3;
+      border-right-color: var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font-size: 26px;
+      font-weight: 900;
+      transform: rotate(-18deg);
+    }
+    .brand-name { font-size: 28px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+    .brand-name small {
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+      letter-spacing: 5px;
+      text-align: center;
     }
 
-    .brand-text {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -.6px;
-    }
+    .nav { display: flex; gap: 26px; font-size: 14px; }
+    .nav a:hover, .footer a:hover { color: var(--orange); }
 
-    .brand-text span { color: var(--accent); }
-
-    .brand-image {
-      width: auto;
-      height: 44px;
-      max-width: 180px;
-      object-fit: contain;
-    }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-left: auto;
-    }
-
-    .main-nav a {
-      font-size: 14px;
-      text-decoration: none;
-      color: var(--muted);
-      padding-block: 12px;
-    }
-
-    .main-nav a:hover { color: var(--text); }
-    .header-cta { margin-left: 8px; }
-
-    .menu-toggle {
-      display: none;
-      margin-left: auto;
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      min-height: 44px;
-      padding: 8px 14px;
-    }
-
-    .btn {
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 12px;
       min-height: 48px;
-      padding: 12px 21px;
+      padding: 12px 27px;
       border: 1px solid transparent;
-      border-radius: 12px;
-      background: var(--accent);
-      color: #19130c;
-      font-weight: 750;
-      line-height: 1.35;
-      text-align: center;
-      text-decoration: none;
-      transition: background .2s, border-color .2s, transform .2s;
+      border-radius: 22px;
+      background: linear-gradient(110deg, #ff5900, #ff9700);
+      color: #060a0c;
+      font-weight: 700;
+      transition: transform .2s, filter .2s;
     }
-
-    .btn:hover { background: var(--accent-hover); }
-    .btn:active { transform: translateY(1px); }
-
-    .btn-secondary {
+    .button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .button-outline {
       color: var(--text);
       background: transparent;
-      border-color: var(--line);
+      border-color: #66737b;
+      font-weight: 400;
     }
 
-    .btn-secondary:hover {
-      background: #24272e;
-      border-color: #626773;
+    .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .hero-inner { min-height: 455px; display: flex; align-items: center; position: relative; }
+    .hero-car {
+      position: absolute;
+      inset: 0 0 0 38%;
+      background-image: var(--source);
+      background-repeat: no-repeat;
+      background-size: 184% auto;
+      background-position: right 5.2%;
     }
-
-    .btn-small { min-height: 42px; padding: 10px 16px; font-size: 14px; }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-    h1, h2, h3 { line-height: 1.12; }
-    h1 { font-size: clamp(40px, 5.6vw, 72px); letter-spacing: -2.8px; margin-bottom: 24px; }
-    h2 { font-size: clamp(29px, 3.8vw, 43px); letter-spacing: -1.4px; margin-bottom: 18px; }
-    h3 { font-size: 23px; letter-spacing: -.6px; margin-bottom: 14px; }
-    p { margin-bottom: 18px; }
-
-    .muted { color: var(--muted); }
-    .small { font-size: 13px; line-height: 1.6; }
-    .accent { color: var(--accent); }
-    .section { padding-block: 76px; }
-    .section-line { border-top: 1px solid var(--line); }
-    .section-heading { max-width: 680px; margin-bottom: 30px; }
-    .section-heading p { color: var(--muted); margin-bottom: 0; }
-
-    .hero {
-      position: relative;
-      padding-block: 66px 40px;
-      overflow: hidden;
-      overflow: clip;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.05fr;
-      align-items: center;
-      gap: 10px;
-      min-height: 480px;
-    }
-
-    .hero-copy { position: relative; z-index: 2; }
-
-    .hero-description {
-      max-width: 460px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-
-    .hero-note {
-      margin: 22px 0 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .hero-art {
-      min-width: 0;
-      position: relative;
-      padding-top: 20px;
-    }
-
-    .hero-art::before {
+    .hero::after {
       content: "";
       position: absolute;
-      inset: 10% 3%;
-      z-index: -1;
-      border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(255, 150, 47, .10), transparent 68%);
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, #030a0e 10%, rgba(3,10,14,.96) 31%, rgba(3,10,14,.12) 75%);
     }
-
-    .car-scene { width: 100%; height: auto; overflow: visible; }
-    .car-motion { transform-box: view-box; transform-origin: center; }
-
-    .animate-car .car-motion {
-      animation: car-arrive 1.7s cubic-bezier(.16, .78, .23, 1) both;
-    }
-
-    .animate-car .chip {
-      animation: chip-appear .4s 1.8s both;
-    }
-
-    .animate-car .chip-halo {
-      animation: chip-pulse 1.2s 2.2s 2 both;
-    }
-
-    @keyframes car-arrive {
-      from { transform: translateX(125px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes chip-appear {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes chip-pulse {
-      0%, 100% { opacity: 0; }
-      45% { opacity: .6; }
-    }
-
-    .art-caption {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding-inline: 18px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .text-button {
-      background: none;
-      color: var(--muted);
-      border: 0;
-      padding: 10px 0;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      min-height: 44px;
-    }
-
-    .text-button:hover { color: var(--text); }
-
-    .service-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 28px;
-      margin-top: 36px;
-      padding-block: 20px;
-      border-block: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .service-strip span::before {
-      content: "";
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      margin: 0 10px 3px 0;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .service-card {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      padding: 28px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-    }
-
-    .service-number {
-      margin-bottom: 30px;
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .service-card p { color: var(--muted); font-size: 15px; }
-    .service-card .service-link { margin-top: auto; }
-
-    .service-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      color: var(--accent);
-      text-decoration: underline;
-      text-underline-offset: 5px;
-      font-weight: 650;
-      font-size: 14px;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .principles { border-top: 1px solid var(--line); }
-
-    .principle {
-      padding-block: 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .principle h3 { font-size: 18px; margin-bottom: 8px; }
-    .principle p { margin: 0; font-size: 14px; color: var(--muted); }
-
-    .media-details {
-      margin-top: 24px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--panel-soft);
-      overflow: hidden;
-    }
-
-    .media-details summary {
-      padding: 17px 20px;
-      cursor: pointer;
-      font-weight: 650;
-    }
-
-    .media-body { padding: 0 20px 20px; }
-    .media-body p { color: var(--muted); font-size: 14px; }
-    .media-body p:last-child { margin-bottom: 0; }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .gallery figure { margin: 0; min-width: 0; }
-
-    .gallery img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: 12px;
-      background: var(--panel);
-    }
-
-    .gallery figcaption { margin-top: 7px; font-size: 12px; color: var(--muted); }
-
-    .films-panel {
-      padding: 34px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(125deg, #24211e, #191b20 65%);
-    }
-
-    .film-list { list-style: none; margin: 0; padding: 0; }
-
-    .film-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      padding-block: 17px;
-      border-bottom: 1px solid var(--line);
-      font-size: 15px;
-    }
-
-    .film-list li:first-child { padding-top: 0; }
-    .film-list li:last-child { border-bottom: 0; padding-bottom: 0; }
-
-    .film-list span { color: var(--muted); font-size: 12px; text-align: right; }
-
-    .brand-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-
-    .brand-tag {
-      padding: 7px 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      font-size: 13px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 26px;
-      counter-reset: steps;
-    }
-
-    .step {
-      border-top: 1px solid var(--line);
-      padding-top: 22px;
-      counter-increment: steps;
-    }
-
-    .step::before {
-      content: "0" counter(steps);
+    .hero-content { position: relative; z-index: 1; max-width: 620px; padding: 48px 0; }
+    .hero-logo { font-size: clamp(38px, 5vw, 66px); font-weight: 900; line-height: 1; letter-spacing: -3px; }
+    .hero-logo span {
       display: block;
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 20px;
+      width: fit-content;
+      margin: 9px 0 25px;
+      padding: 0 15px;
+      border-left: 45px solid var(--orange);
+      border-right: 45px solid var(--orange);
+      font-size: 23px;
+      letter-spacing: 1px;
     }
+    h1 { margin: 0; font-size: clamp(34px, 4vw, 49px); line-height: 1.1; }
+    .hero-subtitle { margin: 7px 0 25px; color: var(--orange); font-size: clamp(17px, 2.2vw, 27px); font-weight: 800; }
+    .hero-benefits { display: flex; gap: 25px; margin-bottom: 28px; }
+    .mini-feature { display: flex; align-items: center; gap: 9px; font-size: 13px; }
+    .mini-feature svg { width: 30px; height: 30px; flex-shrink: 0; color: var(--orange); }
+    .hero .button { min-width: 220px; }
 
-    .step h3 { font-size: 18px; }
-    .step p { color: var(--muted); font-size: 14px; margin-bottom: 0; }
-
-    .training {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 40px;
-      align-items: center;
-      padding: 40px;
-      border-radius: var(--radius);
-      border: 1px solid #60452e;
-      background: linear-gradient(120deg, #2b211a, #191b20 75%);
-    }
-
-    .training p { color: var(--muted); max-width: 600px; margin-bottom: 0; }
-
-    .training-side {
-      border-left: 1px solid #60452e;
-      padding-left: 35px;
-    }
-
-    .training-side p { font-size: 14px; margin-bottom: 20px; }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 50px;
-      align-items: start;
-    }
-
-    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0; }
-
-    .notice {
-      padding: 15px 17px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--panel-soft);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .contact-details { margin: 20px 0; }
-    .contact-details p { margin-bottom: 8px; overflow-wrap: anywhere; }
-
-    .message-form {
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 17px;
-    }
-
-    .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
-    .field-wide { grid-column: 1 / -1; }
-    label { font-size: 13px; font-weight: 650; }
-
-    input, select, textarea {
-      width: 100%;
-      min-height: 48px;
-      border: 1px solid #484d59;
-      border-radius: 10px;
-      padding: 11px 12px;
-      color: var(--text);
-      background: #111318;
-    }
-
-    input::placeholder, textarea::placeholder { color: #9399a5; opacity: 1; }
-    textarea { min-height: 108px; resize: vertical; }
-    textarea[readonly] { min-height: 190px; font-size: 14px; }
-
-    .form-description { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
-    .form-submit { margin-top: 20px; width: 100%; }
-    .form-result { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
-    .form-result h3 { font-size: 18px; }
-    .form-result .actions { margin-top: 14px; }
-
-    .status { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
-    .status:empty { margin: 0; }
-
-    .qr-layout {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .qr-controls {
-      max-width: 620px;
-      display: flex;
-      gap: 10px;
-      align-items: end;
-      margin-top: 20px;
-    }
-
-    .qr-controls .field { flex: 1; }
-    .qr-controls .btn { flex-shrink: 0; }
-
-    .qr-wrap {
-      width: 246px;
-      max-width: 100%;
-      background: #fff;
-      color: #000;
-      border-radius: 12px;
+    .section { padding: 34px 0; border-bottom: 1px solid var(--line); }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .service {
+      position: relative;
+      aspect-ratio: 305 / 230;
       overflow: hidden;
+      border: 1px solid #6d5a42;
+      border-radius: 9px;
+      transition: transform .2s, border-color .2s;
     }
-
-    .qr-wrap svg { width: 100%; height: auto; }
-    .site-url { overflow-wrap: anywhere; color: var(--accent); }
-    .qr-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
-
-    .site-footer { padding: 30px 0 95px; border-top: 1px solid var(--line); }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 12px;
+    .service:hover { transform: translateY(-5px); border-color: var(--orange); }
+    .photo-crop { position: absolute; inset: 0; overflow: hidden; }
+    .photo-crop img { position: absolute; height: auto; max-width: none; pointer-events: none; }
+    .service .photo-crop img { width: 335.74%; top: -180.87%; }
+    .service:nth-child(1) .photo-crop img { left: -13.77%; }
+    .service:nth-child(2) .photo-crop img { left: -119.67%; }
+    .service:nth-child(3) .photo-crop img { left: -221.64%; }
+    .service::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, #020a0f 2%, rgba(2,10,15,.94) 34%, transparent 78%);
     }
+    .service-content { position: absolute; inset: auto 22px 20px; z-index: 1; display: flex; align-items: flex-start; gap: 15px; }
+    .service-icon { width: 46px; height: 46px; color: var(--orange); flex-shrink: 0; }
+    .service h2 { margin: 0 0 7px; font-size: 23px; line-height: 1.08; }
+    .service p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
-    .mobile-action { display: none; }
-
-    @media (min-width: 1001px) {
-      .site-footer { padding-bottom: 30px; }
+    .about { position: relative; overflow: hidden; }
+    .about::after {
+      content: "";
+      position: absolute;
+      width: 85px;
+      height: 420px;
+      right: -30px;
+      top: -60px;
+      transform: rotate(35deg);
+      background: linear-gradient(90deg, transparent, #ff730055, var(--orange), #ff730022);
+      pointer-events: none;
     }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.4fr; gap: 40px; align-items: center; }
+    .about-photo { position: relative; aspect-ratio: 345 / 187; border: 2px solid var(--orange); border-radius: 9px; overflow: hidden; }
+    .about-photo .photo-crop img { width: 296.81%; left: -11.88%; top: -361.5%; }
+    .photo-label { position: absolute; bottom: 12px; left: 12px; padding: 5px 10px; background: #030a0edb; border-radius: 5px; font-size: 13px; }
+    .eyebrow { margin: 0 0 5px; color: var(--orange); font-size: 13px; font-weight: 800; text-transform: uppercase; }
+    .section-title { margin: 0 0 12px; font-size: clamp(25px, 3vw, 33px); line-height: 1.12; }
+    .about-text { max-width: 620px; margin: 0 0 22px; color: var(--muted); }
+    .advantages { display: flex; flex-wrap: wrap; gap: 24px; }
+
+    .brands-layout { display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: center; }
+    .brands-layout h2 { margin: 0 0 8px; font-size: 25px; }
+    .brands-layout p { margin: 0; font-size: 14px; color: var(--muted); }
+    .brands { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .brand-item { font-size: 25px; font-weight: 900; letter-spacing: -1px; }
+    .brand-item:nth-child(1), .brand-item:nth-child(2), .brand-item:nth-child(3) { color: #ff3c2c; }
+    .brand-item:nth-child(4), .brand-item:nth-child(5) { font-size: 19px; letter-spacing: 1px; }
+
+    .training-grid { display: grid; grid-template-columns: 1fr 290px; gap: 30px; }
+    .training-card { display: grid; grid-template-columns: 36% 1fr; border: 1px solid #72421e; border-radius: 9px; overflow: hidden; }
+    .training-photo { position: relative; min-height: 235px; overflow: hidden; background: #17252e; }
+    .training-photo .photo-crop img { width: 362%; left: 0; top: -432%; }
+    .training-content { padding: 27px; }
+    .training-content h2 { margin: 0 0 12px; font-size: 28px; }
+    .training-content p { margin: 0 0 23px; color: var(--muted); }
+    .training-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .training-actions .button { padding: 11px 20px; font-size: 14px; }
+    .training-list { display: grid; align-content: center; gap: 22px; }
+    .training-list .mini-feature { font-size: 15px; }
+
+    .contact { background: radial-gradient(ellipse at 100% 100%, #442008 0, transparent 55%); }
+    .contact p { margin: 0 0 22px; color: var(--muted); }
+    .contact-buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+    .contact-note { margin: 18px 0 0 !important; font-size: 13px; }
+
+    .footer { padding: 30px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+    .footer p { margin: 15px 0 0; color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; gap: 25px; font-size: 14px; }
+
+    .icon { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    dialog {
+      width: min(460px, calc(100% - 32px));
+      padding: 28px;
+      border: 1px solid #81512c;
+      border-radius: 18px;
+      background: #0a161d;
+      color: var(--text);
+    }
+    dialog::backdrop { background: rgba(0,0,0,.78); backdrop-filter: blur(5px); }
+    .modal-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
+    .modal-top h2 { margin: 0; font-size: 25px; }
+    .close { border: 0; background: transparent; color: var(--muted); font-size: 28px; line-height: 1; }
+    .form { display: grid; gap: 14px; }
+    .form label { display: grid; gap: 6px; font-size: 14px; }
+    .form input, .form select {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 12px;
+      border: 1px solid #36454f;
+      border-radius: 8px;
+      background: #050d12;
+      color: var(--text);
+    }
+    .form-note { margin: 0; color: var(--muted); font-size: 12px; }
+    .form-status { margin: 0; color: #ffb777; font-size: 14px; }
 
     @media (max-width: 1000px) {
-      .main-nav { gap: 15px; }
-      .main-nav a { font-size: 13px; }
-      .header-cta { display: none; }
-      .hero-grid { min-height: 430px; }
-      h1 { font-size: 53px; }
-      .split { gap: 32px; }
-      .contact-grid { gap: 30px; }
-      .service-card { padding: 23px; }
-      .mobile-action {
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 25;
-        padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
-        background: rgba(16, 17, 20, .97);
-        border-top: 1px solid var(--line);
-      }
-      .mobile-action .btn { width: min(100%, 440px); }
-      html { scroll-padding-bottom: 100px; }
+      .nav { gap: 15px; font-size: 13px; }
+      .header .button { padding: 11px 18px; }
+      .service-content { left: 15px; right: 15px; gap: 10px; }
+      .service-icon { width: 33px; height: 33px; }
+      .service h2 { font-size: 20px; }
+      .service p { font-size: 12px; }
+      .training-grid { grid-template-columns: 1fr; }
+      .training-list { grid-template-columns: repeat(3, 1fr); }
+      .brands-layout { grid-template-columns: 1fr; }
+      .about-grid { gap: 25px; }
+      .hero-benefits { gap: 16px; }
     }
 
-    @media (max-width: 760px) {
-      :root { --header-height: 68px; }
-      .container { width: min(var(--width), calc(100% - 32px)); }
-      .header-inner { flex-wrap: wrap; gap: 0; }
-      .brand-text { font-size: 17px; }
-      .brand-image { max-width: 145px; height: 38px; }
-      .menu-toggle { display: inline-flex; align-items: center; }
-
-      .main-nav {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        gap: 0 20px;
-        margin: 0;
-        padding: 0 0 12px;
-      }
-
-      .js .main-nav { display: none; }
-      .js .main-nav.is-open { display: flex; }
-      .main-nav a { min-height: 44px; font-size: 14px; }
-      .hero { padding-top: 40px; }
-      .hero-grid { grid-template-columns: 1fr; min-height: auto; gap: 10px; }
-      h1 { max-width: 600px; font-size: clamp(39px, 9vw, 62px); letter-spacing: -1.8px; }
-      .hero-description { max-width: 550px; font-size: 16px; }
-      .hero-art { width: min(100%, 560px); justify-self: center; padding-top: 0; }
-      .hero .actions { margin-top: 24px; }
-      .art-caption { padding-inline: 6px; }
-      .service-strip { margin-top: 20px; gap: 9px 18px; }
-      .section { padding-block: 52px; }
-      .services-grid { grid-template-columns: 1fr; gap: 12px; }
-      .service-card { padding: 24px; }
-      .service-number { margin-bottom: 18px; }
-      .split, .contact-grid { grid-template-columns: 1fr; gap: 28px; }
-      .steps { grid-template-columns: 1fr 1fr; gap: 26px 20px; }
-      .films-panel { padding: 25px; }
-      .training { grid-template-columns: 1fr; gap: 25px; padding: 28px; }
-      .training-side { padding: 22px 0 0; border-left: 0; border-top: 1px solid #60452e; }
-      .qr-layout { grid-template-columns: 1fr; gap: 24px; }
-      .qr-wrap { width: 246px; }
-      .message-form { padding: 23px; }
-      .gallery { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 420px) {
-      .brand-text { font-size: 15px; letter-spacing: -.4px; }
-      .menu-toggle { font-size: 13px; padding-inline: 11px; }
-      .form-grid { grid-template-columns: 1fr; }
-      .field-wide { grid-column: auto; }
-      .hero .actions .btn { width: 100%; }
-      .hero-note { margin-top: 16px; }
-      .film-list li { display: block; }
-      .film-list span { display: block; text-align: left; margin-top: 4px; }
-      .qr-controls { flex-direction: column; align-items: stretch; }
-      .qr-controls .btn { width: 100%; }
-      .steps { gap: 24px 14px; }
-      .step h3 { font-size: 16px; }
-      .step p { font-size: 13px; }
-      .gallery { grid-template-columns: 1fr; }
+    @media (max-width: 720px) {
+      .container { width: calc(100% - 32px); }
+      .header-inner { min-height: 72px; gap: 12px; }
+      .header .nav { display: none; }
+      .brand-name { font-size: 23px; }
+      .brand-name small { font-size: 10px; letter-spacing: 4px; }
+      .brand-mark { width: 35px; height: 35px; border-width: 5px; font-size: 20px; }
+      .header .button { min-height: 41px; padding: 9px 16px; font-size: 13px; }
+      .hero-inner { min-height: 490px; }
+      .hero-car { inset: 0; opacity: .42; background-size: 240% auto; background-position: right 5%; }
+      .hero::after { background: linear-gradient(90deg, #030a0ee8, #030a0e55); }
+      .hero-content { padding: 38px 0; }
+      .hero-logo { font-size: 49px; }
+      .hero-logo span { font-size: 17px; border-width: 30px; }
+      .hero-benefits { flex-wrap: wrap; max-width: 370px; gap: 16px 23px; }
+      .mini-feature { font-size: 12px; }
+      .service-grid { grid-template-columns: 1fr; gap: 17px; }
+      .service { aspect-ratio: 305 / 200; }
+      .service .photo-crop img { top: -208%; }
+      .service-content { left: 23px; bottom: 22px; gap: 18px; }
+      .service-icon { width: 46px; height: 46px; }
+      .service h2 { font-size: 25px; }
+      .service p { font-size: 14px; max-width: 250px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 500px; width: 100%; }
+      .advantages { gap: 20px; }
+      .brands { justify-content: flex-start; gap: 22px 27px; }
+      .training-card { grid-template-columns: 1fr; }
+      .training-photo { min-height: 0; aspect-ratio: 1.6; }
+      .training-photo .photo-crop img { width: 362%; top: -576%; }
+      .training-content { padding: 23px; }
+      .training-list { grid-template-columns: 1fr; gap: 18px; }
+      .training-list .mini-feature { font-size: 14px; }
+      .contact-buttons .button { flex: 1 1 145px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; gap: 15px 22px; }
+      .section { padding: 28px 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-      .car-motion { opacity: 1 !important; transform: none !important; }
-      .chip { opacity: 1 !important; }
-      .chip-halo { opacity: 0 !important; }
-      #replay-animation { display: none; }
+      *, *::before, *::after { transition: none !important; }
     }
-  </style>
-</head>
-
-<body>
-  <a href="#main" class="skip-link">Перейти к содержимому</a>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#home" aria-label="Glass Fix Expert — на главную">
-        <img id="brand-image" class="brand-image" alt="Glass Fix Expert" hidden>
-        <span class="brand-text" id="brand-text">Glass Fix <span>Expert</span></span>
-      </a>
-
-      <button
-        type="button"
-        class="menu-toggle"
-        id="menu-toggle"
-        aria-controls="main-nav"
-        aria-expanded="false"
-        hidden
-      >Меню</button>
-
-      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
-        <a href="#services">Услуги</a>
-        <a href="#care">Подход</a>
-        <a href="#films">Плёнки</a>
-        <a href="#training">Обучение</a>
-        <a href="#contact">Контакты</a>
-      </nav>
-
-      <a href="#contact" class="btn btn-small header-cta">Обсудить задачу</a>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">Автомобильные стёкла и плёнки</p>
-            <h1 id="hero-title">Ваш автомобиль.<br><span class="accent">Наша забота.</span></h1>
-            <p class="hero-description">
-              Ремонт сколов, замена и подбор стёкол.
-              Тонировка, атермальные и защитные плёнки —
-              с вниманием к вашей задаче.
-            </p>
-            <div class="actions">
-              <a class="btn" href="#contact">Обсудить запись</a>
-              <a class="btn btn-secondary" href="#services">Выбрать услугу</a>
-            </div>
-            <p class="hero-note">
-              Начните с описания повреждения или модели автомобиля.
-            </p>
-          </div>
-
-          <div class="hero-art" id="car-art">
-            <svg
-              class="car-scene"
-              viewBox="0 0 800 440"
-              role="img"
-              aria-labelledby="car-title car-description"
-            >
-              <title id="car-title">Автомобиль со сколом на лобовом стекле</title>
-              <desc id="car-description">
-                Автомобиль плавно подъезжает, затем на лобовом стекле
-                появляется небольшой оранжевый скол.
-              </desc>
-
-              <defs>
-                <linearGradient id="body-gradient" x1="0" y1="0" x2="0.8" y2="1">
-                  <stop offset="0" stop-color="#7d8794"/>
-                  <stop offset=".35" stop-color="#424b58"/>
-                  <stop offset="1" stop-color="#202731"/>
-                </linearGradient>
-                <linearGradient id="hood-gradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#697481"/>
-                  <stop offset="1" stop-color="#303945"/>
-                </linearGradient>
-                <linearGradient id="glass-gradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#344c5b"/>
-                  <stop offset=".55" stop-color="#17252f"/>
-                  <stop offset="1" stop-color="#0d141c"/>
-                </linearGradient>
-                <linearGradient id="side-gradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#38414e"/>
-                  <stop offset="1" stop-color="#151b24"/>
-                </linearGradient>
-                <radialGradient id="shadow-gradient">
-                  <stop offset="0" stop-color="#000" stop-opacity=".65"/>
-                  <stop offset="1" stop-color="#000" stop-opacity="0"/>
-                </radialGradient>
-                <clipPath id="windshield-clip">
-                  <path d="M293 118 Q302 110 318 111 L462 123 Q474 125 482 138 L531 214 L245 197 Z"/>
-                </clipPath>
-              </defs>
-
-              <path d="M44 358 H756" stroke="#373b43" stroke-width="1"/>
-              <path d="M115 378 H210 M569 378 H664" stroke="#34302c" stroke-width="2"/>
-
-              <g class="car-motion">
-                <ellipse cx="403" cy="351" rx="310" ry="43" fill="url(#shadow-gradient)"/>
-
-                <g>
-                  <ellipse cx="205" cy="304" rx="38" ry="58" fill="#0b0d10"/>
-                  <ellipse cx="205" cy="304" rx="23" ry="40" fill="#59616e"/>
-                  <ellipse cx="205" cy="304" rx="16" ry="31" fill="#232a34"/>
-                  <ellipse cx="205" cy="304" rx="6" ry="11" fill="#8e97a4"/>
-
-                  <ellipse cx="573" cy="316" rx="39" ry="56" fill="#090b0e"/>
-                  <ellipse cx="573" cy="316" rx="24" ry="39" fill="#69727f"/>
-                  <ellipse cx="573" cy="316" rx="16" ry="28" fill="#252d38"/>
-                  <ellipse cx="573" cy="316" rx="6" ry="11" fill="#a1a9b5"/>
-                </g>
-
-                <path
-                  d="M129 247 L171 207 L241 185 L285 112 Q294 94 320 96
-                     L467 110 Q487 112 499 132 L552 210 L638 252
-                     Q663 264 662 291 L651 319 L617 330
-                     Q610 263 574 260 Q534 257 528 330
-                     L252 315 Q247 247 207 247 Q168 245 160 302
-                     L133 291 Z"
-                  fill="url(#body-gradient)"
-                  stroke="#7b8797"
-                  stroke-width="1.5"
-                />
-
-                <path
-                  d="M143 241 L241 201 L247 226 L224 256
-                     Q174 247 161 292 L136 282 Z"
-                  fill="url(#side-gradient)"
-                />
-
-                <path
-                  d="M253 184 L290 117 L271 169 L253 197 L176 219 L197 197 Z"
-                  fill="#13212b"
-                  stroke="#637282"
-                  stroke-width="1.5"
-                />
-
-                <path
-                  d="M293 118 Q302 110 318 111 L462 123 Q474 125 482 138
-                     L531 214 L245 197 Z"
-                  fill="url(#glass-gradient)"
-                  stroke="#8b98a5"
-                  stroke-width="2"
-                />
-
-                <g clip-path="url(#windshield-clip)">
-                  <path d="M286 111 L428 225" stroke="#a2b9c8" stroke-opacity=".08" stroke-width="40"/>
-                  <path d="M336 104 L481 223" stroke="#c0d5df" stroke-opacity=".13" stroke-width="10"/>
-                  <path d="M240 191 L532 208" stroke="#91a7b6" stroke-opacity=".12" stroke-width="2"/>
-
-                  <g class="chip">
-                    <circle class="chip-halo" cx="403" cy="166" r="23" fill="none" stroke="#ff962f" stroke-width="2" opacity="0"/>
-                    <g fill="none" stroke="#ff962f" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M403 166 L391 152 M403 166 L419 156 M403 166 L421 175 M403 166 L399 184 M403 166 L387 173" stroke-width="2.4"/>
-                      <path d="M391 152 L390 146 M391 152 L384 153 M419 156 L426 154 M421 175 L427 176 M399 184 L395 189 M387 173 L381 173" stroke-width="1.3"/>
-                      <path d="M398 161 L406 160 L410 166 L405 172 L398 170 L395 166 Z" stroke-width="1.7"/>
-                    </g>
-                    <circle cx="403" cy="166" r="2.6" fill="#ffb35f"/>
-                  </g>
-                </g>
-
-                <path d="M245 203 L532 220 L635 263 L327 253 Z" fill="url(#hood-gradient)" stroke="#74818f" stroke-width="1.2"/>
-                <path d="M280 211 L354 244 M504 226 L589 258" fill="none" stroke="#a0a9b5" stroke-opacity=".27" stroke-width="1.5"/>
-
-                <path
-                  d="M239 257 L637 270 L651 290 L643 316 L613 323
-                     Q606 269 574 267 Q540 264 531 325
-                     L267 312 L249 293 Z"
-                  fill="#252d37"
-                  stroke="#63707f"
-                  stroke-width="1"
-                />
-
-                <path d="M278 264 L384 268 L373 285 L284 281 Z" fill="#d1dfe4"/>
-                <path d="M544 273 L627 278 L626 293 L545 289 Z" fill="#d1dfe4"/>
-                <path d="M288 271 L370 274 M553 280 L617 284" stroke="#fff0d8" stroke-width="3" stroke-linecap="round"/>
-
-                <path d="M392 273 L524 278 L512 304 L401 299 Z" fill="#0d1219" stroke="#536070"/>
-                <path d="M405 282 L513 286 M407 290 L509 294" stroke="#343e4b" stroke-width="2"/>
-
-                <path d="M285 298 L373 303 M414 311 L515 316" stroke="#0b1016" stroke-width="6" stroke-linecap="round"/>
-                <path d="M260 316 L529 331" stroke="#929ba5" stroke-opacity=".25" stroke-width="2"/>
-
-                <path d="M230 201 L219 192 Q207 188 202 197 L204 205 L228 212 Z" fill="#4f5a68" stroke="#8a96a3"/>
-                <path d="M527 203 L547 199 Q557 200 558 210 L553 215 L535 216 Z" fill="#465260" stroke="#8a96a3"/>
-
-                <path d="M269 192 L325 197 M414 202 L493 207" stroke="#0b1119" stroke-width="3" stroke-linecap="round"/>
-                <path d="M288 190 L280 177 M449 202 L440 189" stroke="#0b1119" stroke-width="2"/>
-
-                <path d="M151 253 L174 247" stroke="#ff962f" stroke-width="3" stroke-linecap="round" opacity=".85"/>
-              </g>
-            </svg>
-
-            <div class="art-caption">
-              <span>Небольшой скол — повод проверить стекло</span>
-              <button type="button" class="text-button" id="replay-animation" hidden>
-                Повторить анимацию
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="service-strip" aria-label="Основные направления">
-          <span>Ремонт сколов</span>
-          <span>Замена стёкол</span>
-          <span>Подбор и продажа</span>
-          <span>Плёнки и тонировка</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services" aria-labelledby="services-title">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Услуги</p>
-          <h2 id="services-title">Решение для вашего стекла</h2>
-          <p>Выберите направление. Возможность ремонта, материалы, стоимость и время работ нужно уточнить перед записью.</p>
-        </div>
-
-        <div class="services-grid">
-          <article class="service-card">
-            <span class="service-number">01 / РЕМОНТ</span>
-            <h3>Ремонт сколов</h3>
-            <p>
-              Повреждение на лобовом стекле? Опишите его и подготовьте фотографию.
-              Возможность ремонта зависит от расположения, размера и состояния скола.
-            </p>
-            <a class="service-link" href="#contact" data-service="Ремонт скола">Обсудить повреждение</a>
-          </article>
-
-          <article class="service-card">
-            <span class="service-number">02 / СТЁКЛА</span>
-            <h3>Замена и подбор</h3>
-            <p>
-              Замена, продажа и подбор автомобильных стёкол.
-              Для консультации укажите марку, модель, год выпуска
-              и известные особенности комплектации.
-            </p>
-            <a class="service-link" href="#contact" data-service="Замена стекла">Подобрать стекло</a>
-          </article>
-
-          <article class="service-card">
-            <span class="service-number">03 / ПЛЁНКИ</span>
-            <h3>Тонировка и защита</h3>
-            <p>
-              Тонировка, установка атермальных и защитных плёнок.
-              Подходящий материал и область применения обсуждаются отдельно.
-            </p>
-            <a class="service-link" href="#contact" data-service="Тонировка">Обсудить плёнку</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-line" id="care" aria-labelledby="care-title">
-      <div class="container split">
-        <div>
-          <p class="eyebrow">Наш подход</p>
-          <h2 id="care-title">Забота —<br>внимание к деталям</h2>
-          <p class="muted">
-            Стекло — часть безопасности и комфорта автомобиля.
-            Здесь важны не громкие обещания, а подходящее решение:
-            ремонт, замена или подбор материала под конкретную задачу.
-          </p>
-          <a class="service-link" href="#contact">Задать вопрос по автомобилю</a>
-
-          <details class="media-details">
-            <summary>Фото работ и видео процесса</summary>
-            <div class="media-body">
-              <p id="media-empty">
-                Реальные фотографии и видео пока не добавлены.
-                Этот раздел предусмотрен для материалов Glass Fix Expert:
-                без стоковых изображений под видом наших работ.
-              </p>
-              <div id="gallery" class="gallery" hidden></div>
-              <a id="video-link" class="btn btn-secondary btn-small" hidden>
-                Смотреть видео процесса
-              </a>
-              <p id="media-status" class="status" role="status"></p>
-            </div>
-          </details>
-        </div>
-
-        <div class="principles">
-          <div class="principle">
-            <h3>Сначала — понять задачу</h3>
-            <p>Модель автомобиля, тип стекла и характер повреждения помогают предметно обсудить варианты.</p>
-          </div>
-          <div class="principle">
-            <h3>Не каждый скол одинаковый</h3>
-            <p>Возможность ремонта оценивают по состоянию стекла. Фото помогает начать разговор, но не заменяет осмотр.</p>
-          </div>
-          <div class="principle">
-            <h3>Материалы имеют значение</h3>
-            <p>Стекло и плёнку нужно подбирать с учётом автомобиля, нужных свойств и применимых требований.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-line" id="films" aria-labelledby="films-title">
-      <div class="container split">
-        <div>
-          <p class="eyebrow">Плёнки</p>
-          <h2 id="films-title">Комфорт. Внешний вид. Защита.</h2>
-          <p class="muted">
-            Для разных задач нужны разные материалы.
-            Расскажите, что для вас важнее: тонировка, снижение солнечного
-            нагрева или защитное покрытие.
-          </p>
-          <p class="small muted">
-            Допустимость установки и светопропускание зависят от вида стекла
-            и требований страны эксплуатации.
-          </p>
-
-          <div style="margin-top:24px">
-            <h3 style="font-size:17px">Бренды материалов</h3>
-            <p id="film-brands-empty" class="small muted">
-              Список используемых брендов пока не опубликован.
-              Уточните доступные материалы при консультации.
-            </p>
-            <div id="film-brands" class="brand-list" hidden></div>
-          </div>
-        </div>
-
-        <div class="films-panel">
-          <ul class="film-list">
-            <li>Тонировка <span>Оттенок и светопропускание</span></li>
-            <li>Атермальная плёнка <span>Комфорт в солнечную погоду</span></li>
-            <li>Защитная плёнка <span>Подбор покрытия под задачу</span></li>
-            <li>Установка плёнок <span>Область применения — по согласованию</span></li>
-          </ul>
-          <div class="actions">
-            <a class="btn btn-secondary" href="#contact" data-service="Атермальная плёнка">
-              Подобрать материал
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-line" id="process" aria-labelledby="process-title">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">С чего начать</p>
-          <h2 id="process-title">От вопроса к решению</h2>
-        </div>
-
-        <div class="steps">
-          <article class="step">
-            <h3>Обращение</h3>
-            <p>Выберите услугу и расскажите об автомобиле или повреждении.</p>
-          </article>
-          <article class="step">
-            <h3>Уточнение</h3>
-            <p>Обсудите подходящий вариант, материалы и необходимость осмотра.</p>
-          </article>
-          <article class="step">
-            <h3>Согласование</h3>
-            <p>Уточните стоимость, время и условия до подтверждения записи.</p>
-          </article>
-          <article class="step">
-            <h3>Работа</h3>
-            <p>После согласования — выполнение выбранной услуги и рекомендации по уходу.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="training" aria-labelledby="training-title">
-      <div class="container">
-        <div class="training">
-          <div>
-            <p class="eyebrow">Обучение специалистов</p>
-            <h2 id="training-title">Интересует обучение?</h2>
-            <p>
-              Отдельное направление Glass Fix Expert.
-              Расскажите о своём опыте и о том, какие навыки хотите освоить.
-              Программу, формат, сроки и стоимость нужно уточнить лично.
-            </p>
-          </div>
-          <div class="training-side">
-            <p>
-              Информация о ближайшем наборе и содержании программы
-              пока не опубликована.
-            </p>
-            <a class="btn" href="#contact" data-service="Обучение">
-              Узнать об обучении
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-line" id="contact" aria-labelledby="contact-title">
-      <div class="container contact-grid">
-        <div>
-          <p class="eyebrow">Контакты и запись</p>
-          <h2 id="contact-title">Обсудим вашу задачу</h2>
-          <p class="muted">
-            Подготовьте короткое сообщение, затем передайте его через
-            доступный канал связи. Дату и время записи необходимо
-            подтвердить в переписке.
-          </p>
-
-          <div id="contact-details" class="contact-details" hidden></div>
-          <div id="contact-links" class="contact-links" hidden></div>
-
-          <div id="contacts-missing" class="notice">
-            Контактные ссылки владельца пока не добавлены.
-            Отправка обращений с сайта недоступна.
-            Форма справа только помогает подготовить текст сообщения.
-          </div>
-
-          <p class="small muted" style="margin-top:22px">
-            Telegram, WhatsApp, MAX и Avito появятся здесь после добавления
-            реальных ссылок. Неподключённые каналы не отображаются как рабочие.
-          </p>
-        </div>
-
-        <form class="message-form" id="message-form">
-          <h3>Подготовить обращение</h3>
-          <p class="form-description" id="form-description">
-            Эта форма не отправляет заявку и ничего не сохраняет в браузере.
-            Она составляет текст, который вы сможете скопировать.
-          </p>
-
-          <div class="form-grid">
-            <div class="field">
-              <label for="customer-name">Как к вам обращаться</label>
-              <input
-                id="customer-name"
-                name="name"
-                autocomplete="given-name"
-                maxlength="60"
-                placeholder="Необязательно"
-              >
-            </div>
-
-            <div class="field">
-              <label for="service">Услуга</label>
-              <select id="service" name="service" required>
-                <option value="">Выберите услугу</option>
-                <option>Ремонт скола</option>
-                <option>Замена стекла</option>
-                <option>Подбор и покупка стекла</option>
-                <option>Тонировка</option>
-                <option>Установка плёнки</option>
-                <option>Атермальная плёнка</option>
-                <option>Защитная плёнка</option>
-                <option>Обучение</option>
-                <option>Другая консультация</option>
-              </select>
-            </div>
-
-            <div class="field field-wide">
-              <label for="car-model">Автомобиль или тема обучения</label>
-              <input
-                id="car-model"
-                name="car"
-                required
-                maxlength="140"
-                placeholder="Марка, модель, год — или интересующее направление"
-              >
-            </div>
-
-            <div class="field field-wide">
-              <label for="message">Что нужно сделать</label>
-              <textarea
-                id="message"
-                name="message"
-                maxlength="1200"
-                placeholder="Опишите задачу. Не указывайте платёжные и другие чувствительные данные."
-              ></textarea>
-            </div>
-          </div>
-
-          <button type="submit" class="btn form-submit" id="prepare-button">
-            Подготовить сообщение
-          </button>
-
-          <noscript>
-            <p class="notice">
-              Для подготовки текста нужен JavaScript.
-              Автоматической отправки у этой формы нет.
-            </p>
-          </noscript>
-
-          <p class="status" id="form-status" role="status" aria-live="polite"></p>
-
-          <div class="form-result" id="form-result" hidden>
-            <h3>Текст готов. Он ещё не отправлен.</h3>
-            <div class="field">
-              <label for="prepared-message">Ваше сообщение</label>
-              <textarea id="prepared-message" readonly></textarea>
-            </div>
-            <div class="actions">
-              <button type="button" class="btn btn-secondary" id="copy-message">
-                Скопировать
-              </button>
-              <a class="btn" id="send-whatsapp" hidden>
-                Открыть WhatsApp
-              </a>
-            </div>
-            <div class="contact-links" id="result-contacts" hidden></div>
-            <p class="small muted" style="margin:14px 0 0">
-              Копирование или открытие мессенджера не отправляет сообщение.
-              Отправьте его самостоятельно и дождитесь ответа.
-            </p>
-            <p class="status" id="copy-status" role="status" aria-live="polite"></p>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section class="section section-line" id="qr" aria-labelledby="qr-title">
-      <div class="container qr-layout">
-        <div>
-          <p class="eyebrow">Открыть на телефоне</p>
-          <h2 id="qr-title">Сайт всегда под рукой</h2>
-          <p class="muted">
-            Наведите камеру телефона на код на другом экране.
-            Перед переходом проверьте адрес, показанный камерой.
-          </p>
-
-          <a class="site-url" id="site-link" href="https://shabanow-coder.github.io/glass-fix-expert/">
-            https://shabanow-coder.github.io/glass-fix-expert/
-          </a>
-
-          <details class="media-details">
-            <summary>Проверить или изменить адрес QR-кода</summary>
-            <div class="media-body">
-              <p>
-                Код содержит адрес ниже. Изменение здесь действует только
-                до перезагрузки страницы. Постоянный адрес задаётся в SITE.siteUrl.
-              </p>
-              <form id="qr-form" class="qr-controls">
-                <div class="field">
-                  <label for="qr-url">Полный адрес сайта</label>
-                  <input
-                    id="qr-url"
-                    type="url"
-                    required
-                    maxlength="200"
-                    spellcheck="false"
-                    autocomplete="off"
-                    value="https://shabanow-coder.github.io/glass-fix-expert/"
-                  >
-                </div>
-                <button type="submit" class="btn btn-secondary">Обновить код</button>
-              </form>
-            </div>
-          </details>
-
-          <div class="qr-actions">
-            <button type="button" class="btn btn-secondary btn-small" id="download-qr" hidden>
-              Скачать QR в SVG
-            </button>
-          </div>
-          <p id="qr-status" class="status" role="status" aria-live="polite"></p>
-          <p class="small muted" style="margin-top:14px">
-            QR создаётся прямо в браузере, без внешнего сервиса.
-            Доступность сайта этим не проверяется.
-          </p>
-        </div>
-
-        <div class="qr-wrap" id="qr-image" aria-label="QR-код адреса сайта">
-          <noscript>
-            <p style="padding:20px;margin:0">
-              Для генерации QR-кода включите JavaScript.
-              Прямая ссылка на сайт расположена рядом.
-            </p>
-          </noscript>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year">2026</span> Glass Fix Expert</span>
-      <div class="footer-links">
-        <a href="#home">Наверх</a>
-        <a href="#qr">QR-код сайта</a>
-        <a id="impressum-link" hidden>Impressum</a>
-        <a id="privacy-link" hidden>Конфиденциальность</a>
-      </div>
-    </div>
-  </footer>
-
-  <div class="mobile-action">
-    <a class="btn" href="#contact">Консультация и запись</a>
-  </div>
-
-  <script>
-    "use strict";
-
-    /*
-     * НАСТРОЙКИ ВЛАДЕЛЬЦА
-     *
-     * Заполняйте только достоверными данными.
-     * Пустые контактные ссылки не превращаются в фиктивные кнопки.
-     *
-     * ВНИМАНИЕ:
-     * В ТЗ адрес сайта содержит shabanow-coder с буквой w,
-     * а адрес репозитория — shabanov-coder с буквой v.
-     * Проверьте реальный адрес в Settings → Pages и исправьте siteUrl.
-     *
-     * Для фото:
-     * photos: [
-     *   { src: "images/work-1.jpg", alt: "Описание реальной фотографии", caption: "Подпись" }
-     * ]
-     *
-     * Для логотипа укажите путь к оригинальному файлу.
-     * Без него используется текстовое название, а не выдуманный логотип.
-     */
-
-    const SITE = {
-      siteUrl: "https://shabanow-coder.github.io/glass-fix-expert/",
-
-      logoUrl: "",
-
-      phone: "",
-      address: "",
-      hours: "",
-
-      contacts: {
-        telegram: "",
-        whatsapp: "",
-        max: "",
-        avito: "",
-        youtube: ""
-      },
-
-      filmBrands: [],
-
-      photos: [],
-
-      videoUrl: "",
-
-      legal: {
-        impressumUrl: "",
-        privacyUrl: ""
-      }
-    };
-
-    const $ = (id) => document.getElementById(id);
-
-    document.documentElement.classList.add("js");
-    $("year").textContent = String(new Date().getFullYear());
-
-    function webUrl(value) {
-      if (typeof value !== "string" || !value.trim()) return "";
-
-      try {
-        const url = new URL(value.trim());
-        if (!["https:", "http:"].includes(url.protocol)) return "";
-        if (url.username || url.password) return "";
-        return url.href;
-      } catch {
-        return "";
-      }
-    }
-
-    function assetUrl(value) {
-      if (typeof value !== "string" || !value.trim()) return "";
-
-      try {
-        const url = new URL(value.trim(), document.baseURI);
-        if (["https:", "http:", "file:"].includes(url.protocol)) {
-          return url.href;
-        }
-      } catch {
-        return "";
-      }
-
-      return "";
-    }
-
-    function externalLink(url, text, className) {
-      const link = document.createElement("a");
-      link.href = url;
-      link.textContent = text;
-      link.className = className;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      return link;
-    }
-
-    function configureExternalLink(element, value) {
-      const url = webUrl(value);
-      if (!url) return false;
-      element.href = url;
-      element.target = "_blank";
-      element.rel = "noopener noreferrer";
-      element.hidden = false;
-      return true;
-    }
-
-    /*
-     * Навигация.
-     * Без JavaScript ссылки меню остаются видимыми.
-     */
-    const menuButton = $("menu-toggle");
-    const navigation = $("main-nav");
-    menuButton.hidden = false;
-
-    function closeMenu() {
-      navigation.classList.remove("is-open");
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.textContent = "Меню";
-    }
-
-    menuButton.addEventListener("click", () => {
-      const open = menuButton.getAttribute("aria-expanded") !== "true";
-      navigation.classList.toggle("is-open", open);
-      menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.textContent = open ? "Закрыть" : "Меню";
-    });
-
-    navigation.addEventListener("click", (event) => {
-      if (event.target.closest("a")) closeMenu();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" &&
-          menuButton.getAttribute("aria-expanded") === "true") {
-        closeMenu();
-        menuButton.focus();
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!event.target.closest(".header-inner")) closeMenu();
-    });
-
-    window.matchMedia("(min-width: 761px)").addEventListener("change", closeMenu);
-
-    /*
-     * Анимация: сначала движение, затем скол на лобовом стекле.
-     * CSS отдельно обрабатывает prefers-reduced-motion.
-     */
-    const carArt = $("car-art");
-    const replayButton = $("replay-animation");
-    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    function playCarAnimation() {
-      carArt.classList.remove("animate-car");
-      void carArt.offsetWidth;
-      if (!motionPreference.matches) carArt.classList.add("animate-car");
-    }
-
-    replayButton.hidden = false;
-    replayButton.addEventListener("click", playCarAnimation);
-    motionPreference.addEventListener("change", playCarAnimation);
-    playCarAnimation();
-
-    /*
-     * Оригинальный логотип: пропорции не изменяются.
-     * При ошибке загрузки остаётся текстовое название.
-     */
-    const logoUrl = assetUrl(SITE.logoUrl);
-
-    if (logoUrl) {
-      const logo = $("brand-image");
-
-      logo.addEventListener("load", () => {
-        logo.hidden = false;
-        $("brand-text").hidden = true;
-      });
-
-      logo.addEventListener("error", () => {
-        logo.hidden = true;
-        logo.removeAttribute("src");
-        $("brand-text").hidden = false;
-      });
-
-      logo.src = logoUrl;
-    }
-
-    /*
-     * Только предоставленные контактные данные.
-     */
-    const contactDefinitions = [
-      ["telegram", "Telegram"],
-      ["whatsapp", "WhatsApp"],
-      ["max", "MAX"],
-      ["avito", "Avito"],
-      ["youtube", "YouTube"]
-    ];
-
-    const configuredContacts = contactDefinitions
-      .map(([key, label]) => ({
-        key,
-        label,
-        url: webUrl(SITE.contacts[key])
-      }))
-      .filter((contact) => contact.url);
-
-    const communicationContacts = configuredContacts.filter(
-      (contact) => contact.key !== "youtube"
-    );
-
-    const contactLinks = $("contact-links");
-    const resultContacts = $("result-contacts");
-    const details = $("contact-details");
-
-    configuredContacts.forEach((contact) => {
-      contactLinks.append(
-        externalLink(contact.url, contact.label, "btn btn-secondary btn-small")
-      );
-    });
-
-    communicationContacts
-      .filter((contact) => contact.key !== "whatsapp")
-      .forEach((contact) => {
-        resultContacts.append(
-          externalLink(
-            contact.url,
-            "Открыть " + contact.label,
-            "btn btn-secondary btn-small"
-          )
-        );
-      });
-
-    contactLinks.hidden = configuredContacts.length === 0;
-    resultContacts.hidden = resultContacts.children.length === 0;
-
-    function appendDetail(label, value) {
-      if (typeof value !== "string" || !value.trim()) return;
-      const paragraph = document.createElement("p");
-      const strong = document.createElement("strong");
-      strong.textContent = label + ": ";
-      paragraph.append(strong, document.createTextNode(value.trim()));
-      details.append(paragraph);
-    }
-
-    appendDetail("Адрес", SITE.address);
-    appendDetail("Часы работы", SITE.hours);
-
-    if (typeof SITE.phone === "string" && SITE.phone.trim()) {
-      const normalizedPhone = SITE.phone.replace(/[^\d+]/g, "");
-
-      if (/^\+?\d{7,15}$/.test(normalizedPhone)) {
-        const paragraph = document.createElement("p");
-        const phoneLink = document.createElement("a");
-        phoneLink.href = "tel:" + normalizedPhone;
-        phoneLink.textContent = SITE.phone.trim();
-        paragraph.append("Телефон: ", phoneLink);
-        details.prepend(paragraph);
-      }
-    }
-
-    details.hidden = details.children.length === 0;
-
-    if (communicationContacts.length > 0) {
-      $("contacts-missing").hidden = true;
-      $("form-description").textContent =
-        "Форма составляет текст, но не отправляет его и не сохраняет в браузере. " +
-        "Скопируйте сообщение и отправьте через выбранный канал связи.";
-    } else if (typeof SITE.phone === "string" &&
-               /^\+?\d{7,15}$/.test(SITE.phone.replace(/[^\d+]/g, ""))) {
-      $("contacts-missing").textContent =
-        "Для связи доступен указанный телефон. " +
-        "Контактные ссылки мессенджеров пока не добавлены. " +
-        "Форма только подготавливает текст и не отправляет заявку.";
-    }
-
-    /*
-     * Бренды материалов.
-     */
-    const brands = Array.isArray(SITE.filmBrands)
-      ? SITE.filmBrands.filter((brand) => typeof brand === "string" && brand.trim())
-      : [];
-
-    if (brands.length) {
-      brands.forEach((brand) => {
-        const item = document.createElement("span");
-        item.className = "brand-tag";
-        item.textContent = brand.trim();
-        $("film-brands").append(item);
-      });
-
-      $("film-brands").hidden = false;
-      $("film-brands-empty").hidden = true;
-    }
-
-    /*
-     * Реальные фотографии и ссылка на видео.
-     * Неудачно загруженные фото скрываются без сломанного значка.
-     */
-    const gallery = $("gallery");
-    const photos = Array.isArray(SITE.photos) ? SITE.photos : [];
-    let loadedPhotoCount = 0;
-    const videoAvailable = configureExternalLink($("video-link"), SITE.videoUrl);
-
-    if (videoAvailable) $("media-empty").hidden = true;
-
-    photos.forEach((photo) => {
-      if (!photo || typeof photo !== "object") return;
-      const src = assetUrl(photo.src);
-      if (!src) return;
-
-      const figure = document.createElement("figure");
-      figure.hidden = true;
-
+  
+
+
+  
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+      
+    
+    
+      
+    
+  
+
+  
+    
+      
+        G
+        GlassFixEXPERT
+      
+      
+        Услуги
+        Преимущества
+        Обучение
+        Контакты
+      
+      Записаться
+    
+  
+
+  
+    
+      
+      
+        
+          GlassFixEXPERT
+          АВТОСТЁКЛА
+          РЕМОНТ · ЗАМЕНА · ТОНИРОВКА
+          
+            
+              
+              Быстрои качественно
+            
+            
+              
+              Современныематериалы
+            
+            
+              
+              С заботойо каждом клиенте
+            
+          
+          Записаться на ремонт →
+        
+      
+    
+
+    
+      
+        
+          
+          
+            
+            
+              Ремонтавтостёкол
+              Устранение сколов и трещин. Оценка возможности ремонта.
+            
+          
+        
+        
+          
+          
+            
+            
+              Заменаавтостёкол
+              Подбор и установка стекла для вашего автомобиля.
+            
+          
+        
+        
+          
+          
+            
+            
+              Тонировкаавтостёкол
+              Комфорт, защита от солнца и стиль вашего авто.
+            
+          
+        
+      
+    
+
+    
+      
+        
+          
+          Внимание к каждой детали
+        
+        
+          О нас
+          Профессиональныйремонт автостёкол
+          
+            Восстанавливаем автомобильные стёкла, помогая сохранить
+            прозрачность и безопасность. Подбираем технологию ремонта
+            с учётом повреждения, состояния стекла и особенностей автомобиля.
+          
+          
+            
+              
+              Внимательнаядиагностика
+            
+            
+              
+              Профессиональноеоборудование
+            
+            
+              
+              Индивидуальныйподход
+            
+          
+        
+      
+    
+
+    
+      
+        
+          Бренды плёнок
+          Подбор материала под ваши задачи и предпочтения.
+        
+        
+          LLumar
+          SunTek
+          3M
+          RAYNO
+          SPECTROLL
+        
+      
+    
+
+    
+      
+        
+          
+            
+          
+          
+            Обучение
+            
+              Хотите освоить новую профессию?
+              Узнайте о программе обучения ремонту, замене
+              автостёкол и работе с автомобильными плёнками.
+            
+            
+              Узнать подробнее
+              Онлайн-курс — скоро
+            
+          
+        
+        
+          
+            
+            Практические занятияРабота с инструментом
+          
+          
+            
+            Обратная связьРазбор ваших вопросов
+          
+          
+            
+            Технологии ремонтаОт теории к практике
+          
+        
+      
+    
+
+    
+      
+        Запись и связь
+        Выберите услугу и оставьте контактные данные.
+        
+          Оставить заявку
+          Оценить повреждение
+          Узнать об обучении
+        
+        
+          Демонстрационная версия. Заявки сохраняются только на этом устройстве.
+          Для реального приёма обращений необходимо подключить отправку формы.
+        
+      
+    
+  
+
+  
+    
+      
+        
+          G
+          GlassFixEXPERT
+        
+        Автостёкла — наша экспертиза.
+      
+      
+        Услуги
+        Преимущества
+        Обучение
+        Контакты
+      
+    
+  
+
+  
+    
+      Запись на услугу
+      ×
+    
+    
+      
+        Ваше имя
+        
+      
+      
+        Телефон
+        
+      
+      
+        Услуга
+        
+          Консультация
+          Ремонт автостекла
+          Замена автостекла
+          Тонировка автостекла
+          Обучение
+        
+      
+      
+        Это демонстрационная форма. Данные сохраняются в браузере
+        и не передаются сотрудникам мастерской.
+      
+      Сохранить заявку на устройстве
+      
+    
+  
+
+  
+    const source = "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/e3e635d8-bc36-4be2-8326-68cdf7a8f963.png";
+
+    document.querySelectorAll("[data-photo]").forEach((container) => {
       const image = document.createElement("img");
-      image.alt = typeof photo.alt === "string" && photo.alt.trim()
-        ? photo.alt
-        : "Фотография работ Glass Fix Expert";
+      image.src = source;
+      image.alt = "";
       image.loading = "lazy";
       image.decoding = "async";
-      image.width = 640;
-      image.height = 480;
+      container.append(image);
+    });
 
-      image.addEventListener("load", () => {
-        loadedPhotoCount += 1;
-        figure.hidden = false;
-        $("media-empty").hidden = true;
+    const dialog = document.querySelector("#booking");
+    const form = document.querySelector("#booking-form");
+    const status = form.querySelector(".form-status");
+
+    document.querySelectorAll("[data-book]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        form.elements.service.value = button.dataset.book;
+        status.textContent = "";
+        dialog.showModal();
       });
+    });
 
-      image.addEventListener("error", () => {
-        figure.remove();
-        gallery.hidden = gallery.children.length === 0;
+    dialog.querySelector(".close").addEventListener("click", () => {
+      dialog.close();
+    });
 
-        if (!loadedPhotoCount && !videoAvailable) {
-          $("media-empty").hidden = false;
-          $("media-status").textContent =
-            "Фотографии не удалось загрузить. Основные разделы сайта доступны.";
-        }
-      });
+    dialog.addEventListener("click", (event) => {
+      const bounds = dialog.getBoundingClientRect();
+      const outside =
+        event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom;
 
-      figure.append(image);
-
-      if (typeof photo.caption === "string" && photo.caption.trim()) {
-        const caption = document.createElement("figcaption");
-        caption.textContent = photo.caption.trim();
-        figure.append(caption);
+      if (event.target === dialog && outside) {
+        dialog.close();
       }
-
-      gallery.append(figure);
-      gallery.hidden = false;
-      image.src = src;
     });
 
-    configureExternalLink($("impressum-link"), SITE.legal.impressumUrl);
-    configureExternalLink($("privacy-link"), SITE.legal.privacyUrl);
-
-    /*
-     * Выбор услуги из CTA.
-     */
-    document.querySelectorAll("[data-service]").forEach((link) => {
-      link.addEventListener("click", () => {
-        $("service").value = link.dataset.service;
-        $("form-result").hidden = true;
-        $("form-status").textContent =
-          "Выбрано: " + link.dataset.service + ". Заполните оставшиеся поля.";
-      });
-    });
-
-    /*
-     * Форма не имеет серверной отправки.
-     * Она не использует localStorage и не создаёт фиктивную запись.
-     */
-    const messageForm = $("message-form");
-    const preparedMessage = $("prepared-message");
-    const whatsappContact = communicationContacts.find(
-      (contact) => contact.key === "whatsapp"
-    );
-
-    messageForm.addEventListener("submit", (event) => {
+    form.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      if (!messageForm.reportValidity()) return;
+      const name = form.elements.name.value.trim();
+      const phone = form.elements.phone.value.trim();
 
-      const name = $("customer-name").value.trim();
-      const service = $("service").value;
-      const car = $("car-model").value.trim();
-      const message = $("message").value.trim();
-
-      if (!car) {
-        $("car-model").setCustomValidity("Укажите автомобиль или тему обучения.");
-        $("car-model").reportValidity();
+      if (!name) {
+        status.textContent = "Введите имя.";
+        form.elements.name.focus();
         return;
       }
 
-      const lines = [
-        "Здравствуйте, Glass Fix Expert!",
-        name ? "Меня зовут " + name + "." : "",
-        "Интересует: " + service + ".",
-        "Автомобиль / тема: " + car + ".",
-        message ? "Подробности: " + message : "",
-        "Подскажите, пожалуйста, доступные варианты, стоимость и время."
-      ].filter(Boolean);
-
-      const text = lines.join("\n");
-      preparedMessage.value = text;
-
-      if (whatsappContact) {
-        const link = $("send-whatsapp");
-        const url = new URL(whatsappContact.url);
-
-        const supportsText =
-          url.hostname === "wa.me" ||
-          url.hostname === "api.whatsapp.com" ||
-          url.hostname === "web.whatsapp.com";
-
-        if (supportsText) url.searchParams.set("text", text);
-
-        link.href = url.href;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.hidden = false;
+      if (phone.replace(/\D/g, "").length < 7) {
+        status.textContent = "Проверьте номер телефона.";
+        form.elements.phone.focus();
+        return;
       }
 
-      $("form-result").hidden = false;
-      $("copy-status").textContent = "";
-      $("form-status").textContent = "Текст подготовлен. Заявка не отправлена.";
-    });
-
-    $("car-model").addEventListener("input", () => {
-      $("car-model").setCustomValidity("");
-    });
-
-    messageForm.addEventListener("input", (event) => {
-      if (event.target === preparedMessage) return;
-      $("form-result").hidden = true;
-      $("form-status").textContent = "";
-      $("copy-status").textContent = "";
-    });
-
-    $("copy-message").addEventListener("click", async () => {
-      const text = preparedMessage.value;
-      if (!text) return;
+      const request = {
+        name,
+        phone,
+        service: form.elements.service.value,
+        createdAt: new Date().toISOString()
+      };
 
       try {
-        if (!navigator.clipboard || !window.isSecureContext) {
-          throw new Error("Clipboard API unavailable");
-        }
-
-        await navigator.clipboard.writeText(text);
-        $("copy-status").textContent =
-          "Текст скопирован. Вставьте его в переписку и отправьте самостоятельно.";
+        localStorage.setItem("glassfix-last-request", JSON.stringify(request));
+        status.textContent =
+          "Заявка сохранена на этом устройстве. В мастерскую она не отправлена.";
+        form.reset();
       } catch {
-        preparedMessage.focus();
-        preparedMessage.select();
-        preparedMessage.setSelectionRange(0, text.length);
-        $("copy-status").textContent =
-          "Автоматическое копирование недоступно. Текст выделен: " +
-          "выберите «Копировать» или нажмите Ctrl+C / Cmd+C.";
+        status.textContent =
+          "Браузер не разрешил сохранить заявку. Данные не отправлены.";
       }
     });
+  
 
-    /*
-     * ЛОКАЛЬНЫЙ QR-ГЕНЕРАТОР
-     *
-     * QR Model 2, версия 4, коррекция L, маска 0.
-     * 33 × 33 модуля; 80 байт данных + 20 байт Reed–Solomon.
-     * Поддерживает ASCII-адрес HTTP(S) до 78 байт.
-     * Для предоставленного URL этого достаточно.
-     *
-     * Фиксированная маска допустима стандартом.
-     * Тихая зона: 4 модуля. Никаких логотипов поверх кода.
-     */
-    function gfMultiply(a, b) {
-      let result = 0;
 
-      while (b) {
-        if (b & 1) result ^= a;
-        a <<= 1;
-        if (a & 0x100) a ^= 0x11d;
-        b >>>= 1;
-      }
-
-      return result;
-    }
-
-    function reedSolomonDivisor(degree) {
-      const divisor = new Uint8Array(degree);
-      divisor[degree - 1] = 1;
-      let root = 1;
-
-      for (let i = 0; i < degree; i++) {
-        for (let j = 0; j < degree; j++) {
-          divisor[j] = gfMultiply(divisor[j], root);
-          if (j + 1 < degree) divisor[j] ^= divisor[j + 1];
-        }
-        root = gfMultiply(root, 2);
-      }
-
-      return divisor;
-    }
-
-    function reedSolomonRemainder(data, divisor) {
-      const remainder = new Uint8Array(divisor.length);
-
-      for (const byte of data) {
-        const factor = byte ^ remainder[0];
-        remainder.copyWithin(0, 1);
-        remainder[remainder.length - 1] = 0;
-
-        for (let i = 0; i < remainder.length; i++) {
-          remainder[i] ^= gfMultiply(divisor[i], factor);
-        }
-      }
-
-      return Array.from(remainder);
-    }
-
-    function makeQrMatrix(text) {
-      if (!/^[\x20-\x7e]+$/.test(text)) {
-        throw new Error("Для этого генератора нужен адрес в ASCII-формате.");
-      }
-
-      const bytes = Array.from(text, (character) => character.charCodeAt(0));
-
-      if (bytes.length > 78) {
-        throw new Error("Адрес слишком длинный: допустимо до 78 ASCII-символов.");
-      }
-
-      const capacity = 80 * 8;
-      const bits = [];
-
-      function appendBits(value, length) {
-        for (let i = length - 1; i >= 0; i--) {
-          bits.push((value >>> i) & 1);
-        }
-      }
-
-      appendBits(0x4, 4);
-      appendBits(bytes.length, 8);
-      bytes.forEach((byte) => appendBits(byte, 8));
-
-      appendBits(0, Math.min(4, capacity - bits.length));
-
-      while (bits.length % 8) bits.push(0);
-
-      const data = [];
-
-      for (let i = 0; i < bits.length; i += 8) {
-        let byte = 0;
-        for (let j = 0; j < 8; j++) byte = (byte << 1) | bits[i + j];
-        data.push(byte);
-      }
-
-      let pad = 0;
-
-      while (data.length < 80) {
-        data.push(pad % 2 === 0 ? 0xec : 0x11);
-        pad++;
-      }
-
-      const ecc = reedSolomonRemainder(data, reedSolomonDivisor(20));
-      const codewords = data.concat(ecc);
-
-      const size = 33;
-      const modules = Array.from({ length: size }, () => Array(size).fill(false));
-      const reserved = Array.from({ length: size }, () => Array(size).fill(false));
-
-      function setFunction(x, y, dark) {
-        if (x < 0 || y < 0 || x >= size || y >= size) return;
-        modules[y][x] = Boolean(dark);
-        reserved[y][x] = true;
-      }
-
-      for (let i = 0; i < size; i++) {
-        setFunction(6, i, i % 2 === 0);
-        setFunction(i, 6, i % 2 === 0);
-      }
-
-      function finder(centerX, centerY) {
-        for (let dy = -4; dy <= 4; dy++) {
-          for (let dx = -4; dx <= 4; dx++) {
-            const distance = Math.max(Math.abs(dx), Math.abs(dy));
-            setFunction(
-              centerX + dx,
-              centerY + dy,
-              distance !== 2 && distance !== 4
-            );
-          }
-        }
-      }
-
-      finder(3, 3);
-      finder(size - 4, 3);
-      finder(3, size - 4);
-
-      for (let dy = -2; dy <= 2; dy++) {
-        for (let dx = -2; dx <= 2; dx++) {
-          setFunction(
-            26 + dx,
-            26 + dy,
-            Math.max(Math.abs(dx), Math.abs(dy)) !== 1
-          );
-        }
-      }
-
-      function drawFormatBits() {
-        const formatData = 1 << 3;
-        let remainder = formatData;
-
-        for (let i = 0; i < 10; i++) {
-          remainder = (remainder << 1) ^ ((remainder >>> 9) * 0x537);
-        }
-
-        const format = ((formatData << 10) | remainder) ^ 0x5412;
-        const bit = (index) => ((format >>> index) & 1) !== 0;
-
-        for (let i = 0; i <= 5; i++) setFunction(8, i, bit(i));
-        setFunction(8, 7, bit(6));
-        setFunction(8, 8, bit(7));
-        setFunction(7, 8, bit(8));
-
-        for (let i = 9; i < 15; i++) {
-          setFunction(14 - i, 8, bit(i));
-        }
-
-        for (let i = 0; i < 8; i++) {
-          setFunction(size - 1 - i, 8, bit(i));
-        }
-
-        for (let i = 8; i < 15; i++) {
-          setFunction(8, size - 15 + i, bit(i));
-        }
-
-        setFunction(8, size - 8, true);
-      }
-
-      drawFormatBits();
-
-      let bitIndex = 0;
-
-      for (let right = size - 1; right >= 1; right -= 2) {
-        if (right === 6) right = 5;
-        const upward = ((right + 1) & 2) === 0;
-
-        for (let vertical = 0; vertical < size; vertical++) {
-          const y = upward ? size - 1 - vertical : vertical;
-
-          for (let offset = 0; offset < 2; offset++) {
-            const x = right - offset;
-            if (reserved[y][x]) continue;
-
-            let dark = false;
-
-            if (bitIndex < codewords.length * 8) {
-              dark = ((codewords[bitIndex >>> 3] >> (7 - (bitIndex & 7))) & 1) !== 0;
-            }
-
-            bitIndex++;
-
-            if ((x + y) % 2 === 0) dark = !dark;
-            modules[y][x] = dark;
-          }
-        }
-      }
-
-      if (bitIndex !== 807) {
-        throw new Error("Ошибка построения матрицы QR-кода.");
-      }
-
-      drawFormatBits();
-      return modules;
-    }
-
-    function qrSvg(matrix, encodedUrl) {
-      const namespace = "http://www.w3.org/2000/svg";
-      const quiet = 4;
-      const dimension = matrix.length + quiet * 2;
-
-      const svg = document.createElementNS(namespace, "svg");
-      svg.setAttribute("xmlns", namespace);
-      svg.setAttribute("viewBox", "0 0 " + dimension + " " + dimension);
-      svg.setAttribute("width", "410");
-      svg.setAttribute("height", "410");
-      svg.setAttribute("shape-rendering", "crispEdges");
-      svg.setAttribute("role", "img");
-      svg.setAttribute("aria-label", "QR-код: " + encodedUrl);
-
-      const title = document.createElementNS(namespace, "title");
-      title.textContent = "Открыть " + encodedUrl;
-      svg.append(title);
-
-      const background = document.createElementNS(namespace, "rect");
-      background.setAttribute("width", String(dimension));
-      background.setAttribute("height", String(dimension));
-      background.setAttribute("fill", "#ffffff");
-      svg.append(background);
-
-      let pathData = "";
-
-      matrix.forEach((row, y) => {
-        row.forEach((dark, x) => {
-          if (dark) {
-            pathData += "M" + (x + quiet) + " " + (y + quiet) + "h1v1h-1z";
-          }
-        });
-      });
-
-      const path = document.createElementNS(namespace, "path");
-      path.setAttribute("d", pathData);
-      path.setAttribute("fill", "#000000");
-      svg.append(path);
-
-      return svg;
-    }
-
-    let currentQrSvg = null;
-
-    function renderQr(value) {
-      const url = webUrl(value);
-
-      if (!url) {
-        throw new Error("Укажите корректный адрес, начинающийся с https:// или http://.");
-      }
-
-      const matrix = makeQrMatrix(url);
-      const svg = qrSvg(matrix, url);
-      $("qr-image").replaceChildren(svg);
-
-      currentQrSvg = svg;
-      $("site-link").href = url;
-      $("site-link").textContent = url;
-      $("qr-url").value = url;
-      $("download-qr").hidden = false;
-
-      $("qr-status").textContent =
-        "QR-код сформирован для адреса выше. " +
-        "Фактическое сканирование и открытие страницы необходимо проверить телефоном.";
-    }
-
-    $("qr-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      if (!$("qr-form").reportValidity()) return;
-
-      try {
-        renderQr($("qr-url").value);
-      } catch (error) {
-        $("qr-status").textContent =
-          error.message + " Последний успешно созданный QR-код не изменён.";
-      }
-    });
-
-    $("download-qr").addEventListener("click", () => {
-      if (!currentQrSvg) return;
-
-      const source = new XMLSerializer().serializeToString(currentQrSvg);
-      const blob = new Blob([source], { type: "image/svg+xml;charset=utf-8" });
-      const objectUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-
-      link.href = objectUrl;
-      link.download = "glass-fix-expert-qr.svg";
-      document.body.append(link);
-      link.click();
-      link.remove();
-
-      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
-    });
-
-    try {
-      renderQr(SITE.siteUrl);
-    } catch (error) {
-      $("qr-status").textContent = "QR-код не создан: " + error.message;
-    }
-  </script>
-</body>
-</html>
-Что реализовано
+```
