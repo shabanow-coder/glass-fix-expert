@@ -19,55 +19,24 @@
       --radius: 24px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body {
       margin: 0;
-      overflow-x: clip;
+      overflow-x: hidden;
       background: var(--bg);
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
-    button, input, select {
-      font: inherit;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img, svg {
-      display: block;
-      max-width: 100%;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
+    body.modal-open { overflow: hidden; }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    [hidden] { display: none !important; }
     button:focus-visible,
     a:focus-visible,
     select:focus-visible,
@@ -75,17 +44,8 @@
       outline: 2px solid #ffb16a;
       outline-offset: 5px;
     }
-
-    ::selection {
-      background: var(--orange);
-      color: var(--bg);
-    }
-
-    .container {
-      width: min(1160px, calc(100% - 48px));
-      margin-inline: auto;
-    }
-
+    ::selection { background: var(--orange); color: var(--bg); }
+    .container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
     .icon {
       width: 26px;
       height: 26px;
@@ -96,10 +56,7 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-
-    .accent {
-      color: var(--orange);
-    }
+    .accent { color: var(--orange); }
 
     .button {
       display: inline-flex;
@@ -116,16 +73,8 @@
       font-weight: 700;
       transition: transform .25s ease;
     }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button .icon {
-      width: 20px;
-      height: 20px;
-    }
-
+    .button:hover { transform: translateY(-2px); }
+    .button .icon { width: 20px; height: 20px; }
     .button.secondary {
       border-color: var(--line);
       background: transparent;
@@ -140,7 +89,6 @@
       border-bottom: 1px solid var(--line);
       background: #071014f5;
     }
-
     .header-inner {
       display: flex;
       align-items: center;
@@ -148,38 +96,24 @@
       gap: 24px;
       min-height: 78px;
     }
-
-    .logo {
-      display: block;
-      width: 174px;
-      height: 53px;
-      flex: 0 0 auto;
-    }
-
-    .logo svg,
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
+    .logo { display: block; width: 174px; height: 53px; flex: 0 0 auto; }
+    .logo svg, .logo img { width: 100%; height: 100%; object-fit: contain; }
     .logo svg {
       -webkit-mask-image: radial-gradient(ellipse 70% 78% at center, #000 54%, transparent 100%);
       mask-image: radial-gradient(ellipse 70% 78% at center, #000 54%, transparent 100%);
     }
-
-    .nav {
+    .logo-fallback {
       display: flex;
-      gap: 24px;
-      color: var(--muted);
-      font-size: 15px;
+      align-items: center;
+      height: 100%;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
-
-    .nav a:hover,
-    .footer-links a:hover {
-      color: var(--orange);
-    }
-
+    .logo-fallback span { color: var(--orange); }
+    .nav { display: flex; gap: 24px; color: var(--muted); font-size: 15px; }
+    .nav a:hover, .footer-links a:hover { color: var(--orange); }
     .header .button {
       min-height: 42px;
       padding: 10px 19px;
@@ -191,11 +125,8 @@
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      background:
-        radial-gradient(ellipse at 85% 45%, #17333e65, transparent 62%),
-        #071014;
+      background: radial-gradient(ellipse at 85% 45%, #17333e65, transparent 62%), #071014;
     }
-
     .hero-inner {
       display: grid;
       grid-template-columns: 1fr 1.15fr;
@@ -203,13 +134,7 @@
       gap: 15px;
       min-height: 550px;
     }
-
-    .hero-copy {
-      position: relative;
-      z-index: 2;
-      padding-block: 60px;
-    }
-
+    .hero-copy { position: relative; z-index: 2; padding-block: 60px; }
     .eyebrow {
       display: flex;
       align-items: center;
@@ -221,7 +146,6 @@
       letter-spacing: 1.6px;
       text-transform: uppercase;
     }
-
     .eyebrow::before {
       content: "";
       width: 24px;
@@ -229,7 +153,6 @@
       flex-shrink: 0;
       background: var(--orange);
     }
-
     h1 {
       margin: 0;
       font-size: clamp(44px, 5.4vw, 72px);
@@ -237,7 +160,6 @@
       line-height: 1;
       letter-spacing: -3px;
     }
-
     .hero-subtitle {
       display: flex;
       align-items: center;
@@ -249,12 +171,7 @@
       line-height: 1.3;
       white-space: nowrap;
     }
-
-    .word-dot {
-      font-size: .85em;
-      line-height: 1;
-    }
-
+    .word-dot { font-size: .85em; line-height: 1; }
     .hero-description {
       max-width: 365px;
       margin: 0 0 28px;
@@ -262,20 +179,13 @@
       font-size: 17px;
       line-height: 1.75;
     }
-
-    .hero-bottom {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
+    .hero-bottom { display: flex; align-items: center; gap: 18px; }
     .hero-note {
       max-width: 170px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
     }
-
     .car-wrap {
       position: relative;
       align-self: stretch;
@@ -284,7 +194,6 @@
       margin-left: -12%;
       pointer-events: none;
     }
-
     .car-photo {
       position: absolute;
       inset: 0;
@@ -296,7 +205,6 @@
       -webkit-mask-image: radial-gradient(ellipse 75% 73% at 58% 50%, #000 40%, transparent 100%);
       mask-image: radial-gradient(ellipse 75% 73% at 58% 50%, #000 40%, transparent 100%);
     }
-
     .car-wrap::after {
       content: "";
       position: absolute;
@@ -307,16 +215,8 @@
       pointer-events: none;
     }
 
-    .trust {
-      border-block: 1px solid var(--line);
-    }
-
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      padding-block: 24px;
-    }
-
+    .trust { border-block: 1px solid var(--line); }
+    .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); padding-block: 24px; }
     .trust-item {
       display: flex;
       align-items: center;
@@ -325,19 +225,10 @@
       color: var(--muted);
       font-size: 15px;
     }
+    .trust-item + .trust-item { border-left: 1px solid var(--line); }
+    .trust-item .icon { color: var(--orange); }
 
-    .trust-item + .trust-item {
-      border-left: 1px solid var(--line);
-    }
-
-    .trust-item .icon {
-      color: var(--orange);
-    }
-
-    .section {
-      padding-block: 72px;
-    }
-
+    .section { padding-block: 72px; }
     .section-top {
       display: flex;
       justify-content: space-between;
@@ -345,18 +236,13 @@
       gap: 30px;
       margin-bottom: 28px;
     }
-
-    .section-top .eyebrow {
-      margin-bottom: 12px;
-    }
-
+    .section-top .eyebrow { margin-bottom: 12px; }
     .section-title {
       margin: 0;
       font-size: clamp(27px, 3.4vw, 40px);
       line-height: 1.15;
       letter-spacing: -1px;
     }
-
     .section-description {
       max-width: 365px;
       margin: 0;
@@ -364,41 +250,27 @@
       font-size: 16px;
       line-height: 1.8;
     }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
+    .services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
     .service {
       position: relative;
       isolation: isolate;
-      min-height: 350px;
+      min-height: 375px;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: #0d1c24;
     }
-
     .service-photo {
       position: absolute;
       z-index: -2;
       inset: 0;
       opacity: .72;
       transform: scale(1.015);
-      transition:
-        transform .8s cubic-bezier(.2,.7,.2,1),
-        opacity .6s ease;
+      transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .6s ease;
       -webkit-mask-image: linear-gradient(#000 40%, transparent 100%);
       mask-image: linear-gradient(#000 40%, transparent 100%);
     }
-
-    .service-photo svg {
-      width: 100%;
-      height: 100%;
-    }
-
+    .service-photo svg { width: 100%; height: 100%; }
     .service::after {
       content: "";
       position: absolute;
@@ -407,24 +279,16 @@
       background: linear-gradient(0deg, #071014 2%, #071014ec 28%, transparent 84%);
       pointer-events: none;
     }
-
-    .service-content {
-      position: absolute;
-      right: 25px;
-      bottom: 25px;
-      left: 25px;
-    }
-
+    .service-content { position: absolute; right: 25px; bottom: 25px; left: 25px; }
     .service h3 {
       margin: 0 0 12px;
       font-size: 25px;
       line-height: 1.15;
       letter-spacing: -.5px;
     }
-
     .service p {
       max-width: 270px;
-      min-height: 78px;
+      min-height: 80px;
       margin: 0;
       color: var(--muted);
       font-size: 16px;
@@ -437,10 +301,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 110px;
-      min-height: 76px;
+      width: 114px;
+      min-height: 78px;
       margin-top: 18px;
-      padding: 7px 10px;
+      padding: 8px 10px;
       overflow: hidden;
       border: 1px solid #ff790066;
       border-radius: 23px;
@@ -448,17 +312,10 @@
         radial-gradient(ellipse at 50% 100%, #ff790025, transparent 75%),
         linear-gradient(145deg, #182d36, #0a151c);
       color: #ffad63;
-      box-shadow:
-        inset 0 1px 0 #ffffff0d,
-        0 8px 22px #00000024;
+      box-shadow: inset 0 1px 0 #ffffff0d, 0 8px 22px #00000024;
       touch-action: manipulation;
-      transition:
-        background-color .25s ease,
-        border-color .25s ease,
-        box-shadow .25s ease,
-        transform .25s ease;
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
     }
-
     .work-button::before {
       content: "";
       position: absolute;
@@ -467,23 +324,17 @@
       left: -85%;
       width: 45%;
       height: 200%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        #ffcf9c24,
-        transparent
-      );
-      transform: translate3d(0, 0, 0) rotate(23deg);
+      background: linear-gradient(90deg, transparent, #ffcf9c30, transparent);
+      pointer-events: none;
       -webkit-animation: glass-shine 5.4s ease-in-out infinite;
       animation: glass-shine 5.4s ease-in-out infinite;
+      -webkit-animation-delay: var(--work-delay, 0s);
       animation-delay: var(--work-delay, 0s);
-      pointer-events: none;
     }
-
     .work-glass {
       display: block;
-      width: 86px;
-      height: 58px;
+      width: 88px;
+      height: 60px;
       max-width: none;
       overflow: visible;
       fill: none;
@@ -491,100 +342,48 @@
       stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
+      pointer-events: none;
+      -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
       -webkit-animation: glass-float 3.8s ease-in-out infinite;
       animation: glass-float 3.8s ease-in-out infinite;
+      -webkit-animation-delay: var(--work-delay, 0s);
       animation-delay: var(--work-delay, 0s);
-      pointer-events: none;
     }
-
-    .service:nth-child(2) .work-button {
-      --work-delay: -1.25s;
-    }
-
-    .service:nth-child(3) .work-button {
-      --work-delay: -2.5s;
-    }
-
-    .work-button:hover,
-    .work-button:focus-visible {
+    .service:nth-child(2) .work-button { --work-delay: -1.25s; }
+    .service:nth-child(3) .work-button { --work-delay: -2.5s; }
+    .work-button:hover, .work-button:focus-visible {
       border-color: #ffad63;
-      background-color: #162a33;
       color: #ffd1a6;
-      box-shadow:
-        inset 0 1px 0 #ffffff14,
-        0 0 24px #ff790022,
-        0 10px 25px #00000030;
+      box-shadow: inset 0 1px 0 #ffffff14, 0 0 24px #ff790022, 0 10px 25px #00000030;
       transform: translateY(-3px);
     }
-
-    .work-button:active {
-      transform: translateY(0) scale(.95);
-    }
+    .work-button:active { transform: scale(.95); }
 
     @-webkit-keyframes glass-float {
-      0%, 100% {
-        -webkit-transform: translate3d(0, 2px, 0) rotate(-2deg);
-        transform: translate3d(0, 2px, 0) rotate(-2deg);
-      }
-      50% {
-        -webkit-transform: translate3d(0, -3px, 0) rotate(2deg);
-        transform: translate3d(0, -3px, 0) rotate(2deg);
-      }
+      0%, 100% { -webkit-transform: translate3d(0, 2px, 0) rotate(-2deg); }
+      50% { -webkit-transform: translate3d(0, -3px, 0) rotate(2deg); }
     }
-
     @keyframes glass-float {
-      0%, 100% {
-        transform: translate3d(0, 2px, 0) rotate(-2deg);
-      }
-      50% {
-        transform: translate3d(0, -3px, 0) rotate(2deg);
-      }
+      0%, 100% { transform: translate3d(0, 2px, 0) rotate(-2deg); }
+      50% { transform: translate3d(0, -3px, 0) rotate(2deg); }
     }
-
     @-webkit-keyframes glass-shine {
-      0%, 58% {
-        -webkit-transform: translate3d(0, 0, 0) rotate(23deg);
-        transform: translate3d(0, 0, 0) rotate(23deg);
-      }
-      82%, 100% {
-        -webkit-transform: translate3d(420%, 0, 0) rotate(23deg);
-        transform: translate3d(420%, 0, 0) rotate(23deg);
-      }
+      0%, 58% { -webkit-transform: translate3d(0, 0, 0) rotate(23deg); }
+      82%, 100% { -webkit-transform: translate3d(420%, 0, 0) rotate(23deg); }
     }
-
     @keyframes glass-shine {
-      0%, 58% {
-        transform: translate3d(0, 0, 0) rotate(23deg);
-      }
-      82%, 100% {
-        transform: translate3d(420%, 0, 0) rotate(23deg);
-      }
+      0%, 58% { transform: translate3d(0, 0, 0) rotate(23deg); }
+      82%, 100% { transform: translate3d(420%, 0, 0) rotate(23deg); }
     }
 
-    .service:focus-within .service-photo {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-
+    .service:focus-within .service-photo { opacity: 1; transform: scale(1.05); }
     @media (hover: hover) {
-      .service:hover .service-photo {
-        opacity: 1;
-        transform: scale(1.07);
-      }
+      .service:hover .service-photo { opacity: 1; transform: scale(1.07); }
     }
 
-    .about {
-      padding-top: 0;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 64px;
-    }
-
+    .about { padding-top: 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; }
     .about-video {
       position: relative;
       aspect-ratio: 1.45;
@@ -593,7 +392,6 @@
       border-radius: var(--radius);
       background: var(--panel);
     }
-
     .about-video video {
       position: relative;
       z-index: 2;
@@ -603,19 +401,13 @@
       object-fit: cover;
       background: #09151b;
     }
-
-    .video-poster {
-      position: absolute;
-      inset: 0;
-    }
-
+    .video-poster { position: absolute; inset: 0; }
     .video-poster::after {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(0deg, #071014cf, #07101420 75%);
     }
-
     .video-placeholder {
       position: absolute;
       z-index: 1;
@@ -628,7 +420,6 @@
       padding: 25px;
       text-align: center;
     }
-
     .video-play {
       display: grid;
       place-items: center;
@@ -639,73 +430,28 @@
       background: #071014cc;
       color: var(--orange);
     }
-
-    .video-placeholder p {
-      margin: 0;
-      color: #d3dfe6;
-      font-size: 16px;
-    }
-
-    .about-copy .eyebrow {
-      margin-bottom: 14px;
-    }
-
+    .video-placeholder p { margin: 0; color: #d3dfe6; font-size: 16px; }
+    .about-copy .eyebrow { margin-bottom: 14px; }
     .about-copy > p:not(.eyebrow) {
       margin: 20px 0;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.8;
     }
+    .about-points { display: flex; flex-wrap: wrap; gap: 17px 23px; margin-top: 25px; }
+    .about-point { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 15px; }
+    .about-point .icon { color: var(--orange); }
 
-    .about-points {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 17px 23px;
-      margin-top: 25px;
-    }
-
-    .about-point {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .about-point .icon {
-      color: var(--orange);
-    }
-
-    .films {
-      padding-block: 35px;
-      border-block: 1px solid var(--line);
-      background: #0a151a;
-    }
-
+    .films { padding-block: 35px; border-block: 1px solid var(--line); background: #0a151a; }
     .films-grid {
       display: grid;
       grid-template-columns: 245px minmax(0, 1fr);
       align-items: center;
       gap: 35px;
     }
-
-    .films h2 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      letter-spacing: -.5px;
-    }
-
-    .films p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-    .films-content {
-      min-width: 0;
-    }
-
+    .films h2 { margin: 0 0 8px; font-size: 24px; letter-spacing: -.5px; }
+    .films p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .films-content { min-width: 0; }
     .brands {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -713,7 +459,6 @@
       gap: 12px;
       padding-block: 12px;
     }
-
     .brand-float {
       min-width: 0;
       -webkit-transform: translate3d(0, 0, 0);
@@ -722,23 +467,7 @@
       animation: brand-float 6s ease-in-out infinite;
       -webkit-animation-delay: var(--delay, 0s);
       animation-delay: var(--delay, 0s);
-      -webkit-animation-play-state: running;
-      animation-play-state: running;
     }
-
-    .brands.is-paused .brand-float {
-      -webkit-animation-play-state: paused;
-      animation-play-state: paused;
-    }
-
-    body.modal-open .work-glass,
-    body.modal-open .work-button::before,
-    body.animations-paused .work-glass,
-    body.animations-paused .work-button::before {
-      -webkit-animation-play-state: paused;
-      animation-play-state: paused;
-    }
-
     .film-brand {
       position: relative;
       display: grid;
@@ -752,19 +481,13 @@
       border-radius: 19px;
       background: #0b171d;
       color: white;
-      transition:
-        transform .3s ease,
-        background-color .3s ease,
-        border-color .3s ease;
+      transition: transform .3s ease, background-color .3s ease, border-color .3s ease;
     }
-
-    .film-brand:hover,
-    .film-brand:focus-visible {
+    .film-brand:hover, .film-brand:focus-visible {
       transform: translateY(-3px);
       border-color: #ff790088;
       background: #12232c;
     }
-
     .film-brand img {
       width: 112px;
       max-width: 100%;
@@ -774,25 +497,25 @@
       -webkit-mask-image: radial-gradient(ellipse 100% 120% at center, #000 68%, transparent 100%);
       mask-image: radial-gradient(ellipse 100% 120% at center, #000 68%, transparent 100%);
     }
+    .brand-label { font-size: 17px; font-weight: 800; letter-spacing: -.5px; }
 
     @-webkit-keyframes brand-float {
-      0%, 100% {
-        -webkit-transform: translate3d(0, 4px, 0);
-        transform: translate3d(0, 4px, 0);
-      }
-      50% {
-        -webkit-transform: translate3d(0, -4px, 0);
-        transform: translate3d(0, -4px, 0);
-      }
+      0%, 100% { -webkit-transform: translate3d(0, 4px, 0); }
+      50% { -webkit-transform: translate3d(0, -4px, 0); }
+    }
+    @keyframes brand-float {
+      0%, 100% { transform: translate3d(0, 4px, 0); }
+      50% { transform: translate3d(0, -4px, 0); }
     }
 
-    @keyframes brand-float {
-      0%, 100% {
-        transform: translate3d(0, 4px, 0);
-      }
-      50% {
-        transform: translate3d(0, -4px, 0);
-      }
+    body.modal-open .brand-float,
+    body.modal-open .work-glass,
+    body.modal-open .work-button::before,
+    body.animations-paused .brand-float,
+    body.animations-paused .work-glass,
+    body.animations-paused .work-button::before {
+      -webkit-animation-play-state: paused;
+      animation-play-state: paused;
     }
 
     .film-types {
@@ -813,22 +536,14 @@
       border-radius: var(--radius);
       background: linear-gradient(120deg, #101f28, #0a151a);
     }
-
     .training-photo {
       min-height: 345px;
       overflow: hidden;
       -webkit-mask-image: linear-gradient(90deg, #000 70%, transparent);
       mask-image: linear-gradient(90deg, #000 70%, transparent);
     }
-
-    .training-copy {
-      padding: 42px 42px 38px 25px;
-    }
-
-    .training-copy .eyebrow {
-      margin-bottom: 13px;
-    }
-
+    .training-copy { padding: 42px 42px 38px 25px; }
+    .training-copy .eyebrow { margin-bottom: 13px; }
     .training-copy > p:not(.eyebrow) {
       max-width: 430px;
       margin: 18px 0 24px;
@@ -836,7 +551,6 @@
       font-size: 16px;
       line-height: 1.8;
     }
-
     .training-points {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -845,34 +559,12 @@
       color: var(--muted);
       font-size: 15px;
     }
+    .training-points span { display: flex; align-items: flex-start; flex-direction: column; gap: 10px; }
+    .training-points .icon { color: var(--orange); }
+    .training-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .training-actions .button { min-height: 46px; padding-inline: 20px; font-size: 14px; }
 
-    .training-points span {
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .training-points .icon {
-      color: var(--orange);
-    }
-
-    .training-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .training-actions .button {
-      min-height: 46px;
-      padding-inline: 20px;
-      font-size: 14px;
-    }
-
-    .reviews-section {
-      padding-top: 0;
-    }
-
+    .reviews-section { padding-top: 0; }
     .reviews-strip {
       display: flex;
       align-items: center;
@@ -881,25 +573,9 @@
       padding: 28px 32px;
       border-block: 1px solid var(--line);
     }
-
-    .reviews-copy {
-      max-width: 500px;
-    }
-
-    .reviews-copy h2 {
-      margin: 0 0 9px;
-      font-size: 25px;
-      font-weight: 600;
-      letter-spacing: -.5px;
-    }
-
-    .reviews-copy p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
+    .reviews-copy { max-width: 500px; }
+    .reviews-copy h2 { margin: 0 0 9px; font-size: 25px; font-weight: 600; letter-spacing: -.5px; }
+    .reviews-copy p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
     .reviews-open {
       display: inline-flex;
       align-items: center;
@@ -915,20 +591,10 @@
       font-size: 14px;
       transition: background-color .25s ease;
     }
+    .reviews-open:hover { background: #ff790018; }
+    .reviews-open .icon { width: 19px; height: 19px; }
 
-    .reviews-open:hover {
-      background: #ff790018;
-    }
-
-    .reviews-open .icon {
-      width: 19px;
-      height: 19px;
-    }
-
-    .contact {
-      padding-top: 0;
-    }
-
+    .contact { padding-top: 0; }
     .contact-box {
       position: relative;
       isolation: isolate;
@@ -938,7 +604,6 @@
       border-radius: var(--radius);
       background: #0b171d;
     }
-
     .contact-box::before {
       content: "";
       position: absolute;
@@ -950,13 +615,7 @@
       background: radial-gradient(circle, #ff790020, transparent 68%);
       pointer-events: none;
     }
-
-    .contact-box p {
-      margin: 14px 0 22px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
+    .contact-box p { margin: 14px 0 22px; color: var(--muted); font-size: 16px; }
     .contact-phone {
       display: inline-flex;
       align-items: center;
@@ -967,18 +626,8 @@
       font-weight: 600;
       white-space: nowrap;
     }
-
-    .contact-phone .icon {
-      width: 23px;
-      height: 23px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
+    .contact-phone .icon { width: 23px; height: 23px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .messenger {
       display: inline-flex;
       align-items: center;
@@ -993,12 +642,7 @@
       font-size: 14px;
       transition: transform .25s ease, background-color .25s ease;
     }
-
-    .messenger:hover {
-      transform: translateY(-3px);
-      background: #172e3b;
-    }
-
+    .messenger:hover { transform: translateY(-3px); background: #172e3b; }
     .social-image {
       display: block;
       width: 30px;
@@ -1007,20 +651,10 @@
       overflow: hidden;
       border-radius: 8px;
     }
+    .social-image svg { width: 100%; height: 100%; }
+    .social-image.avito { border-radius: 0; }
 
-    .social-image svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .social-image.avito {
-      border-radius: 0;
-    }
-
-    .footer {
-      padding-block: 5px 35px;
-    }
-
+    .footer { padding-block: 5px 35px; }
     .footer-inner {
       display: flex;
       align-items: center;
@@ -1030,50 +664,18 @@
       padding-top: 27px;
       border-top: 1px solid var(--line);
     }
-
-    .footer .logo {
-      width: 152px;
-      height: 46px;
-    }
-
-    .footer-details {
-      display: grid;
-      gap: 6px;
-    }
-
-    .footer-note {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .footer-phone {
-      color: #e4c5a6;
-      font-size: 15px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .footer-reviews {
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: inherit;
-      font-size: inherit;
-    }
-
-    .footer-reviews:hover {
-      color: var(--orange);
-    }
+    .footer .logo { width: 152px; height: 46px; }
+    .footer .logo-fallback { font-size: 19px; }
+    .footer-details { display: grid; gap: 6px; }
+    .footer-note { margin: 0; color: var(--muted); font-size: 16px; }
+    .footer-phone { color: #e4c5a6; font-size: 15px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; color: var(--muted); font-size: 15px; }
+    .footer-reviews { padding: 0; border: 0; background: transparent; color: inherit; font-size: inherit; }
+    .footer-reviews:hover { color: var(--orange); }
 
     dialog {
       width: min(460px, calc(100% - 32px));
+      max-height: calc(100vh - 40px);
       max-height: calc(100dvh - 40px);
       overflow-y: auto;
       overscroll-behavior: contain;
@@ -1085,26 +687,23 @@
       scrollbar-width: thin;
       scrollbar-color: #536978 #0b1921;
     }
-
-    dialog[open] {
-      animation: dialog-in .26s cubic-bezier(.2,.75,.25,1) both;
+    dialog:not([open]) { display: none; }
+    dialog[open] { animation: dialog-in .26s cubic-bezier(.2,.75,.25,1) both; }
+    dialog::backdrop { background: #02070bd9; }
+    dialog.dialog-fallback {
+      position: fixed;
+      z-index: 101;
+      top: 50%;
+      left: 50%;
+      margin: 0;
+      transform: translate(-50%, -50%);
+      animation: none;
     }
-
-    dialog::backdrop {
-      background: #02070bd9;
-    }
-
+    .fallback-backdrop { position: fixed; z-index: 100; inset: 0; background: #02070bd9; }
     @keyframes dialog-in {
-      from {
-        opacity: 0;
-        transform: translateY(18px) scale(.985);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(18px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
-
     .dialog-top {
       display: flex;
       align-items: flex-start;
@@ -1112,14 +711,7 @@
       gap: 20px;
       margin-bottom: 17px;
     }
-
-    .dialog-top h2 {
-      margin: 0;
-      font-size: 25px;
-      line-height: 1.2;
-      letter-spacing: -.5px;
-    }
-
+    .dialog-top h2 { margin: 0; font-size: 25px; line-height: 1.2; letter-spacing: -.5px; }
     .close-dialog {
       display: grid;
       place-items: center;
@@ -1133,31 +725,10 @@
       background: transparent;
       color: var(--muted);
     }
-
-    .close-dialog:hover {
-      background: #ffffff0a;
-    }
-
-    .dialog-text {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 18px;
-      margin-top: 20px;
-    }
-
-    .contact-form label {
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
+    .close-dialog:hover { background: #ffffff0a; }
+    .dialog-text { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .contact-form { display: grid; gap: 18px; margin-top: 20px; }
+    .contact-form label { display: grid; gap: 8px; color: var(--muted); font-size: 16px; }
     .contact-form select {
       width: 100%;
       min-height: 47px;
@@ -1168,7 +739,6 @@
       color: var(--text);
       font-size: 16px;
     }
-
     .call-button {
       display: flex;
       align-items: center;
@@ -1180,31 +750,11 @@
       border-radius: 15px;
       background: linear-gradient(115deg, #ff790022, #ff790008);
     }
-
-    .call-button > .icon {
-      color: var(--orange);
-    }
-
-    .call-button span {
-      display: grid;
-      gap: 4px;
-    }
-
-    .call-button strong {
-      font-size: 19px;
-      font-weight: 600;
-    }
-
-    .call-button small {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .dialog-channels {
-      display: grid;
-      gap: 10px;
-    }
-
+    .call-button > .icon { color: var(--orange); }
+    .call-button span { display: grid; gap: 4px; }
+    .call-button strong { font-size: 19px; font-weight: 600; }
+    .call-button small { color: var(--muted); font-size: 15px; }
+    .dialog-channels { display: grid; gap: 10px; }
     .channel-button {
       display: flex;
       align-items: center;
@@ -1217,33 +767,11 @@
       color: var(--text);
       text-align: left;
     }
-
-    .channel-button > span:nth-child(2) {
-      flex: 1;
-    }
-
-    .channel-button > .icon {
-      width: 18px;
-      height: 18px;
-      color: var(--muted);
-    }
-
-    .channel-button:hover {
-      background: #172e3b;
-    }
-
-    .status {
-      margin: 0;
-      color: #cfbaa5;
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .photo-dialog {
-      width: min(850px, calc(100% - 28px));
-      padding: 20px;
-    }
-
+    .channel-button > span:nth-child(2) { flex: 1; }
+    .channel-button > .icon { width: 18px; height: 18px; color: var(--muted); }
+    .channel-button:hover { background: #172e3b; }
+    .status { margin: 0; color: #cfbaa5; font-size: 15px; line-height: 1.7; }
+    .photo-dialog { width: min(850px, calc(100% - 28px)); padding: 20px; }
     .preview-frame {
       display: grid;
       place-items: center;
@@ -1252,200 +780,48 @@
       border-radius: 15px;
       background: #071014;
     }
-
-    .preview-image {
-      width: 100%;
-      max-height: 65dvh;
-      object-fit: contain;
-    }
-
-    .photo-caption {
-      margin: 14px 0 18px;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .reviews-dialog {
-      width: min(690px, calc(100% - 32px));
-    }
-
-    .reviews-intro {
-      margin: 0 0 24px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .review-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .review-card {
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: #10212b66;
-    }
-
-    .review-card h3 {
-      margin: 0 0 9px;
-      color: #e3eaf0;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-
-    .review-stars {
-      margin-bottom: 12px;
-      color: #f4a04d;
-      font-size: 16px;
-      letter-spacing: 3px;
-    }
-
-    .review-card blockquote {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.85;
-    }
-
-    .reviews-source {
-      margin: 20px 0;
-      color: #b1bec8;
-      font-size: 15px;
-      line-height: 1.75;
-    }
-
-    .reviews-avito {
-      width: 100%;
-    }
-
-    .info-contact {
-      margin-top: 22px;
-    }
+    .preview-image { width: 100%; max-height: 65vh; max-height: 65dvh; object-fit: contain; }
+    .photo-caption { margin: 14px 0 18px; color: var(--muted); font-size: 16px; }
+    .reviews-dialog { width: min(690px, calc(100% - 32px)); }
+    .reviews-intro { margin: 0 0 24px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+    .review-list { display: grid; gap: 14px; }
+    .review-card { padding: 22px; border: 1px solid var(--line); border-radius: 17px; background: #10212b66; }
+    .review-card h3 { margin: 0 0 9px; color: #e3eaf0; font-size: 16px; font-weight: 600; line-height: 1.5; }
+    .review-stars { margin-bottom: 12px; color: #f4a04d; font-size: 16px; letter-spacing: 3px; }
+    .review-card blockquote { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.85; }
+    .reviews-source { margin: 20px 0; color: #b1bec8; font-size: 15px; line-height: 1.75; }
+    .reviews-avito { width: 100%; }
+    .info-contact { margin-top: 22px; }
 
     @media (max-width: 1000px) {
-      .nav {
-        gap: 16px;
-        font-size: 14px;
-      }
-
-      .hero-inner {
-        min-height: 490px;
-      }
-
-      .service-content {
-        right: 20px;
-        left: 20px;
-      }
-
-      .service h3 {
-        font-size: 22px;
-      }
-
-      .service p {
-        min-height: 104px;
-      }
-
-      .about-grid {
-        gap: 35px;
-      }
-
-      .films-grid {
-        grid-template-columns: 210px minmax(0, 1fr);
-        gap: 25px;
-      }
-
-      .brands {
-        gap: 7px;
-      }
-
-      .film-brand {
-        padding-inline: 6px;
-      }
-
-      .training-copy {
-        padding: 30px 25px 30px 10px;
-      }
+      .nav { gap: 16px; font-size: 14px; }
+      .hero-inner { min-height: 490px; }
+      .service-content { right: 20px; left: 20px; }
+      .service h3 { font-size: 22px; }
+      .service p { min-height: 106px; }
+      .about-grid { gap: 35px; }
+      .films-grid { grid-template-columns: 210px minmax(0, 1fr); gap: 25px; }
+      .brands { gap: 7px; }
+      .film-brand { padding-inline: 6px; }
+      .training-copy { padding: 30px 25px 30px 10px; }
     }
 
     @media (max-width: 720px) {
-      .container {
-        width: calc(100% - 32px);
-      }
-
-      .header-inner {
-        min-height: 68px;
-        gap: 12px;
-      }
-
-      .header .logo {
-        width: 146px;
-        height: 45px;
-      }
-
-      .header .button {
-        min-height: 40px;
-        padding: 10px 14px;
-        font-size: 13px;
-      }
-
-      .header .button .icon,
-      .nav {
-        display: none;
-      }
-
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 0;
-        min-height: auto;
-      }
-
-      .hero-copy {
-        padding-top: 38px;
-        padding-bottom: 13px;
-      }
-
-      .eyebrow {
-        margin-bottom: 19px;
-        font-size: 12px;
-        letter-spacing: 1.1px;
-      }
-
-      h1 {
-        font-size: clamp(37px, 10.5vw, 67px);
-        letter-spacing: -2px;
-      }
-
-      .hero-subtitle {
-        gap: 7px;
-        margin-top: 13px;
-        margin-bottom: 18px;
-        font-size: clamp(12px, 3.85vw, 23px);
-      }
-
-      .hero-description {
-        max-width: 350px;
-        margin-bottom: 23px;
-        font-size: 16px;
-      }
-
-      .hero-bottom {
-        gap: 14px;
-      }
-
-      .hero-bottom .button {
-        min-height: 48px;
-        padding-inline: 20px;
-        font-size: 14px;
-      }
-
-      .hero-note {
-        max-width: 155px;
-        font-size: 13px;
-      }
-
+      .container { width: calc(100% - 32px); }
+      .header-inner { min-height: 68px; gap: 12px; }
+      .header .logo { width: 146px; height: 45px; }
+      .header .logo-fallback { font-size: 18px; }
+      .header .button { min-height: 40px; padding: 10px 14px; font-size: 13px; }
+      .header .button .icon, .nav { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 0; min-height: auto; }
+      .hero-copy { padding-top: 38px; padding-bottom: 13px; }
+      .eyebrow { margin-bottom: 19px; font-size: 12px; letter-spacing: 1.1px; }
+      h1 { font-size: clamp(37px, 10.5vw, 67px); letter-spacing: -2px; }
+      .hero-subtitle { gap: 7px; margin-top: 13px; margin-bottom: 18px; font-size: clamp(12px, 3.85vw, 23px); }
+      .hero-description { max-width: 350px; margin-bottom: 23px; font-size: 16px; }
+      .hero-bottom { gap: 14px; }
+      .hero-bottom .button { min-height: 48px; padding-inline: 20px; font-size: 14px; }
+      .hero-note { max-width: 155px; font-size: 13px; }
       .car-wrap {
         align-self: auto;
         width: calc(100% + 32px);
@@ -1453,336 +829,95 @@
         aspect-ratio: 1.12;
         margin: -2px -16px 0;
       }
-
       .car-photo {
         object-position: 50% 48%;
         -webkit-mask-image: radial-gradient(ellipse 82% 72% at 52% 48%, #000 48%, transparent 100%);
         mask-image: radial-gradient(ellipse 82% 72% at 52% 48%, #000 48%, transparent 100%);
       }
-
-      .car-wrap::after {
-        background: linear-gradient(0deg, #071014, transparent 18%, transparent 90%, #07101455);
-      }
-
-      .trust-grid {
-        padding-block: 19px;
-      }
-
-      .trust-item {
-        flex-direction: column;
-        gap: 8px;
-        padding-inline: 5px;
-        text-align: center;
-        font-size: 14px;
-        line-height: 1.5;
-      }
-
-      .trust-item .icon {
-        width: 23px;
-        height: 23px;
-      }
-
-      .section {
-        padding-block: 44px;
-      }
-
-      .section-top {
-        display: block;
-        margin-bottom: 22px;
-      }
-
-      .section-top .eyebrow {
-        margin-bottom: 10px;
-      }
-
-      .section-description {
-        max-width: 420px;
-        margin-top: 14px;
-        font-size: 16px;
-      }
-
-      .section-title {
-        font-size: 30px;
-      }
-
-      .services {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-
-      .service {
-        min-height: 335px;
-        border-radius: 21px;
-      }
-
+      .car-wrap::after { background: linear-gradient(0deg, #071014, transparent 18%, transparent 90%, #07101455); }
+      .trust-grid { padding-block: 19px; }
+      .trust-item { flex-direction: column; gap: 8px; padding-inline: 5px; text-align: center; font-size: 14px; line-height: 1.5; }
+      .trust-item .icon { width: 23px; height: 23px; }
+      .section { padding-block: 44px; }
+      .section-top { display: block; margin-bottom: 22px; }
+      .section-top .eyebrow { margin-bottom: 10px; }
+      .section-description { max-width: 420px; margin-top: 14px; font-size: 16px; }
+      .section-title { font-size: 30px; }
+      .services { grid-template-columns: 1fr; gap: 15px; }
+      .service { min-height: 335px; border-radius: 21px; }
       .service-photo {
         opacity: .85;
         -webkit-mask-image: linear-gradient(#000 35%, transparent 100%);
         mask-image: linear-gradient(#000 35%, transparent 100%);
       }
-
-      .service-content {
-        right: 23px;
-        bottom: 23px;
-        left: 23px;
-      }
-
-      .service h3 {
-        max-width: 290px;
-        font-size: 26px;
-      }
-
-      .service p {
-        max-width: 300px;
-        min-height: 0;
-        font-size: 16px;
-      }
-
-      .work-button {
-        width: 116px;
-        min-height: 78px;
-        margin-top: 19px;
-      }
-
-      .work-glass {
-        width: 90px;
-        height: 60px;
-      }
-
-      .about {
-        padding-top: 0;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .about-video {
-        aspect-ratio: 16 / 10;
-        border-radius: 21px;
-      }
-
-      .about-copy > p:not(.eyebrow) {
-        margin-top: 16px;
-        font-size: 16px;
-      }
-
-      .about-points {
-        justify-content: space-between;
-        gap: 11px;
-      }
-
-      .about-point {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 8px;
-        font-size: 14px;
-      }
-
-      .films {
-        padding-block: 27px;
-      }
-
-      .films-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .films p {
-        max-width: 360px;
-        font-size: 16px;
-      }
-
-      .brands {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px 10px;
-        padding-block: 11px;
-      }
-
-      .film-brand {
-        height: 74px;
-        padding: 12px 8px;
-        border-radius: 17px;
-      }
-
-      .film-brand img {
-        width: 106px;
-        height: 45px;
-      }
-
-      .film-types {
-        gap: 9px 15px;
-        margin-top: 14px;
-        font-size: 14px;
-      }
-
-      .training-card {
-        grid-template-columns: 1fr;
-        border-radius: 21px;
-      }
-
+      .service-content { right: 23px; bottom: 23px; left: 23px; }
+      .service h3 { max-width: 290px; font-size: 26px; }
+      .service p { max-width: 300px; min-height: 0; font-size: 16px; }
+      .work-button { width: 116px; min-height: 78px; margin-top: 19px; }
+      .work-glass { width: 90px; height: 60px; }
+      .about { padding-top: 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .about-video { aspect-ratio: 16 / 10; border-radius: 21px; }
+      .about-copy > p:not(.eyebrow) { margin-top: 16px; font-size: 16px; }
+      .about-points { justify-content: space-between; gap: 11px; }
+      .about-point { align-items: flex-start; flex-direction: column; gap: 8px; font-size: 14px; }
+      .films { padding-block: 27px; }
+      .films-grid { grid-template-columns: 1fr; gap: 18px; }
+      .films p { max-width: 360px; font-size: 16px; }
+      .brands { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 10px; padding-block: 11px; }
+      .film-brand { height: 74px; padding: 12px 8px; border-radius: 17px; }
+      .film-brand img { width: 106px; height: 45px; }
+      .film-types { gap: 9px 15px; margin-top: 14px; font-size: 14px; }
+      .training-card { grid-template-columns: 1fr; border-radius: 21px; }
       .training-photo {
         height: 225px;
         min-height: 0;
         -webkit-mask-image: linear-gradient(#000 65%, transparent);
         mask-image: linear-gradient(#000 65%, transparent);
       }
-
-      .training-copy {
-        position: relative;
-        margin-top: -5px;
-        padding: 5px 23px 27px;
-      }
-
-      .training-copy > p:not(.eyebrow) {
-        margin-block: 16px 20px;
-        font-size: 16px;
-      }
-
-      .training-points {
-        gap: 10px;
-        margin-bottom: 22px;
-        font-size: 14px;
-      }
-
-      .training-actions {
-        gap: 10px;
-      }
-
-      .training-actions .button {
-        flex: 1 1 140px;
-        padding-inline: 12px;
-        font-size: 13px;
-      }
-
-      .reviews-section {
-        padding-top: 0;
-      }
-
-      .reviews-strip {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 20px;
-        padding: 25px 6px;
-      }
-
-      .reviews-copy h2 {
-        font-size: 24px;
-      }
-
-      .reviews-open {
-        width: 100%;
-      }
-
-      .contact {
-        padding-top: 0;
-      }
-
-      .contact-box {
-        padding: 28px 22px;
-        border-radius: 21px;
-      }
-
-      .contact-box p {
-        margin: 13px 0 19px;
-        font-size: 16px;
-      }
-
-      .contact-phone {
-        font-size: 21px;
-      }
-
-      .contact-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .messenger {
-        min-height: 51px;
-        padding: 10px;
-        font-size: 14px;
-        gap: 8px;
-      }
-
-      .footer {
-        padding-bottom: 25px;
-      }
-
-      .footer-inner {
-        align-items: center;
-        gap: 20px;
-      }
-
-      .footer-details {
-        width: 100%;
-        gap: 8px;
-      }
-
-      .footer-note {
-        font-size: 16px;
-      }
-
-      .footer-phone {
-        font-size: 16px;
-      }
-
-      .footer-links {
-        justify-content: space-between;
-        gap: 12px;
-        width: 100%;
-        font-size: 14px;
-      }
-
-      dialog {
-        padding: 23px;
-      }
-
-      .photo-dialog {
-        padding: 17px;
-      }
-
-      .review-card {
-        padding: 18px;
-      }
-
-      .review-card blockquote {
-        font-size: 16px;
-      }
+      .training-copy { position: relative; margin-top: -5px; padding: 5px 23px 27px; }
+      .training-copy > p:not(.eyebrow) { margin-block: 16px 20px; font-size: 16px; }
+      .training-points { gap: 10px; margin-bottom: 22px; font-size: 14px; }
+      .training-actions { gap: 10px; }
+      .training-actions .button { flex: 1 1 140px; padding-inline: 12px; font-size: 13px; }
+      .reviews-section { padding-top: 0; }
+      .reviews-strip { align-items: flex-start; flex-direction: column; gap: 20px; padding: 25px 6px; }
+      .reviews-copy h2 { font-size: 24px; }
+      .reviews-open { width: 100%; }
+      .contact { padding-top: 0; }
+      .contact-box { padding: 28px 22px; border-radius: 21px; }
+      .contact-box p { margin: 13px 0 19px; font-size: 16px; }
+      .contact-phone { font-size: 21px; }
+      .contact-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .messenger { min-height: 51px; padding: 10px; font-size: 14px; gap: 8px; }
+      .footer { padding-bottom: 25px; }
+      .footer-inner { align-items: center; gap: 20px; }
+      .footer-details { width: 100%; gap: 8px; }
+      .footer-note, .footer-phone { font-size: 16px; }
+      .footer-links { justify-content: space-between; gap: 12px; width: 100%; font-size: 14px; }
+      dialog { padding: 23px; }
+      .photo-dialog { padding: 17px; }
+      .review-card { padding: 18px; }
+      .review-card blockquote { font-size: 16px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
         transition: none !important;
         -webkit-animation: none !important;
         animation: none !important;
       }
-
-      .brand-float,
-      .work-glass,
-      .work-button:hover,
-      .work-button:focus-visible,
-      .work-button:active,
-      .button:hover,
-      .messenger:hover,
-      .film-brand:hover,
-      .film-brand:focus-visible,
-      .service:hover .service-photo,
-      .service:focus-within .service-photo {
+      .brand-float, .work-glass,
+      .work-button:hover, .work-button:focus-visible, .work-button:active,
+      .button:hover, .messenger:hover,
+      .film-brand:hover, .film-brand:focus-visible,
+      .service:hover .service-photo, .service:focus-within .service-photo {
         -webkit-transform: none;
         transform: none;
       }
-
-      .work-button::before {
-        display: none;
-      }
+      .work-button::before { display: none; }
+      dialog.dialog-fallback { transform: translate(-50%, -50%); }
     }
   </style>
 </head>
@@ -1793,103 +928,87 @@
       <symbol id="i-arrow" viewBox="0 0 32 32">
         <path d="M6 16h20m-8-8 8 8-8 8"/>
       </symbol>
-
       <symbol id="i-phone" viewBox="0 0 32 32">
         <path d="m10 4 4 7-4 4c2 4 4 6 8 8l4-4 7 4-2 5c-1 2-5 2-8 1C10 26 5 21 3 12 2 8 3 5 5 4Z"/>
       </symbol>
-
       <symbol id="i-shield" viewBox="0 0 32 32">
         <path d="M16 3 27 8v8c0 6-5 10-11 13C10 26 5 22 5 16V8Z"/>
         <path d="m10 16 4 4 8-9"/>
       </symbol>
-
       <symbol id="i-diamond" viewBox="0 0 32 32">
         <path d="m3 11 6-7h14l6 7-13 18Z"/>
         <path d="M3 11h26M9 4l7 25 7-25M9 11l7-7 7 7"/>
       </symbol>
-
       <symbol id="i-heart" viewBox="0 0 32 32">
         <path d="M16 28 5 17C-3 9 7-1 16 8 25-1 35 9 27 17Z"/>
         <path d="m10 16 4 4 7-8"/>
       </symbol>
-
       <symbol id="i-equipment" viewBox="0 0 40 40">
         <rect x="5" y="7" width="25" height="18" rx="3"/>
         <path d="M10 20h4l3-7 4 7h4M17 25v7M10 33h16"/>
         <path d="M30 13h3a3 3 0 0 1 3 3v10a4 4 0 0 1-4 4h-2"/>
         <circle cx="33" cy="34" r="2"/>
       </symbol>
-
       <symbol id="i-practice" viewBox="0 0 40 40">
         <path d="M27 5a9 9 0 0 0-10 12L5 29a4 4 0 0 0 6 6l12-12A9 9 0 0 0 35 12l-6 6-7-7Z"/>
         <circle cx="9" cy="31" r="1"/>
       </symbol>
-
       <symbol id="i-method" viewBox="0 0 40 40">
         <rect x="5" y="5" width="11" height="11" rx="2"/>
         <rect x="24" y="24" width="11" height="11" rx="2"/>
         <path d="M24 8h5a3 3 0 0 1 3 3v6m-4-4 4 4 4-4M16 32h-5a3 3 0 0 1-3-3v-6m-4 4 4-4 4 4"/>
         <path d="m8 10 2 2 3-4m14 22 2 2 4-5"/>
       </symbol>
-
       <symbol id="i-result" viewBox="0 0 40 40">
         <circle cx="20" cy="20" r="15"/>
         <circle cx="20" cy="20" r="9"/>
         <path d="m14 20 4 4 9-10"/>
       </symbol>
-
       <symbol id="i-award" viewBox="0 0 32 32">
         <circle cx="16" cy="12" r="8"/>
         <path d="m10 19-2 11 8-4 8 4-2-11M12 12l3 3 5-6"/>
       </symbol>
-
       <symbol id="i-calendar" viewBox="0 0 32 32">
         <rect x="5" y="6" width="22" height="23" rx="3"/>
         <path d="M10 3v7M22 3v7M5 13h22M11 18h2m6 0h2m-10 6h2m6 0h2"/>
       </symbol>
-
       <symbol id="i-play" viewBox="0 0 32 32">
         <path d="m12 7 14 9-14 9Z"/>
       </symbol>
-
       <symbol id="i-close" viewBox="0 0 32 32">
         <path d="m8 8 16 16M24 8 8 24"/>
       </symbol>
-
       <symbol id="i-avito" viewBox="0 0 32 32">
         <circle cx="9" cy="9" r="6" fill="#00aaff" stroke="none"/>
         <circle cx="23" cy="9" r="7" fill="#00c98d" stroke="none"/>
         <circle cx="8" cy="24" r="5" fill="#9656ed" stroke="none"/>
         <circle cx="23" cy="24" r="7" fill="#ff4053" stroke="none"/>
       </symbol>
-
+      <symbol id="i-telegram" viewBox="0 0 32 32">
+        <rect width="32" height="32" rx="8" fill="#229ed9"/>
+        <path d="m6 15 20-8-4 19-7-6-4 3 1-6 10-7-12 6Z" fill="#fff"/>
+      </symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 32 32">
+        <rect width="32" height="32" rx="8" fill="#25d366"/>
+        <path d="M8 25l1.5-5A10 10 0 1 1 13 24Z" fill="none" stroke="#fff" stroke-width="1.8"/>
+        <path d="m12 10 2 4-1.5 1.5a11 11 0 0 0 4 4L18 18l4 2c-1 4-5 3-8 1s-7-7-4-10Z" fill="#fff"/>
+      </symbol>
+      <symbol id="i-max" viewBox="0 0 32 32">
+        <defs>
+          <linearGradient id="max-gradient" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#4389ff"/>
+            <stop offset="1" stop-color="#8d45e8"/>
+          </linearGradient>
+        </defs>
+        <rect width="32" height="32" rx="8" fill="url(#max-gradient)"/>
+        <path d="M8 23V13a5 5 0 0 1 9-3 5 5 0 0 1 7 5v8h-4v-8a1 1 0 0 0-2 0v6h-4v-8a1 1 0 0 0-2 0v10Z" fill="#fff"/>
+      </symbol>
       <symbol id="i-work-glass" viewBox="0 0 88 60">
-        <path
-          d="M20 12Q44 5 68 12L77 39Q44 48 11 39Z"
-          fill="#ff7900"
-          fill-opacity=".07"
-        />
-        <path
-          d="M24 17Q44 12 64 17L70 35Q44 41 18 35Z"
-          stroke="#d7eaf1"
-          stroke-opacity=".48"
-          stroke-width="1.1"
-        />
-        <path
-          d="m28 20-5 12m13-14-5 15"
-          stroke="#d7eaf1"
-          stroke-opacity=".75"
-          stroke-width="2.2"
-        />
-        <path
-          d="M17 43q20 6 39 3"
-          stroke-opacity=".45"
-          stroke-width="1.2"
-        />
-        <path
-          d="m43 40 10-8m-3 9 10-7"
-          stroke-width="1.5"
-        />
+        <path d="M20 12Q44 5 68 12L77 39Q44 48 11 39Z" fill="#ff7900" fill-opacity=".07"/>
+        <path d="M24 17Q44 12 64 17L70 35Q44 41 18 35Z" stroke="#d7eaf1" stroke-opacity=".48" stroke-width="1.1"/>
+        <path d="m28 20-5 12m13-14-5 15" stroke="#d7eaf1" stroke-opacity=".75" stroke-width="2.2"/>
+        <path d="M17 43q20 6 39 3" stroke-opacity=".45" stroke-width="1.2"/>
+        <path d="m43 40 10-8m-3 9 10-7" stroke-width="1.5"/>
         <path d="M72 5v8m-4-4h8" stroke="#ffe0bc" stroke-width="1.5"/>
         <circle cx="71" cy="45" r="10" fill="#ff7900" stroke="#ffb16a" stroke-width="1.2"/>
         <path d="m67 49 8-8m-7 0h7v7" stroke="#111a20" stroke-width="2"/>
@@ -1899,8 +1018,9 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a class="logo" href="#home" aria-label="GlassFix Expert — главная" data-logo></a>
-
+      <a class="logo" href="#home" aria-label="GlassFix Expert — главная" data-logo>
+        <span class="logo-fallback">GlassFix<span>&nbsp;Expert</span></span>
+      </a>
       <nav class="nav" aria-label="Основная навигация">
         <a href="#services">Услуги</a>
         <a href="#advantages">Преимущества</a>
@@ -1908,7 +1028,6 @@
         <a href="#reviews">Отзывы</a>
         <a href="#contacts">Контакты</a>
       </nav>
-
       <button class="button" type="button" data-book="Консультация">
         <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
         Записаться
@@ -1922,7 +1041,6 @@
         <div class="hero-copy">
           <p class="eyebrow">Профессиональный уход за стеклом</p>
           <h1 id="hero-title">АВТОСТЁКЛА</h1>
-
           <p class="hero-subtitle" aria-label="Ремонт, замена, тонировка">
             <span>РЕМОНТ</span>
             <span class="word-dot" aria-hidden="true">·</span>
@@ -1930,12 +1048,10 @@
             <span class="word-dot" aria-hidden="true">·</span>
             <span>ТОНИРОВКА</span>
           </p>
-
           <p class="hero-description">
             Чистое стекло — ваша уверенность на дороге.
             Восстанавливаем, меняем и заботимся о каждой детали.
           </p>
-
           <div class="hero-bottom">
             <button class="button" type="button" data-book="Консультация">
               Записаться
@@ -1944,7 +1060,6 @@
             <span class="hero-note">Подберём решение<br>для вашего автомобиля</span>
           </div>
         </div>
-
         <div class="car-wrap">
           <img
             class="car-photo"
@@ -1964,12 +1079,10 @@
           <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
           <span>Быстро<br>и качественно</span>
         </div>
-
         <div class="trust-item">
           <svg class="icon" aria-hidden="true"><use href="#i-diamond"/></svg>
           <span>Современные<br>материалы</span>
         </div>
-
         <div class="trust-item">
           <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
           <span>С заботой<br>о каждом клиенте</span>
@@ -1984,74 +1097,43 @@
             <p class="eyebrow">Что мы делаем</p>
             <h2 class="section-title">Всё для вашего стекла</h2>
           </div>
-
           <p class="section-description">
             Ремонт, замена и тонировка, удаление водного камня
             и нанесение антидождя. Заботимся о чистом обзоре,
             вашем комфорте и спокойствии в дороге.
           </p>
         </div>
-
         <div class="services">
           <article class="service">
             <div class="service-photo" data-crop="42 416 306 210"></div>
-
             <div class="service-content">
               <h3>Ремонт автостёкол</h3>
               <p>Оценим повреждение и подберём бережное решение для вашего стекла.</p>
-
-              <button
-                class="work-button"
-                type="button"
-                data-photo="Ремонт автостёкол"
-                aria-label="Посмотреть фото работ по ремонту автостёкол"
-                title="Фото работ — ремонт автостёкол"
-              >
-                <svg class="work-glass" aria-hidden="true" focusable="false">
-                  <use href="#i-work-glass"/>
-                </svg>
+              <button class="work-button" type="button" data-photo="Ремонт автостёкол"
+                aria-label="Посмотреть фото работ по ремонту автостёкол" title="Фото работ — ремонт автостёкол">
+                <svg class="work-glass" aria-hidden="true"><use href="#i-work-glass"/></svg>
               </button>
             </div>
           </article>
-
           <article class="service">
             <div class="service-photo" data-crop="365 416 294 210"></div>
-
             <div class="service-content">
               <h3>Замена автостёкол</h3>
               <p>Оригинальные и проверенные стёкла для вашего автомобиля.</p>
-
-              <button
-                class="work-button"
-                type="button"
-                data-photo="Замена автостёкол"
-                aria-label="Посмотреть фото работ по замене автостёкол"
-                title="Фото работ — замена автостёкол"
-              >
-                <svg class="work-glass" aria-hidden="true" focusable="false">
-                  <use href="#i-work-glass"/>
-                </svg>
+              <button class="work-button" type="button" data-photo="Замена автостёкол"
+                aria-label="Посмотреть фото работ по замене автостёкол" title="Фото работ — замена автостёкол">
+                <svg class="work-glass" aria-hidden="true"><use href="#i-work-glass"/></svg>
               </button>
             </div>
           </article>
-
           <article class="service">
             <div class="service-photo" data-crop="677 416 304 210"></div>
-
             <div class="service-content">
               <h3>Тонировка автостёкол</h3>
               <p>Защита от солнца, комфорт и стиль для вашего авто.</p>
-
-              <button
-                class="work-button"
-                type="button"
-                data-photo="Тонировка автостёкол"
-                aria-label="Посмотреть фото работ по тонировке автостёкол"
-                title="Фото работ — тонировка автостёкол"
-              >
-                <svg class="work-glass" aria-hidden="true" focusable="false">
-                  <use href="#i-work-glass"/>
-                </svg>
+              <button class="work-button" type="button" data-photo="Тонировка автостёкол"
+                aria-label="Посмотреть фото работ по тонировке автостёкол" title="Фото работ — тонировка автостёкол">
+                <svg class="work-glass" aria-hidden="true"><use href="#i-work-glass"/></svg>
               </button>
             </div>
           </article>
@@ -2063,16 +1145,8 @@
       <div class="container about-grid">
         <div class="about-video">
           <div class="video-poster" data-crop="42 677 344 185" aria-hidden="true"></div>
-
-          <video
-            id="about-video"
-            controls
-            playsinline
-            preload="none"
-            hidden
-            aria-label="Видео о работе GlassFix Expert"
-          ></video>
-
+          <video id="about-video" controls playsinline preload="none" hidden
+            aria-label="Видео о работе GlassFix Expert"></video>
           <div class="video-placeholder" id="video-placeholder">
             <span class="video-play" aria-hidden="true">
               <svg class="icon"><use href="#i-play"/></svg>
@@ -2080,15 +1154,9 @@
             <p id="video-placeholder-text">Видео о нашей работе скоро появится</p>
           </div>
         </div>
-
         <div class="about-copy">
           <p class="eyebrow">О нас</p>
-
-          <h2 class="section-title">
-            Профессиональный<br>
-            <span class="accent">ремонт автостёкол</span>
-          </h2>
-
+          <h2 class="section-title">Профессиональный<br><span class="accent">ремонт автостёкол</span></h2>
           <p>
             Восстанавливаем автостёкла, возвращая прозрачность
             и помогая сохранить вашу безопасность.
@@ -2097,18 +1165,15 @@
             Современное оборудование, качественные материалы
             и внимательные мастера — основа нашей работы.
           </p>
-
           <div class="about-points">
             <div class="about-point">
               <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
               <span>Опыт<br>более 10 лет</span>
             </div>
-
             <div class="about-point">
               <svg class="icon" aria-hidden="true"><use href="#i-equipment"/></svg>
               <span>Современное<br>оборудование</span>
             </div>
-
             <div class="about-point">
               <svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>
               <span>Гарантия<br>на работы</span>
@@ -2122,12 +1187,8 @@
       <div class="container films-grid">
         <div>
           <h2 id="films-title">Бренды плёнок</h2>
-          <p>
-            Используем только проверенные бренды плёнок
-            для вашей уверенности и долговечности.
-          </p>
+          <p>Используем только проверенные бренды плёнок для вашей уверенности и долговечности.</p>
         </div>
-
         <div class="films-content">
           <div class="brands" id="brands">
             <div class="brand-float" style="--delay:-1s">
@@ -2135,32 +1196,27 @@
                 <img data-asset="llumar" alt="LLumar" width="112" height="50" loading="lazy">
               </button>
             </div>
-
             <div class="brand-float" style="--delay:-2.2s">
               <button class="film-brand" type="button" data-film="SunTek" aria-label="Плёнки SunTek">
                 <img data-asset="suntek" alt="SunTek" width="112" height="50" loading="lazy">
               </button>
             </div>
-
             <div class="brand-float" style="--delay:-3.4s">
               <button class="film-brand" type="button" data-film="3M" aria-label="Плёнки 3M">
                 <img data-asset="threeM" alt="3M" width="112" height="50" loading="lazy">
               </button>
             </div>
-
             <div class="brand-float" style="--delay:-4.6s">
               <button class="film-brand" type="button" data-film="RAYNO" aria-label="Плёнки RAYNO">
                 <img data-asset="rayno" alt="RAYNO" width="112" height="50" loading="lazy">
               </button>
             </div>
-
             <div class="brand-float" style="--delay:-5.8s">
               <button class="film-brand" type="button" data-film="SPECTROLL" aria-label="Плёнки SPECTROLL">
                 <img data-asset="spectroll" alt="SPECTROLL" width="112" height="50" loading="lazy">
               </button>
             </div>
           </div>
-
           <div class="film-types">
             <span>Атермальные — защита от солнца</span>
             <span>Тонировочные — комфорт и приватность</span>
@@ -2173,48 +1229,24 @@
     <section class="section" id="training">
       <div class="container">
         <div class="training-card">
-          <div
-            class="training-photo"
-            data-crop="0 1024 283 189"
-            role="img"
-            aria-label="Практическое обучение в GlassFix Expert"
-          ></div>
-
+          <div class="training-photo" data-crop="0 1024 283 189" role="img"
+            aria-label="Практическое обучение в GlassFix Expert"></div>
           <div class="training-copy">
             <p class="eyebrow">Новая профессия</p>
             <h2 class="section-title">Обучение</h2>
-
             <p>
               Хотите освоить профессию и зарабатывать?
               Мы предлагаем обучение по ремонту и замене
               автостёкол, а также тонировке.
             </p>
-
             <div class="training-points">
-              <span>
-                <svg class="icon" aria-hidden="true"><use href="#i-practice"/></svg>
-                Практика
-              </span>
-
-              <span>
-                <svg class="icon" aria-hidden="true"><use href="#i-method"/></svg>
-                Современные методики
-              </span>
-
-              <span>
-                <svg class="icon" aria-hidden="true"><use href="#i-result"/></svg>
-                Реальный результат
-              </span>
+              <span><svg class="icon" aria-hidden="true"><use href="#i-practice"/></svg>Практика</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#i-method"/></svg>Современные методики</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#i-result"/></svg>Реальный результат</span>
             </div>
-
             <div class="training-actions">
-              <button class="button" type="button" data-book="Обучение">
-                Узнать подробнее
-              </button>
-
-              <button class="button secondary" type="button" id="course-button">
-                Онлайн-курс (скоро)
-              </button>
+              <button class="button" type="button" data-book="Обучение">Узнать подробнее</button>
+              <button class="button secondary" type="button" id="course-button">Онлайн-курс (скоро)</button>
             </div>
           </div>
         </div>
@@ -2226,12 +1258,8 @@
         <div class="reviews-strip">
           <div class="reviews-copy">
             <h2 id="reviews-title">Спасибо за ваше доверие</h2>
-            <p>
-              Самое ценное в нашей работе — ваше спокойствие
-              и добрые слова после ремонта.
-            </p>
+            <p>Самое ценное в нашей работе — ваше спокойствие и добрые слова после ремонта.</p>
           </div>
-
           <button class="reviews-open" type="button" data-reviews>
             Отзывы клиентов
             <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -2244,64 +1272,39 @@
       <div class="container">
         <div class="contact-box">
           <h2 class="section-title">Запись и связь</h2>
-
-          <p>
-            Расскажите, что нужно вашему автомобилю.
-            Подскажем и подберём подходящее решение.
-          </p>
-
+          <p>Расскажите, что нужно вашему автомобилю. Подскажем и подберём подходящее решение.</p>
           <a class="contact-phone" href="tel:+79283003473">
             <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
             +7 (928) 300-34-73
           </a>
-
           <div class="contact-links">
-            <a
-              class="messenger"
+            <a class="messenger"
               href="https://max.ru/u/f9LHodD0cOIJSWZjATZYw-ZbCP1C-HTsV_B_O4kbSh1UoGMozaITJufRJS4"
-              data-direct-channel="max"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Написать в MAX"
-            >
-              <span class="social-image" data-social="max" aria-hidden="true"></span>
+              data-direct-channel="max" target="_blank" rel="noopener noreferrer">
+              <span class="social-image" data-social="max" aria-hidden="true">
+                <svg><use href="#i-max"/></svg>
+              </span>
               MAX
             </a>
-
-            <a
-              class="messenger"
-              href="https://t.me/Mihail_Shabanow"
-              data-direct-channel="telegram"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Написать в Telegram"
-            >
-              <span class="social-image" data-social="telegram" aria-hidden="true"></span>
+            <a class="messenger" href="https://t.me/Mihail_Shabanow"
+              data-direct-channel="telegram" target="_blank" rel="noopener noreferrer">
+              <span class="social-image" data-social="telegram" aria-hidden="true">
+                <svg><use href="#i-telegram"/></svg>
+              </span>
               Telegram
             </a>
-
-            <a
-              class="messenger"
-              href="https://wa.me/79283003473"
-              data-direct-channel="whatsapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Написать в WhatsApp"
-            >
-              <span class="social-image" data-social="whatsapp" aria-hidden="true"></span>
+            <a class="messenger" href="https://wa.me/79283003473"
+              data-direct-channel="whatsapp" target="_blank" rel="noopener noreferrer">
+              <span class="social-image" data-social="whatsapp" aria-hidden="true">
+                <svg><use href="#i-whatsapp"/></svg>
+              </span>
               WhatsApp
             </a>
-
-            <a
-              class="messenger"
+            <a class="messenger"
               href="https://www.avito.ru/brands/769f38ab0c6cabc794d28e560f421eb0?src=sharing"
-              data-direct-channel="avito"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Открыть страницу Avito"
-            >
+              data-direct-channel="avito" target="_blank" rel="noopener noreferrer">
               <span class="social-image avito" aria-hidden="true">
-                <svg class="icon"><use href="#i-avito"/></svg>
+                <svg><use href="#i-avito"/></svg>
               </span>
               Avito
             </a>
@@ -2313,13 +1316,13 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <a class="logo" href="#home" aria-label="GlassFix Expert — главная" data-logo></a>
-
+      <a class="logo" href="#home" aria-label="GlassFix Expert — главная" data-logo>
+        <span class="logo-fallback">GlassFix<span>&nbsp;Expert</span></span>
+      </a>
       <div class="footer-details">
         <p class="footer-note">Ваш комфорт — наша забота.</p>
         <a class="footer-phone" href="tel:+79283003473">+7 (928) 300-34-73</a>
       </div>
-
       <nav class="footer-links" aria-label="Навигация в подвале">
         <a href="#services">Услуги</a>
         <a href="#advantages">Преимущества</a>
@@ -2330,29 +1333,24 @@
     </div>
   </footer>
 
+  <div class="fallback-backdrop" id="fallback-backdrop" hidden></div>
+
   <dialog id="contact-dialog" aria-labelledby="contact-title">
     <div class="dialog-top">
       <h2 id="contact-title">На связи с заботой о вас</h2>
-
       <button class="close-dialog" type="button" data-close aria-label="Закрыть окно">
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
     </div>
-
     <p class="dialog-text">
       Позвоните или напишите удобным способом.
       Поможем разобраться и выбрать решение без лишних услуг.
     </p>
-
     <div class="contact-form">
       <a class="call-button" href="tel:+79283003473">
         <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
-        <span>
-          <small>Позвонить мастеру</small>
-          <strong>+7 (928) 300-34-73</strong>
-        </span>
+        <span><small>Позвонить мастеру</small><strong>+7 (928) 300-34-73</strong></span>
       </a>
-
       <label for="service-select">
         Что вас интересует
         <select id="service-select">
@@ -2365,35 +1363,42 @@
           <option>Обучение</option>
         </select>
       </label>
-
       <div class="dialog-channels">
-        <a class="channel-button" data-channel="max" target="_blank" rel="noopener noreferrer">
-          <span class="social-image" data-social="max" aria-hidden="true"></span>
+        <a class="channel-button"
+          href="https://max.ru/u/f9LHodD0cOIJSWZjATZYw-ZbCP1C-HTsV_B_O4kbSh1UoGMozaITJufRJS4"
+          data-channel="max" target="_blank" rel="noopener noreferrer">
+          <span class="social-image" data-social="max" aria-hidden="true">
+            <svg><use href="#i-max"/></svg>
+          </span>
           <span>Написать в MAX</span>
           <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
-
-        <a class="channel-button" data-channel="telegram" target="_blank" rel="noopener noreferrer">
-          <span class="social-image" data-social="telegram" aria-hidden="true"></span>
+        <a class="channel-button" href="https://t.me/Mihail_Shabanow"
+          data-channel="telegram" target="_blank" rel="noopener noreferrer">
+          <span class="social-image" data-social="telegram" aria-hidden="true">
+            <svg><use href="#i-telegram"/></svg>
+          </span>
           <span>Написать в Telegram</span>
           <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
-
-        <a class="channel-button" data-channel="whatsapp" target="_blank" rel="noopener noreferrer">
-          <span class="social-image" data-social="whatsapp" aria-hidden="true"></span>
+        <a class="channel-button" href="https://wa.me/79283003473"
+          data-channel="whatsapp" target="_blank" rel="noopener noreferrer">
+          <span class="social-image" data-social="whatsapp" aria-hidden="true">
+            <svg><use href="#i-whatsapp"/></svg>
+          </span>
           <span>Написать в WhatsApp</span>
           <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
-
-        <a class="channel-button" data-channel="avito" target="_blank" rel="noopener noreferrer">
+        <a class="channel-button"
+          href="https://www.avito.ru/brands/769f38ab0c6cabc794d28e560f421eb0?src=sharing"
+          data-channel="avito" target="_blank" rel="noopener noreferrer">
           <span class="social-image avito" aria-hidden="true">
-            <svg class="icon"><use href="#i-avito"/></svg>
+            <svg><use href="#i-avito"/></svg>
           </span>
           <span>Открыть страницу Avito</span>
           <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
       </div>
-
       <p class="status" id="contact-status" role="status" aria-live="polite">
         Расскажите о вашем автомобиле и задаче — подскажем, с чего начать.
       </p>
@@ -2403,37 +1408,28 @@
   <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="photo-title">
     <div class="dialog-top">
       <h2 id="photo-title">Фото работ</h2>
-
       <button class="close-dialog" type="button" data-close aria-label="Закрыть изображение">
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
     </div>
-
     <div class="preview-frame">
-      <img class="preview-image" id="preview-image" alt="" decoding="async">
-      <p class="dialog-text" id="preview-error" hidden>Изображение пока недоступно.</p>
+      <img class="preview-image" id="preview-image" alt="" decoding="async" hidden>
+      <p class="dialog-text" id="preview-error" hidden>
+        Изображение временно недоступно. Свяжитесь с мастером — подскажем подробнее.
+      </p>
     </div>
-
     <p class="photo-caption" id="photo-caption"></p>
-
-    <button class="button" type="button" id="photo-contact">
-      Записаться
-    </button>
+    <button class="button" type="button" id="photo-contact">Записаться</button>
   </dialog>
 
   <dialog class="reviews-dialog" id="reviews-dialog" aria-labelledby="reviews-dialog-title">
     <div class="dialog-top">
       <h2 id="reviews-dialog-title">Отзывы клиентов</h2>
-
       <button class="close-dialog" type="button" data-close aria-label="Закрыть отзывы">
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
     </div>
-
-    <p class="reviews-intro">
-      Спасибо, что делитесь впечатлениями и рекомендуете нас.
-    </p>
-
+    <p class="reviews-intro">Спасибо, что делитесь впечатлениями и рекомендуете нас.</p>
     <div class="review-list">
       <article class="review-card">
         <h3>Ремонт лобового стекла</h3>
@@ -2443,7 +1439,6 @@
           Остались очень довольны. Теперь только к ним! Спасибо.
         </blockquote>
       </article>
-
       <article class="review-card">
         <h3>Ремонт сколов и трещин на лобовом стекле</h3>
         <div class="review-stars" aria-label="5 из 5 звёзд">★★★★★</div>
@@ -2452,7 +1447,6 @@
           обращайтесь не пожалеете даже если будете проездом.
         </blockquote>
       </article>
-
       <article class="review-card">
         <h3>Ремонт скола</h3>
         <div class="review-stars" aria-label="5 из 5 звёзд">★★★★★</div>
@@ -2461,7 +1455,6 @@
           Цена не была завышена, как в большинстве сервисов. Рекомендую
         </blockquote>
       </article>
-
       <article class="review-card">
         <h3>Впечатления о работе мастера</h3>
         <div class="review-stars" aria-label="5 из 5 звёзд">★★★★★</div>
@@ -2470,7 +1463,6 @@
           данного мастера, потому-что он действительно знает свое дело !
         </blockquote>
       </article>
-
       <article class="review-card">
         <h3>Качество и аккуратность</h3>
         <div class="review-stars" aria-label="5 из 5 звёзд">★★★★★</div>
@@ -2480,13 +1472,13 @@
         </blockquote>
       </article>
     </div>
-
     <p class="reviews-source">
       Подборка отзывов предоставлена владельцем сайта.
       Оригинальные публикации и оценки можно посмотреть на странице Avito.
     </p>
-
-    <a class="button secondary reviews-avito" id="reviews-avito" target="_blank" rel="noopener noreferrer">
+    <a class="button secondary reviews-avito" id="reviews-avito"
+      href="https://www.avito.ru/brands/769f38ab0c6cabc794d28e560f421eb0?src=sharing"
+      target="_blank" rel="noopener noreferrer">
       Смотреть отзывы на Avito
       <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
     </a>
@@ -2495,51 +1487,16 @@
   <dialog id="info-dialog" aria-labelledby="info-title">
     <div class="dialog-top">
       <h2 id="info-title">Информация</h2>
-
       <button class="close-dialog" type="button" data-close aria-label="Закрыть окно">
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
     </div>
-
     <p class="dialog-text" id="info-text"></p>
-
-    <button class="button info-contact" type="button" id="info-contact">
-      Связаться с мастером
-    </button>
+    <button class="button info-contact" type="button" id="info-contact">Связаться с мастером</button>
   </dialog>
 
   <script>
     "use strict";
-
-    /*
-      Главный файл: index.html.
-
-      CONFIG.servicePhoto:
-      общая фотография для кнопок с лобовым стеклом.
-      Замените адрес, когда будут готовы фотографии.
-
-      CONFIG.servicePhotoCaption:
-      подпись к общей фотографии.
-
-      CONFIG.videoSrc:
-      путь к будущему видео, например assets/about.mp4.
-
-      CONFIG.videoPoster:
-      необязательная обложка видео.
-
-      CONFIG.videoCaptions:
-      необязательные русские субтитры в формате VTT.
-
-      CONFIG.transparentLogo:
-      прозрачный PNG, WebP или SVG логотип.
-      Пока значение пустое, используется фрагмент вашего изображения.
-
-      Для независимости от внешнего хранилища скачайте изображения
-      в репозиторий и замените адреса локальными путями.
-
-      Анимации работают через CSS transform.
-      Запуск анимации брендов не зависит от IntersectionObserver.
-    */
 
     const BASE =
       "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/";
@@ -2575,161 +1532,221 @@
     };
 
     const SVG_NS = "http://www.w3.org/2000/svg";
+    const XLINK_NS = "http://www.w3.org/1999/xlink";
 
-    function createCrop(source, viewBox, width, height, fit) {
-      const svg = document.createElementNS(SVG_NS, "svg");
-      const image = document.createElementNS(SVG_NS, "image");
+    const contactDialog = document.querySelector("#contact-dialog");
+    const photoDialog = document.querySelector("#photo-dialog");
+    const reviewsDialog = document.querySelector("#reviews-dialog");
+    const infoDialog = document.querySelector("#info-dialog");
+    const fallbackBackdrop = document.querySelector("#fallback-backdrop");
+    const serviceSelect = document.querySelector("#service-select");
+    const contactStatus = document.querySelector("#contact-status");
+    const previewImage = document.querySelector("#preview-image");
+    const previewError = document.querySelector("#preview-error");
+    const dialogs = Array.from(document.querySelectorAll("dialog"));
 
-      svg.setAttribute("viewBox", viewBox);
-      svg.setAttribute("preserveAspectRatio", fit);
-      svg.setAttribute("aria-hidden", "true");
-      svg.setAttribute("focusable", "false");
-      svg.style.width = "100%";
-      svg.style.height = "100%";
+    let currentPhotoService = "Консультация";
+    let currentInfoService = "Консультация";
+    const dialogOpeners = new WeakMap();
 
-      image.setAttribute("href", source);
-      image.setAttribute("width", String(width));
-      image.setAttribute("height", String(height));
-
-      svg.append(image);
-      return svg;
+    function updateModalState() {
+      const opened = document.querySelector("dialog[open]");
+      document.body.classList.toggle("modal-open", Boolean(opened));
+      fallbackBackdrop.hidden = !document.querySelector("dialog.dialog-fallback[open]");
     }
 
-    document.querySelector("#hero-photo").src = CONFIG.heroPhoto;
+    function closeDialog(dialog, restoreFocus = true) {
+      if (!dialog || !dialog.hasAttribute("open")) return;
 
-    document.querySelectorAll("[data-logo]").forEach((element) => {
-      if (CONFIG.transparentLogo.trim()) {
-        const image = document.createElement("img");
-        image.src = CONFIG.transparentLogo.trim();
-        image.alt = "";
-        image.width = 348;
-        image.height = 106;
-        image.decoding = "async";
-        element.append(image);
-        return;
+      const opener = dialogOpeners.get(dialog);
+
+      if (dialog.classList.contains("dialog-fallback")) {
+        dialog.removeAttribute("open");
+        dialog.classList.remove("dialog-fallback");
+      } else if (typeof dialog.close === "function") {
+        dialog.close();
+      } else {
+        dialog.removeAttribute("open");
       }
 
-      element.append(
-        createCrop(
-          ASSETS.logo,
-          "55 430 1150 350",
-          1254,
-          1254,
-          "xMidYMid meet"
-        )
-      );
-    });
+      updateModalState();
 
-    document.querySelectorAll("[data-asset]").forEach((image) => {
-      image.src = ASSETS[image.dataset.asset];
-      image.decoding = "async";
-    });
-
-    const socialCrops = {
-      max: {
-        viewBox: "350 87 500 500",
-        width: 1200,
-        height: 675
-      },
-      telegram: {
-        viewBox: "75 75 760 760",
-        width: 900,
-        height: 900
-      },
-      whatsapp: {
-        viewBox: "274 274 1372 1372",
-        width: 1920,
-        height: 1920
+      if (restoreFocus && opener && opener.isConnected) {
+        opener.focus({ preventScroll: true });
       }
-    };
-
-    document.querySelectorAll("[data-social]").forEach((element) => {
-      const key = element.dataset.social;
-      const crop = socialCrops[key];
-
-      element.append(
-        createCrop(
-          ASSETS[key],
-          crop.viewBox,
-          crop.width,
-          crop.height,
-          "xMidYMid meet"
-        )
-      );
-    });
-
-    function mountPhoto(element) {
-      if (element.dataset.loaded === "true") return;
-
-      element.append(
-        createCrop(
-          ASSETS.layout,
-          element.dataset.crop,
-          1024,
-          1536,
-          "xMidYMid slice"
-        )
-      );
-
-      element.dataset.loaded = "true";
     }
 
-    if ("IntersectionObserver" in window) {
-      const photoObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          mountPhoto(entry.target);
-          photoObserver.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "250px"
+    function closeOtherDialogs(except) {
+      dialogs.forEach((dialog) => {
+        if (dialog !== except) closeDialog(dialog, false);
+      });
+    }
+
+    function openDialog(dialog) {
+      if (!dialog || dialog.hasAttribute("open")) return;
+
+      const activeElement = document.activeElement;
+      const activeDialog = activeElement && activeElement.closest
+        ? activeElement.closest("dialog")
+        : null;
+
+      dialogOpeners.set(
+        dialog,
+        activeDialog ? dialogOpeners.get(activeDialog) : activeElement
+      );
+
+      closeOtherDialogs(dialog);
+
+      if (typeof dialog.showModal === "function") {
+        dialog.showModal();
+      } else {
+        dialog.classList.add("dialog-fallback");
+        dialog.setAttribute("open", "");
+        dialog.setAttribute("role", "dialog");
+        dialog.setAttribute("aria-modal", "true");
+
+        const firstButton = dialog.querySelector("button, a[href], select");
+        if (firstButton) firstButton.focus();
+      }
+
+      dialog.scrollTop = 0;
+      updateModalState();
+    }
+
+    function safeHttps(value) {
+      if (!value) return null;
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" ? url : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function contactMessage() {
+      return "Здравствуйте! Интересует услуга: " + serviceSelect.value + ".";
+    }
+
+    function updateChannelLinks() {
+      document.querySelectorAll("[data-channel]").forEach((link) => {
+        const channel = link.dataset.channel;
+        const url = safeHttps(CONFIG.contacts[channel]);
+
+        if (!url) {
+          link.removeAttribute("href");
+          return;
+        }
+
+        if (
+          channel === "whatsapp" &&
+          (url.hostname === "wa.me" || url.hostname === "api.whatsapp.com")
+        ) {
+          url.searchParams.set("text", contactMessage());
+        }
+
+        link.href = url.href;
+      });
+    }
+
+    function openContact(service = "Консультация") {
+      const validService = Array.from(serviceSelect.options).some((option) => {
+        return option.value === service;
       });
 
-      document.querySelectorAll("[data-crop]").forEach((element) => {
-        photoObserver.observe(element);
+      serviceSelect.value = validService ? service : "Консультация";
+      contactStatus.textContent =
+        "Расскажите о вашем автомобиле и задаче — подскажем, с чего начать.";
+
+      updateChannelLinks();
+      openDialog(contactDialog);
+    }
+
+    function showInfo(title, text, service = "Консультация") {
+      currentInfoService = service;
+      document.querySelector("#info-title").textContent = title;
+      document.querySelector("#info-text").textContent = text;
+      openDialog(infoDialog);
+    }
+
+    document.querySelectorAll("[data-book]").forEach((button) => {
+      button.addEventListener("click", () => {
+        openContact(button.dataset.book);
       });
-    } else {
-      document.querySelectorAll("[data-crop]").forEach(mountPhoto);
-    }
+    });
 
-    const brands = document.querySelector("#brands");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    serviceSelect.addEventListener("change", updateChannelLinks);
 
-    function updateBrandAnimation() {
-      const modalIsOpen = Boolean(document.querySelector("dialog[open]"));
-      const paused =
-        document.hidden ||
-        reducedMotion.matches ||
-        modalIsOpen;
+    document.querySelectorAll("[data-channel]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (!link.getAttribute("href")) {
+          event.preventDefault();
+          contactStatus.textContent =
+            "Ссылка временно недоступна. Позвоните: +7 (928) 300-34-73.";
+          return;
+        }
 
-      brands.classList.toggle("is-paused", paused);
-      document.body.classList.toggle(
-        "animations-paused",
-        document.hidden || reducedMotion.matches
-      );
-    }
+        contactStatus.textContent = link.dataset.channel === "avito"
+          ? "На странице Avito можно посмотреть отзывы и выбрать способ связи."
+          : "Напишите в переписке: «" + contactMessage() + "»";
+      });
+    });
 
-    document.addEventListener("visibilitychange", updateBrandAnimation);
-    window.addEventListener("pageshow", updateBrandAnimation);
+    document.querySelectorAll("[data-direct-channel]").forEach((link) => {
+      const url = safeHttps(CONFIG.contacts[link.dataset.directChannel]);
+      if (url) link.href = url.href;
+    });
 
-    if (typeof reducedMotion.addEventListener === "function") {
-      reducedMotion.addEventListener("change", updateBrandAnimation);
-    } else if (typeof reducedMotion.addListener === "function") {
-      reducedMotion.addListener(updateBrandAnimation);
-    }
+    previewImage.addEventListener("load", () => {
+      previewImage.hidden = false;
+      previewError.hidden = true;
+    });
 
-    updateBrandAnimation();
+    previewImage.addEventListener("error", () => {
+      previewImage.hidden = true;
+      previewError.hidden = false;
+    });
 
-    const aboutVideo = document.querySelector("#about-video");
-    const videoPlaceholder = document.querySelector("#video-placeholder");
-    const videoPlaceholderText = document.querySelector("#video-placeholder-text");
-    const videoPoster = document.querySelector(".video-poster");
+    document.querySelectorAll("[data-photo]").forEach((button) => {
+      button.addEventListener("click", () => {
+        currentPhotoService = button.dataset.photo;
 
-    if (CONFIG.videoSrc.trim()) {
-      aboutVideo.src = CONFIG.videoSrc.trim();
+        document.querySelector("#photo-title").textContent =
+          "Фото работ — " + currentPhotoService.toLowerCase();
 
-      if (CONFIG.videoPoster.trim()) {
-        aboutVideo.poster = CONFIG.videoPoster.trim();
-      }
+        document.querySelector("#photo-caption").textContent =
+          CONFIG.servicePhotoCaption;
 
-      if (CONFIG.videoCaptions.trim()) {
+        previewImage.alt =
+          "Иллюстрация автомобильного стекла — " + currentPhotoService;
+
+        previewError.hidden = true;
+        previewImage.hidden = false;
+
+        if (previewImage.getAttribute("src") !== CONFIG.servicePhoto) {
+          previewImage.src = CONFIG.servicePhoto;
+        } else if (previewImage.complete) {
+          const loaded = previewImage.naturalWidth > 0;
+          previewImage.hidden = !loaded;
+          previewError.hidden = loaded;
+        }
+
+        openDialog(photoDialog);
+      });
+    });
+
+    document.querySelector("#photo-contact").addEventListener("click", () => {
+      openContact(currentPhotoService);
+    });
+
+    document.querySelector("#info-contact").addEventListener("click", () => {
+      openContact(currentInfoService);
+    });
+
+    document.querySelectorAll("[data-reviews]").forEach((button) => {
+      button.addEventListener("click", () => {
+        openDialog(reviewsDialog);
+      });
+    });
+
+    const avitoUrl = safeHttps(CONFIG.contacts.avito);
+    if (avitoUrl) document.querySelector("#reviews-avito").href =
