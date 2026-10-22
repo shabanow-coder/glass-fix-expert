@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071014">
-  <meta name="description" content="GlassFix Expert — ремонт, замена и тонировка автомобильных стёкол.">
+  <meta name="description" content="GlassFix Expert — ремонт, замена, тонировка автостёкол, удаление водного камня и нанесение антидождя.">
   <title>GlassFix Expert — автостёкла</title>
 
   <style>
@@ -30,12 +30,12 @@
 
     body {
       margin: 0;
+      overflow-x: clip;
       background: var(--bg);
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-      overflow-x: clip;
     }
 
     button, input, select {
@@ -62,14 +62,15 @@
 
     button:focus-visible,
     a:focus-visible,
-    select:focus-visible {
+    select:focus-visible,
+    video:focus-visible {
       outline: 2px solid #ffb16a;
       outline-offset: 5px;
     }
 
     ::selection {
-      background: #ff7900;
-      color: #071014;
+      background: var(--orange);
+      color: var(--bg);
     }
 
     .container {
@@ -80,12 +81,12 @@
     .icon {
       width: 26px;
       height: 26px;
+      flex-shrink: 0;
       fill: none;
       stroke: currentColor;
       stroke-width: 1.7;
       stroke-linecap: round;
       stroke-linejoin: round;
-      flex-shrink: 0;
     }
 
     .accent {
@@ -105,7 +106,7 @@
       color: #111417;
       font-size: 14px;
       font-weight: 700;
-      transition: transform .25s ease, background-color .25s ease;
+      transition: transform .25s ease;
     }
 
     .button:hover {
@@ -118,8 +119,8 @@
     }
 
     .button.secondary {
-      background: transparent;
       border-color: var(--line);
+      background: transparent;
       color: var(--text);
       font-weight: 400;
     }
@@ -128,8 +129,8 @@
       position: sticky;
       z-index: 20;
       top: 0;
-      background: #071014f5;
       border-bottom: 1px solid var(--line);
+      background: #071014f5;
     }
 
     .header-inner {
@@ -141,37 +142,29 @@
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .logo-mark {
-      width: 35px;
-      height: 35px;
-    }
-
-    .logo-text {
-      font-size: 23px;
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -1px;
-    }
-
-    .logo-text small {
       display: block;
-      margin-top: 5px;
-      color: #b9c5cd;
-      font-size: 9px;
-      letter-spacing: 4.8px;
+      width: 174px;
+      height: 53px;
+      flex: 0 0 auto;
+    }
+
+    .logo svg,
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo svg {
+      -webkit-mask-image: radial-gradient(ellipse 70% 78% at center, #000 54%, transparent 100%);
+      mask-image: radial-gradient(ellipse 70% 78% at center, #000 54%, transparent 100%);
     }
 
     .nav {
       display: flex;
       gap: 28px;
-      font-size: 13px;
       color: #c1ccd3;
+      font-size: 13px;
     }
 
     .nav a {
@@ -194,16 +187,16 @@
       isolation: isolate;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 85% 45%, #17333e80, transparent 62%),
-        linear-gradient(135deg, #071014, #0a161c 75%, #111b20);
+        radial-gradient(ellipse at 85% 45%, #17333e65, transparent 62%),
+        #071014;
     }
 
     .hero-inner {
       display: grid;
-      grid-template-columns: .95fr 1.25fr;
+      grid-template-columns: 1fr 1.15fr;
       align-items: center;
-      min-height: 550px;
       gap: 15px;
+      min-height: 550px;
     }
 
     .hero-copy {
@@ -228,6 +221,7 @@
       content: "";
       width: 24px;
       height: 2px;
+      flex-shrink: 0;
       background: var(--orange);
     }
 
@@ -240,12 +234,21 @@
     }
 
     .hero-subtitle {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 9px;
       margin: 15px 0 23px;
-      font-size: clamp(21px, 2.5vw, 32px);
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: 1px;
       color: var(--orange);
+      font-size: clamp(16px, 1.95vw, 23px);
+      font-weight: 700;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .word-dot {
+      font-size: .85em;
+      line-height: 1;
     }
 
     .hero-description {
@@ -264,41 +267,42 @@
 
     .hero-note {
       max-width: 150px;
+      color: var(--muted);
       font-size: 11px;
       line-height: 1.5;
-      color: var(--muted);
     }
 
     .car-wrap {
       position: relative;
-      width: 115%;
-      margin-left: -5%;
-    }
-
-    .car-wrap::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 30% 10% 8%;
-      background: #1b3b4855;
-      filter: blur(40px);
-      border-radius: 50%;
+      align-self: stretch;
+      min-width: 0;
+      width: 125%;
+      margin-left: -12%;
       pointer-events: none;
     }
 
-    .car-art {
+    .car-photo {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: 48% center;
+      -webkit-mask-image:
+        linear-gradient(90deg, transparent 0%, #000 19%, #000 91%, transparent 100%);
+      mask-image:
+        linear-gradient(90deg, transparent 0%, #000 19%, #000 91%, transparent 100%);
     }
 
-    .hero-caption {
+    .car-wrap::after {
+      content: "";
       position: absolute;
-      bottom: 3%;
-      right: 9%;
-      margin: 0;
-      color: #b4c1c9;
-      font-size: 11px;
-      letter-spacing: .5px;
+      inset: 0;
+      background:
+        linear-gradient(0deg, #071014, transparent 17%, transparent 87%, #07101488),
+        linear-gradient(90deg, #07101480, transparent 32%);
+      pointer-events: none;
     }
 
     .trust {
@@ -316,8 +320,8 @@
       align-items: center;
       justify-content: center;
       gap: 13px;
-      font-size: 13px;
       color: #c3ced5;
+      font-size: 13px;
     }
 
     .trust-item + .trust-item {
@@ -336,7 +340,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 24px;
+      gap: 30px;
       margin-bottom: 28px;
     }
 
@@ -352,10 +356,11 @@
     }
 
     .section-description {
-      max-width: 280px;
+      max-width: 365px;
       margin: 0;
       color: var(--muted);
       font-size: 13px;
+      line-height: 1.8;
     }
 
     .services {
@@ -380,7 +385,9 @@
       inset: 0;
       opacity: .67;
       transform: scale(1.015);
-      transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .6s ease;
+      transition:
+        transform .8s cubic-bezier(.2,.7,.2,1),
+        opacity .6s ease;
       -webkit-mask-image: linear-gradient(#000 45%, transparent 100%);
       mask-image: linear-gradient(#000 45%, transparent 100%);
     }
@@ -409,27 +416,18 @@
       pointer-events: none;
     }
 
-    .service-number {
-      position: absolute;
-      top: 19px;
-      left: 21px;
-      font-size: 11px;
-      color: #e1e9edaa;
-      letter-spacing: 1px;
-    }
-
     .service-arrow {
       position: absolute;
-      right: 17px;
       top: 17px;
+      right: 17px;
       display: grid;
       place-items: center;
       width: 34px;
       height: 34px;
       border: 1px solid #ffffff33;
       border-radius: 50%;
-      color: white;
       background: #07101455;
+      color: white;
       transition: transform .4s ease;
     }
 
@@ -440,16 +438,17 @@
 
     .service-content {
       position: absolute;
+      right: 22px;
       bottom: 26px;
       left: 25px;
-      right: 22px;
     }
 
     .service-content > .icon {
-      width: 32px;
-      height: 32px;
-      color: var(--orange);
+      width: 38px;
+      height: 38px;
       margin-bottom: 15px;
+      color: var(--orange);
+      stroke-width: 1.55;
     }
 
     .service h3 {
@@ -494,29 +493,78 @@
       gap: 64px;
     }
 
-    .about-photo {
+    .about-video {
       position: relative;
       aspect-ratio: 1.45;
       overflow: hidden;
+      border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--panel);
     }
 
-    .about-photo::after {
+    .about-video video {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #09151b;
+    }
+
+    .about-video video[hidden] {
+      display: none;
+    }
+
+    .video-poster {
+      position: absolute;
+      inset: 0;
+    }
+
+    .video-poster::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(0deg, #07101488, transparent 65%);
-      pointer-events: none;
+      background: linear-gradient(0deg, #071014cf, #07101420 75%);
     }
 
-    .photo-label {
+    .video-placeholder {
       position: absolute;
       z-index: 1;
-      bottom: 20px;
-      left: 22px;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .video-placeholder[hidden] {
+      display: none;
+    }
+
+    .video-play {
+      display: grid;
+      place-items: center;
+      width: 60px;
+      height: 60px;
+      border: 1px solid #ff790077;
+      border-radius: 50%;
+      background: #071014cc;
+      color: var(--orange);
+    }
+
+    .video-play .icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .video-placeholder p {
+      margin: 0;
+      color: #d3dfe6;
       font-size: 12px;
-      color: #eef2f4;
     }
 
     .about-copy .eyebrow {
@@ -539,15 +587,15 @@
 
     .about-point {
       display: flex;
-      gap: 9px;
       align-items: center;
-      font-size: 11px;
+      gap: 9px;
       color: #c3cdd4;
+      font-size: 11px;
     }
 
     .about-point .icon {
-      width: 23px;
-      height: 23px;
+      width: 26px;
+      height: 26px;
       color: var(--orange);
     }
 
@@ -559,9 +607,9 @@
 
     .films-grid {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 40px;
+      grid-template-columns: 245px minmax(0, 1fr);
       align-items: center;
+      gap: 35px;
     }
 
     .films h2 {
@@ -577,10 +625,15 @@
       line-height: 1.7;
     }
 
+    .films-content {
+      min-width: 0;
+    }
+
     .brands {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 14px;
+      align-items: center;
+      gap: 10px;
       perspective: 700px;
     }
 
@@ -588,34 +641,39 @@
       display: grid;
       place-items: center;
       min-width: 0;
-      height: 70px;
-      padding: 11px;
+      width: 100%;
+      height: 76px;
+      padding: 12px 8px;
       border: 1px solid transparent;
       border-radius: 15px;
       background: transparent;
       color: white;
-      transition: transform .35s ease, background-color .35s ease, border-color .35s ease;
+      transition:
+        transform .35s ease,
+        background-color .35s ease,
+        border-color .35s ease;
     }
 
     .film-brand:hover,
     .film-brand:focus-visible {
-      transform: translateY(-5px) translateZ(15px);
-      background: #14252e;
+      transform: translateY(-5px) translateZ(12px);
       border-color: #ff790033;
+      background: #14252e;
     }
 
     .film-brand > span {
       display: block;
       width: 100%;
-      height: 42px;
+      max-width: 120px;
+      height: 46px;
     }
 
     .film-types {
       display: flex;
-      justify-content: flex-end;
       flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 16px;
+      justify-content: flex-start;
+      gap: 8px 20px;
+      margin-top: 15px;
       color: #879ba8;
       font-size: 10px;
     }
@@ -645,31 +703,32 @@
     }
 
     .training-copy > p:not(.eyebrow) {
+      max-width: 430px;
+      margin: 18px 0 24px;
       color: var(--muted);
       font-size: 14px;
-      max-width: 430px;
       line-height: 1.8;
-      margin: 18px 0 24px;
     }
 
     .training-points {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 17px;
-      margin-bottom: 25px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-bottom: 27px;
       color: #b6c4cd;
       font-size: 11px;
     }
 
     .training-points span {
       display: flex;
-      align-items: center;
-      gap: 7px;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .training-points .icon {
-      width: 19px;
-      height: 19px;
+      width: 25px;
+      height: 25px;
       color: var(--orange);
     }
 
@@ -680,9 +739,9 @@
     }
 
     .training-actions .button {
+      min-height: 46px;
       padding-inline: 20px;
       font-size: 12px;
-      min-height: 46px;
     }
 
     .contact {
@@ -703,8 +762,8 @@
       content: "";
       position: absolute;
       z-index: -1;
-      right: -60px;
       top: -120px;
+      right: -60px;
       width: 330px;
       height: 330px;
       background: radial-gradient(circle, #ff790020, transparent 68%);
@@ -760,30 +819,22 @@
       color: #b28aff;
     }
 
-    .avito {
-      color: #ff8fa8;
-    }
-
     .footer {
       padding-block: 5px 35px;
     }
 
     .footer-inner {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 25px;
       padding-top: 27px;
       border-top: 1px solid var(--line);
     }
 
-    .footer .logo-text {
-      font-size: 19px;
-    }
-
-    .footer .logo-mark {
-      width: 29px;
-      height: 29px;
+    .footer .logo {
+      width: 152px;
+      height: 46px;
     }
 
     .footer-note {
@@ -830,10 +881,10 @@
     }
 
     .close-dialog {
-      border: 0;
       padding: 0;
-      color: var(--muted);
+      border: 0;
       background: transparent;
+      color: var(--muted);
     }
 
     .booking-form {
@@ -844,8 +895,8 @@
     .booking-form label {
       display: grid;
       gap: 9px;
-      font-size: 13px;
       color: var(--muted);
+      font-size: 13px;
     }
 
     .booking-form select {
@@ -877,9 +928,9 @@
 
     .status {
       margin: 0;
+      color: #ffb16a;
       font-size: 12px;
       line-height: 1.7;
-      color: #ffb16a;
     }
 
     @media (max-width: 1000px) {
@@ -897,8 +948,8 @@
       }
 
       .service-content {
-        left: 20px;
         right: 17px;
+        left: 20px;
       }
 
       .service h3 {
@@ -910,16 +961,16 @@
       }
 
       .films-grid {
-        grid-template-columns: 210px 1fr;
+        grid-template-columns: 210px minmax(0, 1fr);
         gap: 25px;
       }
 
       .brands {
-        gap: 5px;
+        gap: 4px;
       }
 
       .film-brand {
-        padding: 8px;
+        padding-inline: 5px;
       }
 
       .training-copy {
@@ -937,18 +988,9 @@
         gap: 12px;
       }
 
-      .logo-mark {
-        width: 29px;
-        height: 29px;
-      }
-
-      .logo-text {
-        font-size: 21px;
-      }
-
-      .logo-text small {
-        font-size: 8px;
-        letter-spacing: 4.4px;
+      .header .logo {
+        width: 146px;
+        height: 45px;
       }
 
       .header .button {
@@ -967,19 +1009,19 @@
 
       .hero-inner {
         grid-template-columns: 1fr;
-        min-height: auto;
         gap: 0;
+        min-height: auto;
       }
 
       .hero-copy {
         padding-top: 42px;
-        padding-bottom: 5px;
+        padding-bottom: 13px;
       }
 
       .eyebrow {
+        margin-bottom: 20px;
         font-size: 9px;
         letter-spacing: 1.6px;
-        margin-bottom: 20px;
       }
 
       h1 {
@@ -988,15 +1030,16 @@
       }
 
       .hero-subtitle {
+        gap: 8px;
         margin-top: 13px;
         margin-bottom: 18px;
-        font-size: 24px;
+        font-size: clamp(13px, 3.9vw, 23px);
       }
 
       .hero-description {
         max-width: 310px;
-        font-size: 13px;
         margin-bottom: 23px;
+        font-size: 13px;
       }
 
       .hero-bottom {
@@ -1015,20 +1058,24 @@
       }
 
       .car-wrap {
-        width: 112%;
-        margin-left: -6%;
-        margin-top: -5px;
-        margin-bottom: 15px;
+        align-self: auto;
+        width: calc(100% + 32px);
+        height: auto;
+        aspect-ratio: 580 / 400;
+        margin: 0 -16px;
       }
 
-      .car-wrap::before {
-        filter: blur(24px);
+      .car-photo {
+        object-fit: cover;
+        object-position: center;
+        -webkit-mask-image: linear-gradient(0deg, transparent, #000 13%, #000 85%, transparent);
+        mask-image: linear-gradient(0deg, transparent, #000 13%, #000 85%, transparent);
       }
 
-      .hero-caption {
-        bottom: 4%;
-        right: 12%;
-        font-size: 9px;
+      .car-wrap::after {
+        background:
+          linear-gradient(0deg, #07101455, transparent 30%),
+          linear-gradient(90deg, #07101422, transparent 20%, transparent 85%, #07101422);
       }
 
       .trust-grid {
@@ -1038,8 +1085,8 @@
       .trust-item {
         flex-direction: column;
         gap: 8px;
-        text-align: center;
         padding-inline: 5px;
+        text-align: center;
         font-size: 10px;
         line-height: 1.45;
       }
@@ -1063,8 +1110,8 @@
       }
 
       .section-description {
+        max-width: 390px;
         margin-top: 13px;
-        max-width: 300px;
         font-size: 12px;
       }
 
@@ -1089,19 +1136,19 @@
       }
 
       .service-content {
-        left: 23px;
         bottom: 24px;
+        left: 23px;
       }
 
       .service-content > .icon {
-        width: 28px;
-        height: 28px;
+        width: 36px;
+        height: 36px;
         margin-bottom: 13px;
       }
 
       .service h3 {
+        max-width: 270px;
         font-size: 26px;
-        max-width: 260px;
       }
 
       .service p {
@@ -1122,24 +1169,24 @@
         gap: 25px;
       }
 
-      .about-photo {
-        aspect-ratio: 1.55;
+      .about-video {
+        aspect-ratio: 16 / 10;
         border-radius: 21px;
       }
 
       .about-copy > p:not(.eyebrow) {
-        font-size: 13px;
         margin-top: 16px;
+        font-size: 13px;
       }
 
       .about-points {
-        gap: 17px;
         justify-content: space-between;
+        gap: 15px;
       }
 
       .about-point {
-        flex-direction: column;
         align-items: flex-start;
+        flex-direction: column;
         gap: 8px;
         font-size: 10px;
       }
@@ -1158,17 +1205,20 @@
       }
 
       .brands {
-        gap: 5px;
+        gap: 3px;
       }
 
       .film-brand {
         height: 61px;
-        padding: 7px 4px;
+        padding: 7px 3px;
         border-radius: 11px;
       }
 
+      .film-brand > span {
+        height: 39px;
+      }
+
       .film-types {
-        justify-content: flex-start;
         gap: 8px 15px;
         margin-top: 12px;
         font-size: 9px;
@@ -1180,27 +1230,27 @@
       }
 
       .training-photo {
-        min-height: 0;
         height: 225px;
+        min-height: 0;
         -webkit-mask-image: linear-gradient(#000 65%, transparent);
         mask-image: linear-gradient(#000 65%, transparent);
       }
 
       .training-copy {
         position: relative;
-        padding: 5px 23px 27px;
         margin-top: -5px;
+        padding: 5px 23px 27px;
       }
 
       .training-copy > p:not(.eyebrow) {
-        font-size: 13px;
         margin-block: 16px 20px;
+        font-size: 13px;
       }
 
       .training-points {
-        gap: 13px;
-        font-size: 10px;
+        gap: 12px;
         margin-bottom: 22px;
+        font-size: 10px;
       }
 
       .training-actions {
@@ -1222,8 +1272,8 @@
       }
 
       .contact-box p {
-        font-size: 12px;
         margin: 13px 0 22px;
+        font-size: 12px;
       }
 
       .contact-links {
@@ -1233,8 +1283,8 @@
       }
 
       .messenger {
-        padding: 11px 12px;
         min-height: 48px;
+        padding: 11px 12px;
         font-size: 12px;
       }
 
@@ -1248,21 +1298,22 @@
       }
 
       .footer-inner {
+        align-items: flex-start;
         flex-wrap: wrap;
         gap: 22px;
-        align-items: flex-start;
       }
 
       .footer-note {
         max-width: 125px;
-        font-size: 10px;
+        padding-top: 10px;
         text-align: right;
+        font-size: 10px;
       }
 
       .footer-links {
-        width: 100%;
         justify-content: space-between;
         gap: 12px;
+        width: 100%;
         font-size: 10px;
       }
     }
@@ -1293,11 +1344,6 @@
 <body>
   <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
     <defs>
-      <symbol id="logo-mark" viewBox="0 0 40 40">
-        <path d="M23 4A16 16 0 1 0 35 28L23 16H12l12 12a9 9 0 1 1-6-16Z" fill="#eaf1f5"/>
-        <path d="M23 3h14v15L23 3Z" fill="#ff7900"/>
-      </symbol>
-
       <symbol id="i-arrow" viewBox="0 0 32 32">
         <path d="M6 16h20m-8-8 8 8-8 8"/>
       </symbol>
@@ -1317,36 +1363,44 @@
         <path d="m10 16 4 4 7-8"/>
       </symbol>
 
-      <symbol id="i-repair" viewBox="0 0 32 32">
-        <path d="m7 7-3 21h24L25 7Z"/>
-        <path d="m17 10-4 7h6l-4 7M8 4h16"/>
+      <symbol id="i-repair" viewBox="0 0 40 40">
+        <path d="M20 3v11m0 12v11M3 20h11m12 0h11M8 8l8 8m8 8 8 8M8 32l8-8m8-8 8-8"/>
+        <path d="m20 14 3 4 4 2-4 2-3 4-3-4-4-2 4-2Z"/>
       </symbol>
 
-      <symbol id="i-glass" viewBox="0 0 32 32">
-        <path d="m7 7-3 21h24L25 7ZM7 7c5-3 13-3 18 0"/>
-        <path d="M10 17h12m-4-4 4 4-4 4"/>
+      <symbol id="i-glass" viewBox="0 0 40 40">
+        <path d="M10 9Q20 5 30 9l5 24H5Z"/>
+        <path d="M12 13 9 28m19-15 3 15M14 21h12m-4-4 4 4-4 4"/>
       </symbol>
 
-      <symbol id="i-sun" viewBox="0 0 32 32">
-        <circle cx="16" cy="16" r="6"/>
-        <path d="M16 2v4m0 20v4M2 16h4m20 0h4M6 6l3 3m14 14 3 3M6 26l3-3M23 9l3-3"/>
+      <symbol id="i-sun" viewBox="0 0 40 40">
+        <circle cx="20" cy="20" r="8"/>
+        <path d="M20 2v6m0 24v6M2 20h6m24 0h6M7 7l4 4m18 18 4 4M7 33l4-4M29 11l4-4"/>
       </symbol>
 
-      <symbol id="i-tools" viewBox="0 0 32 32">
-        <path d="M28 4a8 8 0 0 0-10 10L5 27a2.8 2.8 0 0 0 4 0l13-13A8 8 0 0 0 28 4l-5 5-4-4Z"/>
+      <symbol id="i-equipment" viewBox="0 0 40 40">
+        <rect x="5" y="7" width="25" height="18" rx="3"/>
+        <path d="M10 20h4l3-7 4 7h4M17 25v7M10 33h16"/>
+        <path d="M30 13h3a3 3 0 0 1 3 3v10a4 4 0 0 1-4 4h-2"/>
+        <circle cx="33" cy="34" r="2"/>
       </symbol>
 
-      <symbol id="i-study" viewBox="0 0 32 32">
-        <path d="m2 11 14-8 14 8-14 8ZM7 15v9c5 5 13 5 18 0v-9M30 11v12"/>
+      <symbol id="i-practice" viewBox="0 0 40 40">
+        <path d="M27 5a9 9 0 0 0-10 12L5 29a4 4 0 0 0 6 6l12-12A9 9 0 0 0 35 12l-6 6-7-7Z"/>
+        <circle cx="9" cy="31" r="1"/>
       </symbol>
 
-      <symbol id="i-person" viewBox="0 0 32 32">
-        <circle cx="16" cy="10" r="5"/>
-        <path d="M6 28v-3a10 10 0 0 1 20 0v3Z"/>
+      <symbol id="i-method" viewBox="0 0 40 40">
+        <rect x="5" y="5" width="11" height="11" rx="2"/>
+        <rect x="24" y="24" width="11" height="11" rx="2"/>
+        <path d="M24 8h5a3 3 0 0 1 3 3v6m-4-4 4 4 4-4M16 32h-5a3 3 0 0 1-3-3v-6m-4 4 4-4 4 4"/>
+        <path d="m8 10 2 2 3-4m14 22 2 2 4-5"/>
       </symbol>
 
-      <symbol id="i-support" viewBox="0 0 32 32">
-        <path d="M5 17v-3a11 11 0 0 1 22 0v3M5 15H3v9h5v-9ZM27 15h2v9h-5v-9ZM27 24c0 4-5 5-11 5"/>
+      <symbol id="i-result" viewBox="0 0 40 40">
+        <circle cx="20" cy="20" r="15"/>
+        <circle cx="20" cy="20" r="9"/>
+        <path d="m14 20 4 4 9-10"/>
       </symbol>
 
       <symbol id="i-award" viewBox="0 0 32 32">
@@ -1357,6 +1411,10 @@
       <symbol id="i-calendar" viewBox="0 0 32 32">
         <rect x="5" y="6" width="22" height="23" rx="3"/>
         <path d="M10 3v7M22 3v7M5 13h22M11 18h2m6 0h2m-10 6h2m6 0h2"/>
+      </symbol>
+
+      <symbol id="i-play" viewBox="0 0 32 32">
+        <path d="m12 7 14 9-14 9Z"/>
       </symbol>
 
       <symbol id="i-close" viewBox="0 0 32 32">
@@ -1389,10 +1447,7 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a class="logo" href="#home" aria-label="GlassFix Expert — главная">
-        <svg class="logo-mark" aria-hidden="true"><use href="#logo-mark"/></svg>
-        <span class="logo-text">GlassFix<small>EXPERT</small></span>
-      </a>
+      <a class="logo" href="#home" aria-label="GlassFix Expert — главная" data-logo></a>
 
       <nav class="nav" aria-label="Основная навигация">
         <a href="#services">Услуги</a>
@@ -1414,7 +1469,14 @@
         <div class="hero-copy">
           <p class="eyebrow">Профессиональный уход за стеклом</p>
           <h1 id="hero-title">АВТОСТЁКЛА</h1>
-          <p class="hero-subtitle">РЕМОНТ · ЗАМЕНА</p>
+
+          <p class="hero-subtitle" aria-label="Ремонт, замена, тонировка">
+            <span>РЕМОНТ</span>
+            <span class="word-dot" aria-hidden="true">·</span>
+            <span>ЗАМЕНА</span>
+            <span class="word-dot" aria-hidden="true">·</span>
+            <span>ТОНИРОВКА</span>
+          </p>
 
           <p class="hero-description">
             Чистое стекло — ваша уверенность на дороге.
@@ -1431,139 +1493,15 @@
         </div>
 
         <div class="car-wrap">
-          <svg class="car-art" viewBox="0 0 820 500" role="img" aria-label="Статичная иллюстрация чёрного автомобиля с чистым лобовым стеклом">
-            <defs>
-              <linearGradient id="body-paint" x1="0" y1="0" x2=".8" y2="1">
-                <stop offset="0" stop-color="#617985"/>
-                <stop offset=".24" stop-color="#243740"/>
-                <stop offset=".57" stop-color="#101d25"/>
-                <stop offset="1" stop-color="#050c11"/>
-              </linearGradient>
-
-              <linearGradient id="hood-paint" x1="0" y1="0" x2=".8" y2="1">
-                <stop offset="0" stop-color="#708791"/>
-                <stop offset=".17" stop-color="#2d424c"/>
-                <stop offset=".6" stop-color="#12212a"/>
-                <stop offset="1" stop-color="#091218"/>
-              </linearGradient>
-
-              <linearGradient id="clean-glass" x1="0" y1="0" x2=".9" y2="1">
-                <stop offset="0" stop-color="#294754"/>
-                <stop offset=".4" stop-color="#102833"/>
-                <stop offset="1" stop-color="#07141c"/>
-              </linearGradient>
-
-              <linearGradient id="glass-reflection" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#c3e9f4" stop-opacity=".6"/>
-                <stop offset=".5" stop-color="#b0dbe9" stop-opacity=".12"/>
-                <stop offset="1" stop-color="#b0dbe9" stop-opacity="0"/>
-              </linearGradient>
-
-              <linearGradient id="headlight" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#e8fbff"/>
-                <stop offset="1" stop-color="#6aa4ba"/>
-              </linearGradient>
-
-              <radialGradient id="wheel">
-                <stop offset="0" stop-color="#8a9ba5"/>
-                <stop offset=".17" stop-color="#354752"/>
-                <stop offset=".62" stop-color="#1a2831"/>
-                <stop offset=".72" stop-color="#52636e"/>
-                <stop offset=".79" stop-color="#0a1117"/>
-                <stop offset="1" stop-color="#03080b"/>
-              </radialGradient>
-
-              <radialGradient id="ground-shadow">
-                <stop offset="0" stop-color="#000" stop-opacity=".7"/>
-                <stop offset="1" stop-color="#000" stop-opacity="0"/>
-              </radialGradient>
-
-              <clipPath id="windshield-clip">
-                <path d="M303 143Q390 112 501 133L580 231 261 240Z"/>
-              </clipPath>
-            </defs>
-
-            <ellipse cx="435" cy="416" rx="335" ry="44" fill="url(#ground-shadow)"/>
-            <path d="M110 426h580" stroke="#ff7900" stroke-opacity=".16"/>
-
-            <ellipse cx="222" cy="354" rx="50" ry="68" fill="#02070a"/>
-            <ellipse cx="222" cy="354" rx="39" ry="55" fill="url(#wheel)"/>
-            <ellipse cx="657" cy="345" rx="43" ry="61" fill="#02070a"/>
-            <ellipse cx="657" cy="345" rx="33" ry="49" fill="url(#wheel)"/>
-
-            <path
-              d="M116 322 146 279 238 242 289 141Q322 109 416 108
-              L506 119Q536 126 564 157L622 227 689 257 732 299
-              739 345 720 371 686 379Q687 293 650 290
-              611 288 608 388L277 405Q275 306 225 302
-              177 299 172 386L120 377 103 350Z"
-              fill="url(#body-paint)"
-              stroke="#758f9c"
-              stroke-opacity=".4"
-              stroke-width="1.5"
-            />
-
-            <path
-              d="M303 143Q390 112 501 133L580 231 261 240Z"
-              fill="url(#clean-glass)"
-              stroke="#9bb8c5"
-              stroke-opacity=".65"
-              stroke-width="2"
-            />
-
-            <g clip-path="url(#windshield-clip)">
-              <path d="m329 104 50-8 139 158-48 9Z" fill="url(#glass-reflection)"/>
-              <path d="m443 102 14-1 137 157-13 2Z" fill="#d5f5ff" opacity=".12"/>
-              <path d="M255 220q160-45 335-13" fill="none" stroke="#8ab0be" stroke-opacity=".08" stroke-width="18"/>
-            </g>
-
-            <path d="m521 140 41 28 57 66-29-1Z" fill="#08151d" stroke="#5e7a89" stroke-opacity=".5"/>
-            <path d="m580 241 45-2 51 27-70 8Z" fill="#0a1922"/>
-            <path d="m600 248 55 17-45-2Z" fill="#7193a3" opacity=".3"/>
-
-            <path
-              d="M238 242 580 231 686 274 313 317 145 279Z"
-              fill="url(#hood-paint)"
-              stroke="#b4cfda"
-              stroke-opacity=".25"
-            />
-
-            <path d="m260 251 251-10 111 32-307 31Z" fill="#d8f2fa" opacity=".035"/>
-            <path d="m277 248 49 62M532 241l-93 60" stroke="#adc6d1" stroke-opacity=".22" fill="none"/>
-            <path d="m146 280 165 39 389-42" stroke="#cde8f2" stroke-opacity=".5" fill="none" stroke-width="1.6"/>
-            <path d="m315 319 8 72" stroke="#3c5664" fill="none"/>
-
-            <path d="m124 309 91 12 45 30-130-15Z" fill="#050c11" stroke="#88a9b8" stroke-opacity=".5"/>
-            <path d="m132 313 77 12 30 17-102-14Z" fill="url(#headlight)"/>
-            <path d="m140 319 64 10 17 8" fill="none" stroke="#effcff" stroke-width="3"/>
-
-            <path d="m352 323 146-17 94-4-27 35-205 29Z" fill="#030a0f" stroke="#577280" stroke-opacity=".55"/>
-            <path d="m372 331 184-22m-181 32 173-21m-170 31 162-21" stroke="#6b8491" stroke-opacity=".33" fill="none"/>
-            <path d="m589 299 90-10 22 17-91 17Z" fill="#101e26"/>
-            <path d="m600 303 73-8 12 7-77 14Z" fill="url(#headlight)"/>
-
-            <path d="m130 355 129 18M346 376l211-26M591 352l110-24" fill="none" stroke="#79919e" stroke-opacity=".28"/>
-            <path d="m288 397 306-19" fill="none" stroke="#c0d8e2" stroke-opacity=".4"/>
-            <path d="m605 278 3 93M688 278l25 14" fill="none" stroke="#809ba8" stroke-opacity=".25"/>
-            <path d="m618 277 24-2" stroke="#98b1bd" stroke-width="3" stroke-linecap="round"/>
-
-            <ellipse cx="225" cy="355" rx="39" ry="56" fill="url(#wheel)"/>
-            <ellipse cx="225" cy="355" rx="7" ry="10" fill="#91a8b5"/>
-            <g stroke="#90a6b2" stroke-width="3" opacity=".65">
-              <path d="m225 315 0 80m-26-64 52 48m-52 0 52-48"/>
-            </g>
-
-            <ellipse cx="651" cy="347" rx="30" ry="46" fill="url(#wheel)"/>
-            <ellipse cx="651" cy="347" rx="5" ry="8" fill="#91a8b5"/>
-            <g stroke="#90a6b2" stroke-width="2.5" opacity=".6">
-              <path d="M651 315v64m-20-50 40 37m-40 0 40-37"/>
-            </g>
-
-            <path d="M292 140q92-35 211-12" fill="none" stroke="#d8edf5" stroke-opacity=".7" stroke-width="2"/>
-            <path d="M147 278 237 243" stroke="#ff9000" stroke-opacity=".6" fill="none"/>
-          </svg>
-
-          <p class="hero-caption">Чистое стекло. Спокойная дорога.</p>
+          <img
+            class="car-photo"
+            src="https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/4a269982-a3cc-4161-b3bc-b50ab41fe8f9.png"
+            alt="Чёрный автомобиль GlassFix Expert"
+            width="580"
+            height="426"
+            fetchpriority="high"
+            decoding="async"
+          >
         </div>
       </div>
     </section>
@@ -1596,8 +1534,9 @@
           </div>
 
           <p class="section-description">
-            От небольшого повреждения до полной замены.
-            Внимательно к автомобилю и вашим задачам.
+            Ремонт, замена и тонировка, удаление водного камня
+            и нанесение антидождя. Заботимся о чистом обзоре,
+            вашем комфорте и спокойствии в дороге.
           </p>
         </div>
 
@@ -1605,7 +1544,6 @@
           <a class="service" href="#contacts" data-book="Ремонт автостёкол">
             <div class="service-photo" data-crop="42 416 306 210"></div>
             <div class="service-soft"></div>
-            <span class="service-number">01</span>
 
             <span class="service-arrow">
               <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -1614,14 +1552,13 @@
             <div class="service-content">
               <svg class="icon" aria-hidden="true"><use href="#i-repair"/></svg>
               <h3>Ремонт автостёкол</h3>
-              <p>Устраняем сколы и трещины любой сложности</p>
+              <p>Оценим повреждение и подберём бережное решение для вашего стекла</p>
             </div>
           </a>
 
           <a class="service" href="#contacts" data-book="Замена автостёкол">
             <div class="service-photo" data-crop="365 416 294 210"></div>
             <div class="service-soft"></div>
-            <span class="service-number">02</span>
 
             <span class="service-arrow">
               <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -1630,14 +1567,13 @@
             <div class="service-content">
               <svg class="icon" aria-hidden="true"><use href="#i-glass"/></svg>
               <h3>Замена автостёкол</h3>
-              <p>Оригинальные и проверенные стёкла на все марки авто</p>
+              <p>Оригинальные и проверенные стёкла для вашего автомобиля</p>
             </div>
           </a>
 
           <a class="service" href="#contacts" data-book="Тонировка автостёкол">
             <div class="service-photo" data-crop="677 416 304 210"></div>
             <div class="service-soft"></div>
-            <span class="service-number">03</span>
 
             <span class="service-arrow">
               <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
@@ -1646,7 +1582,7 @@
             <div class="service-content">
               <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>
               <h3>Тонировка автостёкол</h3>
-              <p>Комфорт, защита и стиль для вашего авто</p>
+              <p>Защита от солнца, комфорт и стиль для вашего авто</p>
             </div>
           </a>
         </div>
@@ -1655,14 +1591,24 @@
 
     <section class="section about" id="advantages">
       <div class="container about-grid">
-        <div class="about-photo">
-          <div
-            data-crop="42 677 344 185"
-            role="img"
-            aria-label="Работа мастера по ремонту автомобильного стекла"
-            style="width:100%;height:100%"
-          ></div>
-          <span class="photo-label">Внимание к каждой детали</span>
+        <div class="about-video">
+          <div class="video-poster" data-crop="42 677 344 185" aria-hidden="true"></div>
+
+          <video
+            id="about-video"
+            controls
+            playsinline
+            preload="none"
+            hidden
+            aria-label="Видео о работе GlassFix Expert"
+          ></video>
+
+          <div class="video-placeholder" id="video-placeholder">
+            <span class="video-play" aria-hidden="true">
+              <svg class="icon"><use href="#i-play"/></svg>
+            </span>
+            <p id="video-placeholder-text">Видео о нашей работе скоро появится</p>
+          </div>
         </div>
 
         <div class="about-copy">
@@ -1673,20 +1619,22 @@
           </h2>
 
           <p>
-            Мы восстанавливаем автостёкла, возвращая им прочность,
-            прозрачность и безопасность. Современное оборудование,
-            качественные материалы и опытные мастера — гарантия
-            отличного результата.
+            Восстанавливаем автостёкла, возвращая прозрачность
+            и помогая сохранить вашу безопасность.
+            Подбираем плёнки для защиты от солнца и ультрафиолета,
+            заботимся о комфорте водителя и пассажиров.
+            Современное оборудование, качественные материалы
+            и внимательные мастера — основа нашей работы.
           </p>
 
           <div class="about-points">
             <div class="about-point">
               <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
-              <span>Опыт<br>более 5 лет</span>
+              <span>Опыт<br>более 10 лет</span>
             </div>
 
             <div class="about-point">
-              <svg class="icon" aria-hidden="true"><use href="#i-tools"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-equipment"/></svg>
               <span>Современное<br>оборудование</span>
             </div>
 
@@ -1710,7 +1658,7 @@
             </p>
           </div>
 
-          <div>
+          <div class="films-content">
             <div class="brands">
               <button class="film-brand" type="button" data-film="LLumar" aria-label="Плёнки LLumar">
                 <span data-brand-crop="17 3 82 51"></span>
@@ -1734,9 +1682,9 @@
             </div>
 
             <div class="film-types">
-              <span>Атермальные плёнки — защита от солнца</span>
+              <span>Атермальные — защита от солнца</span>
               <span>Тонировочные — комфорт и приватность</span>
-              <span>Бронирование — доп. защита стекол</span>
+              <span>Бронирование — дополнительная защита</span>
             </div>
           </div>
         </div>
@@ -1765,18 +1713,18 @@
 
             <div class="training-points">
               <span>
-                <svg class="icon" aria-hidden="true"><use href="#i-person"/></svg>
-                Живое обучение
+                <svg class="icon" aria-hidden="true"><use href="#i-practice"/></svg>
+                Практика
               </span>
 
               <span>
-                <svg class="icon" aria-hidden="true"><use href="#i-support"/></svg>
-                Поддержка после обучения
+                <svg class="icon" aria-hidden="true"><use href="#i-method"/></svg>
+                Современные методики
               </span>
 
               <span>
-                <svg class="icon" aria-hidden="true"><use href="#i-study"/></svg>
-                Сертификат
+                <svg class="icon" aria-hidden="true"><use href="#i-result"/></svg>
+                Реальный результат
               </span>
             </div>
 
@@ -1817,7 +1765,7 @@
             </button>
 
             <button class="messenger" type="button" data-contact="avito">
-              <svg class="icon avito" aria-hidden="true"><use href="#i-avito"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="#i-avito"/></svg>
               Avito
             </button>
           </div>
@@ -1828,11 +1776,7 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <a class="logo" href="#home" aria-label="GlassFix Expert — главная">
-        <svg class="logo-mark" aria-hidden="true"><use href="#logo-mark"/></svg>
-        <span class="logo-text">GlassFix<small>EXPERT</small></span>
-      </a>
-
+      <a class="logo" href="#home" aria-label="GlassFix Expert — главная" data-logo></a>
       <p class="footer-note">Автостёкла — наша экспертиза.</p>
 
       <nav class="footer-links" aria-label="Навигация в подвале">
@@ -1860,6 +1804,8 @@
           <option>Ремонт автостёкол</option>
           <option>Замена автостёкол</option>
           <option>Тонировка автостёкол</option>
+          <option>Удаление водного камня</option>
+          <option>Нанесение антидождя</option>
           <option>Обучение</option>
         </select>
       </label>
@@ -1873,11 +1819,9 @@
         <button class="messenger" type="submit" name="channel" value="whatsapp">
           WhatsApp
         </button>
-
         <button class="messenger" type="submit" name="channel" value="telegram">
           Telegram
         </button>
-
         <button class="messenger" type="submit" name="channel" value="max">
           MAX
         </button>
@@ -1894,7 +1838,6 @@
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
     </div>
-
     <p class="dialog-text" id="info-text"></p>
   </dialog>
 
@@ -1902,10 +1845,27 @@
     "use strict";
 
     /*
-      Укажите настоящие HTTPS-ссылки для связи.
-      Пустые значения не отправляют пользователя на чужие аккаунты.
-      Для независимости от внешнего хранилища можно скачать изображения
-      в репозиторий и заменить адреса ASSETS локальными путями.
+      Настройки сайта.
+
+      contacts:
+      укажите настоящие HTTPS-ссылки для связи.
+
+      videoSrc:
+      загрузите видео в репозиторий, например assets/about.mp4,
+      и укажите этот путь в videoSrc.
+
+      videoPoster:
+      необязательный путь к обложке видео.
+
+      videoCaptions:
+      необязательный путь к русским субтитрам в формате VTT.
+
+      transparentLogo:
+      путь к настоящему прозрачному PNG, WebP или SVG.
+      Если значение пустое, используется фрагмент вашего изображения.
+
+      Можно скачать исходные изображения в репозиторий
+      и заменить адреса в ASSETS локальными путями.
     */
 
     const CONFIG = {
@@ -1914,12 +1874,17 @@
         telegram: "",
         max: "",
         avito: ""
-      }
+      },
+      videoSrc: "",
+      videoPoster: "",
+      videoCaptions: "",
+      transparentLogo: ""
     };
 
     const ASSETS = {
       layout: "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/650871dc-d3bb-4f50-8c35-94a39a4dc984.png",
-      brands: "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/833343dd-7352-4d8a-bdad-8acfa32f2e9c.png"
+      brands: "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/833343dd-7352-4d8a-bdad-8acfa32f2e9c.png",
+      logo: "https://fb7f89f5-ad23-41fe-a653-bda6e9ca3160.selstorage.ru/users/ca7e8b4c-bbfa-4fbd-bcb6-9d154e426a3a/bots/0aa67e5f-c97a-4036-93c2-46f040d7c68c/d59cc73d-b1cc-4915-bd63-90c6efb44afb.png"
     };
 
     const SVG_NS = "http://www.w3.org/2000/svg";
@@ -1942,6 +1907,29 @@
       svg.append(image);
       return svg;
     }
+
+    document.querySelectorAll("[data-logo]").forEach((element) => {
+      if (CONFIG.transparentLogo.trim()) {
+        const image = document.createElement("img");
+        image.src = CONFIG.transparentLogo.trim();
+        image.alt = "";
+        image.width = 348;
+        image.height = 106;
+        image.decoding = "async";
+        element.append(image);
+        return;
+      }
+
+      element.append(
+        createCrop(
+          ASSETS.logo,
+          "55 430 1150 350",
+          1254,
+          1254,
+          "xMidYMid meet"
+        )
+      );
+    });
 
     document.querySelectorAll("[data-brand-crop]").forEach((element) => {
       element.append(
@@ -1987,6 +1975,40 @@
       });
     } else {
       document.querySelectorAll("[data-crop]").forEach(mountPhoto);
+    }
+
+    const aboutVideo = document.querySelector("#about-video");
+    const videoPlaceholder = document.querySelector("#video-placeholder");
+    const videoPlaceholderText = document.querySelector("#video-placeholder-text");
+    const videoPoster = document.querySelector(".video-poster");
+
+    if (CONFIG.videoSrc.trim()) {
+      aboutVideo.src = CONFIG.videoSrc.trim();
+
+      if (CONFIG.videoPoster.trim()) {
+        aboutVideo.poster = CONFIG.videoPoster.trim();
+      }
+
+      if (CONFIG.videoCaptions.trim()) {
+        const track = document.createElement("track");
+        track.kind = "captions";
+        track.src = CONFIG.videoCaptions.trim();
+        track.srclang = "ru";
+        track.label = "Русские субтитры";
+        aboutVideo.append(track);
+      }
+
+      aboutVideo.hidden = false;
+      videoPlaceholder.hidden = true;
+      videoPoster.hidden = true;
+
+      aboutVideo.addEventListener("error", () => {
+        aboutVideo.hidden = true;
+        videoPlaceholder.hidden = false;
+        videoPoster.hidden = false;
+        videoPlaceholderText.textContent =
+          "Видео временно недоступно. Попробуйте позже.";
+      });
     }
 
     const bookingDialog = document.querySelector("#booking-dialog");
@@ -2098,7 +2120,7 @@
       button.addEventListener("click", () => {
         showInfo(
           "Плёнки " + button.dataset.film,
-          "Поможем подобрать плёнку для вашего автомобиля. Свяжитесь с нами через раздел «Запись и связь»."
+          "Поможем подобрать плёнку для вашего автомобиля с учётом ваших задач и комфорта. Свяжитесь с нами через раздел «Запись и связь»."
         );
       });
     });
@@ -2106,7 +2128,7 @@
     document.querySelector("#course-button").addEventListener("click", () => {
       showInfo(
         "Онлайн-курс",
-        "Онлайн-курс готовится к запуску. О живом обучении и практике можно узнать через раздел «Запись и связь»."
+        "Онлайн-курс готовится к запуску. О практическом обучении можно узнать через раздел «Запись и связь»."
       );
     });
   </script>
