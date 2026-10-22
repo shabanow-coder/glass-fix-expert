@@ -172,7 +172,7 @@
       display: flex;
       gap: 24px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .nav a:hover,
@@ -216,7 +216,7 @@
       gap: 10px;
       margin: 0 0 22px;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 1.6px;
       text-transform: uppercase;
@@ -259,7 +259,7 @@
       max-width: 365px;
       margin: 0 0 28px;
       color: var(--muted);
-      font-size: 16px;
+      font-size: 17px;
       line-height: 1.75;
     }
 
@@ -270,9 +270,9 @@
     }
 
     .hero-note {
-      max-width: 160px;
+      max-width: 170px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
     }
 
@@ -323,7 +323,7 @@
       justify-content: center;
       gap: 13px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .trust-item + .trust-item {
@@ -361,7 +361,7 @@
       max-width: 365px;
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.8;
     }
 
@@ -424,41 +424,142 @@
 
     .service p {
       max-width: 270px;
-      min-height: 70px;
+      min-height: 78px;
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 16px;
+      line-height: 1.65;
     }
 
     .work-button {
+      position: relative;
+      isolation: isolate;
       display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-      min-height: 45px;
-      margin-top: 19px;
-      padding: 11px 16px;
-      border: 1px solid #ff790055;
-      border-radius: 13px;
-      background: #ff79000c;
-      color: #ecd6bf;
-      font-size: 14px;
+      justify-content: center;
+      width: 110px;
+      min-height: 76px;
+      margin-top: 18px;
+      padding: 7px 10px;
+      overflow: hidden;
+      border: 1px solid #ff790066;
+      border-radius: 23px;
+      background:
+        radial-gradient(ellipse at 50% 100%, #ff790025, transparent 75%),
+        linear-gradient(145deg, #182d36, #0a151c);
+      color: #ffad63;
+      box-shadow:
+        inset 0 1px 0 #ffffff0d,
+        0 8px 22px #00000024;
+      touch-action: manipulation;
       transition:
         background-color .25s ease,
-        border-color .25s ease;
+        border-color .25s ease,
+        box-shadow .25s ease,
+        transform .25s ease;
     }
 
-    .work-button::after {
-      content: "↗";
-      color: #f5a35b;
-      font-size: 18px;
-      line-height: 1;
+    .work-button::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -50%;
+      left: -85%;
+      width: 45%;
+      height: 200%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #ffcf9c24,
+        transparent
+      );
+      transform: translate3d(0, 0, 0) rotate(23deg);
+      -webkit-animation: glass-shine 5.4s ease-in-out infinite;
+      animation: glass-shine 5.4s ease-in-out infinite;
+      animation-delay: var(--work-delay, 0s);
+      pointer-events: none;
     }
 
-    .work-button:hover {
-      border-color: #ff790099;
-      background: #ff79001b;
+    .work-glass {
+      display: block;
+      width: 86px;
+      height: 58px;
+      max-width: none;
+      overflow: visible;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transform: translate3d(0, 0, 0);
+      -webkit-animation: glass-float 3.8s ease-in-out infinite;
+      animation: glass-float 3.8s ease-in-out infinite;
+      animation-delay: var(--work-delay, 0s);
+      pointer-events: none;
+    }
+
+    .service:nth-child(2) .work-button {
+      --work-delay: -1.25s;
+    }
+
+    .service:nth-child(3) .work-button {
+      --work-delay: -2.5s;
+    }
+
+    .work-button:hover,
+    .work-button:focus-visible {
+      border-color: #ffad63;
+      background-color: #162a33;
+      color: #ffd1a6;
+      box-shadow:
+        inset 0 1px 0 #ffffff14,
+        0 0 24px #ff790022,
+        0 10px 25px #00000030;
+      transform: translateY(-3px);
+    }
+
+    .work-button:active {
+      transform: translateY(0) scale(.95);
+    }
+
+    @-webkit-keyframes glass-float {
+      0%, 100% {
+        -webkit-transform: translate3d(0, 2px, 0) rotate(-2deg);
+        transform: translate3d(0, 2px, 0) rotate(-2deg);
+      }
+      50% {
+        -webkit-transform: translate3d(0, -3px, 0) rotate(2deg);
+        transform: translate3d(0, -3px, 0) rotate(2deg);
+      }
+    }
+
+    @keyframes glass-float {
+      0%, 100% {
+        transform: translate3d(0, 2px, 0) rotate(-2deg);
+      }
+      50% {
+        transform: translate3d(0, -3px, 0) rotate(2deg);
+      }
+    }
+
+    @-webkit-keyframes glass-shine {
+      0%, 58% {
+        -webkit-transform: translate3d(0, 0, 0) rotate(23deg);
+        transform: translate3d(0, 0, 0) rotate(23deg);
+      }
+      82%, 100% {
+        -webkit-transform: translate3d(420%, 0, 0) rotate(23deg);
+        transform: translate3d(420%, 0, 0) rotate(23deg);
+      }
+    }
+
+    @keyframes glass-shine {
+      0%, 58% {
+        transform: translate3d(0, 0, 0) rotate(23deg);
+      }
+      82%, 100% {
+        transform: translate3d(420%, 0, 0) rotate(23deg);
+      }
     }
 
     .service:focus-within .service-photo {
@@ -542,7 +643,7 @@
     .video-placeholder p {
       margin: 0;
       color: #d3dfe6;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .about-copy .eyebrow {
@@ -552,7 +653,7 @@
     .about-copy > p:not(.eyebrow) {
       margin: 20px 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.8;
     }
 
@@ -568,7 +669,7 @@
       align-items: center;
       gap: 9px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .about-point .icon {
@@ -597,7 +698,7 @@
     .films p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.75;
     }
 
@@ -615,16 +716,26 @@
 
     .brand-float {
       min-width: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-animation: brand-float 6s ease-in-out infinite;
       animation: brand-float 6s ease-in-out infinite;
+      -webkit-animation-delay: var(--delay, 0s);
       animation-delay: var(--delay, 0s);
-      animation-play-state: paused;
-    }
-
-    .brands.is-visible .brand-float {
+      -webkit-animation-play-state: running;
       animation-play-state: running;
     }
 
     .brands.is-paused .brand-float {
+      -webkit-animation-play-state: paused;
+      animation-play-state: paused;
+    }
+
+    body.modal-open .work-glass,
+    body.modal-open .work-button::before,
+    body.animations-paused .work-glass,
+    body.animations-paused .work-button::before {
+      -webkit-animation-play-state: paused;
       animation-play-state: paused;
     }
 
@@ -664,12 +775,23 @@
       mask-image: radial-gradient(ellipse 100% 120% at center, #000 68%, transparent 100%);
     }
 
-    @keyframes brand-float {
+    @-webkit-keyframes brand-float {
       0%, 100% {
-        transform: translateY(3px);
+        -webkit-transform: translate3d(0, 4px, 0);
+        transform: translate3d(0, 4px, 0);
       }
       50% {
-        transform: translateY(-3px);
+        -webkit-transform: translate3d(0, -4px, 0);
+        transform: translate3d(0, -4px, 0);
+      }
+    }
+
+    @keyframes brand-float {
+      0%, 100% {
+        transform: translate3d(0, 4px, 0);
+      }
+      50% {
+        transform: translate3d(0, -4px, 0);
       }
     }
 
@@ -679,7 +801,8 @@
       gap: 8px 20px;
       margin-top: 12px;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 14px;
+      line-height: 1.65;
     }
 
     .training-card {
@@ -710,7 +833,7 @@
       max-width: 430px;
       margin: 18px 0 24px;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.8;
     }
 
@@ -720,7 +843,7 @@
       gap: 15px;
       margin-bottom: 27px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .training-points span {
@@ -773,7 +896,7 @@
     .reviews-copy p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.8;
     }
 
@@ -831,7 +954,7 @@
     .contact-box p {
       margin: 14px 0 22px;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 16px;
     }
 
     .contact-phone {
@@ -921,7 +1044,7 @@
     .footer-note {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .footer-phone {
@@ -934,7 +1057,7 @@
       flex-wrap: wrap;
       gap: 16px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .footer-reviews {
@@ -1018,7 +1141,7 @@
     .dialog-text {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.75;
     }
 
@@ -1032,7 +1155,7 @@
       display: grid;
       gap: 8px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .contact-form select {
@@ -1043,7 +1166,7 @@
       border-radius: 12px;
       background: #071219;
       color: var(--text);
-      font-size: 15px;
+      font-size: 16px;
     }
 
     .call-button {
@@ -1074,7 +1197,7 @@
 
     .call-button small {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .dialog-channels {
@@ -1112,7 +1235,7 @@
     .status {
       margin: 0;
       color: #cfbaa5;
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.7;
     }
 
@@ -1139,7 +1262,7 @@
     .photo-caption {
       margin: 14px 0 18px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .reviews-dialog {
@@ -1149,7 +1272,7 @@
     .reviews-intro {
       margin: 0 0 24px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.7;
     }
 
@@ -1183,14 +1306,14 @@
     .review-card blockquote {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.85;
     }
 
     .reviews-source {
       margin: 20px 0;
       color: #b1bec8;
-      font-size: 13px;
+      font-size: 15px;
       line-height: 1.75;
     }
 
@@ -1205,7 +1328,7 @@
     @media (max-width: 1000px) {
       .nav {
         gap: 16px;
-        font-size: 13px;
+        font-size: 14px;
       }
 
       .hero-inner {
@@ -1222,7 +1345,7 @@
       }
 
       .service p {
-        min-height: 90px;
+        min-height: 104px;
       }
 
       .about-grid {
@@ -1286,7 +1409,7 @@
 
       .eyebrow {
         margin-bottom: 19px;
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 1.1px;
       }
 
@@ -1305,7 +1428,7 @@
       .hero-description {
         max-width: 350px;
         margin-bottom: 23px;
-        font-size: 15px;
+        font-size: 16px;
       }
 
       .hero-bottom {
@@ -1319,8 +1442,8 @@
       }
 
       .hero-note {
-        max-width: 145px;
-        font-size: 12px;
+        max-width: 155px;
+        font-size: 13px;
       }
 
       .car-wrap {
@@ -1350,7 +1473,7 @@
         gap: 8px;
         padding-inline: 5px;
         text-align: center;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.5;
       }
 
@@ -1375,7 +1498,7 @@
       .section-description {
         max-width: 420px;
         margin-top: 14px;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .section-title {
@@ -1388,7 +1511,7 @@
       }
 
       .service {
-        min-height: 315px;
+        min-height: 335px;
         border-radius: 21px;
       }
 
@@ -1412,12 +1535,18 @@
       .service p {
         max-width: 300px;
         min-height: 0;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .work-button {
-        min-height: 46px;
+        width: 116px;
+        min-height: 78px;
         margin-top: 19px;
+      }
+
+      .work-glass {
+        width: 90px;
+        height: 60px;
       }
 
       .about {
@@ -1436,7 +1565,7 @@
 
       .about-copy > p:not(.eyebrow) {
         margin-top: 16px;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .about-points {
@@ -1448,7 +1577,7 @@
         align-items: flex-start;
         flex-direction: column;
         gap: 8px;
-        font-size: 12px;
+        font-size: 14px;
       }
 
       .films {
@@ -1462,7 +1591,7 @@
 
       .films p {
         max-width: 360px;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .brands {
@@ -1485,7 +1614,7 @@
       .film-types {
         gap: 9px 15px;
         margin-top: 14px;
-        font-size: 12px;
+        font-size: 14px;
       }
 
       .training-card {
@@ -1508,13 +1637,13 @@
 
       .training-copy > p:not(.eyebrow) {
         margin-block: 16px 20px;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .training-points {
         gap: 10px;
         margin-bottom: 22px;
-        font-size: 12px;
+        font-size: 14px;
       }
 
       .training-actions {
@@ -1557,7 +1686,7 @@
 
       .contact-box p {
         margin: 13px 0 19px;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .contact-phone {
@@ -1592,7 +1721,7 @@
       }
 
       .footer-note {
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .footer-phone {
@@ -1603,7 +1732,7 @@
         justify-content: space-between;
         gap: 12px;
         width: 100%;
-        font-size: 13px;
+        font-size: 14px;
       }
 
       dialog {
@@ -1619,7 +1748,7 @@
       }
 
       .review-card blockquote {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
 
@@ -1632,17 +1761,27 @@
       *::before,
       *::after {
         transition: none !important;
+        -webkit-animation: none !important;
         animation: none !important;
       }
 
       .brand-float,
+      .work-glass,
+      .work-button:hover,
+      .work-button:focus-visible,
+      .work-button:active,
       .button:hover,
       .messenger:hover,
       .film-brand:hover,
       .film-brand:focus-visible,
       .service:hover .service-photo,
       .service:focus-within .service-photo {
+        -webkit-transform: none;
         transform: none;
+      }
+
+      .work-button::before {
+        display: none;
       }
     }
   </style>
@@ -1722,6 +1861,38 @@
         <circle cx="23" cy="9" r="7" fill="#00c98d" stroke="none"/>
         <circle cx="8" cy="24" r="5" fill="#9656ed" stroke="none"/>
         <circle cx="23" cy="24" r="7" fill="#ff4053" stroke="none"/>
+      </symbol>
+
+      <symbol id="i-work-glass" viewBox="0 0 88 60">
+        <path
+          d="M20 12Q44 5 68 12L77 39Q44 48 11 39Z"
+          fill="#ff7900"
+          fill-opacity=".07"
+        />
+        <path
+          d="M24 17Q44 12 64 17L70 35Q44 41 18 35Z"
+          stroke="#d7eaf1"
+          stroke-opacity=".48"
+          stroke-width="1.1"
+        />
+        <path
+          d="m28 20-5 12m13-14-5 15"
+          stroke="#d7eaf1"
+          stroke-opacity=".75"
+          stroke-width="2.2"
+        />
+        <path
+          d="M17 43q20 6 39 3"
+          stroke-opacity=".45"
+          stroke-width="1.2"
+        />
+        <path
+          d="m43 40 10-8m-3 9 10-7"
+          stroke-width="1.5"
+        />
+        <path d="M72 5v8m-4-4h8" stroke="#ffe0bc" stroke-width="1.5"/>
+        <circle cx="71" cy="45" r="10" fill="#ff7900" stroke="#ffb16a" stroke-width="1.2"/>
+        <path d="m67 49 8-8m-7 0h7v7" stroke="#111a20" stroke-width="2"/>
       </symbol>
     </defs>
   </svg>
@@ -1829,8 +2000,16 @@
               <h3>Ремонт автостёкол</h3>
               <p>Оценим повреждение и подберём бережное решение для вашего стекла.</p>
 
-              <button class="work-button" type="button" data-photo="Ремонт автостёкол">
-                Фото работ
+              <button
+                class="work-button"
+                type="button"
+                data-photo="Ремонт автостёкол"
+                aria-label="Посмотреть фото работ по ремонту автостёкол"
+                title="Фото работ — ремонт автостёкол"
+              >
+                <svg class="work-glass" aria-hidden="true" focusable="false">
+                  <use href="#i-work-glass"/>
+                </svg>
               </button>
             </div>
           </article>
@@ -1842,8 +2021,16 @@
               <h3>Замена автостёкол</h3>
               <p>Оригинальные и проверенные стёкла для вашего автомобиля.</p>
 
-              <button class="work-button" type="button" data-photo="Замена автостёкол">
-                Фото работ
+              <button
+                class="work-button"
+                type="button"
+                data-photo="Замена автостёкол"
+                aria-label="Посмотреть фото работ по замене автостёкол"
+                title="Фото работ — замена автостёкол"
+              >
+                <svg class="work-glass" aria-hidden="true" focusable="false">
+                  <use href="#i-work-glass"/>
+                </svg>
               </button>
             </div>
           </article>
@@ -1855,8 +2042,16 @@
               <h3>Тонировка автостёкол</h3>
               <p>Защита от солнца, комфорт и стиль для вашего авто.</p>
 
-              <button class="work-button" type="button" data-photo="Тонировка автостёкол">
-                Фото работ
+              <button
+                class="work-button"
+                type="button"
+                data-photo="Тонировка автостёкол"
+                aria-label="Посмотреть фото работ по тонировке автостёкол"
+                title="Фото работ — тонировка автостёкол"
+              >
+                <svg class="work-glass" aria-hidden="true" focusable="false">
+                  <use href="#i-work-glass"/>
+                </svg>
               </button>
             </div>
           </article>
@@ -2061,27 +2256,55 @@
           </a>
 
           <div class="contact-links">
-            <button class="messenger" type="button" data-book="Консультация">
+            <a
+              class="messenger"
+              href="https://max.ru/u/f9LHodD0cOIJSWZjATZYw-ZbCP1C-HTsV_B_O4kbSh1UoGMozaITJufRJS4"
+              data-direct-channel="max"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Написать в MAX"
+            >
               <span class="social-image" data-social="max" aria-hidden="true"></span>
               MAX
-            </button>
+            </a>
 
-            <button class="messenger" type="button" data-book="Консультация">
+            <a
+              class="messenger"
+              href="https://t.me/Mihail_Shabanow"
+              data-direct-channel="telegram"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Написать в Telegram"
+            >
               <span class="social-image" data-social="telegram" aria-hidden="true"></span>
               Telegram
-            </button>
+            </a>
 
-            <button class="messenger" type="button" data-book="Консультация">
+            <a
+              class="messenger"
+              href="https://wa.me/79283003473"
+              data-direct-channel="whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Написать в WhatsApp"
+            >
               <span class="social-image" data-social="whatsapp" aria-hidden="true"></span>
               WhatsApp
-            </button>
+            </a>
 
-            <button class="messenger" type="button" data-book="Консультация">
+            <a
+              class="messenger"
+              href="https://www.avito.ru/brands/769f38ab0c6cabc794d28e560f421eb0?src=sharing"
+              data-direct-channel="avito"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Открыть страницу Avito"
+            >
               <span class="social-image avito" aria-hidden="true">
                 <svg class="icon"><use href="#i-avito"/></svg>
               </span>
               Avito
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -2292,7 +2515,7 @@
       Главный файл: index.html.
 
       CONFIG.servicePhoto:
-      общая фотография для кнопок «Фото работ».
+      общая фотография для кнопок с лобовым стеклом.
       Замените адрес, когда будут готовы фотографии.
 
       CONFIG.servicePhotoCaption:
@@ -2314,8 +2537,8 @@
       Для независимости от внешнего хранилища скачайте изображения
       в репозиторий и замените адреса локальными путями.
 
-      Постоянных JavaScript-циклов анимации нет.
-      Плавающие логотипы анимируются через CSS transform.
+      Анимации работают через CSS transform.
+      Запуск анимации брендов не зависит от IntersectionObserver.
     */
 
     const BASE =
@@ -2472,8 +2695,6 @@
     const brands = document.querySelector("#brands");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    let brandsInView = false;
-
     function updateBrandAnimation() {
       const modalIsOpen = Boolean(document.querySelector("dialog[open]"));
       const paused =
@@ -2481,25 +2702,20 @@
         reducedMotion.matches ||
         modalIsOpen;
 
-      brands.classList.toggle("is-visible", brandsInView);
       brands.classList.toggle("is-paused", paused);
-    }
-
-    if ("IntersectionObserver" in window) {
-      const brandObserver = new IntersectionObserver((entries) => {
-        brandsInView = entries[0].isIntersecting;
-        updateBrandAnimation();
-      }, {
-        threshold: 0
-      });
-
-      brandObserver.observe(brands);
+      document.body.classList.toggle(
+        "animations-paused",
+        document.hidden || reducedMotion.matches
+      );
     }
 
     document.addEventListener("visibilitychange", updateBrandAnimation);
+    window.addEventListener("pageshow", updateBrandAnimation);
 
     if (typeof reducedMotion.addEventListener === "function") {
       reducedMotion.addEventListener("change", updateBrandAnimation);
+    } else if (typeof reducedMotion.addListener === "function") {
+      reducedMotion.addListener(updateBrandAnimation);
     }
 
     updateBrandAnimation();
@@ -2517,261 +2733,3 @@
       }
 
       if (CONFIG.videoCaptions.trim()) {
-        const track = document.createElement("track");
-        track.kind = "captions";
-        track.src = CONFIG.videoCaptions.trim();
-        track.srclang = "ru";
-        track.label = "Русские субтитры";
-        aboutVideo.append(track);
-      }
-
-      aboutVideo.hidden = false;
-      videoPlaceholder.hidden = true;
-      videoPoster.hidden = true;
-
-      aboutVideo.addEventListener("error", () => {
-        aboutVideo.hidden = true;
-        videoPlaceholder.hidden = false;
-        videoPoster.hidden = false;
-        videoPlaceholderText.textContent =
-          "Видео временно недоступно. Попробуйте позже.";
-      });
-    }
-
-    const contactDialog = document.querySelector("#contact-dialog");
-    const photoDialog = document.querySelector("#photo-dialog");
-    const reviewsDialog = document.querySelector("#reviews-dialog");
-    const infoDialog = document.querySelector("#info-dialog");
-
-    const serviceSelect = document.querySelector("#service-select");
-    const contactStatus = document.querySelector("#contact-status");
-    const previewImage = document.querySelector("#preview-image");
-    const previewError = document.querySelector("#preview-error");
-
-    let currentPhotoService = "Консультация";
-    let currentInfoService = "Консультация";
-
-    function updateModalState() {
-      document.body.classList.toggle(
-        "modal-open",
-        Boolean(document.querySelector("dialog[open]"))
-      );
-
-      updateBrandAnimation();
-    }
-
-    function openDialog(dialog) {
-      if (!dialog.open) {
-        dialog.showModal();
-      }
-
-      updateModalState();
-    }
-
-    function closeOtherDialogs(except) {
-      document.querySelectorAll("dialog[open]").forEach((dialog) => {
-        if (dialog !== except) {
-          dialog.close();
-        }
-      });
-    }
-
-    function safeHttps(value) {
-      if (!value) return null;
-
-      try {
-        const url = new URL(value);
-        return url.protocol === "https:" ? url : null;
-      } catch {
-        return null;
-      }
-    }
-
-    function contactMessage() {
-      return "Здравствуйте! Интересует услуга: " + serviceSelect.value + ".";
-    }
-
-    function updateChannelLinks() {
-      document.querySelectorAll("[data-channel]").forEach((link) => {
-        const channel = link.dataset.channel;
-        const url = safeHttps(CONFIG.contacts[channel]);
-
-        if (!url) {
-          link.removeAttribute("href");
-          return;
-        }
-
-        if (
-          channel === "whatsapp" &&
-          (url.hostname === "wa.me" || url.hostname === "api.whatsapp.com")
-        ) {
-          url.searchParams.set("text", contactMessage());
-        }
-
-        link.href = url.href;
-      });
-    }
-
-    function openContact(service = "Консультация") {
-      const validService = Array.from(serviceSelect.options).some((option) => {
-        return option.value === service;
-      });
-
-      serviceSelect.value = validService ? service : "Консультация";
-
-      contactStatus.textContent =
-        "Расскажите о вашем автомобиле и задаче — подскажем, с чего начать.";
-
-      updateChannelLinks();
-      closeOtherDialogs(contactDialog);
-      openDialog(contactDialog);
-    }
-
-    function showInfo(title, text, service = "Консультация") {
-      currentInfoService = service;
-      document.querySelector("#info-title").textContent = title;
-      document.querySelector("#info-text").textContent = text;
-
-      closeOtherDialogs(infoDialog);
-      openDialog(infoDialog);
-    }
-
-    document.querySelectorAll("[data-book]").forEach((button) => {
-      button.addEventListener("click", () => {
-        openContact(button.dataset.book);
-      });
-    });
-
-    serviceSelect.addEventListener("change", updateChannelLinks);
-
-    document.querySelectorAll("[data-channel]").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        if (!link.getAttribute("href")) {
-          event.preventDefault();
-          contactStatus.textContent =
-            "Ссылка временно недоступна. Позвоните: +7 (928) 300-34-73.";
-          return;
-        }
-
-        if (link.dataset.channel === "avito") {
-          contactStatus.textContent =
-            "Открываем нашу страницу Avito. Выберите удобный способ связи на странице.";
-        } else {
-          contactStatus.textContent =
-            "Напишите в переписке: «" + contactMessage() + "»";
-        }
-      });
-    });
-
-    updateChannelLinks();
-
-    document.querySelectorAll("[data-photo]").forEach((button) => {
-      button.addEventListener("click", () => {
-        currentPhotoService = button.dataset.photo;
-
-        document.querySelector("#photo-title").textContent =
-          "Фото работ — " + currentPhotoService.toLowerCase();
-
-        document.querySelector("#photo-caption").textContent =
-          CONFIG.servicePhotoCaption;
-
-        previewImage.hidden = false;
-        previewError.hidden = true;
-
-        previewImage.alt =
-          "Иллюстрация автомобильного стекла — " + currentPhotoService;
-
-        if (previewImage.getAttribute("src") !== CONFIG.servicePhoto) {
-          previewImage.src = CONFIG.servicePhoto;
-        }
-
-        if (previewImage.complete && previewImage.naturalWidth === 0) {
-          previewImage.hidden = true;
-          previewError.hidden = false;
-        }
-
-        closeOtherDialogs(photoDialog);
-        openDialog(photoDialog);
-      });
-    });
-
-    previewImage.addEventListener("load", () => {
-      previewImage.hidden = false;
-      previewError.hidden = true;
-    });
-
-    previewImage.addEventListener("error", () => {
-      previewImage.hidden = true;
-      previewError.hidden = false;
-    });
-
-    document.querySelector("#photo-contact").addEventListener("click", () => {
-      openContact(currentPhotoService);
-    });
-
-    document.querySelector("#info-contact").addEventListener("click", () => {
-      openContact(currentInfoService);
-    });
-
-    document.querySelectorAll("[data-reviews]").forEach((button) => {
-      button.addEventListener("click", () => {
-        closeOtherDialogs(reviewsDialog);
-        reviewsDialog.scrollTop = 0;
-        openDialog(reviewsDialog);
-        reviewsDialog.scrollTop = 0;
-      });
-    });
-
-    const reviewsAvito = document.querySelector("#reviews-avito");
-    const avitoUrl = safeHttps(CONFIG.contacts.avito);
-
-    if (avitoUrl) {
-      reviewsAvito.href = avitoUrl.href;
-    }
-
-    document.querySelectorAll("[data-close]").forEach((button) => {
-      button.addEventListener("click", () => {
-        button.closest("dialog").close();
-      });
-    });
-
-    document.querySelectorAll("dialog").forEach((dialog) => {
-      dialog.addEventListener("close", updateModalState);
-
-      dialog.addEventListener("click", (event) => {
-        if (event.target !== dialog) return;
-
-        const bounds = dialog.getBoundingClientRect();
-
-        const outside =
-          event.clientX < bounds.left ||
-          event.clientX > bounds.right ||
-          event.clientY < bounds.top ||
-          event.clientY > bounds.bottom;
-
-        if (outside) {
-          dialog.close();
-        }
-      });
-    });
-
-    document.querySelectorAll("[data-film]").forEach((button) => {
-      button.addEventListener("click", () => {
-        showInfo(
-          "Плёнки " + button.dataset.film,
-          "Поможем подобрать плёнку для вашего автомобиля с учётом ваших задач, комфорта и пожеланий. Свяжитесь с мастером — спокойно обсудим подходящие варианты.",
-          "Тонировка автостёкол"
-        );
-      });
-    });
-
-    document.querySelector("#course-button").addEventListener("click", () => {
-      showInfo(
-        "Онлайн-курс",
-        "Онлайн-курс готовится к запуску. О практическом обучении и современных методиках можно узнать у мастера.",
-        "Обучение"
-      );
-    });
-  </script>
-</body>
-</html>
