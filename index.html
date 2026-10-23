@@ -168,6 +168,18 @@
       mask-image: radial-gradient(ellipse 70% 78% at center, #000 54%, transparent 100%);
     }
 
+    /* Плавное покачивание логотипа в шапке, в том числе на мобильных */
+    .header .logo {
+      transform-origin: 50% 55%;
+      animation: header-logo-sway 5.5s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes header-logo-sway {
+      0%, 100% { transform: rotate(-1.8deg); }
+      50% { transform: rotate(1.8deg); }
+    }
+
     .nav {
       display: flex;
       gap: 24px;
@@ -1148,12 +1160,68 @@
     }
 
     .preview-frame {
+      position: relative;
       display: grid;
       place-items: center;
       min-height: 180px;
       overflow: hidden;
-      border-radius: 15px;
+      border: 1px solid #ff790026;
+      border-radius: 17px;
       background: #071014;
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 1px solid #ff9a45a8;
+      border-radius: 50%;
+      background: #071014d9;
+      color: #ff9a45;
+      box-shadow: 0 5px 22px #0007, inset 0 0 0 1px #ffffff08;
+      transform: translateY(-50%);
+      transition: background .2s ease, color .2s ease, border-color .2s ease,
+        box-shadow .2s ease, opacity .2s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .gallery-arrow:hover:not(:disabled) {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #071014;
+      box-shadow: 0 0 0 5px #ff79001c, 0 7px 24px #0006;
+    }
+
+    .gallery-arrow:disabled {
+      opacity: .38;
+      cursor: default;
+    }
+
+    .gallery-arrow svg {
+      width: 23px;
+      height: 23px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .gallery-arrow.prev { left: 13px; }
+    .gallery-arrow.next { right: 13px; }
+
+    @media (max-width: 720px) {
+      .gallery-arrow {
+        width: 42px;
+        height: 42px;
+      }
+      .gallery-arrow.prev { left: 9px; }
+      .gallery-arrow.next { right: 9px; }
     }
 
     .preview-image {
@@ -2212,9 +2280,15 @@
       </button>
     </div>
 
-    <div class="preview-frame">
+    <div class="preview-frame" id="preview-frame">
       <img class="preview-image" id="preview-image" alt="" decoding="async">
       <p class="dialog-text" id="preview-error" hidden>Изображение пока недоступно.</p>
+      <button class="gallery-arrow prev" type="button" id="photo-prev" aria-label="Предыдущее фото" title="Предыдущее фото">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="gallery-arrow next" type="button" id="photo-next" aria-label="Следующее фото" title="Следующее фото">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
     </div>
 
     <p class="photo-caption" id="photo-caption"></p>
@@ -2356,6 +2430,18 @@
       },
       heroPhoto: BASE + "f63f9c6a-a666-437e-8a18-70b933bc921d.png",
       servicePhoto: BASE + "f63f9c6a-a666-437e-8a18-70b933bc921d.png",
+      /*
+        Фотографии для галереи.
+        Когда будут готовы реальные снимки, добавляйте их адреса в этот массив:
+        { src: "https://адрес-фото.jpg", caption: "Короткое описание" }
+        Стрелки автоматически начнут переключать все добавленные фотографии.
+      */
+      servicePhotos: [
+        {
+          src: BASE + "f63f9c6a-a666-437e-8a18-70b933bc921d.png",
+          caption: "Пока здесь иллюстрация оформления автостекла. Фотографии наших работ добавим позже."
+        }
+      ],
       servicePhotoCaption:
         "Пока здесь иллюстрация оформления автостекла. Фотографии наших работ добавим позже.",
       videoSrc: "",
@@ -2691,35 +2777,84 @@
 
     updateChannelLinks();
 
+    const photoPrev = document.querySelector("#photo-prev");
+    const photoNext = document.querySelector("#photo-next");
+    const photoCaption = document.querySelector("#photo-caption");
+    let currentPhotoIndex = 0;
+
+    function getServicePhotos() {
+      const configured = Array.isArray(CONFIG.servicePhotos)
+        ? CONFIG.servicePhotos
+        : [];
+      return configured.filter((photo) => photo && typeof photo.src === "string" && photo.src.trim());
+    }
+
+    function showPhoto(index) {
+      const photos = getServicePhotos();
+      if (!photos.length) {
+        previewImage.hidden = true;
+        previewError.hidden = false;
+        photoPrev.disabled = true;
+        photoNext.disabled = true;
+        return;
+      }
+
+      currentPhotoIndex = (index + photos.length) % photos.length;
+      const photo = photos[currentPhotoIndex];
+
+      previewError.hidden = true;
+      previewImage.hidden = false;
+      previewImage.alt = photo.alt || ("Фото работ — " + currentPhotoService);
+      photoCaption.textContent = photo.caption || CONFIG.servicePhotoCaption || "";
+
+      if (previewImage.getAttribute("src") !== photo.src) {
+        previewImage.src = photo.src;
+      }
+
+      // Пока добавлена одна фотография, стрелки видны, но отключены.
+      // Как только в CONFIG.servicePhotos появятся новые адреса, листание заработает.
+      photoPrev.disabled = photos.length < 2;
+      photoNext.disabled = photos.length < 2;
+    }
+
+    photoPrev.addEventListener("click", () => {
+      if (getServicePhotos().length > 1) showPhoto(currentPhotoIndex - 1);
+    });
+
+    photoNext.addEventListener("click", () => {
+      if (getServicePhotos().length > 1) showPhoto(currentPhotoIndex + 1);
+    });
+
     document.querySelectorAll("[data-photo]").forEach((button) => {
       button.addEventListener("click", () => {
         currentPhotoService = button.dataset.photo;
+        currentPhotoIndex = 0;
 
         document.querySelector("#photo-title").textContent =
           "Фото работ — " + currentPhotoService.toLowerCase();
 
-        document.querySelector("#photo-caption").textContent =
-          CONFIG.servicePhotoCaption;
-
-        previewImage.hidden = false;
-        previewError.hidden = true;
-
-        previewImage.alt =
-          "Иллюстрация автомобильного стекла — " + currentPhotoService;
-
-        if (previewImage.getAttribute("src") !== CONFIG.servicePhoto) {
-          previewImage.src = CONFIG.servicePhoto;
-        }
-
-        if (previewImage.complete && previewImage.naturalWidth === 0) {
-          previewImage.hidden = true;
-          previewError.hidden = false;
-        }
-
+        showPhoto(0);
         closeOtherDialogs(photoDialog);
         openDialog(photoDialog);
       });
     });
+
+    // Перелистывание фотографий свайпом на сенсорных экранах.
+    const previewFrame = document.querySelector("#preview-frame");
+    let touchStartX = null;
+
+    previewFrame.addEventListener("touchstart", (event) => {
+      if (event.touches.length === 1) touchStartX = event.touches[0].clientX;
+    }, { passive: true });
+
+    previewFrame.addEventListener("touchend", (event) => {
+      if (touchStartX === null || getServicePhotos().length < 2) return;
+      const deltaX = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(deltaX) > 45) {
+        showPhoto(currentPhotoIndex + (deltaX < 0 ? 1 : -1));
+      }
+      touchStartX = null;
+    }, { passive: true });
 
     previewImage.addEventListener("load", () => {
       previewImage.hidden = false;
