@@ -2994,7 +2994,13 @@
     });
 
     document.querySelector("#photo-contact").addEventListener("click", () => {
-      openContact(currentPhotoService);
+      // Название бренда остаётся в галерее, а форма связи использует
+      // существующий пункт услуги «Тонировка автостёкол».
+      openContact(
+        currentPhotoService.startsWith("Плёнки ")
+          ? "Тонировка автостёкол"
+          : currentPhotoService
+      );
     });
 
     document.querySelector("#info-contact").addEventListener("click", () => {
@@ -3045,11 +3051,24 @@
 
     document.querySelectorAll("[data-film]").forEach((button) => {
       button.addEventListener("click", () => {
-        showInfo(
-          "Плёнки " + button.dataset.film,
-          "Поможем подобрать плёнку для вашего автомобиля с учётом ваших задач, комфорта и пожеланий. Свяжитесь с мастером — спокойно обсудим подходящие варианты.",
-          "Тонировка автостёкол"
-        );
+        // Логотипы плёнок открывают ту же фотогалерею, что и кнопки
+        // «Фото работ», сохраняя общий просмотр, свайп и кнопку связи.
+        currentPhotoService = "Плёнки " + button.dataset.film;
+        currentPhotoIndex = 0;
+
+        document.querySelector("#photo-title").textContent =
+          currentPhotoService + " — примеры и подбор";
+
+        showPhoto(0);
+
+        // Для брендов показываем полезное пояснение в подписи галереи.
+        photoCaption.textContent =
+          "Подберём плёнку " + button.dataset.film +
+          " для вашего автомобиля с учётом задач, комфорта и пожеланий. " +
+          "Свяжитесь с мастером, чтобы обсудить подходящие варианты.";
+
+        closeOtherDialogs(photoDialog);
+        openDialog(photoDialog);
       });
     });
 
