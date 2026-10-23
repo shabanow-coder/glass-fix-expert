@@ -170,14 +170,102 @@
 
     /* Плавное покачивание логотипа в шапке, в том числе на мобильных */
     .header .logo {
+      position: relative;
+      isolation: isolate;
+      overflow: visible;
       transform-origin: 50% 55%;
       animation: header-logo-sway 5.5s ease-in-out infinite;
       will-change: transform;
     }
 
+    .header .logo > img,
+    .header .logo > svg:not(.logo-impact) {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Эффект скола и расходящихся трещин поверх логотипа */
+    .header .logo .logo-impact {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .logo-impact .crack {
+      fill: none;
+      stroke: rgba(245, 251, 255, .96);
+      stroke-width: 1.05;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 120;
+      stroke-dashoffset: 120;
+      opacity: 0;
+      filter: drop-shadow(0 0 1.2px rgba(0, 0, 0, .95));
+      animation: logo-crack-draw 9s ease-out infinite;
+    }
+
+    .logo-impact .crack-core {
+      fill: rgba(255, 255, 255, .9);
+      stroke: rgba(18, 31, 38, .9);
+      stroke-width: .8;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: logo-impact-flash 9s ease-out infinite;
+    }
+
+    .logo-impact .stone {
+      opacity: 0;
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .7));
+      animation: logo-stone-hit 9s linear infinite;
+    }
+
+    .logo-impact .impact-ring {
+      fill: none;
+      stroke: rgba(255, 255, 255, .92);
+      stroke-width: 1.1;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: logo-impact-ring 9s ease-out infinite;
+    }
+
     @keyframes header-logo-sway {
       0%, 100% { transform: rotate(-1.8deg); }
       50% { transform: rotate(1.8deg); }
+    }
+
+    @keyframes logo-stone-hit {
+      0%, 4% { opacity: 0; }
+      5%, 13% { opacity: 1; }
+      14%, 100% { opacity: 0; }
+    }
+
+    @keyframes logo-crack-draw {
+      0%, 12% { stroke-dashoffset: 120; opacity: 0; }
+      14% { opacity: 1; }
+      23% { stroke-dashoffset: 0; opacity: 1; }
+      31% { stroke-dashoffset: 0; opacity: .95; }
+      39%, 100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    @keyframes logo-impact-flash {
+      0%, 12% { opacity: 0; transform: scale(.25); }
+      14% { opacity: 1; transform: scale(1.15); }
+      19% { opacity: .85; transform: scale(1); }
+      31%, 100% { opacity: 0; transform: scale(.8); }
+    }
+
+    @keyframes logo-impact-ring {
+      0%, 12% { opacity: 0; transform: scale(.2); }
+      14% { opacity: .9; }
+      23% { opacity: .45; transform: scale(2.5); }
+      30%, 100% { opacity: 0; transform: scale(3); }
     }
 
     .nav {
@@ -2486,6 +2574,43 @@
 
     document.querySelector("#hero-photo").src = CONFIG.heroPhoto;
 
+    function createLogoImpactOverlay() {
+      const overlay = document.createElementNS(SVG_NS, "svg");
+      overlay.setAttribute("class", "logo-impact");
+      overlay.setAttribute("viewBox", "0 0 348 106");
+      overlay.setAttribute("preserveAspectRatio", "none");
+      overlay.setAttribute("aria-hidden", "true");
+      overlay.setAttribute("focusable", "false");
+      overlay.innerHTML = `
+        <g class="stone">
+          <path d="M0 -3 L3 -1 L2 2 L-1 3 L-3 0 Z" fill="#8f9ba2" stroke="#f4f7f8" stroke-width=".65"/>
+          <path d="M-1 -1 L1 0 L0 1 Z" fill="#e8eef1"/>
+          <animateTransform attributeName="transform" type="translate" values="302 8; 210 51; 210 51" keyTimes="0;0.13;1" dur="9s" repeatCount="indefinite"/>
+        </g>
+        <g class="impact-ring" style="transform-origin:210px 51px">
+          <circle cx="210" cy="51" r="4"/>
+        </g>
+        <g class="crack-core">
+          <path d="M210 51 l-3 -2 1 -3 -3 -2 2 -4 -1 -3 3 -3" fill="none" stroke="#fff" stroke-width="1.2"/>
+          <path d="M210 51 l4 -3 3 1 3 -4 4 1 3 -3" fill="none" stroke="#fff" stroke-width="1.1"/>
+        </g>
+        <g>
+          <path class="crack" style="animation-delay:0s" d="M210 51 L203 44 L199 36 L192 32 L188 24 L180 19"/>
+          <path class="crack" style="animation-delay:.03s" d="M203 44 L194 45 L188 41 L180 43 L174 39"/>
+          <path class="crack" style="animation-delay:.06s" d="M199 36 L203 29 L200 23 L204 17"/>
+          <path class="crack" style="animation-delay:.08s" d="M210 51 L217 44 L225 42 L230 35 L239 32 L245 25"/>
+          <path class="crack" style="animation-delay:.1s" d="M225 42 L231 47 L239 46 L246 51 L254 49"/>
+          <path class="crack" style="animation-delay:.12s" d="M230 35 L228 27 L233 22 L231 16"/>
+          <path class="crack" style="animation-delay:.14s" d="M210 51 L204 59 L197 64 L195 72 L188 77 L184 85"/>
+          <path class="crack" style="animation-delay:.16s" d="M197 64 L188 62 L182 67 L175 66"/>
+          <path class="crack" style="animation-delay:.18s" d="M195 72 L201 78 L200 85 L205 91"/>
+          <path class="crack" style="animation-delay:.2s" d="M210 51 L218 58 L224 65 L233 67 L238 74 L247 78"/>
+          <path class="crack" style="animation-delay:.22s" d="M224 65 L220 74 L225 80 L223 87"/>
+          <path class="crack" style="animation-delay:.24s" d="M233 67 L242 63 L249 66 L257 62"/>
+        </g>`;
+      return overlay;
+    }
+
     document.querySelectorAll("[data-logo]").forEach((element) => {
       if (CONFIG.transparentLogo.trim()) {
         const image = document.createElement("img");
@@ -2495,18 +2620,20 @@
         image.height = 106;
         image.decoding = "async";
         element.append(image);
-        return;
+      } else {
+        element.append(
+          createCrop(
+            ASSETS.logo,
+            "55 430 1150 350",
+            1254,
+            1254,
+            "xMidYMid meet"
+          )
+        );
       }
-
-      element.append(
-        createCrop(
-          ASSETS.logo,
-          "55 430 1150 350",
-          1254,
-          1254,
-          "xMidYMid meet"
-        )
-      );
+      if (element.closest(".header")) {
+        element.append(createLogoImpactOverlay());
+      }
     });
 
     document.querySelectorAll("[data-asset]").forEach((image) => {
