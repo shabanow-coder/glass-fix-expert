@@ -417,9 +417,11 @@
 
     .service h3 {
       margin: 0 0 12px;
+      color: var(--orange);
       font-size: 25px;
       line-height: 1.15;
       letter-spacing: -.5px;
+      text-shadow: 0 2px 14px #0008;
     }
 
     .service p {
@@ -435,30 +437,53 @@
       display: inline-flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
-      min-height: 45px;
+      gap: 22px;
+      min-height: 46px;
       margin-top: 19px;
-      padding: 11px 16px;
-      border: 1px solid #ff790055;
-      border-radius: 13px;
-      background: #ff79000c;
-      color: #ecd6bf;
-      font-size: 14px;
-      transition:
-        background-color .25s ease,
-        border-color .25s ease;
+      padding: 11px 17px;
+      border: 1px solid #ff790080;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff79001c, #ff790008);
+      color: #fff0e1;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .15px;
+      box-shadow: inset 0 1px 0 #ffffff0a, 0 5px 18px #0002;
+      transition: transform .22s ease, background-color .22s ease,
+        border-color .22s ease, box-shadow .22s ease;
+      cursor: pointer;
     }
 
     .work-button::after {
       content: "↗";
-      color: #f5a35b;
-      font-size: 18px;
+      display: inline-grid;
+      place-items: center;
+      width: 23px;
+      height: 23px;
+      border-radius: 7px;
+      background: #ff790024;
+      color: #ff9a45;
+      font-size: 16px;
       line-height: 1;
+      transition: transform .22s ease, background-color .22s ease;
     }
 
     .work-button:hover {
-      border-color: #ff790099;
-      background: #ff79001b;
+      transform: translateY(-2px);
+      border-color: var(--orange);
+      background: linear-gradient(135deg, #ff790034, #ff790012);
+      box-shadow: 0 8px 22px #0003, 0 0 0 1px #ff790015;
+    }
+
+    .work-button:hover::after {
+      transform: translate(2px, -2px);
+      background: #ff790038;
+    }
+
+    .work-button:focus-visible,
+    .messenger:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
     }
 
     .service:focus-within .service-photo {
@@ -868,6 +893,7 @@
       background: #10212b;
       color: #e5edf2;
       font-size: 14px;
+      text-decoration: none;
       transition: transform .25s ease, background-color .25s ease;
     }
 
@@ -2061,27 +2087,27 @@
           </a>
 
           <div class="contact-links">
-            <button class="messenger" type="button" data-book="Консультация">
+            <a class="messenger" href="https://max.ru/u/f9LHodD0cOIJSWZjATZYw-ZbCP1C-HTsV_B_O4kbSh1UoGMozaITJufRJS4" target="_blank" rel="noopener noreferrer" aria-label="Открыть MAX">
               <span class="social-image" data-social="max" aria-hidden="true"></span>
               MAX
-            </button>
+            </a>
 
-            <button class="messenger" type="button" data-book="Консультация">
+            <a class="messenger" href="https://t.me/Mihail_Shabanow" target="_blank" rel="noopener noreferrer" aria-label="Открыть Telegram">
               <span class="social-image" data-social="telegram" aria-hidden="true"></span>
               Telegram
-            </button>
+            </a>
 
-            <button class="messenger" type="button" data-book="Консультация">
+            <a class="messenger" href="https://wa.me/79283003473" target="_blank" rel="noopener noreferrer" aria-label="Открыть WhatsApp">
               <span class="social-image" data-social="whatsapp" aria-hidden="true"></span>
               WhatsApp
-            </button>
+            </a>
 
-            <button class="messenger" type="button" data-book="Консультация">
+            <a class="messenger" href="https://www.avito.ru/brands/769f38ab0c6cabc794d28e560f421eb0?src=sharing" target="_blank" rel="noopener noreferrer" aria-label="Открыть Avito">
               <span class="social-image avito" aria-hidden="true">
                 <svg class="icon"><use href="#i-avito"/></svg>
               </span>
               Avito
-            </button>
+            </a>
           </div>
         </div>
       </div>
