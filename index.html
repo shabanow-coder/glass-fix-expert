@@ -665,6 +665,16 @@
     .video-poster {
       position: absolute;
       inset: 0;
+      background: #071014 url("video-poster.jpg") center / cover no-repeat;
+    }
+
+    .about-video video[hidden] {
+      display: none !important;
+    }
+
+    .about-video video:not([hidden]) {
+      max-width: 100%;
+      min-width: 0;
     }
 
     .video-poster::after {
@@ -2389,10 +2399,15 @@
             id="about-video"
             controls
             playsinline
-            preload="none"
+            webkit-playsinline
+            preload="metadata"
+            poster="video-poster.jpg"
+            src="GFE-video.mp4"
             hidden
             aria-label="Видео о работе GlassFix Expert"
-          ></video>
+          >
+            Ваш браузер не поддерживает воспроизведение видео.
+          </video>
 
           <div class="video-placeholder" id="video-placeholder">
             <span class="video-play" aria-hidden="true">
@@ -3149,10 +3164,15 @@
     const videoPoster = document.querySelector(".video-poster");
 
     if (CONFIG.videoSrc.trim()) {
-      aboutVideo.src = CONFIG.videoSrc.trim();
+      // Явно задаём относительные пути: работают в корне GitHub Pages и на телефонах.
+      aboutVideo.src = new URL(CONFIG.videoSrc.trim(), document.baseURI).href;
+      aboutVideo.setAttribute("playsinline", "");
+      aboutVideo.setAttribute("webkit-playsinline", "");
+      aboutVideo.preload = "metadata";
 
       if (CONFIG.videoPoster.trim()) {
-        aboutVideo.poster = CONFIG.videoPoster.trim();
+        aboutVideo.poster = new URL(CONFIG.videoPoster.trim(), document.baseURI).href;
+        videoPoster.style.backgroundImage = `url("${aboutVideo.poster}")`;
       }
 
       if (CONFIG.videoCaptions.trim()) {
@@ -3170,10 +3190,36 @@
 
       aboutVideo.addEventListener("error", () => {
         aboutVideo.hidden = true;
-        videoPlaceholder.hidden = false;
         videoPoster.hidden = false;
+        videoPlaceholder.hidden = false;
         videoPlaceholderText.textContent =
-          "Видео временно недоступно. Попробуйте позже.";
+          "Нажмите, чтобы попробовать открыть видео ещё раз";
+      });
+
+      // Повторная попытка запуска по нажатию на обложку — полезно для мобильных браузеров.
+      videoPlaceholder.style.cursor = "pointer";
+      videoPlaceholder.setAttribute("role", "button");
+      videoPlaceholder.setAttribute("tabindex", "0");
+      const retryVideo = () => {
+        aboutVideo.hidden = false;
+        videoPlaceholder.hidden = true;
+        videoPoster.hidden = true;
+        aboutVideo.load();
+        const playAttempt = aboutVideo.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(() => {
+            aboutVideo.hidden = false;
+            videoPlaceholder.hidden = false;
+            videoPoster.hidden = false;
+          });
+        }
+      };
+      videoPlaceholder.addEventListener("click", retryVideo);
+      videoPlaceholder.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          retryVideo();
+        }
       });
     }
 
@@ -3548,59 +3594,4 @@
     }
 
     if (headerDiscount) {
-      headerDiscount.addEventListener("click", () => {
-        if (!questCompleted) return;
-        closeOtherDialogs(secretDialog);
-        openDialog(secretDialog);
-      });
-    }
-    if (secretHeart) {
-      secretHeart.addEventListener("click", revealSecretGift);
-      secretHeart.addEventListener("keydown", (event) => {
-        if (!questStarted || questCompleted) return;
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          revealSecretGift();
-        }
-      });
-    }
-
-    document.querySelector("#quest-contact").addEventListener("click", () => {
-      secretDialog.close();
-      openContact("Консультация");
-    });
-
-  </script>
-
-
-  <script>
-    // Телефон ненадолго «звонит», цифры перебираются и вспыхивают,
-    // затем номер остаётся спокойным примерно на пять секунд.
-    (() => {
-      const phone = document.querySelector('[data-animated-phone]');
-      if (!phone) return;
-      const digits = [...phone.querySelectorAll('.phone-digit')];
-      const finalDigits = digits.map(el => el.textContent);
-      const randomDigit = () => String(Math.floor(Math.random() * 10));
-      const cycle = () => {
-        phone.classList.add('phone-ringing');
-        let ticks = 0;
-        const spin = setInterval(() => {
-          digits.forEach((el, i) => { el.textContent = randomDigit(); });
-          ticks++;
-          if (ticks >= 12) {
-            clearInterval(spin);
-            digits.forEach((el, i) => { el.textContent = finalDigits[i]; });
-            phone.classList.remove('phone-ringing');
-            phone.classList.add('phone-flash');
-            setTimeout(() => phone.classList.remove('phone-flash'), 1700);
-          }
-        }, 110);
-      };
-      cycle();
-      setInterval(cycle, 8500);
-    })();
-  </script>
-
-</body>
-</html>
+      headerDiscount.addEven
