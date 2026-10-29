@@ -2178,6 +2178,14 @@
       backdrop-filter: blur(7px);
     }
     .quest-inner { padding: 26px 23px 23px; text-align: center; }
+    /* Окно с наградой чуть шире, чтобы скидка и доступ к игре выглядели сбалансированно. */
+    #secret-dialog { width: min(92vw, 540px); max-width: 540px; }
+    #secret-dialog .quest-inner { padding: 28px 27px 26px; }
+    #secret-dialog .quest-copy { max-width: 430px; }
+    #secret-dialog .quest-actions { max-width: 390px; margin-inline: auto; }
+    .quest-game-copy { margin: 18px auto 18px; color: #f4f6f7; font-size: 16px; line-height: 1.55; max-width: 420px; }
+    .quest-game-copy strong { color: #ff9b45; }
+    .quest-play-link { display: flex; align-items: center; justify-content: center; text-decoration: none; }
     .quest-mark {
       width: 64px; height: 64px; margin: 0 auto 15px; display: grid;
       place-items: center; border-radius: 20px; color: #ff7900;
@@ -2226,7 +2234,15 @@
     }
     @media (prefers-reduced-motion: reduce) { .heart-ripple { animation-duration: .01ms; } }
     /* До завершения квеста сердечко не мерцает; эффект появляется только после нахождения секрета. */
-    .trust-item[data-secret-heart].quest-heart-active:active .icon { transform: scale(1.14); filter: drop-shadow(0 0 21px rgba(255,121,0,.9)); }
+    .trust-item[data-secret-heart].quest-heart-active .icon {
+      animation: quest-heart-search-pulse 1.05s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .trust-item[data-secret-heart].quest-heart-active:active .icon { transform: scale(1.2); filter: drop-shadow(0 0 24px rgba(255,121,0,1)); }
+    @keyframes quest-heart-search-pulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 7px rgba(255,121,0,.38)); }
+      50% { transform: scale(1.28); filter: drop-shadow(0 0 19px rgba(255,121,0,.95)); }
+    }
     .trust-item[data-secret-heart].quest-heart-found .icon { animation: quest-heart-found .65s ease-out; }
     .trust-item[data-secret-heart].quest-heart-found { cursor: default; }
     @keyframes quest-heart-found { 0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,121,0,0)); } 35% { transform: scale(1.28); filter: drop-shadow(0 0 13px rgba(255,121,0,.95)); } 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,121,0,0)); } }
@@ -2261,7 +2277,12 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .quest-primary, .quest-secondary, .trust-item[data-secret-heart] .icon { transition: none; }
+      .trust-item[data-secret-heart].quest-heart-active .icon { animation: none; filter: drop-shadow(0 0 12px rgba(255,121,0,.7)); }
       .header-discount, .header-discount::before, .discount-spark { animation: none; }
+    }
+    @media (max-width: 420px) {
+      #secret-dialog .quest-inner { padding: 25px 18px 20px; }
+      #secret-dialog .quest-game-copy { font-size: 15px; }
     }
 
         #service-repair,
@@ -2821,7 +2842,9 @@
       <p class="quest-copy">В Glass Fix Expert мы действительно заботимся о каждом клиенте. Поэтому для тебя есть специальное предложение.</p>
       <div class="quest-discount">−10%</div>
       <p class="quest-copy">Скидка на услугу при обращении к мастеру. Покажи это окно при записи.</p>
+      <p class="quest-game-copy"><strong>Вам открылся доступ к онлайн-игре!</strong><br>Почувствуй себя мастером по ремонту стёкол.</p>
       <div class="quest-actions">
+        <a class="quest-primary quest-play-link" href="./GFE%20Game.2.html">Сыграть</a>
         <button class="quest-primary" type="button" id="quest-contact">Воспользоваться скидкой</button>
         <button class="quest-secondary" type="button" data-quest-close>Вернуться на сайт</button>
       </div>
