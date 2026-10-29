@@ -2235,13 +2235,13 @@
     @media (prefers-reduced-motion: reduce) { .heart-ripple { animation-duration: .01ms; } }
     /* До завершения квеста сердечко не мерцает; эффект появляется только после нахождения секрета. */
     .trust-item[data-secret-heart].quest-heart-active .icon {
-      animation: quest-heart-search-pulse 1.05s ease-in-out infinite;
+      animation: quest-heart-search-pulse 2.4s ease-in-out infinite;
       transform-origin: center;
     }
     .trust-item[data-secret-heart].quest-heart-active:active .icon { transform: scale(1.2); filter: drop-shadow(0 0 24px rgba(255,121,0,1)); }
     @keyframes quest-heart-search-pulse {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 7px rgba(255,121,0,.38)); }
-      50% { transform: scale(1.28); filter: drop-shadow(0 0 19px rgba(255,121,0,.95)); }
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255,121,0,.28)); }
+      50% { transform: scale(1.12); filter: drop-shadow(0 0 11px rgba(255,121,0,.62)); }
     }
     .trust-item[data-secret-heart].quest-heart-found .icon { animation: quest-heart-found .65s ease-out; }
     .trust-item[data-secret-heart].quest-heart-found { cursor: default; }
