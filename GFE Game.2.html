@@ -2,17 +2,17 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#171b22">
-<title>GlassFix Expert</title>
+<title>Glass Fix Expert Game QWEN 2</title>
 <style>
 *{box-sizing:border-box}
 :root{color-scheme:dark}
 body{margin:0;background:#10151c;color:#eef3fa;font-family:Arial,Helvetica,sans-serif}
-button{font:inherit;cursor:pointer;border:1px solid #4c596a;border-radius:10px;background:#293443;color:#edf3fa;padding:11px 14px}
-button:hover:not(:disabled){background:#3c4c60}
+button,.linkButton{font:inherit;cursor:pointer;border:1px solid #4c596a;border-radius:10px;background:#293443;color:#edf3fa;padding:11px 14px}
+button:hover:not(:disabled),.linkButton:hover{background:#3c4c60}
 button:disabled{opacity:.45;cursor:default}
-button:focus-visible{outline:3px solid #ffc489;outline-offset:2px}
+button:focus-visible,a:focus-visible{outline:3px solid #ffc489;outline-offset:2px}
 .app{max-width:1280px;margin:auto;padding:12px}
 header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
 .brand{font-size:25px;font-weight:900;letter-spacing:-1px}
@@ -61,6 +61,26 @@ h2{font-size:19px;margin:0 0 9px}
 .modalFoot{padding:16px 22px;border-top:1px solid #3d4c60;color:#9eb0c4;font-size:12px;line-height:1.5}
 .help article{max-width:600px;padding:25px}
 .help .primary{background:#b45b24;border-color:#e99b61}
+#vacation{z-index:20;background:#08121af5}
+#vacation article{width:min(1080px,100%);border-color:#b9986f}
+.beach{display:block;width:100%;height:auto}
+.ending{padding:24px;text-align:center;background:linear-gradient(#253848,#172532)}
+.ending h1{font-size:clamp(27px,4vw,43px);line-height:1.2;color:#ffe1a6;margin:8px 0 12px}
+.ending p{max-width:780px;margin:12px auto;color:#d4e2ed}.ending .endThanks{font-size:clamp(18px,2.2vw,25px);line-height:1.45;color:#f2e5d3;font-weight:700;max-width:760px;margin:14px auto 4px}
+.endActions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.linkButton{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#b45b24;border-color:#e99b61}
+#closeNote{min-height:20px;font-size:12px;color:#ffd49a;margin-top:12px}
+.birdA{animation:flightA 26s linear infinite}
+.birdB{animation:flightA 33s linear infinite reverse}
+.wing{transform-box:fill-box;transform-origin:center;animation:flap 1.4s ease-in-out infinite}
+.foamA{animation:tide 6s ease-in-out infinite}
+.foamB{animation:tide 8s ease-in-out infinite reverse}
+.shimmer{animation:glow 4s ease-in-out infinite}
+@keyframes flightA{from{transform:translateX(-170px)}to{transform:translateX(1120px)}}
+@keyframes flap{50%{transform:scaleY(.45)}}
+@keyframes tide{50%{transform:translateY(13px);opacity:.4}}
+@keyframes glow{50%{opacity:.3}}
+@media(prefers-reduced-motion:reduce){.beach *{animation:none!important}}
 @media(max-width:740px){
 .grid{grid-template-columns:1fr}
 .product{display:grid;grid-template-columns:105px 1fr;column-gap:13px}
@@ -80,7 +100,7 @@ h2{font-size:19px;margin:0 0 9px}
 .stat strong{font-size:16px}
 .controls button{flex:1 1 auto;padding:10px;font-size:12px}
 #hint{font-size:12px}
-.modalHead{padding:18px}
+.modalHead,.ending{padding:18px}
 h1{font-size:22px}
 }
 </style>
@@ -88,136 +108,246 @@ h1{font-size:22px}
 <body>
 <div class="app">
 <header>
-  <div class="brand">Glass<span>Fix</span><small>EXPERT · МАСТЕРСКАЯ</small></div>
-  <div class="stats">
-    <div class="stat"><small>БАЛАНС</small><strong id="money">0 ₽</strong></div>
-    <div class="stat"><small>ОТРЕМОНТИРОВАНО</small><strong id="jobs">0 авто</strong></div>
-  </div>
+<div class="brand">Glass<span>Fix</span><small>EXPERT · МАСТЕРСКАЯ</small></div>
+<div class="stats">
+<div class="stat"><small>БАЛАНС</small><strong id="money">0 ₽</strong></div>
+<div class="stat"><small>ОТРЕМОНТИРОВАНО</small><strong id="jobs">0 авто</strong></div>
+</div>
 </header>
 <div class="stage"><canvas id="game" aria-label="Мастерская ремонта автостекла"></canvas></div>
 <div class="tip" aria-live="polite"><div id="step">1</div><div id="hint">Клиент заезжает.</div></div>
 <div class="controls">
-  <button data-tool="mat">Накидка</button>
-  <button data-tool="drill">Бормашинка</button>
-  <button data-tool="injector">Инжектор</button>
-  <button data-tool="resin">Полимер</button>
-  <button id="zoom">Приблизить</button>
-  <button id="shopOpen" class="shopButton">Магазин</button>
-  <button id="sound">Звук: выкл.</button>
-  <button id="helpOpen">Как играть</button>
-  <button id="reset">Сброс</button>
+<button data-tool="mat">Накидка</button>
+<button data-tool="drill">Бормашинка</button>
+<button data-tool="injector">Инжектор</button>
+<button data-tool="resin">Полимер</button>
+<button id="zoom">Приблизить</button>
+<button id="shopOpen" class="shopButton">Магазин</button>
+<button id="sound">Звук: выкл.</button>
+<button id="helpOpen">Как играть</button>
+<button id="reset">Сброс</button>
 </div>
 <p class="footnote">Покупки и прогресс сохраняются в этом браузере, если доступно локальное хранилище. Игра не является инструкцией по реальному ремонту автостекла.</p>
 </div>
 
 <div class="modal" id="shop" hidden role="dialog" aria-modal="true" aria-labelledby="shopTitle">
 <article>
-  <div class="modalHead">
-    <div class="headRow">
-      <div><div class="kicker">GLASSFIX EQUIPMENT</div><h1 id="shopTitle">Магазин мастера</h1></div>
-      <button data-close>Закрыть</button>
-    </div>
-    <p>Профессиональные инструменты вместо стартового набора. Каждое улучшение покупается один раз и устанавливается автоматически.</p>
-    <div class="balance">Ваш баланс <strong id="shopBalance">0 ₽</strong></div>
-    <div id="shopMessage" aria-live="polite"></div>
-  </div>
-  <div class="grid">
-    <section class="product" id="card-drill">
-      <canvas class="preview" data-preview="drill" width="420" height="250"></canvas>
-      <div class="tag">ПРОФЕССИОНАЛЬНАЯ СЕРИЯ</div>
-      <h2>Бормашинка Dremel</h2>
-      <p>Полноразмерный профессиональный инструмент вместо небольшой серой машинки. Быстро обрабатывает сколы и концы трещин.</p>
-      <div class="effect">Одна точка: 1 секунда вместо 2,8 секунды.</div>
-      <button data-buy="drill">Купить за 10 000 ₽</button>
-    </section>
-    <section class="product" id="card-injector">
-      <canvas class="preview" data-preview="injector" width="420" height="250"></canvas>
-      <div class="tag">ТОЧНОСТЬ И ДАВЛЕНИЕ</div>
-      <h2>Инжектор Delta</h2>
-      <p>Мост с тремя регулировками вместо простого одинарного инжектора. Ускоряет заполнение скола после подачи полимера.</p>
-      <div class="effect">Заполнение: 1,5 секунды вместо 4,5 секунды.</div>
-      <button data-buy="injector">Купить за 15 000 ₽</button>
-    </section>
-    <section class="product" id="card-resin">
-      <canvas class="preview" data-preview="resin" width="420" height="250"></canvas>
-      <div class="tag">БЫСТРАЯ ФОРМУЛА</div>
-      <h2>Полимер Expert</h2>
-      <p>Белый тюбик с фирменной оранжевой этикеткой. Ускоряет финальную полимеризацию и сколов, и трещин.</p>
-      <div class="effect">Финиш: 1,3 секунды вместо 3,5 секунды.</div>
-      <button data-buy="resin">Купить за 5 000 ₽</button>
-    </section>
-    <section class="product" id="card-workshop">
-      <canvas class="preview" data-preview="workshop" width="420" height="250"></canvas>
-      <div class="tag">АТМОСФЕРА И СТИЛЬ</div>
-      <h2>Ремонт в боксе</h2>
-      <p>Полная модернизация бокса: графитовые стены с гоночными полосами, большой постер спорткара, профессиональный широкий верстак, инструментальная рейка и LED-освещение.</p>
-      <div class="effect">Постоянное улучшение бокса. Покупается один раз и сохраняется.</div>
-      <button data-buy="workshop">Улучшить бокс за 50 000 ₽</button>
-    </section>
-    <section class="product ticket">
-      <canvas class="preview" data-preview="ticket" width="440" height="290"></canvas>
-      <div>
-        <div class="tag">СЛЕДУЮЩЕЕ ОБНОВЛЕНИЕ</div>
-        <h2>Билет на райские острова</h2>
-        <p>Пальмы, тёплый океан и заслуженный отпуск мастера. Большая цель после обустройства мастерской.</p>
-      </div>
-      <div class="ticketPay">
-        <div class="price">100 000 ₽</div>
-        <button disabled>Скоро появится</button>
-        <div class="soon">В следующем обновлении. Покупка пока недоступна, деньги не списываются.</div>
-      </div>
-    </section>
-  </div>
-  <div class="modalFoot">Инструменты многоразовые. Пока открыт магазин, игра стоит на паузе. Купленные улучшения сохраняются вместе с балансом.</div>
+<div class="modalHead">
+<div class="headRow">
+<div><div class="kicker">GLASSFIX EQUIPMENT</div><h1 id="shopTitle">Магазин мастера</h1></div>
+<button data-close>Закрыть</button>
+</div>
+<p>Улучшения покупаются один раз и устанавливаются автоматически. Профессиональное оборудование не только ускоряет работу, но и повышает оплату каждого заказа.</p>
+<div class="balance">Ваш баланс <strong id="shopBalance">0 ₽</strong></div>
+<div id="shopMessage" aria-live="polite"></div>
+</div>
+<div class="grid">
+<section class="product" id="card-drill">
+<canvas class="preview" data-preview="drill" width="420" height="250"></canvas>
+<div class="tag">ПРОФЕССИОНАЛЬНАЯ СЕРИЯ</div>
+<h2>Бормашинка Dremel</h2>
+<p>Профессиональный инструмент вместо небольшой серой машинки. Быстро обрабатывает сколы и концы трещин.</p>
+<div class="effect">Одна точка: 1 секунда вместо 2,8 секунды. Дополнительно +1 800 ₽ к каждому заказу.</div>
+<button data-buy="drill">Купить за 10 000 ₽</button>
+</section>
+<section class="product" id="card-injector">
+<canvas class="preview" data-preview="injector" width="420" height="250"></canvas>
+<div class="tag">ТОЧНОСТЬ И ДАВЛЕНИЕ</div>
+<h2>Инжектор Delta</h2>
+<p>Мост с тремя регулировками вместо одинарного инжектора. Ускоряет заполнение скола после подачи полимера.</p>
+<div class="effect">Заполнение: 1,5 секунды вместо 4,5 секунды. Дополнительно +1 800 ₽ к каждому заказу.</div>
+<button data-buy="injector">Купить за 15 000 ₽</button>
+</section>
+<section class="product" id="card-resin">
+<canvas class="preview" data-preview="resin" width="420" height="250"></canvas>
+<div class="tag">БЫСТРАЯ ФОРМУЛА</div>
+<h2>Полимер Expert</h2>
+<p>Белый тюбик с фирменной оранжевой этикеткой. Ускоряет финальную полимеризацию сколов и трещин.</p>
+<div class="effect">Финиш: 1,3 секунды вместо 3,5 секунды. Дополнительно +1 800 ₽ к каждому заказу.</div>
+<button data-buy="resin">Купить за 5 000 ₽</button>
+</section>
+<section class="product" id="card-workshop">
+<canvas class="preview" data-preview="workshop" width="420" height="250"></canvas>
+<div class="tag">АТМОСФЕРА И СТИЛЬ</div>
+<h2>Ремонт в боксе</h2>
+<p>Графитовые стены, гоночные полосы, постер спорткара, профессиональный верстак, инструментальная рейка и LED-освещение.</p>
+<div class="effect">Постоянное улучшение бокса. Дополнительно +6 000 ₽ к каждому заказу.</div>
+<button data-buy="workshop">Улучшить бокс за 50 000 ₽</button>
+</section>
+<section class="product ticket" id="card-ticket">
+<canvas class="preview" data-preview="ticket" width="440" height="290"></canvas>
+<div>
+<div class="tag">ФИНАЛ ИГРЫ · ЗАСЛУЖЕННЫЙ ОТПУСК</div>
+<h2>Билет на райские острова</h2>
+<p>Пальмы, океан и закат. Отправьте мастера на отдых и посмотрите анимированную концовку.</p>
+</div>
+<div class="ticketPay">
+<div class="price">100 000 ₽</div>
+<button data-buy="ticket">Купить билет</button>
+<div class="soon">Покупается один раз. После покупки концовку можно смотреть повторно бесплатно.</div>
+</div>
+</section>
+</div>
+<div class="modalFoot">Инструменты многоразовые. Надбавки складываются: до +4 900 ₽ за заказ. Пока открыт магазин, игра стоит на паузе. Покупки сохраняются вместе с балансом.</div>
 </article>
 </div>
 
 <div class="modal help" id="help" hidden role="dialog" aria-modal="true" aria-labelledby="helpTitle">
 <article>
-  <h1 id="helpTitle">Мастерская GlassFix</h1>
-  <p>Нажмите на накидку на стене, затем перенесите нужные инструменты с верстака на рабочую зону. Можно нажимать на предметы в боксе или на кнопки под игрой.</p>
-  <p>Скол: выберите бормашинку и нажмите на повреждение. Дождитесь сверления. Установите инжектор на скол, затем выберите полимер и нажмите на инжектор. Ремонт займёт некоторое время.</p>
-  <p>Трещина: обработайте бормашинкой оба отмеченных конца. Выберите полимер и проведите по всей линии, удерживая мышь или палец. Инжектор для этого заказа не нужен.</p>
-  <p>Иногда появляются и скол, и трещина. Сначала обработайте все отмеченные точки. Затем отремонтируйте оба повреждения в любом порядке. Клиент заплатит за оба.</p>
-  <p>Стартовые инструменты медленнее профессиональных. Покупайте улучшения в магазине. Кнопка «Приблизить» показывает стекло и инструменты на подстилке крупнее.</p>
-  <button data-close class="primary">В мастерскую</button>
+<h1 id="helpTitle">Мастерская GlassFix</h1>
+<p>Нажмите на накидку на стене, затем перенесите нужные инструменты с верстака на рабочую зону. Можно нажимать на предметы в боксе или на кнопки под игрой.</p>
+<p>Скол: обработайте повреждение бормашинкой, установите инжектор, затем выберите полимер и нажмите на инжектор. Дождитесь завершения ремонта.</p>
+<p>Трещина: обработайте бормашинкой оба отмеченных конца. Выберите полимер и проведите по всей линии, удерживая мышь или палец. Инжектор не нужен.</p>
+<p>Если появились и скол, и трещина, сначала обработайте все отмеченные точки. Затем отремонтируйте оба повреждения в любом порядке.</p>
+<p>Базовая оплата: скол — 4 700 ₽, трещина — 5 900 ₽. Каждый купленный инструмент повышает оплату заказа на 1 800 ₽, ремонт бокса — ещё на 6 000 ₽. Надбавки начисляются один раз за заказ.</p>
+<p>После оплаты инструменты вернутся на верстак, накидка — на стену, и только затем автомобиль уедет. Кнопка «Приблизить» показывает стекло и рабочую зону крупнее.</p>
+<p>Купите билет за 100 000 ₽, чтобы увидеть финал. После него можно вернуться в мастерскую и продолжить игру.</p>
+<button data-close class="primary">В мастерскую</button>
+</article>
+</div>
+
+<div class="modal" id="vacation" hidden role="dialog" aria-modal="true" aria-labelledby="vacationTitle">
+<article>
+<svg class="beach" viewBox="0 0 1100 570" role="img" aria-label="Мастер отдыхает на шезлонге у океана. Закат, пальмы, чайки и столик с ноутбуком.">
+<defs>
+<linearGradient id="sky" x2="0" y2="1">
+<stop stop-color="#343858"/><stop offset=".5" stop-color="#ba737b"/><stop offset="1" stop-color="#ffc98c"/>
+</linearGradient>
+<linearGradient id="sea" x2="0" y2="1">
+<stop stop-color="#6d7899"/><stop offset=".5" stop-color="#397f99"/><stop offset="1" stop-color="#58acb4"/>
+</linearGradient>
+<linearGradient id="sand" x2=".3" y2="1">
+<stop stop-color="#efd3a0"/><stop offset="1" stop-color="#c99a73"/>
+</linearGradient>
+<radialGradient id="sunGlow">
+<stop stop-color="#ffe8ad" stop-opacity=".75"/><stop offset="1" stop-color="#ffdba5" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<path d="M0 0H1100V309H0Z" fill="url(#sky)"/>
+<circle cx="680" cy="245" r="150" fill="url(#sunGlow)"/>
+<circle cx="680" cy="259" r="56" fill="#ffdf9c"/>
+<path d="M0 302Q170 297 340 303T680 302T1100 301V475H0Z" fill="url(#sea)"/>
+<path d="M0 303H1100" stroke="#ffddb2" stroke-width="2" opacity=".6"/>
+<g class="shimmer" stroke="#ffe0a3" stroke-linecap="round">
+<path d="M645 313H716M632 327H731M647 342H720M619 358H746" stroke-width="4" opacity=".65"/>
+<path d="M631 378H739M610 397H758M630 417H738" stroke-width="5" opacity=".35"/>
+</g>
+<g fill="none" stroke="#a9d3d2" opacity=".4">
+<path d="M20 339Q80 329 145 339T275 339M815 339Q885 329 961 339"/>
+<path d="M100 373Q170 363 246 373M799 378Q900 367 1027 378"/>
+</g>
+<path d="M0 445Q230 408 477 448T1100 427V570H0Z" fill="url(#sand)"/>
+<path class="foamA" d="M-20 436Q230 399 478 439T1120 418" fill="none" stroke="#e4f2e6" stroke-width="8" opacity=".75"/>
+<path class="foamB" d="M-20 419Q230 383 478 422T1120 401" fill="none" stroke="#d6eee3" stroke-width="3" opacity=".6"/>
+<path d="M0 535Q270 501 500 543T1100 529V570H0Z" fill="#bb8e68" opacity=".25"/>
+<g class="birdA" fill="none" stroke="#fff1df" stroke-width="3" stroke-linecap="round">
+<path class="wing" d="M0 121Q11 108 22 121Q33 108 44 121"/>
+<path d="M79 151Q87 142 95 151Q103 142 111 151"/>
+</g>
+<g class="birdB" fill="none" stroke="#f8e5da" stroke-width="2.5" stroke-linecap="round">
+<path class="wing" d="M0 188Q9 177 18 188Q27 177 36 188"/>
+<path d="M108 106Q116 98 124 106Q132 98 140 106"/>
+</g>
+<g>
+<path d="M89 570Q151 388 146 170" fill="none" stroke="#573e37" stroke-width="30" stroke-linecap="round"/>
+<path d="M94 561Q147 380 141 178" fill="none" stroke="#926249" stroke-width="10"/>
+<g fill="#203f3e" stroke="#2b5147" stroke-width="2">
+<path d="M145 178Q61 91 0 153Q72 126 145 190Z"/>
+<path d="M145 178Q54 166 10 245Q79 187 145 190Z"/>
+<path d="M145 178Q93 61 43 75Q107 122 145 190Z"/>
+<path d="M145 178Q178 64 235 79Q176 112 145 190Z"/>
+<path d="M145 178Q251 102 309 167Q228 143 145 190Z"/>
+<path d="M145 178Q256 173 283 249Q217 196 145 190Z"/>
+</g>
+</g>
+<g>
+<path d="M1043 570Q1012 394 1033 219" fill="none" stroke="#543e37" stroke-width="23" stroke-linecap="round"/>
+<g fill="#26463e">
+<path d="M1032 225Q935 131 872 180Q963 168 1032 234Z"/>
+<path d="M1032 225Q937 217 913 287Q969 240 1032 234Z"/>
+<path d="M1032 225Q999 112 951 131Q1007 171 1032 234Z"/>
+<path d="M1032 225Q1060 124 1100 151V176Q1064 188 1032 234Z"/>
+<path d="M1032 225Q1080 193 1100 210V247Q1067 226 1032 234Z"/>
+</g>
+</g>
+<ellipse cx="535" cy="524" rx="205" ry="23" fill="#735e54" opacity=".2"/>
+<!-- Удобный деревянный шезлонг с понятной опорой и натянутым полотном -->
+<g stroke-linecap="round" stroke-linejoin="round">
+  <path d="M385 485L354 548M635 493L674 548M455 450L430 548M650 490L620 548" fill="none" stroke="#594438" stroke-width="10"/>
+  <path d="M385 481L463 374L493 393L420 492Z" fill="#d8c39d" stroke="#705745" stroke-width="6"/>
+  <path d="M420 492L650 510L665 486L493 393" fill="none" stroke="#d8c39d" stroke-width="18"/>
+  <path d="M390 478L465 382L486 397L416 488Z" fill="#e9d9b8" stroke="#b17a50" stroke-width="4"/>
+  <path d="M425 490L646 507" stroke="#df955f" stroke-width="7"/>
+  <path d="M383 485L665 510" stroke="#73533e" stroke-width="6"/>
+  <!-- Отдыхающий: голова на подголовнике, расслабленный корпус и вытянутые ноги -->
+  <path d="M456 402Q476 397 493 413L535 437Q554 449 576 448L637 456Q651 460 647 473Q643 483 627 480L558 469Q532 465 512 451L474 431L449 423Z" fill="#e8a06b" stroke="#805844" stroke-width="3"/>
+  <path d="M507 439Q535 430 557 447L581 460L563 475L526 462L493 449Z" fill="#344f65" stroke="#263d50" stroke-width="3"/>
+  <path d="M570 457L630 463Q651 465 650 477Q647 487 630 483L568 476Z" fill="#e8b88e" stroke="#805844" stroke-width="2"/>
+  <path d="M628 463L663 466Q675 469 671 480Q668 488 653 484L630 481Z" fill="#e8b88e" stroke="#805844" stroke-width="2"/>
+  <path d="M470 415Q488 420 501 434L490 447Q474 438 460 430" fill="none" stroke="#e8b88e" stroke-width="12"/>
+  <path d="M455 404Q448 390 459 379Q472 369 484 380Q496 392 485 405Q474 416 462 410Z" fill="#edbd95" stroke="#805b49" stroke-width="3"/>
+  <path d="M449 394Q447 376 464 372Q480 369 489 384L480 383L470 389L457 389Z" fill="#443735"/>
+  <path d="M477 396L486 394" stroke="#273b48" stroke-width="3" stroke-linecap="round"/>
+</g>
+<g>
+<ellipse cx="781" cy="519" rx="73" ry="13" fill="#71574a" opacity=".2"/>
+<path d="M745 474L737 532M815 474L824 532" stroke="#59463b" stroke-width="7"/>
+<ellipse cx="780" cy="472" rx="66" ry="16" fill="#b47e53" stroke="#674b3b" stroke-width="4"/>
+<path d="M752 464L744 421L799 419L809 461Z" fill="#283e52" stroke="#a2b4ba" stroke-width="3"/>
+<path d="M750 425L795 424L802 453L756 455Z" fill="#79aab7"/>
+<path d="M752 464L809 461L824 470L764 475Z" fill="#b6c6cb" stroke="#5d7786" stroke-width="2"/>
+<path d="M765 467L803 465" stroke="#6c8997" stroke-width="3"/>
+<path d="M831 448L848 448L845 467L834 467Z" fill="#e4ae62"/>
+<path d="M839 449L845 429" stroke="#f2ede1" stroke-width="3"/>
+</g>
+</svg>
+<div class="ending">
+<div class="kicker">GLASSFIX EXPERT · ЗАСЛУЖЕННЫЙ ФИНАЛ</div>
+<h1 id="vacationTitle">Поздравляем! Мастер заслужил отдых!</h1>
+<p class="endThanks">Спасибо за помощь и за то, что сделали эту мастерскую лучше. Отличная работа!</p>
+<div class="endActions">
+<button data-close>Вернуться в мастерскую</button>
+<a class="linkButton" href="https://glass-fix-expert.pro" target="_blank" rel="noopener noreferrer">На сайт Glass Fix Expert</a>
+<button id="closePage">Завершить путешествие — закрыть страницу</button>
+</div>
+<div id="closeNote" aria-live="polite"></div>
+</div>
 </article>
 </div>
 
 <script>
 "use strict";
 (() => {
-const $ = id => document.getElementById(id);
-const canvas = $("game");
-let g = canvas.getContext("2d");
-const main = g;
-const W = 1100, H = 700;
-const KEY = "glassfix_expert_game_v2";
-const prices = {drill:10000, injector:15000, resin:5000, workshop:50000};
-const names = {mat:"Накидка", drill:"Бормашинка", injector:"Инжектор", resin:"Полимер", workshop:"Ремонт в боксе"};
-const bench = {drill:{x:70,y:480}, injector:{x:162,y:480}, resin:{x:245,y:480}};
-const pad = {drill:{x:392,y:449}, injector:{x:486,y:449}, resin:{x:570,y:449}};
-const models = [
-  {name:"Городской хэтчбек",color:"#ec883a",dark:"#aa4d26",shape:0},
-  {name:"Бизнес-седан",color:"#608bd2",dark:"#304e8a",shape:1},
-  {name:"Большой внедорожник",color:"#dddcd5",dark:"#8d97a6",shape:2},
-  {name:"Спортивное купе",color:"#dc5366",dark:"#8d2b4a",shape:3},
-  {name:"Семейный универсал",color:"#4fb39c",dark:"#237567",shape:4},
-  {name:"Атермальный седан",color:"#9b83dc",dark:"#59438d",shape:1,purple:true}
+const $=id=>document.getElementById(id);
+const canvas=$("game");
+let g=canvas.getContext("2d");
+const main=g,W=1100,H=700,KEY="glassfix_expert_game_v2";
+const prices={drill:10000,injector:15000,resin:5000,workshop:50000,ticket:100000};
+const names={mat:"Накидка",drill:"Бормашинка",injector:"Инжектор",resin:"Полимер",workshop:"Ремонт в боксе",ticket:"Билет на отдых"};
+const bench={drill:{x:70,y:480},injector:{x:162,y:480},resin:{x:245,y:480}};
+const pad={drill:{x:392,y:449},injector:{x:486,y:449},resin:{x:570,y:449}};
+const models=[
+{name:"Городской хэтчбек",color:"#ec883a",dark:"#aa4d26",shape:0},
+{name:"Бизнес-седан",color:"#608bd2",dark:"#304e8a",shape:1},
+{name:"Большой внедорожник",color:"#dddcd5",dark:"#8d97a6",shape:2},
+{name:"Спортивное купе",color:"#dc5366",dark:"#8d2b4a",shape:3},
+{name:"Семейный универсал",color:"#4fb39c",dark:"#237567",shape:4},
+{name:"Атермальный седан",color:"#9b83dc",dark:"#59438d",shape:1,purple:true}
 ];
-let save = {money:0,jobs:0,upgrades:{drill:false,injector:false,resin:false,workshop:false}};
-try {
-  const data = JSON.parse(localStorage.getItem(KEY) || localStorage.getItem("glassfix_expert_game_v1") || "null");
-  if(data && typeof data === "object"){
-    if(Number.isFinite(data.money)) save.money = Math.max(0,Math.floor(data.money));
-    if(Number.isFinite(data.jobs)) save.jobs = Math.max(0,Math.floor(data.jobs));
-    Object.keys(prices).forEach(k => save.upgrades[k] = data.upgrades?.[k] === true);
-  }
-} catch(e){}
-let state, bag=[], time=0, last=performance.now(), modal=null, zoom=false;
-let sound=false, audio=null, hits=[], particles=[], floats=[];
+function emptySave(){return{money:0,jobs:0,upgrades:{drill:false,injector:false,resin:false,workshop:false,ticket:false}};}
+let save=emptySave();
+try{
+const data=JSON.parse(localStorage.getItem(KEY)||localStorage.getItem("glassfix_expert_game_v1")||"null");
+if(data&&typeof data==="object"){
+if(Number.isFinite(data.money))save.money=Math.max(0,Math.floor(data.money));
+if(Number.isFinite(data.jobs))save.jobs=Math.max(0,Math.floor(data.jobs));
+Object.keys(prices).forEach(k=>save.upgrades[k]=data.upgrades?.[k]===true);
+}
+}catch(e){}
+let state,bag=[],time=0,last=performance.now(),modal=null,zoom=false;
+let sound=false,audio=null,hits=[],particles=[],floats=[];
 let mouse={x:-999,y:-999,down:false,last:null,id:null};
-let notice={text:"",end:0}, lastHint="";
+let notice={text:"",end:0},lastHint="";
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const lerp=(a,b,t)=>a+(b-a)*t;
 const rand=(a,b)=>a+Math.random()*(b-a);
@@ -228,779 +358,1050 @@ const tools=[...document.querySelectorAll("[data-tool]")];
 const buys=[...document.querySelectorAll("[data-buy]")];
 
 function rr(x,y,w,h,r,fill,stroke,lw=2){
-  r=Math.min(r,w/2,h/2);
-  g.beginPath();g.moveTo(x+r,y);
-  g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);
-  g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();
-  if(fill){g.fillStyle=fill;g.fill();}
-  if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}
+r=Math.min(r,w/2,h/2);g.beginPath();g.moveTo(x+r,y);
+g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);
+g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();
+if(fill){g.fillStyle=fill;g.fill();}
+if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}
 }
 function poly(p,fill,stroke,lw=2,close=true){
-  g.beginPath();p.forEach((v,i)=>i?g.lineTo(v[0],v[1]):g.moveTo(v[0],v[1]));
-  if(close)g.closePath();
-  if(fill){g.fillStyle=fill;g.fill();}
-  if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.lineJoin="round";g.lineCap="round";g.stroke();}
+g.beginPath();p.forEach((v,i)=>i?g.lineTo(v[0],v[1]):g.moveTo(v[0],v[1]));
+if(close)g.closePath();
+if(fill){g.fillStyle=fill;g.fill();}
+if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.lineJoin="round";g.lineCap="round";g.stroke();}
 }
 function line(x,y,X,Y,c,w=2){poly([[x,y],[X,Y]],null,c,w,false);}
 function oval(x,y,rx,ry,fill,stroke,lw=2){
-  g.beginPath();g.ellipse(x,y,rx,ry,0,0,Math.PI*2);
-  if(fill){g.fillStyle=fill;g.fill();}
-  if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}
+g.beginPath();g.ellipse(x,y,rx,ry,0,0,Math.PI*2);
+if(fill){g.fillStyle=fill;g.fill();}
+if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke();}
 }
 function txt(s,x,y,size=16,color="#fff",align="center",weight=700){
-  g.font=weight+" "+size+"px Arial";g.fillStyle=color;g.textAlign=align;g.textBaseline="middle";g.fillText(s,x,y);
+g.font=weight+" "+size+"px Arial";g.fillStyle=color;g.textAlign=align;g.textBaseline="middle";g.fillText(s,x,y);
 }
 function hit(id,x,y,w,h){hits.push({id,x,y,w,h});}
 function hitAt(p){return [...hits].reverse().find(h=>p.x>=h.x&&p.x<=h.x+h.w&&p.y>=h.y&&p.y<=h.y+h.h)?.id;}
 function beep(freq=550,duration=.08,type="sine",volume=.035){
-  if(!sound)return;
-  try{
-    if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();
-    if(audio.state==="suspended")audio.resume().catch(()=>{});
-    const o=audio.createOscillator(),v=audio.createGain();
-    o.type=type;o.frequency.value=freq;
-    v.gain.setValueAtTime(volume,audio.currentTime);
-    v.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);
-    o.connect(v);v.connect(audio.destination);o.start();o.stop(audio.currentTime+duration);
-  }catch(e){}
+if(!sound)return;
+try{
+if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();
+if(audio.state==="suspended")audio.resume().catch(()=>{});
+const o=audio.createOscillator(),v=audio.createGain();
+o.type=type;o.frequency.value=freq;v.gain.setValueAtTime(volume,audio.currentTime);
+v.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);
+o.connect(v);v.connect(audio.destination);o.start();o.stop(audio.currentTime+duration);
+}catch(e){}
 }
 function notify(s){notice={text:s,end:time+2900};}
+function bonus(){return["drill","injector","resin"].filter(k=>save.upgrades[k]).length*1800+(save.upgrades.workshop?6000:0);}
+function income(){return(state.chip?4700:0)+(state.crack?5900:0)+bonus();}
+function home(k){return{x:bench[k].x,y:save.upgrades.workshop?458:470};}
 function shopUI(){
-  $("shopBalance").textContent=cash(save.money);
-  buys.forEach(b=>{
-    const k=b.dataset.buy,owned=save.upgrades[k],enough=save.money>=prices[k];
-    $("card-"+k).classList.toggle("owned",owned);
-    b.disabled=owned||!enough;
-    b.textContent=owned?"Куплено · установлено":enough?"Купить за "+cash(prices[k]):
-      cash(prices[k])+" · не хватает "+cash(prices[k]-save.money);
-  });
+$("shopBalance").textContent=cash(save.money);
+buys.forEach(b=>{
+const k=b.dataset.buy,owned=save.upgrades[k],enough=save.money>=prices[k];
+$("card-"+k).classList.toggle("owned",owned);
+b.disabled=k==="ticket"?(!owned&&!enough):(owned||!enough);
+b.textContent=k==="ticket"&&owned?"Смотреть концовку":owned?"Куплено · установлено":
+enough?(k==="ticket"?"Купить билет за ":"Купить за ")+cash(prices[k]):
+cash(prices[k])+" · не хватает "+cash(prices[k]-save.money);
+});
 }
 function persist(){
-  try{localStorage.setItem(KEY,JSON.stringify(save));}catch(e){}
-  $("money").textContent=cash(save.money);$("jobs").textContent=save.jobs+" авто";shopUI();
+try{localStorage.setItem(KEY,JSON.stringify(save));}catch(e){}
+$("money").textContent=cash(save.money);$("jobs").textContent=save.jobs+" авто";shopUI();
 }
 function release(){
-  const id=mouse.id;mouse.down=false;mouse.last=null;mouse.id=null;
-  if(id!==null)try{if(canvas.hasPointerCapture(id))canvas.releasePointerCapture(id);}catch(e){}
+const id=mouse.id;mouse.down=false;mouse.last=null;mouse.id=null;
+if(id!==null)try{if(canvas.hasPointerCapture(id))canvas.releasePointerCapture(id);}catch(e){}
 }
 function hidePointer(){release();mouse.x=-999;mouse.y=-999;}
 function openModal(id){
-  hidePointer();modal=id;$(id).hidden=false;
-  if(id==="shop"){shopUI();$("shopMessage").textContent="";}
-  $(id).querySelector("[data-close]").focus();
+hidePointer();
+if(modal)$(modal).hidden=true;
+modal=id;$(id).hidden=false;
+if(id==="shop"){shopUI();$("shopMessage").textContent="";}
+if(id==="vacation"){$("closeNote").textContent="";$(id).querySelector("article").scrollTop=0;}
+$(id).querySelector("[data-close]").focus();
 }
 function closeModal(){
-  if(!modal)return;
-  const id=modal;$(id).hidden=true;modal=null;last=performance.now();
-  $(id==="shop"?"shopOpen":"helpOpen").focus();
+if(!modal)return;
+const id=modal;$(id).hidden=true;modal=null;last=performance.now();
+$(id==="help"?"helpOpen":"shopOpen").focus();
 }
 function buy(k){
-  if(!Object.prototype.hasOwnProperty.call(prices,k)||save.upgrades[k]||save.money<prices[k])return;
-  save.money-=prices[k];save.upgrades[k]=true;persist();
-  $("shopMessage").textContent=k==="workshop"?"Бокс обновлён! LED-лампы, панели и автомобильные плакаты установлены.":names[k]+": улучшение куплено и автоматически установлено.";
-  beep(880,.2);ui();
+if(!Object.prototype.hasOwnProperty.call(prices,k))return;
+if(k==="ticket"&&save.upgrades.ticket){openModal("vacation");return;}
+if(save.upgrades[k]||save.money<prices[k])return;
+save.money-=prices[k];save.upgrades[k]=true;persist();beep(880,.2);
+if(k==="ticket"){openModal("vacation");return;}
+$("shopMessage").textContent=k==="workshop"?
+"Бокс обновлён! Теперь каждый заказ приносит ещё на 6 000 ₽ больше.":
+names[k]+": улучшение установлено. К оплате каждого заказа добавлено 1 800 ₽.";
+ui();
 }
 function nextModel(){
-  if(!bag.length){
-    bag=[0,1,2,3,4,5];
-    for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]];}
-  }
-  return models[bag.pop()];
+if(!bag.length){
+bag=[0,1,2,3,4,5];
+for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]];}
+}
+return models[bag.pop()];
 }
 function seg(p,a,b){
-  const dx=b.x-a.x,dy=b.y-a.y,l=dx*dx+dy*dy;
-  const t=l?clamp(((p.x-a.x)*dx+(p.y-a.y)*dy)/l,0,1):0;
-  return Math.hypot(p.x-a.x-t*dx,p.y-a.y-t*dy);
+const dx=b.x-a.x,dy=b.y-a.y,l=dx*dx+dy*dy;
+const t=l?clamp(((p.x-a.x)*dx+(p.y-a.y)*dy)/l,0,1):0;
+return Math.hypot(p.x-a.x-t*dx,p.y-a.y-t*dy);
 }
 function pathDistance(p,path){
-  let d=Infinity;for(let i=1;i<path.length;i++)d=Math.min(d,seg(p,path[i-1],path[i]));return d;
+let d=Infinity;for(let i=1;i<path.length;i++)d=Math.min(d,seg(p,path[i-1],path[i]));return d;
 }
 function makeCrack(){
-  const len=rand(75,250),cx=rand(425+len/2,735-len/2),cy=rand(277,337);
-  const slope=rand(-.19,.19),dir=Math.random()<.5?-1:1,n=Math.ceil(len/38),path=[];
-  for(let i=0;i<=n;i++){
-    const dx=(i/n-.5)*len*dir;
-    path.push({x:cx+dx,y:clamp(cy+dx*slope+rand(-10,10),258,360)});
-  }
-  const samples=[];
-  for(let i=1;i<path.length;i++){
-    const a=path[i-1],b=path[i],count=Math.ceil(dist(a,b)/3);
-    for(let j=0;j<count;j++)samples.push({x:lerp(a.x,b.x,j/count),y:lerp(a.y,b.y,j/count),filled:false});
-  }
-  const end=path[path.length-1];samples.push({x:end.x,y:end.y,filled:false});
-  return{path,samples,drilled:[false,false],coverage:0,done:false};
+const len=rand(75,250),cx=rand(425+len/2,735-len/2),cy=rand(277,337);
+const slope=rand(-.19,.19),dir=Math.random()<.5?-1:1,n=Math.ceil(len/38),path=[];
+for(let i=0;i<=n;i++){
+const dx=(i/n-.5)*len*dir;
+path.push({x:cx+dx,y:clamp(cy+dx*slope+rand(-10,10),258,360)});
+}
+const samples=[];
+for(let i=1;i<path.length;i++){
+const a=path[i-1],b=path[i],count=Math.ceil(dist(a,b)/3);
+for(let j=0;j<count;j++)samples.push({x:lerp(a.x,b.x,j/count),y:lerp(a.y,b.y,j/count),filled:false});
+}
+const end=path[path.length-1];samples.push({x:end.x,y:end.y,filled:false});
+return{path,samples,drilled:[false,false],coverage:0,done:false};
 }
 function makeChip(crack){
-  let center=null;
-  if(!crack)center={x:rand(431,727),y:rand(269,351)};
-  else{
-    for(let i=0;i<400;i++){
-      const p={x:rand(431,727),y:rand(269,351)};
-      if(pathDistance(p,crack.path)>57){center=p;break;}
-    }
-    if(!center){
-      let best=-1;
-      for(let x=431;x<=727;x+=8)for(let y=269;y<=351;y+=8){
-        const p={x,y},d=pathDistance(p,crack.path);
-        if(d>best){best=d;center=p;}
-      }
-    }
-  }
-  const radius=rand(13,22),rays=[],n=Math.floor(rand(7,11));
-  for(let i=0;i<n;i++)rays.push({a:i*Math.PI*2/n+rand(-.12,.12),l:rand(radius*.7,radius),branch:Math.random()<.5});
-  return{center,rays,drilled:false,placed:false,done:false};
+let center=null;
+if(!crack)center={x:rand(431,727),y:rand(269,351)};
+else{
+for(let i=0;i<400;i++){
+const p={x:rand(431,727),y:rand(269,351)};
+if(pathDistance(p,crack.path)>57){center=p;break;}
+}
+if(!center){
+let best=-1;
+for(let x=431;x<=727;x+=8)for(let y=269;y<=351;y+=8){
+const p={x,y},d=pathDistance(p,crack.path);if(d>best){best=d;center=p;}
+}
+}
+}
+const radius=rand(13,22),rays=[],n=Math.floor(rand(7,11));
+for(let i=0;i<n;i++)rays.push({a:i*Math.PI*2/n+rand(-.12,.12),l:rand(radius*.7,radius),branch:Math.random()<.5});
+return{center,rays,drilled:false,placed:false,done:false};
 }
 function newCar(){
-  zoom=false;hidePointer();
-  const r=Math.random(),type=r<.08?"both":r<.54?"chip":"crack";
-  const crack=type!=="chip"?makeCrack():null,chip=type!=="crack"?makeChip(crack):null;
-  state={mode:"arrive",since:time,model:nextModel(),type,chip,crack,mat:false,
-    staged:{drill:false,injector:false,resin:false},selected:null,flight:null,drilling:null,cure:null,reward:0};
-  ui();
+zoom=false;hidePointer();
+const r=Math.random(),type=r<.08?"both":r<.54?"chip":"crack";
+const crack=type!=="chip"?makeCrack():null,chip=type!=="crack"?makeChip(crack):null;
+state={mode:"arrive",since:time,model:nextModel(),type,chip,crack,mat:false,
+staged:{drill:false,injector:false,resin:false},selected:null,flight:null,drilling:null,cure:null,reward:0,returnQueue:[]};
+ui();
 }
 function required(){return state.chip?["drill","injector","resin"]:["drill","resin"];}
 function staged(){return required().every(k=>state.staged[k]);}
 function ready(){return state.mode==="work"&&!state.flight&&!state.drilling&&!state.cure;}
 function targets(){
-  const a=[];
-  if(state.chip)a.push({kind:"chip",index:0,p:state.chip.center,done:state.chip.drilled});
-  if(state.crack){
-    a.push({kind:"crack",index:0,p:state.crack.path[0],done:state.crack.drilled[0]});
-    a.push({kind:"crack",index:1,p:state.crack.path[state.crack.path.length-1],done:state.crack.drilled[1]});
-  }
-  return a;
+const a=[];
+if(state.chip)a.push({kind:"chip",index:0,p:state.chip.center,done:state.chip.drilled});
+if(state.crack){
+a.push({kind:"crack",index:0,p:state.crack.path[0],done:state.crack.drilled[0]});
+a.push({kind:"crack",index:1,p:state.crack.path[state.crack.path.length-1],done:state.crack.drilled[1]});
+}
+return a;
 }
 function drilled(){return targets().every(t=>t.done);}
 function action(k){
-  if(modal||!ready())return;
-  if(k==="mat"){
-    if(state.mat){notify("Накидка уже на месте.");return;}
-    state.mat=true;state.flight={kind:k,from:{x:124,y:315},to:{x:475,y:480},start:time,duration:600};
-    beep(370);ui();return;
-  }
-  if(!state.mat){notify("Сначала накиньте защитную накидку.");return;}
-  if(k==="injector"&&(!state.chip||state.chip.done)){notify("Для оставшейся трещины инжектор не нужен.");return;}
-  if(!state.staged[k]){
-    state.staged[k]=true;state.flight={kind:k,from:bench[k],to:pad[k],start:time,duration:450};beep(470);ui();return;
-  }
-  if(!staged()){notify("Перенесите на накидку необходимые инструменты.");return;}
-  if((k==="injector"||k==="resin")&&!drilled()){notify("Сначала обработайте все отмеченные точки бормашинкой.");return;}
-  if(k==="resin"&&state.chip&&!state.chip.done&&!state.chip.placed&&(!state.crack||state.crack.done)){
-    notify("Сначала установите инжектор на скол.");return;
-  }
-  state.selected=k;beep(620,.05);ui();
+if(modal||!ready())return;
+if(k==="mat"){
+if(state.mat){notify("Накидка уже на месте.");return;}
+state.mat=true;state.flight={kind:k,from:{x:124,y:316},to:{x:475,y:480},start:time,duration:600};
+beep(370);ui();return;
+}
+if(!state.mat){notify("Сначала накиньте защитную накидку.");return;}
+if(k==="injector"&&(!state.chip||state.chip.done)){notify("Для оставшейся трещины инжектор не нужен.");return;}
+if(!state.staged[k]){
+state.staged[k]=true;state.flight={kind:k,from:home(k),to:pad[k],start:time,duration:450};
+beep(470);ui();return;
+}
+if(!staged()){notify("Перенесите на накидку необходимые инструменты.");return;}
+if((k==="injector"||k==="resin")&&!drilled()){notify("Сначала обработайте все отмеченные точки бормашинкой.");return;}
+if(k==="resin"&&state.chip&&!state.chip.done&&!state.chip.placed&&(!state.crack||state.crack.done)){
+notify("Сначала установите инжектор на скол.");return;
+}
+state.selected=k;beep(620,.05);ui();
 }
 function drill(t){
-  state.drilling={...t,start:time,duration:save.upgrades.drill?1000:2800};
-  beep(150,.35,"sawtooth",.02);ui();
+state.drilling={...t,start:time,duration:save.upgrades.drill?1000:2800};
+beep(150,.35,"sawtooth",.02);ui();
 }
 function cure(kind){
-  if(!ready())return;
-  const injection=kind==="chip"?(save.upgrades.injector?1500:4500):0;
-  const duration=injection+(save.upgrades.resin?1300:3500);
-  if(kind==="crack"){state.crack.coverage=1;state.crack.samples.forEach(p=>p.filled=true);}
-  state.mode="cure";state.cure={kind,start:time,duration,injection};
-  state.selected=null;hidePointer();beep(720,.15);ui();
+if(!ready())return;
+const injection=kind==="chip"?(save.upgrades.injector?1500:4500):0;
+const duration=injection+(save.upgrades.resin?1300:3500);
+if(kind==="crack"){state.crack.coverage=1;state.crack.samples.forEach(p=>p.filled=true);}
+state.mode="cure";state.cure={kind,start:time,duration,injection};
+state.selected=null;hidePointer();beep(720,.15);ui();
 }
 function finishCure(){
-  const kind=state.cure.kind;state[kind].done=true;state.cure=null;
-  if((!state.chip||state.chip.done)&&(!state.crack||state.crack.done)){
-    state.mode="paid";state.since=time;
-    state.reward=(state.chip?1200:0)+(state.crack?2400:0);
-    save.money+=state.reward;save.jobs++;persist();
-    floats.push({text:"+"+cash(state.reward),start:time});
-    burst(580,300,"#a0f5c9",65);beep(950,.3);
-  }else{
-    state.mode="work";notify(kind==="chip"?"Скол готов. Осталось заполнить трещину.":"Трещина готова. Осталось отремонтировать скол.");
-    beep(780,.12);
-  }
-  ui();
+const kind=state.cure.kind;state[kind].done=true;state.cure=null;
+if((!state.chip||state.chip.done)&&(!state.crack||state.crack.done)){
+state.mode="paid";state.since=time;state.selected=null;state.reward=income();
+save.money+=state.reward;save.jobs++;persist();
+floats.push({text:"+"+cash(state.reward),start:time});
+burst(580,300,"#a0f5c9",65);beep(950,.3);
+}else{
+state.mode="work";
+notify(kind==="chip"?"Скол готов. Осталось заполнить трещину.":"Трещина готова. Осталось отремонтировать скол.");
+beep(780,.12);
+}
+ui();
+}
+function nextReturn(){
+const k=state.returnQueue.shift();
+if(!k){state.mode="depart";state.since=time;ui();return;}
+state.flight={
+kind:k,from:k==="mat"?{x:475,y:480}:pad[k],
+to:k==="mat"?{x:124,y:316}:home(k),
+start:time,duration:k==="mat"?330:240,returning:true
+};
+}
+function beginCleanup(){
+zoom=false;hidePointer();state.mode="cleanup";
+state.returnQueue=["drill","injector","resin"].filter(k=>state.staged[k]);
+if(state.mat)state.returnQueue.push("mat");
+nextReturn();ui();
 }
 function apply(a,b){
-  if(!ready()||state.selected!=="resin"||!state.crack||state.crack.done||!drilled())return;
-  if(dist(a,b)>90)a=b;
-  let added=0;
-  state.crack.samples.forEach(p=>{if(!p.filled&&seg(p,a,b)<12){p.filled=true;added++;}});
-  if(!added)return;
-  state.crack.coverage=state.crack.samples.filter(p=>p.filled).length/state.crack.samples.length;
-  if(state.crack.coverage>=.99)cure("crack");
-  ui();
+if(!ready()||state.selected!=="resin"||!state.crack||state.crack.done||!drilled())return;
+if(dist(a,b)>90)a=b;
+let added=0;
+state.crack.samples.forEach(p=>{if(!p.filled&&seg(p,a,b)<12){p.filled=true;added++;}});
+if(!added)return;
+state.crack.coverage=state.crack.samples.filter(p=>p.filled).length/state.crack.samples.length;
+if(state.crack.coverage>=.99)cure("crack");
+ui();
 }
 function glassClick(p){
-  if(!staged()){notify("Сначала подготовьте рабочую зону и инструменты.");return;}
-  if(!state.selected){notify("Выберите инструмент на накидке или кнопкой снизу.");return;}
-  if(state.selected==="drill"){
-    const t=targets().filter(t=>!t.done&&dist(p,t.p)<25).sort((a,b)=>dist(p,a.p)-dist(p,b.p))[0];
-    if(t)drill(t);else notify("Нажмите на необработанную подсвеченную точку.");
-  }else if(state.selected==="injector"){
-    if(state.chip&&!state.chip.done&&dist(p,state.chip.center)<35){
-      state.chip.placed=true;state.selected=null;beep(430,.12);ui();
-    }else notify("Инжектор нужно установить прямо на скол.");
-  }else if(state.selected==="resin"){
-    if(state.chip&&!state.chip.done&&dist(p,state.chip.center)<37){
-      if(!state.chip.placed)notify("Сначала установите инжектор на скол.");
-      else{burst(p.x,p.y,"#b5f4dd",15);cure("chip");}
-    }else notify(state.crack&&!state.crack.done?"Проведите по трещине, удерживая мышь или палец.":"Нажмите на инжектор.");
-  }
+if(!staged()){notify("Сначала подготовьте рабочую зону и инструменты.");return;}
+if(!state.selected){notify("Выберите инструмент на накидке или кнопкой снизу.");return;}
+if(state.selected==="drill"){
+const t=targets().filter(t=>!t.done&&dist(p,t.p)<25).sort((a,b)=>dist(p,a.p)-dist(p,b.p))[0];
+if(t)drill(t);else notify("Нажмите на необработанную подсвеченную точку.");
+}else if(state.selected==="injector"){
+if(state.chip&&!state.chip.done&&dist(p,state.chip.center)<35){
+state.chip.placed=true;state.selected=null;beep(430,.12);ui();
+}else notify("Инжектор нужно установить прямо на скол.");
+}else if(state.selected==="resin"){
+if(state.chip&&!state.chip.done&&dist(p,state.chip.center)<37){
+if(!state.chip.placed)notify("Сначала установите инжектор на скол.");
+else{burst(p.x,p.y,"#b5f4dd",15);cure("chip");}
+}else notify(state.crack&&!state.crack.done?"Проведите по трещине, удерживая мышь или палец.":"Нажмите на инжектор.");
+}
 }
 function hint(){
-  if(state.mode==="arrive")return["1","Клиент заезжает в мастерскую."];
-  if(state.mode==="depart")return["OK","Клиент уезжает. Ждём следующую машину."];
-  if(state.mode==="paid")return["OK","Ремонт завершён! Клиент доволен. Получено "+cash(state.reward)+"."];
-  if(state.cure){
-    const c=state.cure,left=Math.max(0,Math.ceil((c.duration-time+c.start)/1000));
-    return["5",c.kind==="chip"&&time-c.start<c.injection?
-      "Инжектор заполняет скол. До завершения: "+left+" сек.":
-      "Полимер затвердевает. Осталось "+left+" сек."];
-  }
-  if(!state.mat)return["1","Нажмите на накидку на стене, чтобы защитить крыло и капот."];
-  if(!staged())return["2","Перенесите на накидку: "+required().filter(k=>!state.staged[k]).map(k=>names[k].toLowerCase()).join(", ")+
-    (state.chip?".":". Инжектор для трещины не нужен.")];
-  if(state.drilling)return["3",save.upgrades.drill?"Бормашинка Dremel обрабатывает повреждение…":"Простая бормашинка работает медленно. Улучшенная есть в магазине."];
-  if(!drilled())return["3","Выберите бормашинку и обработайте отмеченные точки. Осталось: "+targets().filter(t=>!t.done).length+"."];
-  const chip=state.chip&&!state.chip.done,crack=state.crack&&!state.crack.done;
-  if(chip&&!state.chip.placed)return["4",crack?
-    "Скол: установите инжектор. Трещина: проведите полимером по линии. Порядок любой.":
-    "Выберите инжектор и установите его на обработанный скол."];
-  if(crack)return["4","Выберите полимер и проведите по всей трещине. Заполнено "+Math.round(state.crack.coverage*100)+"%."+
-    (chip?" Для скола нажмите полимером на инжектор.":"")];
-  return["5","Выберите полимер и нажмите на инжектор. Затем дождитесь завершения ремонта."];
+if(state.mode==="arrive")return["1","Клиент заезжает в мастерскую."];
+if(state.mode==="depart")return["OK","Рабочая зона убрана. Клиент уезжает. Ждём следующую машину."];
+if(state.mode==="cleanup")return["OK","Возвращаем инструменты на верстак и накидку на стену. Затем клиент уедет."];
+if(state.mode==="paid")return["OK","Ремонт завершён! Клиент доволен. Получено "+cash(state.reward)+"."];
+if(state.cure){
+const c=state.cure,left=Math.max(0,Math.ceil((c.duration-time+c.start)/1000));
+return["5",c.kind==="chip"&&time-c.start<c.injection?
+"Инжектор заполняет скол. До завершения: "+left+" сек.":"Полимер затвердевает. Осталось "+left+" сек."];
+}
+if(!state.mat)return["1","Нажмите на накидку на стене, чтобы защитить крыло и капот."];
+if(!staged())return["2","Перенесите на накидку: "+required().filter(k=>!state.staged[k]).map(k=>names[k].toLowerCase()).join(", ")+
+(state.chip?".":". Инжектор для трещины не нужен.")];
+if(state.drilling)return["3",save.upgrades.drill?"Бормашинка Dremel обрабатывает повреждение…":"Простая бормашинка работает медленно. Улучшенная есть в магазине."];
+if(!drilled())return["3","Выберите бормашинку и обработайте отмеченные точки. Осталось: "+targets().filter(t=>!t.done).length+"."];
+const chip=state.chip&&!state.chip.done,crack=state.crack&&!state.crack.done;
+if(chip&&!state.chip.placed)return["4",crack?
+"Скол: установите инжектор. Трещина: проведите полимером по линии. Порядок любой.":
+"Выберите инжектор и установите его на обработанный скол."];
+if(crack)return["4","Выберите полимер и проведите по всей трещине. Заполнено "+Math.round(state.crack.coverage*100)+"%."+
+(chip?" Для скола нажмите полимером на инжектор.":"")];
+return["5","Выберите полимер и нажмите на инжектор. Затем дождитесь завершения ремонта."];
 }
 function ui(){
-  if(!state)return;
-  const [n,s]=hint(),key=n+s;
-  if(key!==lastHint){$("step").textContent=n;$("hint").textContent=s;lastHint=key;}
-  tools.forEach(b=>{
-    const k=b.dataset.tool;b.disabled=!ready()||(k==="injector"&&(!state.chip||state.chip.done));
-    b.classList.toggle("active",k==="mat"?state.mat:state.selected===k);
-  });
-  $("zoom").disabled=!(state.mode==="work"&&staged()&&!state.flight)&&!zoom;
-  $("zoom").textContent=zoom?"Весь бокс":"Приблизить";
-  $("zoom").classList.toggle("active",zoom);
+if(!state)return;
+const [n,s]=hint(),key=n+s;
+if(key!==lastHint){$("step").textContent=n;$("hint").textContent=s;lastHint=key;}
+tools.forEach(b=>{
+const k=b.dataset.tool;b.disabled=!ready()||(k==="injector"&&(!state.chip||state.chip.done));
+b.classList.toggle("active",k==="mat"?state.mat:state.selected===k);
+});
+$("zoom").disabled=!(state.mode==="work"&&staged()&&!state.flight)&&!zoom;
+$("zoom").textContent=zoom?"Весь бокс":"Приблизить";$("zoom").classList.toggle("active",zoom);
 }
-
 function logo(x,y,s=1){
-  g.save();g.translate(x,y);g.scale(s,s);
-  g.strokeStyle="#eff3f8";g.lineWidth=11;g.beginPath();g.arc(-112,0,23,.2*Math.PI,1.75*Math.PI);g.stroke();
-  poly([[-116,0],[-97,0],[-97,12]],null,"#eff3f8",9,false);
-  poly([[-117,-35],[-79,-35],[-79,0]],"#ff892f");
-  txt("GlassFix",18,-1,44,"#eff3f8","center",900);txt("EXPERT",15,33,17,"#becbd8");
-  line(-131,34,-51,34,"#ff892f",3);line(79,34,162,34,"#ff892f",3);g.restore();
+g.save();g.translate(x,y);g.scale(s,s);
+g.strokeStyle="#eff3f8";g.lineWidth=11;g.beginPath();g.arc(-112,0,23,.2*Math.PI,1.75*Math.PI);g.stroke();
+poly([[-116,0],[-97,0],[-97,12]],null,"#eff3f8",9,false);
+poly([[-117,-35],[-79,-35],[-79,0]],"#ff892f");
+txt("GlassFix",18,-1,44,"#eff3f8","center",900);txt("EXPERT",15,33,17,"#becbd8");
+line(-131,34,-51,34,"#ff892f",3);line(79,34,162,34,"#ff892f",3);g.restore();
 }
 function matIcon(x,y,s=1){
-  g.save();g.translate(x,y);g.scale(s,s);
-  rr(-58,-66,116,137,13,"#222d38","#111a23",4);
-  rr(-52,-60,104,125,10,null,"#d97c42",1.5);
-  rr(-49,-57,98,34,6,"#c9aa82","#463728");
-  rr(-42,-51,40,22,4,"#1c4466","#283643");
-  txt("GlassFix",25,-44,10,"#3f3021");txt("EXPERT",25,-32,6,"#3f3021");
-  poly([[-40,-12],[-20,22],[42,53]],null,"#af6037",1,false);g.restore();
+g.save();g.translate(x,y);g.scale(s,s);
+rr(-58,-66,116,137,13,"#222d38","#111a23",4);rr(-52,-60,104,125,10,null,"#d97c42",1.5);
+rr(-49,-57,98,34,6,"#c9aa82","#463728");rr(-42,-51,40,22,4,"#1c4466","#283643");
+txt("GlassFix",25,-44,10,"#3f3021");txt("EXPERT",25,-32,6,"#3f3021");
+poly([[-40,-12],[-20,22],[42,53]],null,"#af6037",1,false);g.restore();
 }
 function tool(k,x,y,s=1,a=0,up=save.upgrades[k]){
-  g.save();g.translate(x,y);g.rotate(a);g.scale(s,s);
-  if(k==="drill"){
-    oval(-2,17,up?44:33,7,"#0003");
-    if(up){
-      rr(-36,-14,72,29,13,"#37434e","#14202c",3);rr(-1,-12,35,25,7,"#a9b3bc","#263442");
-      rr(-44,-8,13,16,4,"#737f8b","#1b2733");line(-61,0,-44,0,"#dbe7ed",3);
-      rr(-22,-19,19,7,3,"#3a79b2","#173d60",1);
-      for(let i=0;i<4;i++)line(-24+i*5,5,-24+i*5,11,"#15212b",2);
-      txt("DREMEL",15,0,7,"#14344c");
-    }else{
-      rr(-26,-10,55,21,10,"#969b9e","#38444d",3);
-      rr(9,-9,18,19,7,"#747d83","#38444d",1);
-      rr(-35,-6,11,13,3,"#626c74","#35424c");
-      line(-48,0,-35,0,"#d4dde2",3);rr(-7,-14,13,5,2,"#71797e","#38444d",1);
-    }
-  }else if(k==="injector"){
-    oval(0,17,up?33:25,8,"#0003");oval(0,9,up?29:24,9,up?"#17212b":"#64727d","#273846");
-    if(up){
-      rr(-42,-5,85,15,5,"#27333f","#101b26",3);rr(-8,-20,16,23,3,"#455462","#14202b");
-      [-31,30].forEach(dx=>{
-        line(dx,-27,dx,12,"#c6cbd0",5);
-        for(let i=0;i<6;i++)line(dx-4,-23+i*4,dx+4,-23+i*4,"#697a88",1);
-        rr(dx-10,-33,20,8,3,"#17232e","#788795",1);
-      });
-      line(0,-33,0,-17,"#c6cbd0",5);rr(-10,-39,20,8,3,"#17232e","#788795",1);
-      rr(-43,-3,9,25,2,"#d9caa5","#716956",1);
-    }else{
-      rr(-12,-9,24,18,5,"#8c979f","#3b4a57");
-      rr(-7,-23,14,18,3,"#b0b8bc","#4b5d6c");
-      line(0,-37,0,-19,"#d5dde1",5);
-      rr(-12,-43,24,8,3,"#77838c","#35434f");
-    }
-  }else if(k==="resin"){
-    oval(0,24,18,6,"#0003");
-    poly([[-14,-25],[14,-25],[10,20],[-10,20]],"#fbfcfa","#82949f");
-    rr(-15,-29,30,7,2,"#e7edf0","#82949f",1);rr(-6,20,12,10,2,"#d4e0e6","#82949f",1);
-    poly([[-4,30],[4,30],[0,42]],"#f4fafc","#82949f",1);
-    if(up){rr(-11,-9,22,16,2,"#ff892f");txt("GF",0,-1,10,"#3c2b1b");txt("EXPERT",0,-18,5,"#476079");}
-  }
-  g.restore();
+g.save();g.translate(x,y);g.rotate(a);g.scale(s,s);
+if(k==="drill"){
+oval(-2,17,up?44:33,7,"#0003");
+if(up){
+rr(-36,-14,72,29,13,"#37434e","#14202c",3);rr(-1,-12,35,25,7,"#a9b3bc","#263442");
+rr(-44,-8,13,16,4,"#737f8b","#1b2733");line(-61,0,-44,0,"#dbe7ed",3);
+rr(-22,-19,19,7,3,"#3a79b2","#173d60",1);
+for(let i=0;i<4;i++)line(-24+i*5,5,-24+i*5,11,"#15212b",2);
+txt("DREMEL",15,0,7,"#14344c");
+}else{
+rr(-26,-10,55,21,10,"#969b9e","#38444d",3);rr(9,-9,18,19,7,"#747d83","#38444d",1);
+rr(-35,-6,11,13,3,"#626c74","#35424c");line(-48,0,-35,0,"#d4dde2",3);
+rr(-7,-14,13,5,2,"#71797e","#38444d",1);
+}
+}else if(k==="injector"){
+oval(0,17,up?33:25,8,"#0003");oval(0,9,up?29:24,9,up?"#17212b":"#64727d","#273846");
+if(up){
+rr(-42,-5,85,15,5,"#27333f","#101b26",3);rr(-8,-20,16,23,3,"#455462","#14202b");
+[-31,30].forEach(dx=>{
+line(dx,-27,dx,12,"#c6cbd0",5);
+for(let i=0;i<6;i++)line(dx-4,-23+i*4,dx+4,-23+i*4,"#697a88",1);
+rr(dx-10,-33,20,8,3,"#17232e","#788795",1);
+});
+line(0,-33,0,-17,"#c6cbd0",5);rr(-10,-39,20,8,3,"#17232e","#788795",1);
+rr(-43,-3,9,25,2,"#d9caa5","#716956",1);
+}else{
+rr(-12,-9,24,18,5,"#8c979f","#3b4a57");rr(-7,-23,14,18,3,"#b0b8bc","#4b5d6c");
+line(0,-37,0,-19,"#d5dde1",5);rr(-12,-43,24,8,3,"#77838c","#35434f");
+}
+}else if(k==="resin"){
+oval(0,24,18,6,"#0003");poly([[-14,-25],[14,-25],[10,20],[-10,20]],"#fbfcfa","#82949f");
+rr(-15,-29,30,7,2,"#e7edf0","#82949f",1);rr(-6,20,12,10,2,"#d4e0e6","#82949f",1);
+poly([[-4,30],[4,30],[0,42]],"#f4fafc","#82949f",1);
+if(up){rr(-11,-9,22,16,2,"#ff892f");txt("GF",0,-1,10,"#3c2b1b");txt("EXPERT",0,-18,5,"#476079");}
+}
+g.restore();
 }
 function ticket(){
-  g.save();g.translate(220,145);g.rotate(-.12);
-  rr(-190,-103,380,206,17,"#e6ba73","#ffe5a4",5);
-  rr(-174,-87,250,174,10,"#85d8dc");
-  oval(35,-53,24,24,"#fff1ad");
-  poly([[-174,27],[-112,17],[-37,35],[76,17],[76,87],[-174,87]],"#35aeb9");
-  poly([[-174,64],[-85,42],[15,64],[76,55],[76,87],[-174,87]],"#f4dca6");
-  poly([[-76,61],[-52,14],[-49,-39]],null,"#956444",11,false);
-  poly([[-50,-36],[-101,-65],[-134,-34],[-88,-44]],"#258566");
-  poly([[-50,-36],[-6,-66],[38,-35],[-10,-45]],"#258566");
-  poly([[-50,-36],[-59,-83],[-87,-88],[-65,-53]],"#2e9a70");
-  poly([[-50,-36],[-21,-82],[4,-77],[-27,-52]],"#2e9a70");
-  g.setLineDash([6,7]);line(97,-88,97,88,"#ab834b",2);g.setLineDash([]);
-  g.save();g.translate(144,0);g.rotate(Math.PI/2);txt("ISLAND PASS",0,0,20,"#765331");g.restore();
-  for(let i=0;i<5;i++)line(118,54+i*5,171,54+i*5,"#765331",2);
-  g.restore();
+g.save();g.translate(220,145);g.rotate(-.12);
+rr(-190,-103,380,206,17,"#e6ba73","#ffe5a4",5);rr(-174,-87,250,174,10,"#85d8dc");
+oval(35,-53,24,24,"#fff1ad");
+poly([[-174,27],[-112,17],[-37,35],[76,17],[76,87],[-174,87]],"#35aeb9");
+poly([[-174,64],[-85,42],[15,64],[76,55],[76,87],[-174,87]],"#f4dca6");
+poly([[-76,61],[-52,14],[-49,-39]],null,"#956444",11,false);
+poly([[-50,-36],[-101,-65],[-134,-34],[-88,-44]],"#258566");
+poly([[-50,-36],[-6,-66],[38,-35],[-10,-45]],"#258566");
+poly([[-50,-36],[-59,-83],[-87,-88],[-65,-53]],"#2e9a70");
+poly([[-50,-36],[-21,-82],[4,-77],[-27,-52]],"#2e9a70");
+g.setLineDash([6,7]);line(97,-88,97,88,"#ab834b",2);g.setLineDash([]);
+g.save();g.translate(144,0);g.rotate(Math.PI/2);txt("ISLAND PASS",0,0,20,"#765331");g.restore();
+for(let i=0;i<5;i++)line(118,54+i*5,171,54+i*5,"#765331",2);
+g.restore();
 }
 function previews(){
-  document.querySelectorAll("[data-preview]").forEach(c=>{
-    g=c.getContext("2d");g.clearRect(0,0,c.width,c.height);
-    if(c.dataset.preview==="ticket")ticket();
-    else if(c.dataset.preview==="workshop"){
-      const gg=g;g.fillStyle="#263746";g.fillRect(24,22,372,205);
-      g.fillStyle="#ffad5e";g.fillRect(40,38,340,7);g.fillRect(40,52,340,3);
-      for(let i=0;i<4;i++){g.fillStyle="#fff4d5";g.fillRect(48+i*92,69,66,8);g.fillStyle="#ffb66b";g.fillRect(48+i*92,78,66,3);}
-      for(let i=0;i<3;i++){g.fillStyle="#142331";g.fillRect(47+i*112,104,94,67);g.strokeStyle="#e38a43";g.lineWidth=3;g.strokeRect(47+i*112,104,94,67);g.fillStyle=["#df7135","#4c8db9","#c64d60"][i];g.fillRect(55+i*112,129,78,22);g.fillStyle="#d8e6ef";g.fillRect(66+i*112,118,56,8);}
-      g.fillStyle="#d9e3eb";g.font="bold 16px Arial";g.textAlign="center";g.fillText("GLASSFIX GARAGE",210,199);
-    } else tool(c.dataset.preview,220,131,c.dataset.preview==="resin"?2.2:2.5,c.dataset.preview==="drill"?-.22:0,true);
-  });g=main;
+document.querySelectorAll("[data-preview]").forEach(c=>{
+g=c.getContext("2d");g.clearRect(0,0,c.width,c.height);
+if(c.dataset.preview==="ticket")ticket();
+else if(c.dataset.preview==="workshop"){
+g.fillStyle="#263746";g.fillRect(24,22,372,205);
+g.fillStyle="#ffad5e";g.fillRect(40,38,340,7);g.fillRect(40,52,340,3);
+for(let i=0;i<4;i++){g.fillStyle="#fff4d5";g.fillRect(48+i*92,69,66,8);}
+for(let i=0;i<3;i++){
+rr(47+i*112,104,94,67,3,"#142331","#e38a43",3);
+rr(55+i*112,129,78,22,4,["#df7135","#4c8db9","#c64d60"][i]);
+rr(66+i*112,118,56,8,2,"#d8e6ef");
+}
+txt("GLASSFIX GARAGE",210,199,16,"#d9e3eb");
+}else tool(c.dataset.preview,220,131,c.dataset.preview==="resin"?2.2:2.5,c.dataset.preview==="drill"?-.22:0,true);
+});g=main;
 }
 function background(){
-  const wall=g.createLinearGradient(0,0,0,430);wall.addColorStop(0,"#232d38");wall.addColorStop(1,"#546374");
-  g.fillStyle=wall;g.fillRect(0,0,W,430);
-  if(save.upgrades.workshop){
-    // Обновлённая отделка: графитовые стеновые панели вместо белой плитки.
-    g.fillStyle="#59636d";g.fillRect(0,207,W,223);
-    for(let x=0;x<=W;x+=110){
-      g.fillStyle=(Math.floor(x/110)%2===0)?"#5c6670":"#525d67";
-      g.fillRect(x,207,108,223);
-      line(x,207,x,430,"#394651",2);
-    }
-    for(let y=207;y<=430;y+=74)line(0,y,W,y,"#77838d",1);
-    // Широкие фирменные диагональные полосы на стене.
-    for(let x=-160;x<1250;x+=250){
-      poly([[x,207],[x+30,207],[x-100,430],[x-130,430]],"#f28a35");
-      poly([[x+38,207],[x+49,207],[x-81,430],[x-92,430]],"#e8edf0");
-    }
-    rr(0,207,W,8,0,"#ff892f");
-  }else{
-    g.fillStyle="#b8bec3";g.fillRect(0,207,W,223);
-    for(let x=0;x<=W;x+=56)line(x,207,x,430,"#939fa9",1);
-    for(let y=207;y<=430;y+=44)line(0,y,W,y,"#d6d9d7",1);
-  }
-  g.fillStyle="#ff892f";g.fillRect(0,197,W,9);g.fillStyle="#1c2835";g.fillRect(0,421,W,12);
-  poly([[0,0],[260,0],[284,155],[0,155]],"#19232e");
-  poly([[850,0],[1100,0],[1100,163],[878,143]],"#19232e");
-  line(0,151,284,151,"#ff892f",6);line(878,143,1100,163,"#ff892f",6);
-  for(let x=14;x<270;x+=38){line(x,64,x,148,"#697c8b",2);}
-  line(0,68,270,68,"#ff892f",5);line(0,106,278,106,"#6c7f8e",2);
-  for(let x=890;x<1100;x+=37)line(x,56,x,145+(x-880)*.08,"#697c8b",2);
-  line(875,59,1100,77,"#ff892f",5);line(880,102,1100,120,"#6c7f8e",2);
-  poly([[314,178],[371,100],[395,100],[338,178]],"#ff892f");
-  poly([[354,178],[411,100],[422,100],[365,178]],"#c95b1e");
-  poly([[752,178],[809,100],[834,100],[777,178]],"#ff892f");
-  logo(574,130,.95);
-  [373,746].forEach(x=>{
-    g.save();g.shadowColor="#fff1ce";g.shadowBlur=16;rr(x-57,15,114,7,3,"#fff1d9");g.restore();
-  });
-  if(save.upgrades.workshop){
-    // Премиальное освещение и фирменная панель — без маленьких декоративных картинок.
-    [285,815].forEach(x=>{
-      g.save();g.shadowColor="#fff1ce";g.shadowBlur=24;rr(x,24,112,7,3,"#fff4d8");g.restore();
-    });
-    rr(445,173,210,18,5,"#172735","#ff9a49",2);
-    txt("GLASSFIX · PRO BAY",550,182,10,"#ffbf86");
-    [330,770].forEach(x=>{g.save();g.shadowColor="#fff4d6";g.shadowBlur=26;rr(x-43,191,86,5,2,"#fff7df");g.restore();});
-    // Большой гоночный постер на месте старой надписи за мастером.
-    rr(838,178,230,151,5,"#1a2530","#ff9a49",4);
-    rr(846,186,214,135,3,"#303b46","#77838d",1);
-    poly([[850,294],[875,270],[900,260],[940,258],[970,268],[1002,291],[1055,291],[1055,314],[850,314]],"#202b36");
-    // Спортивное купе: длинный капот, низкая крыша, выразительные колёсные арки.
-    poly([[858,288],[875,270],[904,266],[923,247],[957,246],[984,263],[1014,270],[1047,287],[1053,301],[1038,306],[867,306]],"#f28a35","#ffd1a4",2);
-    poly([[914,265],[929,251],[954,251],[975,266]],"#b9d4e4","#e7f5ff",1);
-    poly([[934,253],[947,253],[947,265],[925,265]],"#273b4b");
-    poly([[952,253],[958,254],[973,266],[951,266]],"#273b4b");
-    rr(864,286,25,5,2,"#fff0d2");rr(1027,286,18,5,2,"#ff533f");
-    oval(891,303,12,12,"#111922","#b8c5cf",3);oval(1020,303,12,12,"#111922","#b8c5cf",3);
-    oval(891,303,5,5,"#657887");oval(1020,303,5,5,"#657887");
-    txt("TRACK EDITION",953,202,11,"#f1f4f6");
-    line(858,214,1048,214,"#ff892f",3);
-    txt("GLASSFIX MOTORSPORT",953,318,8,"#ffbd83");
-  }
-  const floor=g.createLinearGradient(0,430,0,700);floor.addColorStop(0,"#71808c");floor.addColorStop(1,"#354655");
-  g.fillStyle=floor;g.fillRect(0,430,W,270);
-  for(let x=-400;x<1600;x+=160)line(580,430,x,700,"#a2b1bd22",1);
-  [477,544,630].forEach(y=>line(0,y,W,y,"#b4c0c822",1));
-  poly([[318,441],[832,441],[1015,677],[128,677]],null,"#f38d34",4);
-  if(save.upgrades.workshop){
-    // Гоночные полосы нанесены поверх пола и остаются заметны после улучшения.
-    poly([[174,431],[190,431],[224,700],[207,700]],"#f28a35");
-    poly([[198,431],[206,431],[240,700],[232,700]],"#e8edf0");
-  }
-  for(let i=0;i<11;i++){const x=105+i*89;poly([[x,684],[x+29,684],[x+13,700],[x-15,700]],"#e88a38");}
-  poly([[855,449],[872,449],[984,665],[960,665]],"#233341");
-  for(let i=0;i<23;i++){const t=i/23,x=lerp(861,972,t),y=lerp(451,663,t);line(x-5,y,x+5,y-3,"#8d9ba6",2);}
-  rr(41,222,163,190,10,"#465769","#263644",3);
-  for(let x=55;x<200;x+=17)for(let y=234;y<407;y+=17)oval(x,y,1,1,"#263847");
-  if(!state.mat){matIcon(124,316);hit("mat",62,244,124,144);txt("ЗАЩИТНАЯ НАКИДКА",124,406,10,"#f8e0c6");}
-  else{txt("МЕСТО ДЛЯ",124,302,13,"#b9c7d1");txt("НАКИДКИ",124,325,13,"#b9c7d1");}
-
-  // Профессиональный широкий верстак. Инструменты подняты, чтобы не заходить за край.
-  if(save.upgrades.workshop){
-    // Усиленная тумба с металлическими фасадами, ящиками и оранжевой окантовкой.
-    rr(12,486,288,132,8,"#263440","#111c26",4);
-    rr(19,494,274,117,5,"#344452","#61717e",2);
-    for(let i=0;i<3;i++){
-      rr(29,501+i*34,254,27,4,"#202c37","#71808b",1);
-      rr(126,510+i*34,57,5,2,"#ff892f");
-      rr(45,507+i*34,19,13,3,"#121c25","#87939d",1);
-      rr(246,507+i*34,19,13,3,"#121c25","#87939d",1);
-    }
-    rr(7,460,298,29,6,"#202a33","#ff892f",3);
-    rr(15,456,282,8,3,"#d6dfe5");
-    rr(21,445,270,13,3,"#ff892f","#8f4b22",1);
-    // Верхняя инструментальная рейка.
-    rr(25,416,252,29,4,"#1d2934","#6f7f8d",2);
-    for(let x=37;x<267;x+=23){rr(x,422,12,16,2,"#394a58","#82909a",1);line(x+6,424,x+6,436,"#ff9a49",2);}
-    rr(28,618,25,39,4,"#172735");rr(258,618,25,39,4,"#172735");
-    txt("GLASSFIX  /  PRO WORKBENCH",153,438,9,"#f4a15f");
-  }else{
-    rr(24,489,252,121,7,"#243342","#172532",3);
-    rr(16,467,268,24,6,"#af855c","#433527",3);
-    rr(25,465,250,7,3,"#d6af7d");
-    for(let i=0;i<3;i++){rr(37,517+i*25,225,19,4,"#36485b","#172b3d",1);rr(128,522+i*25,44,5,2,"#ff892f");}
-    rr(35,607,22,32,4,"#172735");rr(244,607,22,32,4,"#172735");txt("ВЕРСТАК",150,440,13,"#263b4c");
-  }
-  Object.keys(bench).forEach(k=>{
-    const p=bench[k];
-    const toolY=save.upgrades.workshop?458:470;
-    if(!state.staged[k]){tool(k,p.x,toolY,k==="resin"?.63:.7);hit(k,p.x-40,toolY-39,80,65);}
-    txt(k==="drill"?(save.upgrades[k]?"DREMEL":"БОРМАШИНКА"):k==="injector"?(save.upgrades[k]?"DELTA":"ИНЖЕКТОР"):"ПОЛИМЕР",p.x,save.upgrades.workshop?482:498,8,"#d7e2ed");
-  });
-  if(!save.upgrades.workshop){
-    rr(904,247,173,81,8,"#233342","#6d8191",2);
-    txt("РЕМОНТ СТЁКОЛ",990,267,13,"#ff9a49");txt("СКОЛЫ И ТРЕЩИНЫ",990,301,13,"#e7edf3");
-  }
+const wall=g.createLinearGradient(0,0,0,430);
+wall.addColorStop(0,"#232d38");wall.addColorStop(1,"#546374");g.fillStyle=wall;g.fillRect(0,0,W,430);
+if(save.upgrades.workshop){
+g.fillStyle="#59636d";g.fillRect(0,207,W,223);
+for(let x=0;x<=W;x+=110){
+g.fillStyle=Math.floor(x/110)%2===0?"#5c6670":"#525d67";g.fillRect(x,207,108,223);
+line(x,207,x,430,"#394651",2);
+}
+for(let y=207;y<=430;y+=74)line(0,y,W,y,"#77838d",1);
+for(let x=-160;x<1250;x+=250){
+poly([[x,207],[x+30,207],[x-100,430],[x-130,430]],"#f28a35");
+poly([[x+38,207],[x+49,207],[x-81,430],[x-92,430]],"#e8edf0");
+}
+}else{
+g.fillStyle="#b8bec3";g.fillRect(0,207,W,223);
+for(let x=0;x<=W;x+=56)line(x,207,x,430,"#939fa9",1);
+for(let y=207;y<=430;y+=44)line(0,y,W,y,"#d6d9d7",1);
+}
+g.fillStyle="#ff892f";g.fillRect(0,197,W,9);g.fillStyle="#1c2835";g.fillRect(0,421,W,12);
+poly([[0,0],[260,0],[284,155],[0,155]],"#19232e");
+poly([[850,0],[1100,0],[1100,163],[878,143]],"#19232e");
+line(0,151,284,151,"#ff892f",6);line(878,143,1100,163,"#ff892f",6);
+for(let x=14;x<270;x+=38)line(x,64,x,148,"#697c8b",2);
+line(0,68,270,68,"#ff892f",5);line(0,106,278,106,"#6c7f8e",2);
+for(let x=890;x<1100;x+=37)line(x,56,x,145+(x-880)*.08,"#697c8b",2);
+line(875,59,1100,77,"#ff892f",5);line(880,102,1100,120,"#6c7f8e",2);
+poly([[314,178],[371,100],[395,100],[338,178]],"#ff892f");
+poly([[354,178],[411,100],[422,100],[365,178]],"#c95b1e");
+poly([[752,178],[809,100],[834,100],[777,178]],"#ff892f");
+logo(574,130,.95);
+[373,746].forEach(x=>{
+g.save();g.shadowColor="#fff1ce";g.shadowBlur=16;rr(x-57,15,114,7,3,"#fff1d9");g.restore();
+});
+if(save.upgrades.workshop){
+[285,815].forEach(x=>{
+g.save();g.shadowColor="#fff1ce";g.shadowBlur=24;rr(x,24,112,7,3,"#fff4d8");g.restore();
+});
+rr(445,173,210,18,5,"#172735","#ff9a49",2);txt("GLASSFIX · PRO BAY",550,182,10,"#ffbf86");
+[330,770].forEach(x=>{
+g.save();g.shadowColor="#fff4d6";g.shadowBlur=26;rr(x-43,191,86,5,2,"#fff7df");g.restore();
+});
+rr(838,178,230,151,5,"#1a2530","#ff9a49",4);rr(846,186,214,135,3,"#303b46","#77838d",1);
+poly([[850,294],[875,270],[900,260],[940,258],[970,268],[1002,291],[1055,291],[1055,314],[850,314]],"#202b36");
+poly([[858,288],[875,270],[904,266],[923,247],[957,246],[984,263],[1014,270],[1047,287],[1053,301],[1038,306],[867,306]],"#f28a35","#ffd1a4",2);
+poly([[914,265],[929,251],[954,251],[975,266]],"#b9d4e4","#e7f5ff",1);
+poly([[934,253],[947,253],[947,265],[925,265]],"#273b4b");
+poly([[952,253],[958,254],[973,266],[951,266]],"#273b4b");
+rr(864,286,25,5,2,"#fff0d2");rr(1027,286,18,5,2,"#ff533f");
+oval(891,303,12,12,"#111922","#b8c5cf",3);oval(1020,303,12,12,"#111922","#b8c5cf",3);
+oval(891,303,5,5,"#657887");oval(1020,303,5,5,"#657887");
+txt("TRACK EDITION",953,202,11,"#f1f4f6");line(858,214,1048,214,"#ff892f",3);
+txt("GLASSFIX MOTORSPORT",953,318,8,"#ffbd83");
+}
+const floor=g.createLinearGradient(0,430,0,700);
+floor.addColorStop(0,"#71808c");floor.addColorStop(1,"#354655");g.fillStyle=floor;g.fillRect(0,430,W,270);
+for(let x=-400;x<1600;x+=160)line(580,430,x,700,"#a2b1bd22",1);
+[477,544,630].forEach(y=>line(0,y,W,y,"#b4c0c822",1));
+poly([[318,441],[832,441],[1015,677],[128,677]],null,"#f38d34",4);
+if(save.upgrades.workshop){
+poly([[174,431],[190,431],[224,700],[207,700]],"#f28a35");
+poly([[198,431],[206,431],[240,700],[232,700]],"#e8edf0");
+}
+for(let i=0;i<11;i++){const x=105+i*89;poly([[x,684],[x+29,684],[x+13,700],[x-15,700]],"#e88a38");}
+poly([[855,449],[872,449],[984,665],[960,665]],"#233341");
+for(let i=0;i<23;i++){const t=i/23,x=lerp(861,972,t),y=lerp(451,663,t);line(x-5,y,x+5,y-3,"#8d9ba6",2);}
+rr(41,222,163,190,10,"#465769","#263644",3);
+for(let x=55;x<200;x+=17)for(let y=234;y<407;y+=17)oval(x,y,1,1,"#263847");
+if(!state.mat){
+matIcon(124,316);hit("mat",62,244,124,144);txt("ЗАЩИТНАЯ НАКИДКА",124,406,10,"#f8e0c6");
+}else{txt("МЕСТО ДЛЯ",124,302,13,"#b9c7d1");txt("НАКИДКИ",124,325,13,"#b9c7d1");}
+if(save.upgrades.workshop){
+rr(12,486,288,132,8,"#263440","#111c26",4);rr(19,494,274,117,5,"#344452","#61717e",2);
+for(let i=0;i<3;i++){
+rr(29,501+i*34,254,27,4,"#202c37","#71808b",1);rr(126,510+i*34,57,5,2,"#ff892f");
+rr(45,507+i*34,19,13,3,"#121c25","#87939d",1);rr(246,507+i*34,19,13,3,"#121c25","#87939d",1);
+}
+rr(7,460,298,29,6,"#202a33","#ff892f",3);rr(15,456,282,8,3,"#d6dfe5");
+rr(21,445,270,13,3,"#ff892f","#8f4b22",1);rr(25,416,252,29,4,"#1d2934","#6f7f8d",2);
+for(let x=37;x<267;x+=23){rr(x,422,12,16,2,"#394a58","#82909a",1);line(x+6,424,x+6,436,"#ff9a49",2);}
+rr(28,618,25,39,4,"#172735");rr(258,618,25,39,4,"#172735");
+txt("GLASSFIX / PRO WORKBENCH",153,438,9,"#f4a15f");
+}else{
+rr(24,489,252,121,7,"#243342","#172532",3);rr(16,467,268,24,6,"#af855c","#433527",3);
+rr(25,465,250,7,3,"#d6af7d");
+for(let i=0;i<3;i++){rr(37,517+i*25,225,19,4,"#36485b","#172b3d",1);rr(128,522+i*25,44,5,2,"#ff892f");}
+rr(35,607,22,32,4,"#172735");rr(244,607,22,32,4,"#172735");txt("ВЕРСТАК",150,440,13,"#263b4c");
+}
+Object.keys(bench).forEach(k=>{
+const p=home(k);
+if(!state.staged[k]){tool(k,p.x,p.y,k==="resin"?.63:.7);hit(k,p.x-40,p.y-39,80,65);}
+txt(k==="drill"?(save.upgrades[k]?"DREMEL":"БОРМАШИНКА"):k==="injector"?(save.upgrades[k]?"DELTA":"ИНЖЕКТОР"):"ПОЛИМЕР",
+p.x,save.upgrades.workshop?482:498,8,"#d7e2ed");
+});
+if(!save.upgrades.workshop){
+rr(904,247,173,81,8,"#233342","#6d8191",2);
+txt("РЕМОНТ СТЁКОЛ",990,267,13,"#ff9a49");txt("СКОЛЫ И ТРЕЩИНЫ",990,301,13,"#e7edf3");
+}
 }
 function master(){
-  const happy=state.mode==="paid"||state.mode==="depart";
-  g.save();g.translate(976,447+Math.sin(time/550)*1.5);
-  oval(0,151,62,15,"#16283866");
-  rr(-39,51,31,87,12,"#35475a","#1d2e40",3);rr(10,51,31,87,12,"#35475a","#1d2e40",3);
-  rr(-46,130,43,21,8,"#17293b","#102031");rr(5,130,43,21,8,"#17293b","#102031");
-  poly([[-39,-40],[-58,-17],[-53,37],[-36,40],[-27,0]],"#637589","#263a4d",3);
-  oval(-43,43,13,16,"#efba92","#815e49",1);
-  if(happy){poly([[37,-37],[59,-44],[74,-90],[89,-80],[73,-18],[41,2]],"#637589","#263a4d",3);oval(81,-92,12,16,"#efba92");line(84,-102,86,-116,"#efba92",8);}
-  else{poly([[37,-40],[58,-17],[53,37],[36,40],[27,0]],"#637589","#263a4d",3);oval(43,43,13,16,"#efba92","#815e49",1);}
-  rr(-40,-44,81,111,21,"#53697f","#243a4f",3);
-  poly([[-37,-36],[-18,-41],[-8,-15],[-34,-8]],"#ff892f");
-  poly([[37,-36],[18,-41],[8,-15],[34,-8]],"#ff892f");
-  rr(-36,31,73,17,3,"#ed842e");line(0,-9,0,60,"#2a3e50",2);
-  rr(-33,-2,66,27,4,"#253c50","#8298aa",1);txt("GlassFix",0,7,13,"#edf4fa");txt("EXPERT",0,18,6,"#ff9d4e");
-  rr(-12,-69,25,29,8,"#e7b48e");
-  oval(0,-94,32,37,"#f1c09a","#6d5345",2);
-  poly([[-30,-105],[-23,-128],[0,-137],[23,-125],[31,-106],[12,-113],[-3,-119],[-22,-106]],"#443830","#2e2926",2);
-  oval(-11,-96,3.2,4.3,"#283b47");oval(12,-96,3.2,4.3,"#283b47");
-  line(-17,-106,-7,-108,"#5b4030",2);line(7,-108,17,-106,"#5b4030",2);
-  poly([[-11,-79],[0,happy?-70:-73],[12,-79]],null,"#935e44",2,false);
-  g.restore();
-  if(happy){rr(876,218,207,40,12,"#f2f6f5","#344c60");txt("Отличная работа!",979,238,16,"#344b60");}
+const happy=["paid","cleanup","depart"].includes(state.mode);
+g.save();g.translate(976,447+Math.sin(time/550)*1.5);
+oval(0,151,62,15,"#16283866");
+rr(-39,51,31,87,12,"#35475a","#1d2e40",3);rr(10,51,31,87,12,"#35475a","#1d2e40",3);
+rr(-46,130,43,21,8,"#17293b","#102031");rr(5,130,43,21,8,"#17293b","#102031");
+poly([[-39,-40],[-58,-17],[-53,37],[-36,40],[-27,0]],"#637589","#263a4d",3);oval(-43,43,13,16,"#efba92","#815e49",1);
+if(happy){
+poly([[37,-37],[59,-44],[74,-90],[89,-80],[73,-18],[41,2]],"#637589","#263a4d",3);
+oval(81,-92,12,16,"#efba92");line(84,-102,86,-116,"#efba92",8);
+}else{
+poly([[37,-40],[58,-17],[53,37],[36,40],[27,0]],"#637589","#263a4d",3);oval(43,43,13,16,"#efba92","#815e49",1);
+}
+rr(-40,-44,81,111,21,"#53697f","#243a4f",3);
+poly([[-37,-36],[-18,-41],[-8,-15],[-34,-8]],"#ff892f");poly([[37,-36],[18,-41],[8,-15],[34,-8]],"#ff892f");
+rr(-36,31,73,17,3,"#ed842e");line(0,-9,0,60,"#2a3e50",2);
+rr(-33,-2,66,27,4,"#253c50","#8298aa",1);txt("GlassFix",0,7,13,"#edf4fa");txt("EXPERT",0,18,6,"#ff9d4e");
+rr(-12,-69,25,29,8,"#e7b48e");oval(0,-94,32,37,"#f1c09a","#6d5345",2);
+poly([[-30,-105],[-23,-128],[0,-137],[23,-125],[31,-106],[12,-113],[-3,-119],[-22,-106]],"#443830","#2e2926",2);
+oval(-11,-96,3.2,4.3,"#283b47");oval(12,-96,3.2,4.3,"#283b47");
+line(-17,-106,-7,-108,"#5b4030",2);line(7,-108,17,-106,"#5b4030",2);
+poly([[-11,-79],[0,happy?-70:-73],[12,-79]],null,"#935e44",2,false);g.restore();
+if(happy){rr(876,218,207,40,12,"#f2f6f5","#344c60");txt("Отличная работа!",979,238,16,"#344b60");}
 }
 function glassPath(){
-  g.beginPath();g.moveTo(424,231);g.quadraticCurveTo(580,214,736,231);
-  g.lineTo(788,382);g.quadraticCurveTo(580,400,371,382);g.closePath();
+g.beginPath();g.moveTo(424,231);g.quadraticCurveTo(580,214,736,231);
+g.lineTo(788,382);g.quadraticCurveTo(580,400,371,382);g.closePath();
 }
 function ring(p,label,done){
-  const r=17+Math.sin(time/180)*1.3;
-  oval(p.x,p.y,r,r,done?"#80eabd15":"#ffb56220",done?"#a5f2d0":"#ffc17d",1.7);
-  oval(p.x,p.y-24,9,9,done?"#79dbac":"#ffae65","#344c60",1);
-  txt(done?"✓":label,p.x,p.y-24,10,"#23394b");
+const r=17+Math.sin(time/180)*1.3;
+oval(p.x,p.y,r,r,done?"#80eabd15":"#ffb56220",done?"#a5f2d0":"#ffc17d",1.7);
+oval(p.x,p.y-24,9,9,done?"#79dbac":"#ffae65","#344c60",1);
+txt(done?"✓":label,p.x,p.y-24,10,"#23394b");
 }
 function damage(){
-  ["crack","chip"].forEach(kind=>{
-    const d=state[kind];if(!d||d.done)return;
-    let alpha=1;
-    if(state.cure?.kind===kind){const c=state.cure;alpha=1-clamp((time-c.start-c.injection)/(c.duration-c.injection),0,1);}
-    g.save();g.globalAlpha=alpha;
-    if(kind==="chip"){
-      const p=d.center;
-      d.rays.forEach(r=>{
-        const x=p.x+Math.cos(r.a)*r.l,y=p.y+Math.sin(r.a)*r.l*.83;
-        line(p.x,p.y,x,y,"#143348",2.4);line(p.x+1,p.y+1,x+1,y+1,"#ecfaff",.7);
-        if(r.branch)line(lerp(p.x,x,.6),lerp(p.y,y,.6),x+Math.sin(r.a)*5,y-Math.cos(r.a)*5,"#c8e4ee",.8);
-      });
-      oval(p.x,p.y,d.drilled?3.5:6,d.drilled?2.5:4,"#173449","#d5eef5",1);
-    }else{
-      poly(d.path.map(p=>[p.x,p.y]),null,"#17374c",4,false);
-      poly(d.path.map(p=>[p.x+1,p.y+1]),null,"#d8f5ff",1.2,false);
-      for(let i=1;i<d.samples.length;i++){
-        const a=d.samples[i-1],b=d.samples[i];if(a.filled&&b.filled)line(a.x,a.y,b.x,b.y,"#a4f4d4",5);
-      }
-    }g.restore();
-  });
-  if(state.mode==="work"&&staged())targets().forEach((t,i)=>{
-    if(state[t.kind].done||(t.kind==="chip"&&state.chip.placed))return;
-    ring(t.p,String(i+1),t.done);
-  });
+["crack","chip"].forEach(kind=>{
+const d=state[kind];if(!d||d.done)return;
+let alpha=1;
+if(state.cure?.kind===kind){
+const c=state.cure;alpha=1-clamp((time-c.start-c.injection)/(c.duration-c.injection),0,1);
+}
+g.save();g.globalAlpha=alpha;
+if(kind==="chip"){
+const p=d.center;
+d.rays.forEach(r=>{
+const x=p.x+Math.cos(r.a)*r.l,y=p.y+Math.sin(r.a)*r.l*.83;
+line(p.x,p.y,x,y,"#143348",2.4);line(p.x+1,p.y+1,x+1,y+1,"#ecfaff",.7);
+if(r.branch)line(lerp(p.x,x,.6),lerp(p.y,y,.6),x+Math.sin(r.a)*5,y-Math.cos(r.a)*5,"#c8e4ee",.8);
+});
+oval(p.x,p.y,d.drilled?3.5:6,d.drilled?2.5:4,"#173449","#d5eef5",1);
+}else{
+poly(d.path.map(p=>[p.x,p.y]),null,"#17374c",4,false);
+poly(d.path.map(p=>[p.x+1,p.y+1]),null,"#d8f5ff",1.2,false);
+for(let i=1;i<d.samples.length;i++){
+const a=d.samples[i-1],b=d.samples[i];if(a.filled&&b.filled)line(a.x,a.y,b.x,b.y,"#a4f4d4",5);
+}
+}
+g.restore();
+});
+if(state.mode==="work"&&staged())targets().forEach((t,i)=>{
+if(state[t.kind].done||(t.kind==="chip"&&state.chip.placed))return;ring(t.p,String(i+1),t.done);
+});
 }
 function workMat(){
-  if(state.flight?.kind==="mat")return;
-  poly([[346,429],[603,429],[620,500],[584,535],[338,514]],"#25313d","#132433",3);
-  poly([[354,437],[596,437],[612,496],[581,526],[346,507]],null,"#d78041",1.5);
-  poly([[342,505],[584,526],[578,581],[341,560]],"#24313e","#142737",3);
-  poly([[350,515],[575,534],[570,572],[349,552]],null,"#c27a42",1);
-  rr(349,429,253,16,4,"#c4a27c","#4b3d2a",1);txt("GlassFix EXPERT",478,437,9,"#463524");
-  Object.keys(pad).forEach(k=>{
-    if(!state.staged[k]||state.flight?.kind===k)return;
-    const p=pad[k];
-    if(state.selected===k)rr(p.x-40,p.y-36,80,72,11,"#ff9a3024","#ffb974",2);
-    tool(k,p.x,p.y,k==="resin"?.68:.72);hit(k,p.x-41,p.y-38,82,80);
-  });
+if(state.flight?.kind==="mat")return;
+poly([[346,429],[603,429],[620,500],[584,535],[338,514]],"#25313d","#132433",3);
+poly([[354,437],[596,437],[612,496],[581,526],[346,507]],null,"#d78041",1.5);
+poly([[342,505],[584,526],[578,581],[341,560]],"#24313e","#142737",3);
+poly([[350,515],[575,534],[570,572],[349,552]],null,"#c27a42",1);
+rr(349,429,253,16,4,"#c4a27c","#4b3d2a",1);txt("GlassFix EXPERT",478,437,9,"#463524");
+Object.keys(pad).forEach(k=>{
+if(!state.staged[k]||state.flight?.kind===k)return;
+const p=pad[k];
+if(state.selected===k)rr(p.x-40,p.y-36,80,72,11,"#ff9a3024","#ffb974",2);
+tool(k,p.x,p.y,k==="resin"?.68:.72);hit(k,p.x-41,p.y-38,82,80);
+});
 }
 function operation(x,y,p,label){
-  rr(x-60,y,120,31,8,"#132b3be8","#8da6b8",1);
-  txt(label,x,y+10,8,"#edf7fd");rr(x-50,y+21,100,4,2,"#4c6375");
-  if(p>0)rr(x-50,y+21,Math.max(1,100*p),4,2,"#ffbd73");
+rr(x-60,y,120,31,8,"#132b3be8","#8da6b8",1);
+txt(label,x,y+10,8,"#edf7fd");rr(x-50,y+21,100,4,2,"#4c6375");
+if(p>0)rr(x-50,y+21,Math.max(1,100*p),4,2,"#ffbd73");
 }
 function car(){
-  let offset=0;
-  if(state.mode==="arrive")offset=(1-ease((time-state.since)/1350))*750;
-  if(state.mode==="depart")offset=ease((time-state.since)/1150)*800;
-  const m=state.model,wide=m.shape===2?12:m.shape===3?17:0;
-  g.save();g.translate(0,offset);
-  oval(580,606,292+wide,43,"#10273865");
-  rr(330-wide,433,58,165,20,"#1b2b3b","#102030",4);
-  rr(772+wide,433,58,165,20,"#1b2b3b","#102030",4);
-  for(let y=451;y<591;y+=14){line(337-wide,y,379-wide,y-5,"#405365",2);line(781+wide,y-5,822+wide,y,"#405365",2);}
-  rr(423,m.shape===2?192:202,315,72,m.shape===2?24:37,m.color,"#283f53",4);
-  poly([[424,220],[736,220],[789,381],[825+wide,413],[846+wide,509],[831+wide,573],
-    [796+wide,599],[365-wide,599],[330-wide,573],[315-wide,509],[337-wide,413],[370,381]],m.color,"#263e52",4);
-  const hood=g.createLinearGradient(0,394,0,559);hood.addColorStop(0,m.color);hood.addColorStop(1,m.dark);
-  poly([[375,394],[785,394],[825+wide,518],[336-wide,518]],hood,"#2a4458",2);
-  line(401,412,366-wide,503,"#ffffff35",3);line(761,412,795+wide,503,"#ffffff35",3);
-  rr(330-wide,542,500+wide*2,50,15,m.dark,"#293f55",3);
-  rr(442,546,276,29,9,"#1d3246","#8b9faf",2);
-  for(let i=0;i<7;i++)line(459+i*35,550,459+i*35,571,"#587086",2);
-  if(m.shape===3){
-    poly([[335,511],[419,523],[406,543],[333,537]],"#e7f7ff","#30495e",2);
-    poly([[827,511],[743,523],[756,543],[829,537]],"#e7f7ff","#30495e",2);
-  }else{
-    rr(341-wide,511,81,28,9,"#e7f7ff","#30495e",2);rr(739+wide,511,81,28,9,"#e7f7ff","#30495e",2);
-    line(354-wide,521,407-wide,521,"#a2d0e7",3);line(752+wide,521,805+wide,521,"#a2d0e7",3);
-  }
-  rr(523,576,115,27,4,"#e7eeed","#2f465a");txt("GLASS FIX",580,590,13,"#35516a");
-  oval(580,523,11,8,"#c8d9e3","#4c657a",1);
-  rr(329,342,58,28,10,m.dark,"#30495e",2);rr(774,342,58,28,10,m.dark,"#30495e",2);
-  line(374,358,390,369,"#263c50",7);line(786,358,770,369,"#263c50",7);
-
-  glassPath();
-  const glass=g.createLinearGradient(390,230,760,390);
-  glass.addColorStop(0,m.purple?"#3f3677":"#24495f");glass.addColorStop(.45,m.purple?"#aa79c6":"#789eae");
-  glass.addColorStop(.72,m.purple?"#6461b3":"#426f86");glass.addColorStop(1,m.purple?"#c8a1ce":"#aec6cd");
-  g.fillStyle=glass;g.fill();g.strokeStyle="#203749";g.lineWidth=8;g.stroke();
-  g.save();glassPath();g.clip();
-  rr(445,288,85,109,18,"#162f4244");rr(629,288,85,109,18,"#162f4244");
-  oval(678,378,40,27,null,"#18334977",7);
-  poly([[438,229],[472,224],[396,388],[377,382]],"#ffffff18");
-  poly([[668,222],[697,226],[625,393],[595,393]],"#ffffff19");
-  damage();
-  if(state.cure){
-    const t=clamp((time-state.cure.start)/state.cure.duration,0,1);
-    const shine=g.createLinearGradient(320+t*610,0,425+t*610,0);
-    shine.addColorStop(0,"#e4d5ff00");shine.addColorStop(.5,"#e4d5ff88");shine.addColorStop(1,"#e4d5ff00");
-    g.fillStyle=shine;g.fillRect(365,215,430,182);
-  }
-  g.restore();
-  line(390,382,538,387,"#193146",6);line(622,387,770,382,"#193146",6);
-  line(477,387,494,375,"#29485e",4);line(687,387,670,375,"#29485e",4);
-  if(state.mat)workMat();
-  if(state.chip?.placed&&!state.chip.done)tool("injector",state.chip.center.x,state.chip.center.y-5,.75);
-  if(state.drilling){
-    const d=state.drilling,a=-.35,len=save.upgrades.drill?61:48;
-    tool("drill",d.p.x+Math.cos(a)*len+Math.sin(time*.15),d.p.y+Math.sin(a)*len,1,a);
-    operation(d.p.x,d.p.y+27,clamp((time-d.start)/d.duration,0,1),"СВЕРЛЕНИЕ");
-  }
-  if(state.cure){
-    const c=state.cure;
-    operation(580,401,clamp((time-c.start)/c.duration,0,1),time-c.start<c.injection?"ЗАПОЛНЕНИЕ СКОЛА":"ПОЛИМЕРИЗАЦИЯ");
-  }
-  g.restore();
+let offset=0;
+if(state.mode==="arrive")offset=(1-ease((time-state.since)/1350))*750;
+if(state.mode==="depart")offset=ease((time-state.since)/1150)*800;
+const m=state.model,wide=m.shape===2?12:m.shape===3?17:0;
+g.save();g.translate(0,offset);
+oval(580,606,292+wide,43,"#10273865");
+rr(330-wide,433,58,165,20,"#1b2b3b","#102030",4);rr(772+wide,433,58,165,20,"#1b2b3b","#102030",4);
+for(let y=451;y<591;y+=14){
+line(337-wide,y,379-wide,y-5,"#405365",2);line(781+wide,y-5,822+wide,y,"#405365",2);
+}
+rr(423,m.shape===2?192:202,315,72,m.shape===2?24:37,m.color,"#283f53",4);
+poly([[424,220],[736,220],[789,381],[825+wide,413],[846+wide,509],[831+wide,573],
+[796+wide,599],[365-wide,599],[330-wide,573],[315-wide,509],[337-wide,413],[370,381]],m.color,"#263e52",4);
+const hood=g.createLinearGradient(0,394,0,559);hood.addColorStop(0,m.color);hood.addColorStop(1,m.dark);
+poly([[375,394],[785,394],[825+wide,518],[336-wide,518]],hood,"#2a4458",2);
+line(401,412,366-wide,503,"#ffffff35",3);line(761,412,795+wide,503,"#ffffff35",3);
+rr(330-wide,542,500+wide*2,50,15,m.dark,"#293f55",3);rr(442,546,276,29,9,"#1d3246","#8b9faf",2);
+for(let i=0;i<7;i++)line(459+i*35,550,459+i*35,571,"#587086",2);
+if(m.shape===3){
+poly([[335,511],[419,523],[406,543],[333,537]],"#e7f7ff","#30495e",2);
+poly([[827,511],[743,523],[756,543],[829,537]],"#e7f7ff","#30495e",2);
+}else{
+rr(341-wide,511,81,28,9,"#e7f7ff","#30495e",2);rr(739+wide,511,81,28,9,"#e7f7ff","#30495e",2);
+line(354-wide,521,407-wide,521,"#a2d0e7",3);line(752+wide,521,805+wide,521,"#a2d0e7",3);
+}
+rr(523,576,115,27,4,"#e7eeed","#2f465a");txt("GLASS FIX",580,590,13,"#35516a");
+oval(580,523,11,8,"#c8d9e3","#4c657a",1);
+rr(329,342,58,28,10,m.dark,"#30495e",2);rr(774,342,58,28,10,m.dark,"#30495e",2);
+line(374,358,390,369,"#263c50",7);line(786,358,770,369,"#263c50",7);
+glassPath();
+const glass=g.createLinearGradient(390,230,760,390);
+glass.addColorStop(0,m.purple?"#3f3677":"#24495f");glass.addColorStop(.45,m.purple?"#aa79c6":"#789eae");
+glass.addColorStop(.72,m.purple?"#6461b3":"#426f86");glass.addColorStop(1,m.purple?"#c8a1ce":"#aec6cd");
+g.fillStyle=glass;g.fill();g.strokeStyle="#203749";g.lineWidth=8;g.stroke();
+g.save();glassPath();g.clip();
+rr(445,288,85,109,18,"#162f4244");rr(629,288,85,109,18,"#162f4244");
+oval(678,378,40,27,null,"#18334977",7);
+poly([[438,229],[472,224],[396,388],[377,382]],"#ffffff18");
+poly([[668,222],[697,226],[625,393],[595,393]],"#ffffff19");damage();
+if(state.cure){
+const t=clamp((time-state.cure.start)/state.cure.duration,0,1);
+const shine=g.createLinearGradient(320+t*610,0,425+t*610,0);
+shine.addColorStop(0,"#e4d5ff00");shine.addColorStop(.5,"#e4d5ff88");shine.addColorStop(1,"#e4d5ff00");
+g.fillStyle=shine;g.fillRect(365,215,430,182);
+}
+g.restore();
+line(390,382,538,387,"#193146",6);line(622,387,770,382,"#193146",6);
+line(477,387,494,375,"#29485e",4);line(687,387,670,375,"#29485e",4);
+if(state.mat)workMat();
+if(state.chip?.placed&&!state.chip.done)tool("injector",state.chip.center.x,state.chip.center.y-5,.75);
+if(state.drilling){
+const d=state.drilling,a=-.35,len=save.upgrades.drill?61:48;
+tool("drill",d.p.x+Math.cos(a)*len+Math.sin(time*.15),d.p.y+Math.sin(a)*len,1,a);
+operation(d.p.x,d.p.y+27,clamp((time-d.start)/d.duration,0,1),"СВЕРЛЕНИЕ");
+}
+if(state.cure){
+const c=state.cure;
+operation(580,401,clamp((time-c.start)/c.duration,0,1),time-c.start<c.injection?"ЗАПОЛНЕНИЕ СКОЛА":"ПОЛИМЕРИЗАЦИЯ");
+}
+g.restore();
 }
 function flight(){
-  const f=state.flight;if(!f)return;
-  const t=clamp((time-f.start)/f.duration,0,1),e=ease(t);
-  const x=lerp(f.from.x,f.to.x,e),y=lerp(f.from.y,f.to.y,e)-Math.sin(t*Math.PI)*95;
-  if(f.kind==="mat")matIcon(x,y,.9);else tool(f.kind,x,y,.85,Math.sin(t*Math.PI)*.2);
+const f=state.flight;if(!f)return;
+const t=clamp((time-f.start)/f.duration,0,1),e=ease(t);
+const x=lerp(f.from.x,f.to.x,e),y=lerp(f.from.y,f.to.y,e)-Math.sin(t*Math.PI)*75;
+if(f.kind==="mat")matIcon(x,y,.9);else tool(f.kind,x,y,.75,Math.sin(t*Math.PI)*.2);
 }
 function burst(x,y,color,count){
-  for(let i=0;i<count;i++)particles.push({x,y,vx:rand(-95,95),vy:rand(-140,10),life:rand(.4,1.3),max:1.3,color,size:rand(1.5,4)});
+for(let i=0;i<count;i++)particles.push({x,y,vx:rand(-95,95),vy:rand(-140,10),life:rand(.4,1.3),max:1.3,color,size:rand(1.5,4)});
 }
 function effects(dt){
-  if(dt>0&&state.drilling&&Math.random()<.6)burst(state.drilling.p.x,state.drilling.p.y,"#d9f6ff",1);
-  particles.forEach(p=>{
-    p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=90*dt;p.life-=dt;
-    g.globalAlpha=clamp(p.life/p.max,0,1);oval(p.x,p.y,p.size,p.size,p.color);
-  });
-  g.globalAlpha=1;particles=particles.filter(p=>p.life>0);
+if(dt>0&&state.drilling&&Math.random()<.6)burst(state.drilling.p.x,state.drilling.p.y,"#d9f6ff",1);
+particles.forEach(p=>{
+p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=90*dt;p.life-=dt;
+g.globalAlpha=clamp(p.life/p.max,0,1);oval(p.x,p.y,p.size,p.size,p.color);
+});
+g.globalAlpha=1;particles=particles.filter(p=>p.life>0);
 }
 function progress(){
-  let p=(state.mat?.12:0)+required().filter(k=>state.staged[k]).length/required().length*.18;
-  p+=targets().filter(t=>t.done).length/targets().length*.25;
-  const count=(state.chip?1:0)+(state.crack?1:0);
-  ["chip","crack"].forEach(k=>{
-    const d=state[k];if(!d)return;
-    let v=d.done?1:k==="chip"?(d.placed?.3:0):d.coverage*.65;
-    if(state.cure?.kind===k)v=lerp(.7,1,clamp((time-state.cure.start)/state.cure.duration,0,1));
-    p+=v*.45/count;
-  });
-  return clamp(p,0,1);
+let p=(state.mat?.12:0)+required().filter(k=>state.staged[k]).length/required().length*.18;
+p+=targets().filter(t=>t.done).length/targets().length*.25;
+const count=(state.chip?1:0)+(state.crack?1:0);
+["chip","crack"].forEach(k=>{
+const d=state[k];if(!d)return;
+let v=d.done?1:k==="chip"?(d.placed?.3:0):d.coverage*.65;
+if(state.cure?.kind===k)v=lerp(.7,1,clamp((time-state.cure.start)/state.cure.duration,0,1));
+p+=v*.45/count;
+});
+return clamp(p,0,1);
 }
 function overlay(){
   rr(17,16,218,43,12,"#152c3ee8","#91a8bc55",1);
   oval(35,37,4,4,state.mode==="work"?"#9becb8":"#ffb672");
-  txt(state.mode==="arrive"?"КЛИЕНТ ЗАЕЗЖАЕТ":state.mode==="paid"?"РЕМОНТ ЗАВЕРШЁН":
-    state.mode==="depart"?"ДО НОВОЙ ВСТРЕЧИ":state.mode==="cure"?"ФИНИШНЫЙ ЭТАП":"МАСТЕРСКАЯ ОТКРЫТА",49,38,10,"#e8f0f8","left");
+  const labels={
+    arrive:"КЛИЕНТ ЗАЕЗЖАЕТ",
+    paid:"РЕМОНТ ЗАВЕРШЁН",
+    cleanup:"УБИРАЕМ ИНСТРУМЕНТЫ",
+    depart:"ДО НОВОЙ ВСТРЕЧИ",
+    cure:"ФИНИШНЫЙ ЭТАП",
+    work:"МАСТЕРСКАЯ ОТКРЫТА"
+  };
+  txt(labels[state.mode]||"",49,38,10,"#e8f0f8","left");
+
   if(state.mode==="work"||state.mode==="cure"){
     rr(850,16,233,59,12,"#152c3ee8","#91a8bc55",1);
-    txt(state.type==="both"?"СКОЛ И ТРЕЩИНА":state.chip?"ЗАКАЗ: СКОЛ":"ЗАКАЗ: ТРЕЩИНА",966,35,13,"#eaf3fa");
-    txt("Оплата "+cash((state.chip?1200:0)+(state.crack?2400:0)),966,57,13,"#ffc08a");
+    txt(
+      state.type==="both"?"СКОЛ И ТРЕЩИНА":
+      state.chip?"ЗАКАЗ: СКОЛ":"ЗАКАЗ: ТРЕЩИНА",
+      966,35,13,"#eaf3fa"
+    );
+    txt("Оплата "+cash(income()),966,57,13,"#ffc08a");
     rr(393,19,314,34,10,"#152c3ee8","#91a8bc55",1);
-    rr(406,32,214,7,3,"#4b6375");const p=progress();
-    if(p>0)rr(406,32,Math.max(1,p*214),7,3,"#ffac63");txt(Math.round(p*100)+"%",661,36,12,"#f7e1c9");
+    rr(406,32,214,7,3,"#4b6375");
+    const p=progress();
+    if(p>0)rr(406,32,Math.max(1,p*214),7,3,"#ffac63");
+    txt(Math.round(p*100)+"%",661,36,12,"#f7e1c9");
   }
-  if(zoom){rr(350,651,400,31,9,"#162e40ed","#92aabc66",1);txt("КРУПНЫЙ ПЛАН · кнопка «Весь бокс» снизу",550,667,12,"#dcebf5");}
+
+  if(zoom){
+    rr(350,651,400,31,9,"#162e40ed","#92aabc66",1);
+    txt(
+      "КРУПНЫЙ ПЛАН · кнопка «Весь бокс» снизу",
+      550,667,12,"#dcebf5"
+    );
+  }
+
   if(notice.end>time){
-    g.font="600 14px Arial";const w=Math.min(1065,g.measureText(notice.text).width+35);
-    rr((W-w)/2,83,w,39,11,"#132b3cf5","#ffb16d",1.5);
+    g.font="600 14px Arial";
+    const width=Math.min(1065,g.measureText(notice.text).width+35);
+    rr((W-width)/2,83,width,39,11,"#132b3cf5","#ffb16d",1.5);
     txt(notice.text,W/2,103,14,"#ffe1c1");
   }
+
   floats.forEach(f=>{
-    const t=clamp((time-f.start)/1800,0,1);g.globalAlpha=1-t;
-    txt(f.text,580,255-t*70,43,"#a5f5cd");g.globalAlpha=1;
-  });floats=floats.filter(f=>time-f.start<1800);
+    const t=clamp((time-f.start)/1800,0,1);
+    g.globalAlpha=1-t;
+    txt(f.text,580,255-t*70,43,"#a5f5cd");
+    g.globalAlpha=1;
+  });
+  floats=floats.filter(f=>time-f.start<1800);
 }
-function camera(){return zoom?{s:1.65,x:W/2-550*1.65,y:H/2-360*1.65}:{s:1,x:0,y:0};}
+
+function camera(){
+  return zoom?
+    {s:1.65,x:W/2-550*1.65,y:H/2-360*1.65}:
+    {s:1,x:0,y:0};
+}
+
 function cursor(){
-  if(!ready()||!state.selected||hitAt(mouse)||mouse.x<370||mouse.x>790||mouse.y<220||mouse.y>397)return;
-  g.save();g.globalAlpha=.8;
-  if(state.selected==="resin")tool("resin",mouse.x,mouse.y-30,.7,-.08);
-  else if(state.selected==="injector")tool("injector",mouse.x,mouse.y-5,.7);
-  else{
+  if(
+    !ready()||!state.selected||hitAt(mouse)||
+    mouse.x<370||mouse.x>790||mouse.y<220||mouse.y>397
+  )return;
+
+  g.save();
+  g.globalAlpha=.8;
+
+  if(state.selected==="resin"){
+    tool("resin",mouse.x,mouse.y-30,.7,-.08);
+  }else if(state.selected==="injector"){
+    tool("injector",mouse.x,mouse.y-5,.7);
+  }else{
     const len=save.upgrades.drill?61:48,a=-.35;
-    tool("drill",mouse.x+Math.cos(a)*len*.8,mouse.y+Math.sin(a)*len*.8,.8,a);
-  }g.restore();
+    tool(
+      "drill",
+      mouse.x+Math.cos(a)*len*.8,
+      mouse.y+Math.sin(a)*len*.8,
+      .8,a
+    );
+  }
+
+  g.restore();
 }
+
 function update(){
-  if(state.mode==="arrive"&&time-state.since>=1350){state.mode="work";state.since=time;ui();}
-  if(state.flight&&time-state.flight.start>=state.flight.duration){state.flight=null;ui();}
+  if(state.mode==="arrive"&&time-state.since>=1350){
+    state.mode="work";
+    state.since=time;
+    ui();
+  }
+
+  if(state.flight&&time-state.flight.start>=state.flight.duration){
+    const finished=state.flight;
+    state.flight=null;
+
+    if(finished.returning){
+      if(finished.kind==="mat"){
+        state.mat=false;
+      }else{
+        state.staged[finished.kind]=false;
+      }
+      nextReturn();
+    }
+
+    ui();
+  }
+
   if(state.drilling&&time-state.drilling.start>=state.drilling.duration){
     const d=state.drilling;
-    if(d.kind==="chip")state.chip.drilled=true;else state.crack.drilled[d.index]=true;
-    burst(d.p.x,d.p.y,"#d7f4ff",12);state.drilling=null;
-    if(drilled())state.selected=null;beep(560);ui();
+
+    if(d.kind==="chip"){
+      state.chip.drilled=true;
+    }else{
+      state.crack.drilled[d.index]=true;
+    }
+
+    burst(d.p.x,d.p.y,"#d7f4ff",12);
+    state.drilling=null;
+    if(drilled())state.selected=null;
+    beep(560);
+    ui();
   }
-  if(state.cure&&time-state.cure.start>=state.cure.duration)finishCure();
-  if(state.mode==="paid"&&time-state.since>=2200){state.mode="depart";state.since=time;zoom=false;ui();}
-  if(state.mode==="depart"&&time-state.since>=1350)newCar();
+
+  if(state.cure&&time-state.cure.start>=state.cure.duration){
+    finishCure();
+  }
+
+  if(state.mode==="paid"&&time-state.since>=1200){
+    beginCleanup();
+  }
+
+  if(state.mode==="depart"&&time-state.since>=1350){
+    newCar();
+  }
+
   if(state.cure)ui();
 }
+
 function frame(real){
-  const elapsed=Math.min(Math.max(0,real-last),50);last=real;
+  const elapsed=Math.min(Math.max(0,real-last),50);
+  last=real;
   const dt=modal||document.hidden?0:elapsed/1000;
-  time+=dt*1000;if(dt)update();
-  g=main;const ratio=canvas.width/W;
-  g.setTransform(ratio,0,0,ratio,0,0);g.clearRect(0,0,W,H);hits=[];
+
+  time+=dt*1000;
+  if(dt)update();
+
+  g=main;
+  const ratio=canvas.width/W;
+  g.setTransform(ratio,0,0,ratio,0,0);
+  g.clearRect(0,0,W,H);
+  hits=[];
+
   const cam=camera();
-  g.save();g.translate(cam.x,cam.y);g.scale(cam.s,cam.s);
-  background();master();car();flight();effects(dt);cursor();g.restore();overlay();
-  canvas.style.cursor=ready()?(hitAt(mouse)?"pointer":state.selected?"crosshair":"default"):"default";
+  g.save();
+  g.translate(cam.x,cam.y);
+  g.scale(cam.s,cam.s);
+  background();
+  master();
+  car();
+  flight();
+  effects(dt);
+  cursor();
+  g.restore();
+
+  overlay();
+  canvas.style.cursor=ready()?
+    (hitAt(mouse)?"pointer":state.selected?"crosshair":"default"):
+    "default";
+
   requestAnimationFrame(frame);
 }
+
 function coordinates(e){
   const r=canvas.getBoundingClientRect(),c=camera();
-  return{x:((e.clientX-r.left)/r.width*W-c.x)/c.s,y:((e.clientY-r.top)/r.height*H-c.y)/c.s};
+  return{
+    x:((e.clientX-r.left)/r.width*W-c.x)/c.s,
+    y:((e.clientY-r.top)/r.height*H-c.y)/c.s
+  };
 }
+
 let logoTapCount=0,logoTapStart=0;
+
 canvas.addEventListener("pointerdown",e=>{
-  if(modal||(e.pointerType==="mouse"&&e.button!==0)||mouse.down)return;
-  e.preventDefault();const p=coordinates(e);mouse.x=p.x;mouse.y=p.y;
-  // Секретный тестовый бонус: три нажатия по логотипу на стене бокса.
+  if(
+    modal||
+    (e.pointerType==="mouse"&&e.button!==0)||
+    mouse.down
+  )return;
+
+  e.preventDefault();
+  const p=coordinates(e);
+  mouse.x=p.x;
+  mouse.y=p.y;
+
   if(p.x>=440&&p.x<=710&&p.y>=85&&p.y<=175){
-    const now=performance.now();
-    if(now-logoTapStart>1800)logoTapCount=0;
-    if(logoTapCount===0)logoTapStart=now;
+    const current=performance.now();
+
+    if(current-logoTapStart>1800)logoTapCount=0;
+    if(logoTapCount===0)logoTapStart=current;
     logoTapCount++;
+
     if(logoTapCount>=3){
-      save.money+=100000;persist();notify("Тестовый бонус: +100 000 ₽");beep(880,.18);logoTapCount=0;logoTapStart=0;
+      save.money+=100000;
+      persist();
+      notify("Тестовый бонус: +100 000 ₽");
+      beep(880,.18);
+      logoTapCount=0;
+      logoTapStart=0;
     }
+
     return;
   }
-  logoTapCount=0;logoTapStart=0;
+
+  logoTapCount=0;
+  logoTapStart=0;
   if(!ready())return;
-  const id=hitAt(p);if(id){action(id);return;}
-  if(p.x<365||p.x>795||p.y<216||p.y>397)return;
-  if(state.selected==="resin"&&state.chip&&!state.chip.done&&dist(p,state.chip.center)<37){glassClick(p);return;}
-  if(state.selected==="resin"&&state.crack&&!state.crack.done&&staged()&&drilled()){
-    if(pathDistance(p,state.crack.path)<24){
-      mouse.down=true;mouse.id=e.pointerId;mouse.last=p;
-      try{canvas.setPointerCapture(e.pointerId);}catch(err){}
-      apply(p,p);
-    }else notify("Начните движение прямо на линии трещины.");
+
+  const id=hitAt(p);
+  if(id){
+    action(id);
     return;
   }
+
+  if(p.x<365||p.x>795||p.y<216||p.y>397)return;
+
+  if(
+    state.selected==="resin"&&state.chip&&!state.chip.done&&
+    dist(p,state.chip.center)<37
+  ){
+    glassClick(p);
+    return;
+  }
+
+  if(
+    state.selected==="resin"&&state.crack&&!state.crack.done&&
+    staged()&&drilled()
+  ){
+    if(pathDistance(p,state.crack.path)<24){
+      mouse.down=true;
+      mouse.id=e.pointerId;
+      mouse.last=p;
+
+      try{
+        canvas.setPointerCapture(e.pointerId);
+      }catch(err){}
+
+      apply(p,p);
+    }else{
+      notify("Начните движение прямо на линии трещины.");
+    }
+
+    return;
+  }
+
   glassClick(p);
 });
+
 canvas.addEventListener("pointermove",e=>{
   if(modal)return;
   if(mouse.down&&e.pointerId!==mouse.id)return;
+
   const p=coordinates(e);
   if(mouse.down&&mouse.last)apply(mouse.last,p);
-  mouse.x=p.x;mouse.y=p.y;
+
+  mouse.x=p.x;
+  mouse.y=p.y;
   if(mouse.down)mouse.last=p;
 });
-canvas.addEventListener("pointerup",e=>{if(mouse.id===e.pointerId)release();});
-canvas.addEventListener("pointercancel",e=>{if(mouse.id===e.pointerId)release();});
-canvas.addEventListener("lostpointercapture",()=>{mouse.down=false;mouse.last=null;mouse.id=null;});
-canvas.addEventListener("pointerleave",()=>{if(!mouse.down){mouse.x=-999;mouse.y=-999;}});
-canvas.addEventListener("contextmenu",e=>e.preventDefault());
-tools.forEach(b=>b.addEventListener("click",()=>action(b.dataset.tool)));
-buys.forEach(b=>b.addEventListener("click",()=>buy(b.dataset.buy)));
-$("zoom").addEventListener("click",()=>{if($("zoom").disabled)return;hidePointer();zoom=!zoom;ui();});
-$("sound").addEventListener("click",()=>{
-  sound=!sound;$("sound").textContent=sound?"Звук: вкл.":"Звук: выкл.";$("sound").classList.toggle("active",sound);if(sound)beep(650,.12);
+
+canvas.addEventListener("pointerup",e=>{
+  if(mouse.id===e.pointerId)release();
 });
-$("shopOpen").addEventListener("click",()=>openModal("shop"));
-$("helpOpen").addEventListener("click",()=>openModal("help"));
-document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeModal));
-["shop","help"].forEach(id=>$(id).addEventListener("click",e=>{if(e.target===$(id))closeModal();}));
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){if(modal)closeModal();else if(zoom){zoom=false;hidePointer();ui();}}
-  if(e.key==="Tab"&&modal){
-    const focusable=[...$(modal).querySelectorAll("button:not(:disabled)")];
-    const first=focusable[0],end=focusable[focusable.length-1];
-    if(e.shiftKey&&document.activeElement===first){e.preventDefault();end.focus();}
-    else if(!e.shiftKey&&document.activeElement===end){e.preventDefault();first.focus();}
+
+canvas.addEventListener("pointercancel",e=>{
+  if(mouse.id===e.pointerId)release();
+});
+
+canvas.addEventListener("lostpointercapture",()=>{
+  mouse.down=false;
+  mouse.last=null;
+  mouse.id=null;
+});
+
+canvas.addEventListener("pointerleave",()=>{
+  if(!mouse.down){
+    mouse.x=-999;
+    mouse.y=-999;
   }
 });
+
+canvas.addEventListener("contextmenu",e=>e.preventDefault());
+
+tools.forEach(b=>{
+  b.addEventListener("click",()=>action(b.dataset.tool));
+});
+
+buys.forEach(b=>{
+  b.addEventListener("click",()=>buy(b.dataset.buy));
+});
+
+$("zoom").addEventListener("click",()=>{
+  if($("zoom").disabled)return;
+  hidePointer();
+  zoom=!zoom;
+  ui();
+});
+
+$("sound").addEventListener("click",()=>{
+  sound=!sound;
+  $("sound").textContent=sound?"Звук: вкл.":"Звук: выкл.";
+  $("sound").classList.toggle("active",sound);
+  if(sound)beep(650,.12);
+});
+
+$("shopOpen").addEventListener("click",()=>openModal("shop"));
+$("helpOpen").addEventListener("click",()=>openModal("help"));
+
+document.querySelectorAll("[data-close]").forEach(b=>{
+  b.addEventListener("click",closeModal);
+});
+
+["shop","help"].forEach(id=>{
+  $(id).addEventListener("click",e=>{
+    if(e.target===$(id))closeModal();
+  });
+});
+
+$("closePage").addEventListener("click",()=>{
+  $("closeNote").textContent=
+    "Если браузер не разрешит закрыть страницу, закройте вкладку вручную. Спасибо за игру!";
+  try{
+    window.close();
+  }catch(e){}
+});
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    if(modal){
+      closeModal();
+    }else if(zoom){
+      zoom=false;
+      hidePointer();
+      ui();
+    }
+  }
+
+  if(e.key==="Tab"&&modal){
+    const focusable=[
+      ...$(modal).querySelectorAll(
+        'button:not(:disabled),a[href]'
+      )
+    ];
+    if(!focusable.length)return;
+
+    const first=focusable[0];
+    const end=focusable[focusable.length-1];
+    const outside=!$(modal).contains(document.activeElement);
+
+    if(e.shiftKey&&(document.activeElement===first||outside)){
+      e.preventDefault();
+      end.focus();
+    }else if(!e.shiftKey&&(document.activeElement===end||outside)){
+      e.preventDefault();
+      first.focus();
+    }
+  }
+});
+
 $("reset").addEventListener("click",()=>{
   hidePointer();
-  const confirmed=confirm("Сбросить баланс, количество машин и все покупки?");
-  last=performance.now();if(!confirmed)return;
-  save={money:0,jobs:0,upgrades:{drill:false,injector:false,resin:false,workshop:false}};
-  bag=[];particles=[];floats=[];notice.end=0;persist();newCar();
+  const confirmed=confirm(
+    "Сбросить баланс, количество машин, все покупки и билет на отдых?"
+  );
+  last=performance.now();
+  if(!confirmed)return;
+
+  save=emptySave();
+  bag=[];
+  particles=[];
+  floats=[];
+  notice.end=0;
+  logoTapCount=0;
+  logoTapStart=0;
+  persist();
+  newCar();
 });
+
 function resize(){
-  const w=canvas.parentElement.getBoundingClientRect().width,dpr=Math.min(window.devicePixelRatio||1,2);
-  canvas.width=Math.max(1,Math.round(w*dpr));canvas.height=Math.max(1,Math.round(canvas.width*H/W));
+  const w=canvas.parentElement.getBoundingClientRect().width;
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  canvas.width=Math.max(1,Math.round(w*dpr));
+  canvas.height=Math.max(1,Math.round(canvas.width*H/W));
 }
-if("ResizeObserver"in window)new ResizeObserver(resize).observe(canvas.parentElement);
-else window.addEventListener("resize",resize);
-document.addEventListener("visibilitychange",()=>{hidePointer();last=performance.now();});
+
+if("ResizeObserver" in window){
+  new ResizeObserver(resize).observe(canvas.parentElement);
+}else{
+  window.addEventListener("resize",resize);
+}
+
+document.addEventListener("visibilitychange",()=>{
+  hidePointer();
+  last=performance.now();
+});
+
 window.addEventListener("blur",hidePointer);
-persist();previews();resize();newCar();requestAnimationFrame(frame);
+
+persist();
+previews();
+resize();
+newCar();
+requestAnimationFrame(frame);
 })();
 </script>
 </body>
